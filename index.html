@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,16 +12,20 @@
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+
     body {
       background-color: #f8f8f8;
       padding: 20px;
     }
+
     h1 {
       text-align: center;
       margin-bottom: 20px;
       color: #444;
     }
-    #buscador, #categoriaSelector {
+
+    #buscador,
+    #categoriaSelector {
       width: 100%;
       max-width: 400px;
       margin: 10px auto;
@@ -30,25 +35,29 @@
       border: 1px solid #ccc;
       border-radius: 8px;
     }
+
     .productos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
+
     .producto {
       background-color: #fff;
       border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
+
     .producto img {
       width: 100%;
       height: 220px;
       object-fit: cover;
       display: block;
     }
+
     .info {
       padding: 15px;
       flex-grow: 1;
@@ -56,23 +65,27 @@
       flex-direction: column;
       justify-content: space-between;
     }
+
     .info h2 {
       font-size: 1.2rem;
       margin-bottom: 10px;
       color: #333;
     }
+
     .info p {
       font-size: 0.95rem;
       color: #666;
       margin-bottom: 10px;
       flex-grow: 1;
     }
+
     .precio {
       font-weight: bold;
       color: #e91e63;
       font-size: 1.1rem;
       text-align: right;
     }
+
     #no-results {
       text-align: center;
       color: #888;
@@ -82,6 +95,7 @@
     }
   </style>
 </head>
+
 <body>
   <h1>Showroom - Productos</h1>
   <input type="text" id="buscador" placeholder="Buscar productos..." />
@@ -98,7 +112,9 @@
 
     <!-- Belleza -->
     <div class="producto" data-categoria="belleza" data-precio="8000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6180-cicatricure-crema-corporal-firmeza-x400ml.jpg" alt="Cicatricure - Firmeza" />
+      <img
+        src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6180-cicatricure-crema-corporal-firmeza-x400ml.jpg"
+        alt="Cicatricure - Firmeza" />
       <div class="info">
         <h2>Cicatricure - Firmeza</h2>
         <p>Crema Corporal Hidratación Intensiva, Firmeza 400 Ml</p>
@@ -107,7 +123,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="9000">
-      <img src="https://acdn.mitiendanube.com/stores/002/281/534/products/diabet-tx1-4dd7e3cf22892535db16859907415617-640-0.jpg" alt="DiabeTX - Urea + Calendula" />
+      <img
+        src="https://acdn.mitiendanube.com/stores/002/281/534/products/diabet-tx1-4dd7e3cf22892535db16859907415617-640-0.jpg"
+        alt="DiabeTX - Urea + Calendula" />
       <div class="info">
         <h2>DiabeTX - Urea + Calendula</h2>
         <p>Crema Corporal Plus Urea 5% + Calendula 1% 200 Ml</p>
@@ -116,7 +134,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="15000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6182-cicatricure-crema-facial-neuro-zen-x50gr.jpg" alt="Cicatricure - Neuro-Zen" />
+      <img
+        src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6182-cicatricure-crema-facial-neuro-zen-x50gr.jpg"
+        alt="Cicatricure - Neuro-Zen" />
       <div class="info">
         <h2>Cicatricure - Neuro-Zen</h2>
         <p>Crema Facial Neuro-Zen 50g</p>
@@ -125,7 +145,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="12000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6190-cicatricure-crema-protector-solar-fps-50-antiage-x50gr.jpg" alt="Cicatricure - Protector Solar" />
+      <img
+        src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6190-cicatricure-crema-protector-solar-fps-50-antiage-x50gr.jpg"
+        alt="Cicatricure - Protector Solar" />
       <div class="info">
         <h2>Cicatricure - Protector Solar</h2>
         <p>Protector Solar Facial Fps 50 Antiage 50g</p>
@@ -134,7 +156,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="14000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6194-cicatricure-crema-facial-acido-hialuronico-x60gr.jpg" alt="Cicatricure - Acido Hialurónico" />
+      <img
+        src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6194-cicatricure-crema-facial-acido-hialuronico-x60gr.jpg"
+        alt="Cicatricure - Acido Hialurónico" />
       <div class="info">
         <h2>Cicatricure - Acido Hialurónico</h2>
         <p>Crema Facial Antiedad Con Acido Hialurónico 60g</p>
@@ -143,7 +167,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="15000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6193-cicatricure-crema-facial-colageno-x50gr.jpg" alt="Cicatricure - Colágeno" />
+      <img
+        src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6193-cicatricure-crema-facial-colageno-x50gr.jpg"
+        alt="Cicatricure - Colágeno" />
       <div class="info">
         <h2>Cicatricure - Colágeno</h2>
         <p>Crema Facial Antiedad Con Colágeno 50G</p>
@@ -152,7 +178,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="8000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6181-cicatricure-crema-corporal-antiestrias-x400ml.jpg" alt="Cicatricure - Antiestrías" />
+      <img
+        src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6181-cicatricure-crema-corporal-antiestrias-x400ml.jpg"
+        alt="Cicatricure - Antiestrías" />
       <div class="info">
         <h2>Cicatricure - Antiestrías</h2>
         <p>Crema Corporal Hidratación Intensiva, Antiestrías 400 Ml</p>
@@ -161,7 +189,8 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="10000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6195-cicatricure-gel-cicatrices-x60gr.jpg" alt="Cicatricure - Gel Cicatrices" />
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6195-cicatricure-gel-cicatrices-x60gr.jpg"
+        alt="Cicatricure - Gel Cicatrices" />
       <div class="info">
         <h2>Cicatricure - Gel Cicatrices</h2>
         <p>Gel Cicatrices Y Estrías X 60grs</p>
@@ -170,7 +199,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="8000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6183-cicatricure-crema-corporal-reparacion-x400ml.jpg" alt="Cicatricure - Reparación" />
+      <img
+        src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6183-cicatricure-crema-corporal-reparacion-x400ml.jpg"
+        alt="Cicatricure - Reparación" />
       <div class="info">
         <h2>Cicatricure - Reparación</h2>
         <p>Crema Corporal Hidratación Intensiva, Reparación 400 Ml</p>
@@ -179,7 +210,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="10000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6184-cicatricure-crema-corporal-reparacion-intensiva-x400ml.jpg" alt="Cicatricure - Reparación intensiva" />
+      <img
+        src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6184-cicatricure-crema-corporal-reparacion-intensiva-x400ml.jpg"
+        alt="Cicatricure - Reparación intensiva" />
       <div class="info">
         <h2>Cicatricure - Reparación intensiva</h2>
         <p>Crema corporal Reparación intensiva con 10% urea.</p>
@@ -188,7 +221,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="10000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6185-cicatricure-crema-facial-age-care-humectante-x50gr.jpg" alt="Cicatricure - Age Care Humectante" />
+      <img
+        src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6185-cicatricure-crema-facial-age-care-humectante-x50gr.jpg"
+        alt="Cicatricure - Age Care Humectante" />
       <div class="info">
         <h2>Cicatricure - Age Care Humectante</h2>
         <p>Crema facial Age Care Humectante 50 gr</p>
@@ -197,7 +232,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="10000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6186-cicatricure-crema-facial-age-care-reafirmante-x50gr.jpg" alt="Cicatricure - Age Care Reafirmante" />
+      <img
+        src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6186-cicatricure-crema-facial-age-care-reafirmante-x50gr.jpg"
+        alt="Cicatricure - Age Care Reafirmante" />
       <div class="info">
         <h2>Cicatricure - Age Care Reafirmante</h2>
         <p>Crema facial Age Care Reafirmante 50gr</p>
@@ -206,7 +243,8 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="10000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6187-cicatricure-crema-gel-acqua-defense.jpg" alt="Cicatricure - Acqua Defense" />
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6187-cicatricure-crema-gel-acqua-defense.jpg"
+        alt="Cicatricure - Acqua Defense" />
       <div class="info">
         <h2>Cicatricure - Acqua Defense</h2>
         <p>Crema gel facial Acqua Defense</p>
@@ -215,7 +253,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="15000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6189-cicatricure-crema-gold-lift-contorno-duo-x15gr.jpg" alt="Cicatricure - gold lift contorno duo" />
+      <img
+        src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6189-cicatricure-crema-gold-lift-contorno-duo-x15gr.jpg"
+        alt="Cicatricure - gold lift contorno duo" />
       <div class="info">
         <h2>Cicatricure - gold lift contorno duo</h2>
         <p>Crema Cicatricure gold lift contorno duo 15g</p>
@@ -260,7 +300,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="12000">
-      <img src="https://acdn.mitiendanube.com/stores/002/281/534/products/goicoechea-diabet-tx-plus-urea-250gr-1c93c06660b2dd61f716855667665994-640-0.jpg" alt="Diabet Tx - Urea" />
+      <img
+        src="https://acdn.mitiendanube.com/stores/002/281/534/products/goicoechea-diabet-tx-plus-urea-250gr-1c93c06660b2dd61f716855667665994-640-0.jpg"
+        alt="Diabet Tx - Urea" />
       <div class="info">
         <h2>Diabet Tx - Urea</h2>
         <p>Goicoechea Diabet Tx Plus con Urea de 250gr</p>
@@ -270,7 +312,8 @@
 
     <!-- Hogar -->
     <div class="producto" data-categoria="hogar" data-precio="20000">
-      <img src="https://purywater.com.ar/wp-content/uploads/2020/08/filtro-jarra-aquatal-2.jpg" alt="Filtro para jarra de agua" />
+      <img src="https://purywater.com.ar/wp-content/uploads/2020/08/filtro-jarra-aquatal-2.jpg"
+        alt="Filtro para jarra de agua" />
       <div class="info">
         <h2>Filtro para jarra de agua</h2>
         <p>Filtro repuesto para jarras purificadoras de agua HUMMA BRITA AQUATAL</p>
@@ -298,7 +341,8 @@
     </div>
 
     <div class="producto" data-categoria="tecnologia" data-precio="10000">
-      <img src="https://www.tradeinn.com/f/13861/138613379/memoria-ram-samsung-ddr2-pc2-6400s-1gb.jpg" alt="Memoria Ram Notebook PC2 6400s" />
+      <img src="https://www.tradeinn.com/f/13861/138613379/memoria-ram-samsung-ddr2-pc2-6400s-1gb.jpg"
+        alt="Memoria Ram Notebook PC2 6400s" />
       <div class="info">
         <h2>Memoria Ram Notebook PC2 6400s</h2>
         <p>Memoria Ram Notebook Samsung PC2 6400s 1gb (Usado)</p>
@@ -335,7 +379,9 @@
     </div>
 
     <div class="producto" data-categoria="iluminacion" data-precio="20000">
-      <img src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/Panel-Fotografico-Luz-LED-de-Estudio-con-Tripode_1024x1024.jpg" alt="Panel luz-led con tripode" />
+      <img
+        src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/Panel-Fotografico-Luz-LED-de-Estudio-con-Tripode_1024x1024.jpg"
+        alt="Panel luz-led con tripode" />
       <div class="info">
         <h2>Panel luz-led con tripode</h2>
         <p>Panel fotografico luz led de estudio con tripode</p>
@@ -426,7 +472,8 @@
     </div>
 
     <div class="producto" data-categoria="otros" data-precio="850000">
-      <img src="https://www.surrey.com.ar/wp-content/uploads/2021/02/split-aire-acondicionado.jpg" alt="Aire Acondicionado Split Surrey" />
+      <img src="https://www.surrey.com.ar/wp-content/uploads/2021/02/split-aire-acondicionado.jpg"
+        alt="Aire Acondicionado Split Surrey" />
       <div class="info">
         <h2>Aire Acondicionado Split Surrey</h2>
         <p>Aire Acondicionado Split Frío Calor 4500w Surrey, en sus cajas (sin usar)</p>
@@ -435,7 +482,9 @@
     </div>
 
     <div class="producto" data-categoria="otros" data-precio="450000">
-      <img src="https://cdn.shopify.com/s/files/1/0566/2207/6620/products/Heladera_No_Frost_Patrick_HP_K_350_600x.jpg?v=1637753579" alt="HELADERA NO FROST PATRICK" />
+      <img
+        src="https://cdn.shopify.com/s/files/1/0566/2207/6620/products/Heladera_No_Frost_Patrick_HP_K_350_600x.jpg?v=1637753579"
+        alt="HELADERA NO FROST PATRICK" />
       <div class="info">
         <h2>HELADERA NO FROST PATRICK</h2>
         <p>HELADERA NO FROST PATRICK HPK350</p>
@@ -469,42 +518,42 @@
     const buscador = document.getElementById('buscador');
     const categoriaSelector = document.getElementById('categoriaSelector');
     const contenedor = document.getElementById('contenedor-productos');
-    const noResults = document.getElementById('no-results');
+
+    // Copia original de todos los productos al cargar
+    const productosOriginales = Array.from(contenedor.querySelectorAll('.producto'));
 
     function filtrarYOrdenar() {
-      const texto = buscador.value.trim().toLowerCase();
+      const texto = buscador.value.toLowerCase();
       const categoria = categoriaSelector.value;
 
-      // Obtenemos todos los productos originales, antes del filtro
-      const todosProductos = Array.from(contenedor.querySelectorAll('.producto'));
+      // Partimos siempre desde los productos originales
+      let productos = [...productosOriginales];
 
-      // Filtramos según texto y categoría
-      const productosFiltrados = todosProductos.filter(producto => {
-        const textoProducto = producto.innerText.toLowerCase();
-        const categoriaProducto = producto.dataset.categoria;
-        const coincideTexto = texto === '' || textoProducto.includes(texto);
-        const coincideCategoria = categoria === '' || categoriaProducto === categoria;
-        return coincideTexto && coincideCategoria;
+      // Filtrar por categoría si seleccionada
+      if (categoria) {
+        productos = productos.filter(p => p.dataset.categoria === categoria);
+      }
+
+      // Filtrar por texto
+      productos = productos.filter(p => {
+        const textoProducto = p.innerText.toLowerCase();
+        return textoProducto.includes(texto);
       });
 
-      // Ordenamos por precio descendente
-      productosFiltrados.sort((a, b) => Number(b.dataset.precio) - Number(a.dataset.precio));
+      // Ordenar por precio descendente
+      productos.sort((a, b) => Number(b.dataset.precio) - Number(a.dataset.precio));
 
-      // Limpiamos contenedor y mostramos solo productos filtrados
+      // Vaciar contenedor y reinsertar
       contenedor.innerHTML = '';
-      if (productosFiltrados.length === 0) {
-        noResults.style.display = 'block';
-      } else {
-        noResults.style.display = 'none';
-        productosFiltrados.forEach(p => contenedor.appendChild(p));
-      }
+      productos.forEach(p => contenedor.appendChild(p));
     }
 
     buscador.addEventListener('input', filtrarYOrdenar);
     categoriaSelector.addEventListener('change', filtrarYOrdenar);
 
-    // Ejecutar al cargar la página para mostrar todos ordenados por defecto
+    // Mostrar todo al cargar
     filtrarYOrdenar();
   </script>
 </body>
+
 </html>
