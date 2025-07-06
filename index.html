@@ -652,9 +652,12 @@
         iframe.width = "100%";
         iframe.height = "250";
         iframe.frameBorder = "0";
-        iframe.allow = "autoplay; encrypted-media";
+        //        iframe.allow = "autoplay; encrypted-media";
+        iframe.allow = "autoplay; fullscreen; encrypted-media";
         iframe.allowFullscreen = true;
-        iframe.src = `https://www.youtube.com/embed/${videoIds[0]}?enablejsapi=1&rel=0&mute=1`;
+        //        iframe.src = `https://www.youtube.com/embed/${videoIds[0]}?enablejsapi=1&rel=0&mute=1`;
+        iframe.src = `https://www.youtube.com/embed/${videoIds[0]}?enablejsapi=1&mute=1&autoplay=1&rel=0`;
+
 
         const container = producto.querySelector('.video-container');
         container.innerHTML = ''; // Asegura que esté limpio
