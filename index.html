@@ -47,9 +47,14 @@
       width: 100%;
       height: 220px;
       object-fit: cover;
+      display: block;
     }
     .info {
       padding: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .info h2 {
       font-size: 1.2rem;
@@ -60,11 +65,20 @@
       font-size: 0.95rem;
       color: #666;
       margin-bottom: 10px;
+      flex-grow: 1;
     }
     .precio {
       font-weight: bold;
       color: #e91e63;
       font-size: 1.1rem;
+      text-align: right;
+    }
+    #no-results {
+      text-align: center;
+      color: #888;
+      font-size: 1.2rem;
+      margin-top: 40px;
+      display: none;
     }
   </style>
 </head>
@@ -79,55 +93,10 @@
     <option value="iluminacion">Iluminación</option>
     <option value="otros">Otros</option>
   </select>
+
   <div class="productos" id="contenedor-productos">
 
-    <!-- Productos de Hogar -->
-    <div class="producto" data-categoria="hogar" data-precio="20000">
-      <img src="https://purywater.com.ar/wp-content/uploads/2020/08/filtro-jarra-aquatal-2.jpg" alt="Filtro para jarra de agua" />
-      <div class="info">
-        <h2>Filtro para jarra de agua</h2>
-        <p>Filtro repuesto para jarras purificadoras de agua HUMMA BRITA AQUATAL</p>
-        <p class="precio">$20.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="hogar" data-precio="2000">
-      <img src="https://http2.mlstatic.com/D_NQ_NP_978658-MLA44209191744_122020-O.webp" alt="Tope Reten Magnetico" />
-      <div class="info">
-        <h2>Tope Reten Magnetico</h2>
-        <p>Tope Reten Magnetico (para Puerta de Alacena/Placard/Mueble)</p>
-        <p class="precio">$2.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="hogar" data-precio="25000">
-      <img src="https://cdn0.iconfinder.com/data/icons/security-and-protection-5/64/door-lock-security-protection-512.png" alt="Cerradura de Exterior Kallay" />
-      <div class="info">
-        <h2>Cerradura de Exterior Kallay</h2>
-        <p>Cerradura de Exterior 4006 Kallay</p>
-        <p class="precio">$25.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="hogar" data-precio="450000">
-      <img src="https://www.patrick.com.ar/media/catalog/product/cache/9737f6178021863d9b64f2e09b84a620/h/p/hpk350_frente_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1_1.jpg" alt="HELADERA NO FROST PATRICK" />
-      <div class="info">
-        <h2>HELADERA NO FROST PATRICK</h2>
-        <p>HELADERA NO FROST PATRICK HPK350</p>
-        <p class="precio">$450.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="hogar" data-precio="850000">
-      <img src="https://m.media-amazon.com/images/I/71MSFl5rYkL._AC_SX466_.jpg" alt="Aire Acondicionado Split Surrey" />
-      <div class="info">
-        <h2>Aire Acondicionado Split Surrey</h2>
-        <p>Aire Acondicionado Split Frío Calor 4500w Surrey, en sus cajas (sin usar)</p>
-        <p class="precio">$850.000</p>
-      </div>
-    </div>
-
-    <!-- Productos de Belleza -->
+    <!-- Belleza -->
     <div class="producto" data-categoria="belleza" data-precio="8000">
       <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6180-cicatricure-crema-corporal-firmeza-x400ml.jpg" alt="Cicatricure - Firmeza" />
       <div class="info">
@@ -147,7 +116,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="15000">
-      <img src="https://www.cicatricure.com/wp-content/uploads/2019/11/neuro-zen-50g.png" alt="Cicatricure - Neuro-Zen" />
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6182-cicatricure-crema-facial-neuro-zen-x50gr.jpg" alt="Cicatricure - Neuro-Zen" />
       <div class="info">
         <h2>Cicatricure - Neuro-Zen</h2>
         <p>Crema Facial Neuro-Zen 50g</p>
@@ -156,7 +125,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="12000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6183-cicatricure-protector-solar-facial-fps-50-antiage-50-g.jpg" alt="Cicatricure - Protector Solar" />
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6190-cicatricure-crema-protector-solar-fps-50-antiage-x50gr.jpg" alt="Cicatricure - Protector Solar" />
       <div class="info">
         <h2>Cicatricure - Protector Solar</h2>
         <p>Protector Solar Facial Fps 50 Antiage 50g</p>
@@ -165,7 +134,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="14000">
-      <img src="https://cdn.shopify.com/s/files/1/0070/7032/0409/products/0012-Cicatricure-Acido-Hialuronico-crema-facial-60g-2048x2048.jpg?v=1616687165" alt="Cicatricure - Acido Hialurónico" />
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6194-cicatricure-crema-facial-acido-hialuronico-x60gr.jpg" alt="Cicatricure - Acido Hialurónico" />
       <div class="info">
         <h2>Cicatricure - Acido Hialurónico</h2>
         <p>Crema Facial Antiedad Con Acido Hialurónico 60g</p>
@@ -174,7 +143,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="15000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6194-cicatricure-crema-facial-antiedad-con-colageno-50g.jpg" alt="Cicatricure - Colágeno" />
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6193-cicatricure-crema-facial-colageno-x50gr.jpg" alt="Cicatricure - Colágeno" />
       <div class="info">
         <h2>Cicatricure - Colágeno</h2>
         <p>Crema Facial Antiedad Con Colágeno 50G</p>
@@ -183,7 +152,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="8000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6182-cicatricure-crema-corporal-antiestrias-x400ml.jpg" alt="Cicatricure - Antiestrías" />
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6181-cicatricure-crema-corporal-antiestrias-x400ml.jpg" alt="Cicatricure - Antiestrías" />
       <div class="info">
         <h2>Cicatricure - Antiestrías</h2>
         <p>Crema Corporal Hidratación Intensiva, Antiestrías 400 Ml</p>
@@ -192,7 +161,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="10000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6187-cicatricure-gel-cicatrices-estrias-x-60-grs.jpg" alt="Cicatricure - Gel Cicatrices" />
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6195-cicatricure-gel-cicatrices-x60gr.jpg" alt="Cicatricure - Gel Cicatrices" />
       <div class="info">
         <h2>Cicatricure - Gel Cicatrices</h2>
         <p>Gel Cicatrices Y Estrías X 60grs</p>
@@ -201,7 +170,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="8000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6181-cicatricure-crema-corporal-reparacion-x400ml.jpg" alt="Cicatricure - Reparación" />
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6183-cicatricure-crema-corporal-reparacion-x400ml.jpg" alt="Cicatricure - Reparación" />
       <div class="info">
         <h2>Cicatricure - Reparación</h2>
         <p>Crema Corporal Hidratación Intensiva, Reparación 400 Ml</p>
@@ -210,7 +179,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="10000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6181-cicatricure-crema-corporal-reparacion-x400ml.jpg" alt="Cicatricure - Reparación intensiva" />
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6184-cicatricure-crema-corporal-reparacion-intensiva-x400ml.jpg" alt="Cicatricure - Reparación intensiva" />
       <div class="info">
         <h2>Cicatricure - Reparación intensiva</h2>
         <p>Crema corporal Reparación intensiva con 10% urea.</p>
@@ -219,7 +188,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="10000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6185-cicatricure-crema-facial-age-care-humectante-50gr.jpg" alt="Cicatricure - Age Care Humectante" />
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6185-cicatricure-crema-facial-age-care-humectante-x50gr.jpg" alt="Cicatricure - Age Care Humectante" />
       <div class="info">
         <h2>Cicatricure - Age Care Humectante</h2>
         <p>Crema facial Age Care Humectante 50 gr</p>
@@ -228,7 +197,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="10000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6186-cicatricure-crema-facial-age-care-reafirmante-50gr.jpg" alt="Cicatricure - Age Care Reafirmante" />
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6186-cicatricure-crema-facial-age-care-reafirmante-x50gr.jpg" alt="Cicatricure - Age Care Reafirmante" />
       <div class="info">
         <h2>Cicatricure - Age Care Reafirmante</h2>
         <p>Crema facial Age Care Reafirmante 50gr</p>
@@ -237,7 +206,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="10000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6184-cicatricure-crema-gel-acqua-defense-50gr.jpg" alt="Cicatricure - Acqua Defense" />
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6187-cicatricure-crema-gel-acqua-defense.jpg" alt="Cicatricure - Acqua Defense" />
       <div class="info">
         <h2>Cicatricure - Acqua Defense</h2>
         <p>Crema gel facial Acqua Defense</p>
@@ -245,17 +214,8 @@
       </div>
     </div>
 
-    <div class="producto" data-categoria="belleza" data-precio="9000">
-      <img src="https://acdn.mitiendanube.com/stores/002/281/534/products/diabet-tx1-4dd7e3cf22892535db16859907415617-640-0.jpg" alt="DiabeTX - Hidratante" />
-      <div class="info">
-        <h2>DiabeTX - Hidratante</h2>
-        <p>Crema Corporal Hidratante x 400 ml</p>
-        <p class="precio">$9.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza" data-precio="12000">
-      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6188-cicatricure-gold-lift-contorno-duo-15g.jpg" alt="Cicatricure - gold lift contorno duo" />
+    <div class="producto" data-categoria="belleza" data-precio="15000">
+      <img src="https://farmaciaslider.com.ar/cuidado-e-higiene-personal/6189-cicatricure-crema-gold-lift-contorno-duo-x15gr.jpg" alt="Cicatricure - gold lift contorno duo" />
       <div class="info">
         <h2>Cicatricure - gold lift contorno duo</h2>
         <p>Crema Cicatricure gold lift contorno duo 15g</p>
@@ -263,17 +223,17 @@
       </div>
     </div>
 
-    <div class="producto" data-categoria="belleza" data-precio="4000">
-      <img src="https://cdn.shopify.com/s/files/1/0260/0030/3711/products/goicoechea-crema-corporal-anticelulitis.jpg?v=1667510155" alt="Goicoechea - Crema Corporal" />
+    <div class="producto" data-categoria="belleza" data-precio="10000">
+      <img src="https://m.media-amazon.com/images/I/61XlW9sRzWL._AC_SL1500_.jpg" alt="Oleo Extraordinario Elvive" />
       <div class="info">
-        <h2>Goicoechea - Crema Corporal</h2>
-        <p>Crema Corporal ANTICELULITIS, REAFIRMANTE CON TONIFYER, ULTRA NUTRITIVA 200 Ml</p>
-        <p class="precio">$4.000</p>
+        <h2>Oleo Extraordinario Elvive</h2>
+        <p>Oleo Extraordinario Elvive x 100 ml</p>
+        <p class="precio">$10.000</p>
       </div>
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="4000">
-      <img src="https://d3ugyf2ht6aenh.cloudfront.net/stores/002/281/534/products/dove-nutricion-geranio1-7d87d9e54e6d9f0d231619258276675b-640-0.jpg" alt="Dove - Nutrición + Geranio" />
+      <img src="https://m.media-amazon.com/images/I/51e3bPk4uRL._AC_SL1500_.jpg" alt="Dove - Nutrición + Geranio" />
       <div class="info">
         <h2>Dove - Nutrición + Geranio</h2>
         <p>Máscara de Tratamiento Nutrición + Geranio 190 ml</p>
@@ -282,7 +242,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza" data-precio="4000">
-      <img src="https://d3ugyf2ht6aenh.cloudfront.net/stores/002/281/534/products/dove-fuerza-bambu-1-66e4b1aaeb1d9d5b0a16529691239513-640-0.jpg" alt="Dove - Fuerza + Bambú 190" />
+      <img src="https://m.media-amazon.com/images/I/51JvgjNRJrL._AC_SL1500_.jpg" alt="Dove - Fuerza + Bambú 190" />
       <div class="info">
         <h2>Dove - Fuerza + Bambú 190</h2>
         <p>Dove Real Poder de las Plantas Máscara de Tratamiento Fuerza + Bambú 190 ml</p>
@@ -290,12 +250,12 @@
       </div>
     </div>
 
-    <div class="producto" data-categoria="belleza" data-precio="10000">
-      <img src="https://static.elvive.lorealparis.com.ar/media/catalog/product/cache/920394dc5a9a4d0a3d8d0a5f56a5e2ff/1/6/1664971877_oleo-extraordinario-100ml-1.jpg" alt="Oleo Extraordinario Elvive" />
+    <div class="producto" data-categoria="belleza" data-precio="4000">
+      <img src="https://cdn-icons-png.flaticon.com/512/2170/2170249.png" alt="Goicoechea - Crema Corporal" />
       <div class="info">
-        <h2>Oleo Extraordinario Elvive</h2>
-        <p>Oleo Extraordinario Elvive x 100 ml</p>
-        <p class="precio">$10.000</p>
+        <h2>Goicoechea - Crema Corporal</h2>
+        <p>Crema Corporal ANTICELULITIS, REAFIRMANTE CON TONIFYER, ULTRA NUTRITIVA 200 Ml</p>
+        <p class="precio">$4.000</p>
       </div>
     </div>
 
@@ -308,7 +268,26 @@
       </div>
     </div>
 
-    <!-- Productos de Tecnología -->
+    <!-- Hogar -->
+    <div class="producto" data-categoria="hogar" data-precio="20000">
+      <img src="https://purywater.com.ar/wp-content/uploads/2020/08/filtro-jarra-aquatal-2.jpg" alt="Filtro para jarra de agua" />
+      <div class="info">
+        <h2>Filtro para jarra de agua</h2>
+        <p>Filtro repuesto para jarras purificadoras de agua HUMMA BRITA AQUATAL</p>
+        <p class="precio">$20.000</p>
+      </div>
+    </div>
+
+    <div class="producto" data-categoria="hogar" data-precio="2000">
+      <img src="https://http2.mlstatic.com/D_NQ_NP_978658-MLA44209191744_122020-O.webp" alt="Tope Reten Magnetico" />
+      <div class="info">
+        <h2>Tope Reten Magnetico</h2>
+        <p>Tope Reten Magnetico (para Puerta de Alacena/Placard/Mueble)</p>
+        <p class="precio">$2.000</p>
+      </div>
+    </div>
+
+    <!-- Tecnología -->
     <div class="producto" data-categoria="tecnologia" data-precio="6000">
       <img src="https://m.media-amazon.com/images/I/61XlW9sRzWL._AC_SL1500_.jpg" alt="Soporte para tablet" />
       <div class="info">
@@ -336,17 +315,8 @@
       </div>
     </div>
 
-    <div class="producto" data-categoria="tecnologia" data-precio="15000">
-      <img src="https://cdn-icons-png.flaticon.com/512/1021/1021347.png" alt="Cortadora de pelo Dragon" />
-      <div class="info">
-        <h2>Cortadora de pelo Dragon</h2>
-        <p>Cortadora de pelo, definidora carga usb</p>
-        <p class="precio">$15.000</p>
-      </div>
-    </div>
-
     <div class="producto" data-categoria="tecnologia" data-precio="160000">
-      <img src="https://http2.mlstatic.com/D_NQ_NP_934608-MLA49788997618_042022-O.webp" alt="Monitor Tv Led 24" />
+      <img src="https://http2.mlstatic.com/D_NQ_NP_903322-MLA52187574053_102023-O.webp" alt="Monitor Tv Led 24" />
       <div class="info">
         <h2>Monitor Tv Led 24</h2>
         <p>Monitor Tv Led Samsung 24 Con Control Remoto Original</p>
@@ -354,7 +324,7 @@
       </div>
     </div>
 
-    <!-- Productos de Iluminación -->
+    <!-- Iluminación -->
     <div class="producto" data-categoria="iluminacion" data-precio="10000">
       <img src="https://http2.mlstatic.com/D_NQ_NP_926751-MLA72505444736_102023-O.webp" alt="Panel LED OSR" />
       <div class="info">
@@ -365,7 +335,7 @@
     </div>
 
     <div class="producto" data-categoria="iluminacion" data-precio="20000">
-      <img src="https://cdn.shopify.com/s/files/1/0682/2689/products/LED-Video-Light-OSL-12W_1080x.jpg?v=1661837827" alt="Panel luz-led con tripode" />
+      <img src="https://cdn.shopify.com/s/files/1/0024/9803/5810/products/Panel-Fotografico-Luz-LED-de-Estudio-con-Tripode_1024x1024.jpg" alt="Panel luz-led con tripode" />
       <div class="info">
         <h2>Panel luz-led con tripode</h2>
         <p>Panel fotografico luz led de estudio con tripode</p>
@@ -374,7 +344,7 @@
     </div>
 
     <div class="producto" data-categoria="iluminacion" data-precio="10000">
-      <img src="https://cdn-icons-png.flaticon.com/512/747/747545.png" alt="Lampara Giratoria" />
+      <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="Lampara Giratoria" />
       <div class="info">
         <h2>Lampara Giratoria</h2>
         <p>Lampara Led Giratoria colores Rgb</p>
@@ -382,17 +352,35 @@
       </div>
     </div>
 
-    <div class="producto" data-categoria="iluminacion" data-precio="4000">
-      <img src="https://cdn-icons-png.flaticon.com/512/3060/3060347.png" alt="Guirnalda Multicolor Alambre" />
+    <div class="producto" data-categoria="iluminacion" data-precio="15000">
+      <img src="https://cdn-icons-png.flaticon.com/512/1685/1685979.png" alt="Reloj - Proyector De Estrellas" />
       <div class="info">
-        <h2>Guirnalda Multicolor Alambre</h2>
-        <p>Luces Guirnalda Microled Multicolor Alambre Tira 30 Led a pilas</p>
-        <p class="precio">$4.000</p>
+        <h2>Reloj - Proyector De Estrellas</h2>
+        <p>Reloj Despertador Con Proyector De Estrellas</p>
+        <p class="precio">$15.000</p>
+      </div>
+    </div>
+
+    <div class="producto" data-categoria="iluminacion" data-precio="15000">
+      <img src="https://cdn-icons-png.flaticon.com/512/1685/1685979.png" alt="Proyector De Estrella" />
+      <div class="info">
+        <h2>Proyector De Estrella</h2>
+        <p>Proyector De Estrella Usb Luz Nocturna Ajustable ROJO o AZUL</p>
+        <p class="precio">$15.000</p>
       </div>
     </div>
 
     <div class="producto" data-categoria="iluminacion" data-precio="10000">
-      <img src="https://http2.mlstatic.com/D_NQ_NP_968319-MLA44801174888_022021-O.webp" alt="Kit luces led" />
+      <img src="https://cdn-icons-png.flaticon.com/512/677/677756.png" alt="Tapa de válvula luminosa" />
+      <div class="info">
+        <h2>Tapa de válvula luminosa</h2>
+        <p>Tapa de válvula luminosa VERDE ROJO AMARILLO AZUL LILA para auto, moto o bici QUILMES (2 unidades)</p>
+        <p class="precio">$10.000</p>
+      </div>
+    </div>
+
+    <div class="producto" data-categoria="iluminacion" data-precio="10000">
+      <img src="https://cdn-icons-png.flaticon.com/512/1524/1524245.png" alt="Kit luces led" />
       <div class="info">
         <h2>Kit luces led</h2>
         <p>Kit luces led para bici, moto ROJO, VERDE, AMARILLO (contiene 2 luces, pilas y adaptador)</p>
@@ -401,7 +389,7 @@
     </div>
 
     <div class="producto" data-categoria="iluminacion" data-precio="10000">
-      <img src="https://cdn-icons-png.flaticon.com/512/1076/1076500.png" alt="Set luces Led para Bicicleta" />
+      <img src="https://cdn-icons-png.flaticon.com/512/1946/1946436.png" alt="Set luces Led para Bicicleta" />
       <div class="info">
         <h2>Set luces Led para Bicicleta</h2>
         <p>Set luces Led de silicona para Bicicleta</p>
@@ -409,26 +397,18 @@
       </div>
     </div>
 
-    <div class="producto" data-categoria="iluminacion" data-precio="15000">
-      <img src="https://cdn-icons-png.flaticon.com/512/2566/2566513.png" alt="Proyector De Estrella" />
+    <div class="producto" data-categoria="iluminacion" data-precio="4000">
+      <img src="https://cdn-icons-png.flaticon.com/512/1965/1965831.png" alt="Guirnalda Multicolor Alambre" />
       <div class="info">
-        <h2>Proyector De Estrella</h2>
-        <p>Proyector De Estrella Usb Luz Nocturna Ajustable ROJO o AZUL</p>
-        <p class="precio">$15.000</p>
+        <h2>Guirnalda Multicolor Alambre</h2>
+        <p>Luces Guirnalda Microled Multicolor Alambre Tira 30 Led a pilas</p>
+        <p class="precio">$4.000</p>
       </div>
     </div>
 
-    <div class="producto" data-categoria="iluminacion" data-precio="15000">
-      <img src="https://cdn-icons-png.flaticon.com/512/2900/2900581.png" alt="Reloj - Proyector De Estrellas" />
-      <div class="info">
-        <h2>Reloj - Proyector De Estrellas</h2>
-        <p>Reloj Despertador Con Proyector De Estrellas</p>
-        <p class="precio">$15.000</p>
-      </div>
-    </div>
-
+    <!-- Otros -->
     <div class="producto" data-categoria="otros" data-precio="5000">
-      <img src="https://cdn-icons-png.flaticon.com/512/3020/3020312.png" alt="Masajeador para cabeza" />
+      <img src="https://cdn-icons-png.flaticon.com/512/187/187137.png" alt="Masajeador para cabeza" />
       <div class="info">
         <h2>Masajeador para cabeza</h2>
         <p>Reduce stress y tensión</p>
@@ -436,8 +416,44 @@
       </div>
     </div>
 
+    <div class="producto" data-categoria="otros" data-precio="25000">
+      <img src="https://cdn-icons-png.flaticon.com/512/565/565547.png" alt="Cerradura de Exterior Kallay" />
+      <div class="info">
+        <h2>Cerradura de Exterior Kallay</h2>
+        <p>Cerradura de Exterior 4006 Kallay</p>
+        <p class="precio">$25.000</p>
+      </div>
+    </div>
+
+    <div class="producto" data-categoria="otros" data-precio="850000">
+      <img src="https://www.surrey.com.ar/wp-content/uploads/2021/02/split-aire-acondicionado.jpg" alt="Aire Acondicionado Split Surrey" />
+      <div class="info">
+        <h2>Aire Acondicionado Split Surrey</h2>
+        <p>Aire Acondicionado Split Frío Calor 4500w Surrey, en sus cajas (sin usar)</p>
+        <p class="precio">$850.000</p>
+      </div>
+    </div>
+
+    <div class="producto" data-categoria="otros" data-precio="450000">
+      <img src="https://cdn.shopify.com/s/files/1/0566/2207/6620/products/Heladera_No_Frost_Patrick_HP_K_350_600x.jpg?v=1637753579" alt="HELADERA NO FROST PATRICK" />
+      <div class="info">
+        <h2>HELADERA NO FROST PATRICK</h2>
+        <p>HELADERA NO FROST PATRICK HPK350</p>
+        <p class="precio">$450.000</p>
+      </div>
+    </div>
+
+    <div class="producto" data-categoria="otros" data-precio="15000">
+      <img src="https://cdn-icons-png.flaticon.com/512/126/126511.png" alt="Cortadora de pelo Dragon" />
+      <div class="info">
+        <h2>Cortadora de pelo Dragon</h2>
+        <p>Cortadora de pelo, definidora carga usb</p>
+        <p class="precio">$15.000</p>
+      </div>
+    </div>
+
     <div class="producto" data-categoria="otros" data-precio="10000">
-      <img src="https://cdn-icons-png.flaticon.com/512/3040/3040369.png" alt="Piedra mágica" />
+      <img src="https://cdn-icons-png.flaticon.com/512/106/106831.png" alt="Piedra mágica" />
       <div class="info">
         <h2>Piedra mágica</h2>
         <p>Piedra depiladora mágica</p>
@@ -445,52 +461,49 @@
       </div>
     </div>
 
-    <div class="producto" data-categoria="otros" data-precio="10000">
-      <img src="https://cdn-icons-png.flaticon.com/512/1517/1517923.png" alt="Tapa de válvula luminosa" />
-      <div class="info">
-        <h2>Tapa de válvula luminosa</h2>
-        <p>Tapa de válvula luminosa VERDE ROJO AMARILLO AZUL LILA para auto, moto o bici QUILMES (2 unidades)</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
   </div>
+
+  <p id="no-results">No se encontraron productos que coincidan con la búsqueda o filtro.</p>
 
   <script>
     const buscador = document.getElementById('buscador');
     const categoriaSelector = document.getElementById('categoriaSelector');
     const contenedor = document.getElementById('contenedor-productos');
+    const noResults = document.getElementById('no-results');
 
     function filtrarYOrdenar() {
-      const texto = buscador.value.toLowerCase();
+      const texto = buscador.value.trim().toLowerCase();
       const categoria = categoriaSelector.value;
 
-      // Selecciona todos los productos
-      let productos = Array.from(contenedor.querySelectorAll('.producto'));
+      // Obtenemos todos los productos originales, antes del filtro
+      const todosProductos = Array.from(contenedor.querySelectorAll('.producto'));
 
-      // Filtrar por categoría si seleccionada
-      if (categoria) {
-        productos = productos.filter(p => p.dataset.categoria === categoria);
-      }
-
-      // Filtrar por texto
-      productos = productos.filter(p => {
-        const textoProducto = p.innerText.toLowerCase();
-        return textoProducto.includes(texto);
+      // Filtramos según texto y categoría
+      const productosFiltrados = todosProductos.filter(producto => {
+        const textoProducto = producto.innerText.toLowerCase();
+        const categoriaProducto = producto.dataset.categoria;
+        const coincideTexto = texto === '' || textoProducto.includes(texto);
+        const coincideCategoria = categoria === '' || categoriaProducto === categoria;
+        return coincideTexto && coincideCategoria;
       });
 
-      // Ordenar por precio descendente
-      productos.sort((a, b) => Number(b.dataset.precio) - Number(a.dataset.precio));
+      // Ordenamos por precio descendente
+      productosFiltrados.sort((a, b) => Number(b.dataset.precio) - Number(a.dataset.precio));
 
-      // Vaciar contenedor y reinsertar ordenados y filtrados
+      // Limpiamos contenedor y mostramos solo productos filtrados
       contenedor.innerHTML = '';
-      productos.forEach(p => contenedor.appendChild(p));
+      if (productosFiltrados.length === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+        productosFiltrados.forEach(p => contenedor.appendChild(p));
+      }
     }
 
     buscador.addEventListener('input', filtrarYOrdenar);
     categoriaSelector.addEventListener('change', filtrarYOrdenar);
 
-    // Ordenar y mostrar todo al cargar
+    // Ejecutar al cargar la página para mostrar todos ordenados por defecto
     filtrarYOrdenar();
   </script>
 </body>
