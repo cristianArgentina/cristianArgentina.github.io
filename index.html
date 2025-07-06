@@ -420,7 +420,7 @@
       </div>
     </div>
 
-    <!-- Iluminación -->
+    <!-- Iluminación ,TK2L3oZ7bJQ,PXDrcUiD2JI"-->
     <div class="producto" data-categoria="iluminacion" data-precio="10000">
       <img
         src="https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/514326164_787280863955834_8252442924369959274_n.jpg?stp=c0.8.261.261a_dst-jpg_p261x260_tt6&_nc_cat=110&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeGkL0UE1RKuSDc36XIprzQKiqG58uLo906Kobny4uj3Trnp7h9m8MH562AdOPatMAyY414S_a6P1VE__6_5pLTW&_nc_ohc=dN0E8X6guM8Q7kNvwFnfVfr&_nc_oc=Adn8QYTet3fHRaG6Z9jB2ptZRS2qT1l4tGzdJ1Tc68uEG_svTeP8V-dcaoLjCMawpu5-mQ3KGo78hJqy2JEsBhS3&_nc_zt=23&_nc_ht=scontent.faep9-2.fna&_nc_gid=sTcuFXnOl4_DaldyMsrOpg&oh=00_AfRsYd1dn8oaZZuj63oZY4BKGczMvrvag9qm9T46C62b8g&oe=6870890E"
@@ -476,7 +476,7 @@
     </div>
 
     <div class="producto producto-video" data-categoria="otros" data-precio="10000"
-      data-videos="ANi7AntZ3yk,JcOQ06g5xuQ,f9D91A4Mnas,TK2L3oZ7bJQ,PXDrcUiD2JI">
+      data-videos="ANi7AntZ3yk,JcOQ06g5xuQ,f9D91A4Mnas">
       <div class="video-container">
         <iframe class="youtubePlayer" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </div>
@@ -644,12 +644,24 @@
       const productos = document.querySelectorAll('.producto-video');
       productos.forEach((producto, index) => {
         const videoIds = producto.dataset.videos.split(',');
-        const iframe = producto.querySelector('iframe');
         const playerId = `youtubePlayer${index}`;
-        iframe.id = playerId;
 
+        // Crear dinámicamente el iframe con el primer video como src
+        const iframe = document.createElement('iframe');
+        iframe.id = playerId;
+        iframe.width = "100%";
+        iframe.height = "250";
+        iframe.frameBorder = "0";
+        iframe.allow = "autoplay; encrypted-media";
+        iframe.allowFullscreen = true;
+        iframe.src = `https://www.youtube.com/embed/${videoIds[0]}?enablejsapi=1&rel=0&mute=1`;
+
+        const container = producto.querySelector('.video-container');
+        container.innerHTML = ''; // Asegura que esté limpio
+        container.appendChild(iframe);
+
+        // Crear reproductor con API de YouTube
         const player = new YT.Player(playerId, {
-          videoId: videoIds[0],
           events: {
             'onStateChange': (event) => {
               if (event.data === YT.PlayerState.ENDED) {
@@ -666,6 +678,7 @@
       });
     }
   </script>
+
 
 </body>
 
