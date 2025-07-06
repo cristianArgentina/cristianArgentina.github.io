@@ -53,7 +53,8 @@
 
     .producto img {
       width: 100%;
-      height: 220px;
+      height: auto;
+      aspect-ratio: 4 / 3;
       object-fit: cover;
       display: block;
     }
@@ -81,9 +82,13 @@
 
     .precio {
       font-weight: bold;
-      color: #e91e63;
-      font-size: 1.1rem;
-      text-align: right;
+      color: #d32f2f;
+      /* rojo más fuerte */
+      font-size: 1.4rem;
+      background-color: #fff3f3;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: inline-block;
     }
 
     #no-results {
@@ -123,8 +128,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza y salud" data-precio="9000">
-      <img
-        src="https://media02.farmaciaslider.com.ar/27994-home_default/goicoechea-crema-diabetex-nf-mph-400-ml.jpg"
+      <img src="https://media02.farmaciaslider.com.ar/27994-home_default/goicoechea-crema-diabetex-nf-mph-400-ml.jpg"
         alt="DiabeTX - Hidratante $9.000" />
       <div class="info">
         <h2>DiabeTX - Hidratante $9.000</h2>
@@ -133,9 +137,8 @@
       </div>
     </div>
 
-        <div class="producto" data-categoria="belleza y salud" data-precio="9000">
-      <img
-        src="https://media02.farmaciaslider.com.ar/27983-home_default/goicoechea-diabet-tx-plus-envase-x-200-ml.jpg"
+    <div class="producto" data-categoria="belleza y salud" data-precio="9000">
+      <img src="https://media02.farmaciaslider.com.ar/27983-home_default/goicoechea-diabet-tx-plus-envase-x-200-ml.jpg"
         alt="DiabeTX - Urea + Calendula" />
       <div class="info">
         <h2>DiabeTX - Urea + Calendula</h2>
@@ -145,8 +148,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza y salud" data-precio="15000">
-      <img
-        src="https://media03.farmaciaslider.com.ar/42077-home_default/cicatricure-neuro-zen-crema-x-50-gr.jpg"
+      <img src="https://media03.farmaciaslider.com.ar/42077-home_default/cicatricure-neuro-zen-crema-x-50-gr.jpg"
         alt="Cicatricure - Neuro-Zen" />
       <div class="info">
         <h2>Cicatricure - Neuro-Zen</h2>
@@ -156,8 +158,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza y salud" data-precio="12000">
-      <img
-        src="https://media01.farmaciaslider.com.ar/36649-home_default/cicatricure-protector-solar-fps50-x-50-g-.jpg"
+      <img src="https://media01.farmaciaslider.com.ar/36649-home_default/cicatricure-protector-solar-fps50-x-50-g-.jpg"
         alt="Cicatricure - Protector Solar" />
       <div class="info">
         <h2>Cicatricure - Protector Solar</h2>
@@ -167,8 +168,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza y salud" data-precio="14000">
-      <img
-        src="https://media03.farmaciaslider.com.ar/27829-home_default/cicatricure-crema-antiedad-tricure-50-gr.jpg"
+      <img src="https://media03.farmaciaslider.com.ar/27829-home_default/cicatricure-crema-antiedad-tricure-50-gr.jpg"
         alt="Cicatricure - Acido Hialurónico" />
       <div class="info">
         <h2>Cicatricure - Acido Hialurónico</h2>
@@ -221,8 +221,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza y salud" data-precio="10000">
-      <img
-        src="https://media02.farmaciaslider.com.ar/27834-home_default/cicatricure-urea-corporal-250-g.jpg"
+      <img src="https://media02.farmaciaslider.com.ar/27834-home_default/cicatricure-urea-corporal-250-g.jpg"
         alt="Cicatricure - Reparación intensiva" />
       <div class="info">
         <h2>Cicatricure - Reparación intensiva</h2>
@@ -232,8 +231,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza y salud" data-precio="10000">
-      <img
-        src="https://media02.farmaciaslider.com.ar/27877-home_default/cicatricure-crema-age-care-humectante-50-g.jpg"
+      <img src="https://media02.farmaciaslider.com.ar/27877-home_default/cicatricure-crema-age-care-humectante-50-g.jpg"
         alt="Cicatricure - Age Care Humectante" />
       <div class="info">
         <h2>Cicatricure - Age Care Humectante</h2>
@@ -275,7 +273,8 @@
     </div>
 
     <div class="producto" data-categoria="belleza y salud" data-precio="10000">
-      <img src="https://www.maxidescuento.com.ar/31273-home_default/elvive-oleo-extraordinario-x100m-7509552874204.jpg" alt="Oleo Extraordinario Elvive" />
+      <img src="https://www.maxidescuento.com.ar/31273-home_default/elvive-oleo-extraordinario-x100m-7509552874204.jpg"
+        alt="Oleo Extraordinario Elvive" />
       <div class="info">
         <h2>Oleo Extraordinario Elvive</h2>
         <p>Oleo Extraordinario Elvive x 100 ml</p>
@@ -284,7 +283,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza y salud" data-precio="4000">
-      <img src="https://www.maxidescuento.com.ar/24736-home_default/dove-poder-plantas-mascara-x190g-nutricionger-7891150079168.jpg" alt="Dove - Nutrición + Geranio" />
+      <img
+        src="https://www.maxidescuento.com.ar/24736-home_default/dove-poder-plantas-mascara-x190g-nutricionger-7891150079168.jpg"
+        alt="Dove - Nutrición + Geranio" />
       <div class="info">
         <h2>Dove - Nutrición + Geranio</h2>
         <p>Máscara de Tratamiento Nutrición + Geranio 190 ml</p>
@@ -293,7 +294,9 @@
     </div>
 
     <div class="producto" data-categoria="belleza y salud" data-precio="4000">
-      <img src="https://www.maxidescuento.com.ar/24732-home_default/dove-poder-plantas-mascara-x190g-fuerzabamb-7891150079175.jpg" alt="Dove - Fuerza + Bambú 190" />
+      <img
+        src="https://www.maxidescuento.com.ar/24732-home_default/dove-poder-plantas-mascara-x190g-fuerzabamb-7891150079175.jpg"
+        alt="Dove - Fuerza + Bambú 190" />
       <div class="info">
         <h2>Dove - Fuerza + Bambú 190</h2>
         <p>Dove Real Poder de las Plantas Máscara de Tratamiento Fuerza + Bambú 190 ml</p>
@@ -302,16 +305,20 @@
     </div>
 
     <div class="producto" data-categoria="belleza y salud" data-precio="4000">
-      <img src="https://cdn-icons-png.flaticon.com/512/2170/2170249.png" alt="Goicoechea - Crema Corporal" />
+      <img
+        src="https://scontent.faep8-2.fna.fbcdn.net/v/t45.5328-4/487463892_948966420653049_6564072009606525075_n.jpg?stp=dst-jpg_p960x960_tt6&_nc_cat=108&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeFgpTZlPmdqT0QRo2qm4Zg5BRamL6W2dS8FFqYvpbZ1Ly2OBcsJfsq--C6EeBqCK8AXO2LjWi_i0N_E2w1Mow_b&_nc_ohc=8CJGaPElpK4Q7kNvwHV728Z&_nc_oc=AdkIVER7cYjXeigqJMxteFrkT2tJL8ugKnbw9oVPgtQTDpEXEbz10xi916ZFsosES10&_nc_zt=23&_nc_ht=scontent.faep8-2.fna&_nc_gid=3U-XTBPOVg-aRVUnbVzKig&oh=00_AfTCNA9Z8PlAgnKw0ZwURKmWUiRsdtW7JxHA-I_7V5KOQg&oe=686FCA82"
+        alt="Goicoechea - Crema Corporal" />
       <div class="info">
         <h2>Goicoechea - Crema Corporal</h2>
         <p>Crema Corporal ANTICELULITIS, REAFIRMANTE CON TONIFYER, ULTRA NUTRITIVA 200 Ml</p>
         <p class="precio">$4.000</p>
       </div>
     </div>
-    
+
     <div class="producto" data-categoria="belleza y salud" data-precio="7000">
-      <img src="https://media03.farmaciaslider.com.ar/28066-home_default/goicoechea-crema-anti-celulitis-cellumodel-400-ml.jpg" alt="Goicoechea - Crema Corporal" />
+      <img
+        src="https://media03.farmaciaslider.com.ar/28066-home_default/goicoechea-crema-anti-celulitis-cellumodel-400-ml.jpg"
+        alt="Goicoechea - Crema Corporal" />
       <div class="info">
         <h2>Goicoechea - Crema Corporal</h2>
         <p>Crema Corporal ANTICELULITIS, REAFIRMANTE CON TONIFYER, ULTRA NUTRITIVA 400 Ml</p>
@@ -320,8 +327,7 @@
     </div>
 
     <div class="producto" data-categoria="belleza y salud" data-precio="12000">
-      <img
-        src="https://media01.farmaciaslider.com.ar/27984-home_default/goicoechea-crema-diabet-tx-plus-250g.jpg"
+      <img src="https://media01.farmaciaslider.com.ar/27984-home_default/goicoechea-crema-diabet-tx-plus-250g.jpg"
         alt="Diabet Tx - Urea" />
       <div class="info">
         <h2>Diabet Tx - Urea</h2>
@@ -474,7 +480,9 @@
 
     <!-- Otros -->
     <div class="producto" data-categoria="otros" data-precio="5000">
-      <img src="https://cdn-icons-png.flaticon.com/512/187/187137.png" alt="Masajeador para cabeza" />
+      <img
+        src="https://scontent.faep8-1.fna.fbcdn.net/v/t45.5328-4/489372356_24208722232057290_6170429473881959568_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeE2hI1eWBMrE1WZhzmMHrrYeEx8EG0Ab4h4THwQbQBviCwz289czGo_Td4eKukdethhWnKMuBsK3ThccsouspxP&_nc_ohc=EMATdIAM4jUQ7kNvwELaL58&_nc_oc=AdmA4cwU7KvPG3F6zH1BCKNjQJQH2LlwIZe70U_-7lFC2PpC9sQHHknbXPzbScD6nUs&_nc_zt=23&_nc_ht=scontent.faep8-1.fna&_nc_gid=jrpE6m5Byuq8yr0FhCvuug&oh=00_AfSZmG2Lr0R2H0MCYuFKwh5J9YZWwF0_hGZ_gso9onUUug&oe=686FC0E3"
+        alt="Masajeador para cabeza" />
       <div class="info">
         <h2>Masajeador para cabeza</h2>
         <p>Reduce stress y tensión</p>
@@ -513,7 +521,9 @@
     </div>
 
     <div class="producto" data-categoria="otros" data-precio="15000">
-      <img src="https://cdn-icons-png.flaticon.com/512/126/126511.png" alt="Cortadora de pelo Dragon" />
+      <img
+        src="https://scontent.faep8-2.fna.fbcdn.net/v/t45.5328-4/486780928_2083847302132760_458651653765465052_n.jpg?stp=dst-jpg_p640x640_tt6&_nc_cat=107&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeGJWkUjKuU34I4Of5xlLQmG4UKxBup5rZ7hQrEG6nmtnmtyu0ZWCU_MvBcgKcyKoKYk4zNY1eEMt1wEcHYXckTW&_nc_ohc=KADMeyXU_h4Q7kNvwEG5sNg&_nc_oc=AdnwRfwnYW-H65akF123eUTOyqMY4s7-bhBTvLyCqG5kJ-i4aYlOcTkBTad_6yDef7A&_nc_zt=23&_nc_ht=scontent.faep8-2.fna&_nc_gid=DAGVgLle9hybvoRphVRHAQ&oh=00_AfTnioDrpxcBQ8uyj8F4tciEXYwdE147DqsLC0g3ktf06A&oe=686FDE74"
+        alt="Cortadora de pelo Dragon" />
       <div class="info">
         <h2>Cortadora de pelo Dragon</h2>
         <p>Cortadora de pelo, definidora carga usb</p>
@@ -522,7 +532,9 @@
     </div>
 
     <div class="producto" data-categoria="otros" data-precio="10000">
-      <img src="https://cdn-icons-png.flaticon.com/512/106/106831.png" alt="Piedra mágica" />
+      <img
+        src="https://scontent.faep8-1.fna.fbcdn.net/v/t45.5328-4/472701165_587993770752584_4399958792086145358_n.jpg?stp=c0.0.261.261a_dst-jpg_p261x260_tt6&_nc_cat=106&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeEmIidjAqw7sI_irLGqOzUB1zcXBNhyxqTXNxcE2HLGpGTJnxO97TYec2RQXLxW8kuT1UtxgdQu922r8rMHHDZf&_nc_ohc=5p2vmFwfsEgQ7kNvwEKsLtU&_nc_oc=AdlSh2--UYN3ox4RwDj9nx9Ubn9QohwGJar8JN185D3J_ZB2QKnnaLfiYEY5dJUJ9ok&_nc_zt=23&_nc_ht=scontent.faep8-1.fna&_nc_gid=4OS47Q16Cp1v2qtumjvRjQ&oh=00_AfQi_7F-BC0Mrrivd_l8h8NNVDQ59K6rpj4KQ82pL4Y2Vw&oe=686FC111"
+        alt="Piedra mágica" />
       <div class="info">
         <h2>Piedra mágica</h2>
         <p>Piedra depiladora mágica</p>
