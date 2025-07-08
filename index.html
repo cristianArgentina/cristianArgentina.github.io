@@ -120,7 +120,7 @@
 </head>
 
 <body>
-  <h1>Lista de Productos</h1>
+  <h1>Catálogo de Productos</h1>
   <input type="text" id="buscador" placeholder="Buscar productos..." />
   <select id="categoriaSelector">
     <option value="">Todas las categorías</option>
@@ -148,8 +148,8 @@
       function crearProductoElem(p) {
         const div = document.createElement('div');
         div.className = 'producto' + (p.videos ? ' producto-video' : '');
-        div.dataset.categoria = p.categoria;
-        div.dataset.precio = p.precio;
+        div.dataset.categoria = p.category;
+        div.dataset.precio = p.price;
         if (p.videos) div.dataset.videos = p.videos.join(',');
 
         if (p.videos) {
@@ -159,16 +159,16 @@
         } else {
           const img = document.createElement('img');
           img.src = p.imagen;
-          img.alt = p.titulo;
+          img.alt = p.name;
           div.appendChild(img);
         }
 
         const info = document.createElement('div');
         info.className = 'info';
         info.innerHTML = `
-      <h2>${p.titulo}</h2>
-      <p>${p.descripcion}</p>
-      <p class="precio">$${p.precio.toLocaleString()}</p>
+      <h2>${p.name}</h2>
+      <p>${p.description}</p>
+      <p class="precio">$${p.price.toLocaleString()}</p>
     `;
         div.appendChild(info);
 
