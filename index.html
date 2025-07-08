@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lista de Productos</title>
+  <title>Catálogo de Productos</title>
   <style>
     * {
       box-sizing: border-box;
@@ -120,7 +120,7 @@
 </head>
 
 <body>
-  <h1>Showroom - Productos</h1>
+  <h1>Lista de Productos</h1>
   <input type="text" id="buscador" placeholder="Buscar productos..." />
   <select id="categoriaSelector">
     <option value="">Todas las categorías</option>
@@ -132,563 +132,122 @@
   </select>
 
   <div class="productos" id="contenedor-productos">
-
-    <!-- Belleza y salud -->
-    <div class="producto" data-categoria="belleza y salud" data-precio="8000">
-      <img
-        src="https://www.maxidescuento.com.ar/22724-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-firmeza-7798140254416.jpg"
-        alt="Cicatricure - Firmeza" />
-      <div class="info">
-        <h2>Cicatricure - Firmeza</h2>
-        <p>Crema Corporal Hidratación Intensiva, Firmeza 400 Ml</p>
-        <p class="precio">$8.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="9000">
-      <img src="https://media02.farmaciaslider.com.ar/27994-home_default/goicoechea-crema-diabetex-nf-mph-400-ml.jpg"
-        alt="DiabeTX - Hidratante $9.000" />
-      <div class="info">
-        <h2>DiabeTX - Hidratante $9.000</h2>
-        <p>Crema Corporal Hidratante x 400 ml</p>
-        <p class="precio">$9.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="9000">
-      <img src="https://media02.farmaciaslider.com.ar/27983-home_default/goicoechea-diabet-tx-plus-envase-x-200-ml.jpg"
-        alt="DiabeTX - Urea + Calendula" />
-      <div class="info">
-        <h2>DiabeTX - Urea + Calendula</h2>
-        <p>Crema Corporal Plus Urea 5% + Calendula 1% 200 Ml</p>
-        <p class="precio">$9.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="15000">
-      <img src="https://media03.farmaciaslider.com.ar/42077-home_default/cicatricure-neuro-zen-crema-x-50-gr.jpg"
-        alt="Cicatricure - Neuro-Zen" />
-      <div class="info">
-        <h2>Cicatricure - Neuro-Zen</h2>
-        <p>Crema Facial Neuro-Zen 50g</p>
-        <p class="precio">$15.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="12000">
-      <img src="https://media01.farmaciaslider.com.ar/36649-home_default/cicatricure-protector-solar-fps50-x-50-g-.jpg"
-        alt="Cicatricure - Protector Solar" />
-      <div class="info">
-        <h2>Cicatricure - Protector Solar</h2>
-        <p>Protector Solar Facial Fps 50 Antiage 50g</p>
-        <p class="precio">$12.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="14000">
-      <img src="https://media03.farmaciaslider.com.ar/27829-home_default/cicatricure-crema-antiedad-tricure-50-gr.jpg"
-        alt="Cicatricure - Acido Hialurónico" />
-      <div class="info">
-        <h2>Cicatricure - Acido Hialurónico</h2>
-        <p>Crema Facial Antiedad Con Acido Hialurónico 60g</p>
-        <p class="precio">$14.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="15000">
-      <img
-        src="https://media01.farmaciaslider.com.ar/27940-home_default/cicatricure-crema-antiarrugas-nueva-formula-con-biopeptide-60g.jpg"
-        alt="Cicatricure - Colágeno" />
-      <div class="info">
-        <h2>Cicatricure - Colágeno</h2>
-        <p>Crema Facial Antiedad Con Colágeno 50G</p>
-        <p class="precio">$15.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="8000">
-      <img
-        src="https://www.maxidescuento.com.ar/22725-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-anti-estrias-7798140254423.jpg"
-        alt="Cicatricure - Antiestrías" />
-      <div class="info">
-        <h2>Cicatricure - Antiestrías</h2>
-        <p>Crema Corporal Hidratación Intensiva, Antiestrías 400 Ml</p>
-        <p class="precio">$8.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="10000">
-      <img src="https://media01.farmaciaslider.com.ar/27902-home_default/cicatricure-gel-para-cicatrices-60-g.jpg"
-        alt="Cicatricure - Gel Cicatrices" />
-      <div class="info">
-        <h2>Cicatricure - Gel Cicatrices</h2>
-        <p>Gel Cicatrices Y Estrías X 60grs</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="8000">
-      <img
-        src="https://www.maxidescuento.com.ar/19734-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-reparacion-7798140254409.jpg"
-        alt="Cicatricure - Reparación" />
-      <div class="info">
-        <h2>Cicatricure - Reparación</h2>
-        <p>Crema Corporal Hidratación Intensiva, Reparación 400 Ml</p>
-        <p class="precio">$8.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="10000">
-      <img src="https://media02.farmaciaslider.com.ar/27834-home_default/cicatricure-urea-corporal-250-g.jpg"
-        alt="Cicatricure - Reparación intensiva" />
-      <div class="info">
-        <h2>Cicatricure - Reparación intensiva</h2>
-        <p>Crema corporal Reparación intensiva con 10% urea 250G.</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="10000">
-      <img src="https://media02.farmaciaslider.com.ar/27877-home_default/cicatricure-crema-age-care-humectante-50-g.jpg"
-        alt="Cicatricure - Age Care Humectante" />
-      <div class="info">
-        <h2>Cicatricure - Age Care Humectante</h2>
-        <p>Crema facial Age Care Humectante 50 gr</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="10000">
-      <img
-        src="https://media03.farmaciaslider.com.ar/27872-home_default/cicatricure-crema-age-care-reafirmante-50-g.jpg"
-        alt="Cicatricure - Age Care Reafirmante" />
-      <div class="info">
-        <h2>Cicatricure - Age Care Reafirmante</h2>
-        <p>Crema facial Age Care Reafirmante 50gr</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="10000">
-      <img src="https://media01.farmaciaslider.com.ar/31504-home_default/cicatricure-aqua-defense-gel-facial-x-50-g.jpg"
-        alt="Cicatricure - Acqua Defense" />
-      <div class="info">
-        <h2>Cicatricure - Acqua Defense</h2>
-        <p>Crema gel facial Acqua Defense</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="15000">
-      <img
-        src="https://media02.farmaciaslider.com.ar/27935-home_default/cicatricure-contorno-de-ojos-y-boca-gold-lift-15g.jpg"
-        alt="Cicatricure - gold lift contorno duo" />
-      <div class="info">
-        <h2>Cicatricure - gold lift contorno duo</h2>
-        <p>Crema Cicatricure gold lift contorno duo 15g</p>
-        <p class="precio">$15.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="10000">
-      <img src="https://www.maxidescuento.com.ar/31273-home_default/elvive-oleo-extraordinario-x100m-7509552874204.jpg"
-        alt="Oleo Extraordinario Elvive" />
-      <div class="info">
-        <h2>Oleo Extraordinario Elvive</h2>
-        <p>Oleo Extraordinario Elvive x 100 ml</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="4000">
-      <img
-        src="https://www.maxidescuento.com.ar/24736-home_default/dove-poder-plantas-mascara-x190g-nutricionger-7891150079168.jpg"
-        alt="Dove - Nutrición + Geranio" />
-      <div class="info">
-        <h2>Dove - Nutrición + Geranio</h2>
-        <p>Máscara de Tratamiento Nutrición + Geranio 190 ml</p>
-        <p class="precio">$4.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="4000">
-      <img
-        src="https://www.maxidescuento.com.ar/24732-home_default/dove-poder-plantas-mascara-x190g-fuerzabamb-7891150079175.jpg"
-        alt="Dove - Fuerza + Bambú 190" />
-      <div class="info">
-        <h2>Dove - Fuerza + Bambú 190</h2>
-        <p>Dove Real Poder de las Plantas Máscara de Tratamiento Fuerza + Bambú 190 ml</p>
-        <p class="precio">$4.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="4000">
-      <img
-        src="https://scontent.faep8-2.fna.fbcdn.net/v/t45.5328-4/487463892_948966420653049_6564072009606525075_n.jpg?stp=dst-jpg_p960x960_tt6&_nc_cat=108&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeFgpTZlPmdqT0QRo2qm4Zg5BRamL6W2dS8FFqYvpbZ1Ly2OBcsJfsq--C6EeBqCK8AXO2LjWi_i0N_E2w1Mow_b&_nc_ohc=8CJGaPElpK4Q7kNvwHV728Z&_nc_oc=AdkIVER7cYjXeigqJMxteFrkT2tJL8ugKnbw9oVPgtQTDpEXEbz10xi916ZFsosES10&_nc_zt=23&_nc_ht=scontent.faep8-2.fna&_nc_gid=3U-XTBPOVg-aRVUnbVzKig&oh=00_AfTCNA9Z8PlAgnKw0ZwURKmWUiRsdtW7JxHA-I_7V5KOQg&oe=686FCA82"
-        alt="Goicoechea - Crema Corporal" />
-      <div class="info">
-        <h2>Goicoechea - Crema Corporal</h2>
-        <p>Crema Corporal ANTICELULITIS, REAFIRMANTE CON TONIFYER, ULTRA NUTRITIVA 200 Ml</p>
-        <p class="precio">$4.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="7000">
-      <img
-        src="https://media03.farmaciaslider.com.ar/28066-home_default/goicoechea-crema-anti-celulitis-cellumodel-400-ml.jpg"
-        alt="Goicoechea - Crema Corporal" />
-      <div class="info">
-        <h2>Goicoechea - Crema Corporal</h2>
-        <p>Crema Corporal ANTICELULITIS, REAFIRMANTE CON TONIFYER, ULTRA NUTRITIVA 400 Ml</p>
-        <p class="precio">$7.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="belleza y salud" data-precio="12000">
-      <img src="https://media01.farmaciaslider.com.ar/27984-home_default/goicoechea-crema-diabet-tx-plus-250g.jpg"
-        alt="Diabet Tx - Urea" />
-      <div class="info">
-        <h2>Diabet Tx - Urea</h2>
-        <p>Goicoechea Diabet Tx Plus con Urea de 250gr</p>
-        <p class="precio">$12.000</p>
-      </div>
-    </div>
-
-    <!-- Hogar -->
-    <div class="producto" data-categoria="hogar" data-precio="20000">
-      <img
-        src="https://acdn-us.mitiendanube.com/stores/001/319/444/products/f003-2-13405ad6d2085c6aad17268606081580-640-0.jpg"
-        alt="Filtro para jarra de agua" />
-      <div class="info">
-        <h2>Filtro para jarra de agua</h2>
-        <p>Filtro repuesto para jarras purificadoras de agua HUMMA BRITA AQUATAL</p>
-        <p class="precio">$20.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="hogar" data-precio="2000">
-      <img src="https://http2.mlstatic.com/D_NQ_NP_709892-MLA82445236863_022025-O.webp" alt="Tope Reten Magnetico" />
-      <div class="info">
-        <h2>Tope Reten Magnetico</h2>
-        <p>Tope Reten Magnetico (para Puerta de Alacena/Placard/Mueble)</p>
-        <p class="precio">$2.000</p>
-      </div>
-    </div>
-
-    <!-- Tecnología -->
-    <div class="producto" data-categoria="tecnologia" data-precio="6000">
-      <img
-        src="https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/513742957_1884112839037719_1419711277244536399_n.jpg?stp=c0.3.261.261a_dst-jpg_p261x260_tt6&_nc_cat=106&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeFZuarPIUMA_lTXQZIf-8S7YAV_YCugMD9gBX9gK6AwP6YaC65Y12Xz0lgjVLaDziMbV2GDOFDEVoX_BIxJQLt6&_nc_ohc=kPa_CFfCi4oQ7kNvwESB_ik&_nc_oc=AdlXoiq6ErBsjqfvesQJAjCl9e-Rfmlw-sWc34P8TpiBn5hDDAppdYnl_Hc3qGwlYHQd5JV_rJe09CiCzvgxq-Zj&_nc_zt=23&_nc_ht=scontent.faep9-2.fna&_nc_gid=GbaG1lr-r73t29JToQ3Otg&oh=00_AfQl3z3ZxVq0qT4ErwPHOioOGd_aPnzwPF3wdQ9ubjh8-A&oe=6870882D"
-        alt="Soporte para tablet" />
-      <div class="info">
-        <h2>Soporte para tablet</h2>
-        <p>Soporte ergonómico para tablet regulable</p>
-        <p class="precio">$6.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="tecnologia" data-precio="10000">
-      <img
-        src="https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/472654458_561349773381128_4167182688371471431_n.jpg?stp=c35.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=106&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeGXG0YZ_AuocrClr6TmtIv6OhRvB6FRfzg6FG8HoVF_OP5FyhWrCei2nAn2enBMqvhqk9rgM5s2PTkF1hcnwc9z&_nc_ohc=N7uhrBG1GPAQ7kNvwFZ_bN4&_nc_oc=AdnhRvCLeOhTkJpHJu6Y7xwAOCscbbnDOcTwQ9y4ouLS_ATHtdL6lp8XyksT6j1fuaxpzZXwp1ystd13b99I2GUK&_nc_zt=23&_nc_ht=scontent.faep9-2.fna&_nc_gid=sTcuFXnOl4_DaldyMsrOpg&oh=00_AfTiRwFAWmir6rwgrQa9GJuDYLmB_qqyq0QFkmKJF0hYlw&oe=68708218"
-        alt="Memoria Ram Notebook PC2 6400s" />
-      <div class="info">
-        <h2>Memoria Ram Notebook PC2 6400s</h2>
-        <p>Memoria Ram Notebook Samsung PC2 6400s 1gb (Usado)</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="tecnologia" data-precio="12000">
-      <img
-        src="https://scontent.faep9-1.fna.fbcdn.net/v/t45.5328-4/513497980_1983324922475194_2664873477283943488_n.jpg?stp=c2.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=102&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeG9275WmXgWFHoDXu8rZloi4oLA8dwIKlfigsDx3AgqV_fsUpUqYvwlL5cuHdL8nC5pxaCiqnk7wYUNZpFT4UkA&_nc_ohc=7j7gTM6U5rsQ7kNvwHGum1l&_nc_oc=Adl9eC_2kv6G5Z_heqz-bM9LomefVmmGhQ7n8394qUx9136ORWyfhIgwtiIAIbGilSRNX_GJYi9pX60e8IkzX-qP&_nc_zt=23&_nc_ht=scontent.faep9-1.fna&_nc_gid=61czT6auJodP1ydtvsNsyA&oh=00_AfT6Z7ozl6xbEumV8Yd1YWhiSszZmrFY_9An6G2DFRe_Eg&oe=687063EC"
-        alt="Control Remoto Ml-l3" />
-      <div class="info">
-        <h2>Control Remoto Ml-l3</h2>
-        <p>Para Cámaras Nikon D5100 D7000 D60 D50</p>
-        <p class="precio">$12.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="tecnologia" data-precio="160000">
-      <img
-        src="https://scontent.faep9-1.fna.fbcdn.net/v/t45.5328-4/469431001_1122627365877773_7918036702855604620_n.jpg?stp=c100.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=102&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeGLnTFtVRkH4T8Lf1AiJhPxhZau1klEP_6Flq7WSUQ__jqDGSiSQe4aiptplT_TLFtWQcUU9Vn7y9rQjKkqVZhc&_nc_ohc=lToQabJqXp8Q7kNvwEO3k1h&_nc_oc=AdmHtzKSxtI9B43B6g43HspzheDxMfLU5VOn17GCriIQsfAtttMhp3pPyOBzSD3Df9tXtKJ-Lt3CroUUXtTiqDuD&_nc_zt=23&_nc_ht=scontent.faep9-1.fna&_nc_gid=61czT6auJodP1ydtvsNsyA&oh=00_AfSCFZ4qVQlf-wN9IWkD653fSZ7zu1mPu4vRKUEBkNkXOw&oe=687078B1"
-        alt="Monitor Tv Led 24" />
-      <div class="info">
-        <h2>Monitor Tv Led 24</h2>
-        <p>Monitor Tv Led Samsung 24 Con Control Remoto Original</p>
-        <p class="precio">$160.000</p>
-      </div>
-    </div>
-
-    <!-- Iluminación "-->
-    <div class="producto" data-categoria="iluminacion" data-precio="10000">
-      <img
-        src="https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/514326164_787280863955834_8252442924369959274_n.jpg?stp=c0.8.261.261a_dst-jpg_p261x260_tt6&_nc_cat=110&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeGkL0UE1RKuSDc36XIprzQKiqG58uLo906Kobny4uj3Trnp7h9m8MH562AdOPatMAyY414S_a6P1VE__6_5pLTW&_nc_ohc=dN0E8X6guM8Q7kNvwFnfVfr&_nc_oc=Adn8QYTet3fHRaG6Z9jB2ptZRS2qT1l4tGzdJ1Tc68uEG_svTeP8V-dcaoLjCMawpu5-mQ3KGo78hJqy2JEsBhS3&_nc_zt=23&_nc_ht=scontent.faep9-2.fna&_nc_gid=sTcuFXnOl4_DaldyMsrOpg&oh=00_AfRsYd1dn8oaZZuj63oZY4BKGczMvrvag9qm9T46C62b8g&oe=6870890E"
-        alt="Panel LED OSR" />
-      <div class="info">
-        <h2>Panel LED OSR</h2>
-        <p>Panel LED para montar redondo OSR 12W</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="iluminacion" data-precio="20000">
-      <img
-        src="https://scontent.faep9-1.fna.fbcdn.net/v/t45.5328-4/489372761_4122568464644726_7857917372036163224_n.jpg?stp=c12.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=102&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeH-gT8G8X1tmyZjMGn7GdMbt4PLC3ZLqCK3g8sLdkuoIvy-EbcSd3KV1moB64fUPlaXf4N5Gm4iZtZAbGcf8aEp&_nc_ohc=THrh99KF_okQ7kNvwE2eKte&_nc_oc=AdmcfTQCh3ZRnker0cNyyxkl0q0J6C0DgTGbj6zXohVJdcoEfBlv08oS8PlNVH1rjm_APeb1xK3A4AMVrPhvmmdd&_nc_zt=23&_nc_ht=scontent.faep9-1.fna&_nc_gid=sTcuFXnOl4_DaldyMsrOpg&oh=00_AfScM9HDK0OwNrQeRTDzXvd5Ex4ZwmStPcx9FvkPMUZcoA&oe=687064CE"
-        alt="Panel luz-led con tripode" />
-      <div class="info">
-        <h2>Panel luz-led con tripode</h2>
-        <p>Panel fotografico luz led de estudio con tripode</p>
-        <p class="precio">$20.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="iluminacion" data-precio="10000">
-      <img
-        src="https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/511783729_1091194709493269_8461442551131199976_n.jpg?stp=c0.18.261.261a_dst-jpg_p261x260_tt6&_nc_cat=110&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeGzf2yb9aczWrF2jkaX9J-VADqnrX7WhVYAOqetftaFVsKEC1g97pwG10KDoaD4gDb5kEH1LweohsTx-DCUoO4b&_nc_ohc=Y5r4VjPCGC4Q7kNvwEjK3ho&_nc_oc=Adkcgnz7aqBU_plFkG-h2yA1FrygBCOfFbQGMd5ZeJkDNtEWb8og46FHnxQfHSJlNWmkjMMFgTPU8wK4RXTx8R95&_nc_zt=23&_nc_ht=scontent.faep9-2.fna&_nc_gid=sTcuFXnOl4_DaldyMsrOpg&oh=00_AfTyF6FHDaNI6mSP_OfnrbPc71wLtHP6uZ87XD3kP7sn9A&oe=6870638B"
-        alt="Lampara Giratoria" />
-      <div class="info">
-        <h2>Lampara Giratoria</h2>
-        <p>Lampara Led Giratoria colores Rgb</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="iluminacion" data-precio="15000">
-      <img
-        src="https://scontent.faep9-1.fna.fbcdn.net/v/t45.5328-4/511684208_9982610345127562_311900068419805306_n.jpg?stp=c0.18.261.261a_dst-jpg_p261x260_tt6&_nc_cat=104&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeFPCaoyjJeJsb6iGOeAuSkhfCiKqs8-chR8KIqqzz5yFMp5iwrhytKgb2nqeX7M4B-XPAO1HcRliY5XntYEs2DM&_nc_ohc=vX4HcgZ8yLkQ7kNvwHBN8Xq&_nc_oc=Adn5dBEgs_3Z2LlktKPvc7azN7t2MjnQCQ2vrnTcSbctA_urIC9hzwFses3NCXQTGLo7PotqlchHYZCqpKTqfBnZ&_nc_zt=23&_nc_ht=scontent.faep9-1.fna&_nc_gid=sTcuFXnOl4_DaldyMsrOpg&oh=00_AfQFALZ26EaQqsPa48cfpPdfZdh5LvP5hZUfhB9PWKcwHQ&oe=68707743" />
-      <div class="info">
-        <h2>Reloj - Proyector De Estrellas</h2>
-        <p>Reloj Despertador Con Proyector De Estrellas</p>
-        <p class="precio">$15.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="iluminacion" data-precio="15000">
-      <img
-        src="https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/502914259_1216871766129292_392938729135581550_n.jpg?stp=c3.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=110&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeH9n9-9TquDA7a8I0pAZxJFamS9tpHNQsxqZL22kc1CzEljLAjXvFuYWdDMGjkbX5HreJQVBVzKz4HawPSIjdIZ&_nc_ohc=oEKtKswg18QQ7kNvwFSRTjf&_nc_oc=AdkFS4C4gNDKd8l-kiz2cDCZJ2Zs1WLZSUFZnbkzyUBxmuqcgExfScY3aItbAkemwLNJf7tl7aaXQVrMm1mF_TW2&_nc_zt=23&_nc_ht=scontent.faep9-2.fna&_nc_gid=61czT6auJodP1ydtvsNsyA&oh=00_AfQl2r2u6v3loMc37vLRpi1mf0r2aa_vRLp_PwN_3nAffg&oe=6870841B"
-        alt="Proyector De Estrella" />
-      <div class="info">
-        <h2>Proyector De Estrella</h2>
-        <p>Proyector De Estrella Usb Luz Nocturna Ajustable ROJO o AZUL</p>
-        <p class="precio">$15.000</p>
-      </div>
-    </div>
-
-    <div class="producto producto-video" data-categoria="otros" data-precio="10000"
-      data-videos="ANi7AntZ3yk,JcOQ06g5xuQ,f9D91A4Mnas,TK2L3oZ7bJQ,PXDrcUiD2JI">
-      <div class="video-container">
-      </div>
-      <div class="info">
-        <h2>Tapa de válvula luminosa</h2>
-        <p>Tapa de válvula luminosa VERDE ROJO AMARILLO AZUL LILA para auto, moto o bici QUILMES (2 unidades)</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
-
-    <div class="producto" data-categoria="iluminacion" data-precio="10000">
-      <img
-        src="https://scontent.faep9-1.fna.fbcdn.net/v/t45.5328-4/507356573_602417742890999_3855102879034225977_n.jpg?stp=c0.65.261.261a_dst-jpg_p261x260_tt6&_nc_cat=104&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeEh48eQsWX_oEPusrklK6ziDcQ7SjSh8XENxDtKNKHxcTuGe12oZhli-smzQ9AwpkIcy8aYOM0NGPZ1l1Hzj6X5&_nc_ohc=TW83A1N3mFgQ7kNvwF_-mhj&_nc_oc=AdkDjeEOtIWD_0pDOVUB8YClsnsGQxFUlpYRzhC22cc6xn6Br1tFoitr0LljNQAxOkK67tpDIYuu2ogRGxWil2uu&_nc_zt=23&_nc_ht=scontent.faep9-1.fna&_nc_gid=iYq0nYU6a038RUad9hvnNg&oh=00_AfSo2bLZkrnfI8LGa9LryUSwfUxv5xxubvK0sHgFUNTQrA&oe=68707035"
-        alt="Kit luces led" />
-      <div class="info">
-        <h2>Kit luces led</h2>
-        <p>Kit luces led para bici, moto ROJO, VERDE, AMARILLO (contiene 2 luces, pilas y adaptador)</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="iluminacion" data-precio="10000">
-      <img
-        src="https://scontent.faep9-3.fna.fbcdn.net/v/t45.5328-4/487394893_1410830963667053_6261612786186856615_n.jpg?stp=c0.0.261.261a_dst-jpg_p261x260_tt6&_nc_cat=101&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeGS0SNz1b9ePw2tsIPZzBk8TBHgOpZobTVMEeA6lmhtNRZkJ3qQudA7Cwr4woSvLb2pjH1OF6L0yypNVBqFQQDP&_nc_ohc=8yFPMn1NRd0Q7kNvwEtkcEV&_nc_oc=AdkEtOtfYvguyKtnxeelgtcrDdbRG6pUxP73Y_OUsoPAnaBxz3-ZCyPNLx72xukJT1n1talVoudcO87TxGopgERC&_nc_zt=23&_nc_ht=scontent.faep9-3.fna&_nc_gid=Jb-UaPAoRKl3Y0bqtifXrQ&oh=00_AfRcGnxUDeOx0NduQEWjmdNTDZ0Seo0LiUyUl4VqbKUjKQ&oe=68706CC2"
-        alt="Set luces Led para Bicicleta" />
-      <div class="info">
-        <h2>Set luces Led para Bicicleta</h2>
-        <p>Set luces Led de silicona para Bicicleta</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="iluminacion" data-precio="4000">
-      <img
-        src="https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/469769982_556178450562865_8547927125764781894_n.jpg?stp=c0.0.261.261a_dst-jpg_p261x260_tt6&_nc_cat=111&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeH-ksIbnRvn6kPivVOQme2Jo817NX__1CmjzXs1f__UKQWJ0Qs2LlTF_4aKXTsk9DjgW8Jp209-tmnebo_oogQl&_nc_ohc=3UKD-rgJ_qgQ7kNvwEHhHcf&_nc_oc=Adm5oQCAknIyku8rAaYJ2O-nEtUmOC_QJ-TWFFGguQMJOPPe5raN13FZoOisw6m49ZKB7vasgDTXEu0Y298vCt_h&_nc_zt=23&_nc_ht=scontent.faep9-2.fna&_nc_gid=4n6TbX363JTIVh-Hpdlijg&oh=00_AfTViXgTlQPqUA6gM1sdnJx_hBnmSGYWp-LTc5KqZo9r3Q&oe=687064A2"
-        alt="Guirnalda Multicolor Alambre" />
-      <div class="info">
-        <h2>Guirnalda Multicolor Alambre</h2>
-        <p>Luces Guirnalda Microled Multicolor Alambre Tira 30 Led a pilas</p>
-        <p class="precio">$4.000</p>
-      </div>
-    </div>
-
-    <!-- Otros -->
-    <div class="producto" data-categoria="otros" data-precio="5000">
-      <img
-        src="https://scontent.faep8-1.fna.fbcdn.net/v/t45.5328-4/489372356_24208722232057290_6170429473881959568_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeE2hI1eWBMrE1WZhzmMHrrYeEx8EG0Ab4h4THwQbQBviCwz289czGo_Td4eKukdethhWnKMuBsK3ThccsouspxP&_nc_ohc=EMATdIAM4jUQ7kNvwELaL58&_nc_oc=AdmA4cwU7KvPG3F6zH1BCKNjQJQH2LlwIZe70U_-7lFC2PpC9sQHHknbXPzbScD6nUs&_nc_zt=23&_nc_ht=scontent.faep8-1.fna&_nc_gid=jrpE6m5Byuq8yr0FhCvuug&oh=00_AfSZmG2Lr0R2H0MCYuFKwh5J9YZWwF0_hGZ_gso9onUUug&oe=686FC0E3"
-        alt="Masajeador para cabeza" />
-      <div class="info">
-        <h2>Masajeador para cabeza</h2>
-        <p>Reduce stress y tensión</p>
-        <p class="precio">$5.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="otros" data-precio="25000">
-      <img
-        src="https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/469427572_911788534352859_3161911887165690497_n.jpg?stp=c0.54.261.261a_dst-jpg_p261x260_tt6&_nc_cat=107&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeFEUbstmo5Pc-Y9YOVQ0TFFGDJ6jKF-esMYMnqMoX56w-Pq4AVzJDz-xyCFfO1yOHzzN6GaiAzFkemaggsB8zhn&_nc_ohc=r6Zp-Ujgwa4Q7kNvwHDoKPy&_nc_oc=AdmyvUGC3peUkEA0tXFGRHzns6dEUAOnEexQ9ro68jo2LuWpTw7peCcLs1YcETeVDr4RN9TPbw5aREVIUWkJE5FC&_nc_zt=23&_nc_ht=scontent.faep9-2.fna&_nc_gid=gWFh_n_29oEC12ERcKbeCw&oh=00_AfRlORMAwdE29YyWDzV_PldkaqUd0_ymx10fm_H5bpq2nQ&oe=687085CA"
-        alt="Cerradura de Exterior Kallay" />
-      <div class="info">
-        <h2>Cerradura de Exterior Kallay</h2>
-        <p>Cerradura de Exterior 4006 Kallay</p>
-        <p class="precio">$25.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="otros" data-precio="850000">
-      <img
-        src="https://scontent.faep9-3.fna.fbcdn.net/v/t45.5328-4/487457945_1607431383309902_4543877066974451173_n.jpg?stp=c56.0.257.257a_dst-jpg_p370x247_tt6&_nc_cat=105&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeEqRw7ffu_1wQpWhPW5GNWJtDy_20npM6m0PL_bSekzqVqyUToBFw3ODNTGK_NILiF_jFW7MziJPxUBdox-t_mp&_nc_ohc=Gvxnghi_Sz0Q7kNvwE8NHkQ&_nc_oc=AdmNo5KlJWu6AykH4aoDY3q8KpynhFL2BB-pHWGTNZ-lEqzzn4iKoKHu774MBYXz4QxQQH-CRCrQYRX2gaT9LM5G&_nc_zt=23&_nc_ht=scontent.faep9-3.fna&_nc_gid=J9uiCq-6z0K6zuHjXYbrAg&oh=00_AfSbOhBBsJzxDr9p0qsd5G1jvJn6LmF1e9gm2Z0BqZ0wMw&oe=68708A62"
-        alt="Aire Acondicionado Split Surrey" />
-      <div class="info">
-        <h2>Aire Acondicionado Split Surrey</h2>
-        <p>Aire Acondicionado Split Frío Calor 4500w Surrey, en sus cajas (sin usar)</p>
-        <p class="precio">$850.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="otros" data-precio="450000">
-      <img
-        src="https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/469320193_1277784243373625_3363885638670734403_n.jpg?stp=c0.101.261.261a_dst-jpg_p261x260_tt6&_nc_cat=111&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeEFW6gXY-DP4ODRy9b2K8X-5vNzkPVmyp3m83OQ9WbKnUCg6exliDzaQVEgdMf_rE1X1OQlBNBfLv5fdgs_rObD&_nc_ohc=BnElnSTB3rQQ7kNvwGvo-Td&_nc_oc=AdmXgyZNCmS1EQT74GdQ5csUkc58tDLOGnGWU_dNLMIwGrO8pjNcN4VAyvmbZNaFOx2shUsWoP_lMDALlnXlPLbe&_nc_zt=23&_nc_ht=scontent.faep9-2.fna&_nc_gid=ojtTgJzzW23FkPZnNBwQGQ&oh=00_AfSzHyM1-o974C7jymTh5G2pH0Nw7sBYJkfseLKv_MPXJg&oe=687071A4"
-        alt="HELADERA NO FROST PATRICK" />
-      <div class="info">
-        <h2>HELADERA NO FROST PATRICK</h2>
-        <p>HELADERA NO FROST PATRICK HPK350</p>
-        <p class="precio">$450.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="otros" data-precio="15000">
-      <img
-        src="https://scontent.faep8-2.fna.fbcdn.net/v/t45.5328-4/486780928_2083847302132760_458651653765465052_n.jpg?stp=dst-jpg_p640x640_tt6&_nc_cat=107&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeGJWkUjKuU34I4Of5xlLQmG4UKxBup5rZ7hQrEG6nmtnmtyu0ZWCU_MvBcgKcyKoKYk4zNY1eEMt1wEcHYXckTW&_nc_ohc=KADMeyXU_h4Q7kNvwEG5sNg&_nc_oc=AdnwRfwnYW-H65akF123eUTOyqMY4s7-bhBTvLyCqG5kJ-i4aYlOcTkBTad_6yDef7A&_nc_zt=23&_nc_ht=scontent.faep8-2.fna&_nc_gid=DAGVgLle9hybvoRphVRHAQ&oh=00_AfTnioDrpxcBQ8uyj8F4tciEXYwdE147DqsLC0g3ktf06A&oe=686FDE74"
-        alt="Cortadora de pelo Dragon" />
-      <div class="info">
-        <h2>Cortadora de pelo Dragon</h2>
-        <p>Cortadora de pelo, definidora carga usb</p>
-        <p class="precio">$15.000</p>
-      </div>
-    </div>
-
-    <div class="producto" data-categoria="otros" data-precio="10000">
-      <img
-        src="https://scontent.faep8-1.fna.fbcdn.net/v/t45.5328-4/472701165_587993770752584_4399958792086145358_n.jpg?stp=c0.0.261.261a_dst-jpg_p261x260_tt6&_nc_cat=106&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeEmIidjAqw7sI_irLGqOzUB1zcXBNhyxqTXNxcE2HLGpGTJnxO97TYec2RQXLxW8kuT1UtxgdQu922r8rMHHDZf&_nc_ohc=5p2vmFwfsEgQ7kNvwEKsLtU&_nc_oc=AdlSh2--UYN3ox4RwDj9nx9Ubn9QohwGJar8JN185D3J_ZB2QKnnaLfiYEY5dJUJ9ok&_nc_zt=23&_nc_ht=scontent.faep8-1.fna&_nc_gid=4OS47Q16Cp1v2qtumjvRjQ&oh=00_AfQi_7F-BC0Mrrivd_l8h8NNVDQ59K6rpj4KQ82pL4Y2Vw&oe=686FC111"
-        alt="Piedra mágica" />
-      <div class="info">
-        <h2>Piedra mágica</h2>
-        <p>Piedra depiladora mágica</p>
-        <p class="precio">$10.000</p>
-      </div>
-    </div>
-
   </div>
 
   <p id="no-results">No se encontraron productos que coincidan con la búsqueda o filtro.</p>
 
   <script>
-    const buscador = document.getElementById('buscador');
-    const categoriaSelector = document.getElementById('categoriaSelector');
-    const contenedor = document.getElementById('contenedor-productos');
+    (async () => {
+      const res = await fetch('./productosData.json');
+      const productos = await res.json();
 
-    // Copia original de todos los productos al cargar
-    const productosOriginales = Array.from(contenedor.querySelectorAll('.producto'));
+      const contenedor = document.getElementById('contenedor-productos');
+      const buscador = document.getElementById('buscador');
+      const categoriaSelector = document.getElementById('categoriaSelector');
 
-    function filtrarYOrdenar() {
-      const texto = buscador.value.toLowerCase();
-      const categoria = categoriaSelector.value;
+      function crearProductoElem(p) {
+        const div = document.createElement('div');
+        div.className = 'producto' + (p.videos ? ' producto-video' : '');
+        div.dataset.categoria = p.categoria;
+        div.dataset.precio = p.precio;
+        if (p.videos) div.dataset.videos = p.videos.join(',');
 
-      // Partimos siempre desde los productos originales
-      let productos = [...productosOriginales];
+        if (p.videos) {
+          const vidCont = document.createElement('div');
+          vidCont.className = 'video-container';
+          div.appendChild(vidCont);
+        } else {
+          const img = document.createElement('img');
+          img.src = p.imagen;
+          img.alt = p.titulo;
+          div.appendChild(img);
+        }
 
-      // Filtrar por categoría si seleccionada
-      if (categoria) {
-        productos = productos.filter(p => p.dataset.categoria === categoria);
+        const info = document.createElement('div');
+        info.className = 'info';
+        info.innerHTML = `
+      <h2>${p.titulo}</h2>
+      <p>${p.descripcion}</p>
+      <p class="precio">$${p.precio.toLocaleString()}</p>
+    `;
+        div.appendChild(info);
+
+        return div;
       }
 
-      // Filtrar por texto
-      productos = productos.filter(p => {
-        const textoProducto = p.innerText.toLowerCase();
-        return textoProducto.includes(texto);
-      });
+      const productosElems = productos.map(p => crearProductoElem(p));
+      productosElems.forEach(e => contenedor.appendChild(e));
 
-      // Ordenar por precio descendente
-      productos.sort((a, b) => Number(b.dataset.precio) - Number(a.dataset.precio));
+      const productosOriginales = [...productosElems];
 
-      // Vaciar contenedor y reinsertar
-      contenedor.innerHTML = '';
-      productos.forEach(p => contenedor.appendChild(p));
-      if (window.inicializarVideosYouTube) inicializarVideosYouTube();
-    }
+      function filtrarYOrdenar() {
+        const texto = buscador.value.toLowerCase();
+        const categoria = categoriaSelector.value;
 
-    buscador.addEventListener('input', filtrarYOrdenar);
-    categoriaSelector.addEventListener('change', filtrarYOrdenar);
+        let lista = productosOriginales;
 
-    // Mostrar todo al cargar
-    filtrarYOrdenar();
-  </script>
+        if (categoria) {
+          lista = lista.filter(e => e.dataset.categoria === categoria);
+        }
 
-  <script>
-    const tagYT = document.createElement('script');
-    tagYT.src = "https://www.youtube.com/iframe_api";
-    document.body.appendChild(tagYT);
+        lista = lista.filter(e =>
+          e.innerText.toLowerCase().includes(texto)
+        );
 
-    const players = [];
+        lista.sort((a, b) =>
+          Number(b.dataset.precio) - Number(a.dataset.precio)
+        );
 
-    function inicializarVideosYouTube() {
-      document.querySelectorAll('.producto-video').forEach((producto, index) => {
-        if (producto.getAttribute('data-video-ready')) return;
+        contenedor.innerHTML = '';
+        lista.forEach(e => contenedor.appendChild(e));
+        if (window.inicializarVideosYouTube) inicializarVideosYouTube();
+        document.getElementById('no-results').style.display =
+          lista.length === 0 ? 'block' : 'none';
+      }
 
-        const videoIds = producto.dataset.videos.split(',');
-        const playerId = `youtubePlayer${index}-${Date.now()}`;
+      buscador.addEventListener('input', filtrarYOrdenar);
+      categoriaSelector.addEventListener('change', filtrarYOrdenar);
 
-        const iframe = document.createElement('iframe');
-        iframe.id = playerId;
-        iframe.width = "100%";
-        iframe.height = "250";
-        iframe.frameBorder = "0";
-        iframe.allow = "autoplay; fullscreen; encrypted-media";
-        iframe.allowFullscreen = true;
-        iframe.src = `https://www.youtube.com/embed/${videoIds[0]}?enablejsapi=1&mute=1&rel=0&controls=0`;
+      filtrarYOrdenar();
 
-        const container = producto.querySelector('.video-container');
-        container.innerHTML = '';
-        container.appendChild(iframe);
+      // Carga de YouTube
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
 
-        const player = new YT.Player(playerId, {
-          events: {
-            'onReady': event => {
-              event.target.mute();
-              event.target.playVideo();
-            },
-            'onStateChange': event => {
-              if (event.data === YT.PlayerState.ENDED) {
-                let current = player.currentIndex || 0;
-                const next = (current + 1) % videoIds.length;
-                player.currentIndex = next;
-                event.target.loadVideoById(videoIds[next]);
-                event.target.mute();
-                event.target.playVideo();
+      const players = [];
+      window.inicializarVideosYouTube = () => {
+        document.querySelectorAll('.producto-video').forEach((prod, i) => {
+          if (prod.dataset.videoReady) return;
+          const ids = prod.dataset.videos.split(',');
+          const playerId = `yt-${i}-${Date.now()}`;
+          const iframe = document.createElement('iframe');
+          iframe.id = playerId;
+          iframe.src = `https://www.youtube.com/embed/${ids[0]}?enablejsapi=1&mute=1&rel=0&controls=0`;
+          iframe.allow = "autoplay; fullscreen; encrypted-media";
+          iframe.frameBorder = 0;
+          prod.querySelector('.video-container').appendChild(iframe);
+
+          new YT.Player(playerId, {
+            events: {
+              onReady: e => { e.target.mute(); e.target.playVideo(); },
+              onStateChange: ev => {
+                if (ev.data === YT.PlayerState.ENDED) {
+                  const ply = ev.target;
+                  ply.loadVideoById(ids[(ply.currentIndex = ((ply.currentIndex || 0) + 1) % ids.length)]);
+                  ply.mute(); ply.playVideo();
+                }
               }
             }
-          }
+          });
+          prod.dataset.videoReady = true;
         });
+      };
 
-        player.currentIndex = 0;
-        players.push(player);
-        producto.setAttribute('data-video-ready', 'true');
-      });
-    }
-
-    function onYouTubeIframeAPIReady() {
-      inicializarVideosYouTube();
-    }
+      window.onYouTubeIframeAPIReady = window.inicializarVideosYouTube;
+    })();
   </script>
+
 
 </body>
 

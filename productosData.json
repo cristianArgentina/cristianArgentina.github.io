@@ -1,0 +1,339 @@
+[
+  {
+    "id": 1,
+    "name": "Cicatricure - Firmeza",
+    "description": "Crema Corporal Hidratación Intensiva, Firmeza 400 Ml",
+    "category": "belleza y salud",
+    "price": 8000,
+    "image": "https://www.maxidescuento.com.ar/22724-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-firmeza-7798140254416.jpg"
+  },
+  {
+    "id": 2,
+    "name": "DiabeTX - Hidratante",
+    "description": "Crema Corporal Hidratante x 400 ml",
+    "category": "belleza y salud",
+    "price": 9000,
+    "image": "https://media02.farmaciaslider.com.ar/27994-home_default/goicoechea-crema-diabetex-nf-mph-400-ml.jpg"
+  },
+  {
+    "id": 3,
+    "name": "DiabeTX - Urea + Calendula",
+    "description": "Crema Corporal Plus Urea 5% + Calendula 1% 200 Ml",
+    "category": "belleza y salud",
+    "price": 9000,
+    "image": "https://media02.farmaciaslider.com.ar/27983-home_default/goicoechea-diabet-tx-plus-envase-x-200-ml.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Cicatricure - Neuro‑Zen",
+    "description": "Crema Facial Neuro‑Zen 50g",
+    "category": "belleza y salud",
+    "price": 15000,
+    "image": "https://media03.farmaciaslider.com.ar/42077-home_default/cicatricure-neuro-zen-crema-x-50-gr.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Cicatricure - Protector Solar",
+    "description": "Protector Solar Facial Fps 50 Antiage 50g",
+    "category": "belleza y salud",
+    "price": 12000,
+    "image": "https://media01.farmaciaslider.com.ar/36649-home_default/cicatricure-protector-solar-fps50-x-50-g-.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Cicatricure - Ácido Hialurónico",
+    "description": "Crema Facial Antiedad Con Ácido Hialurónico 60g",
+    "category": "belleza y salud",
+    "price": 14000,
+    "image": "https://media03.farmaciaslider.com.ar/27829-home_default/cicatricure-crema-antiedad-tricure-50-gr.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Cicatricure - Colágeno",
+    "description": "Crema Facial Antiedad Con Colágeno 50g",
+    "category": "belleza y salud",
+    "price": 15000,
+    "image": "https://media01.farmaciaslider.com.ar/27940-home_default/cicatricure-crema-antiarrugas-nueva-formula-con-biopeptide-60g.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Cicatricure - Antiestrías",
+    "description": "Crema Corporal Hidratación Intensiva, Antiestrías 400 Ml",
+    "category": "belleza y salud",
+    "price": 8000,
+    "image": "https://www.maxidescuento.com.ar/22725-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-anti-estrias-7798140254423.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Cicatricure - Gel Cicatrices",
+    "description": "Gel Cicatrices Y Estrías X 60g",
+    "category": "belleza y salud",
+    "price": 10000,
+    "image": "https://media01.farmaciaslider.com.ar/27902-home_default/cicatricure-gel-para-cicatrices-60-g.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Cicatricure - Reparación",
+    "description": "Crema Corporal Hidratación Intensiva, Reparación 400 Ml",
+    "category": "belleza y salud",
+    "price": 8000,
+    "image": "https://www.maxidescuento.com.ar/19734-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-reparacion-7798140254409.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Cicatricure - Reparación intensiva",
+    "description": "Crema corporal Reparación intensiva con 10% urea 250g",
+    "category": "belleza y salud",
+    "price": 10000,
+    "image": "https://media02.farmaciaslider.com.ar/27834-home_default/cicatricure-urea-corporal-250-g.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Cicatricure - Age Care Humectante",
+    "description": "Crema facial Age Care Humectante 50g",
+    "category": "belleza y salud",
+    "price": 10000,
+    "image": "https://media02.farmaciaslider.com.ar/27877-home_default/cicatricure-crema-age-care-humectante-50-g.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Cicatricure - Age Care Reafirmante",
+    "description": "Crema facial Age Care Reafirmante 50g",
+    "category": "belleza y salud",
+    "price": 10000,
+    "image": "https://media03.farmaciaslider.com.ar/27872-home_default/cicatricure-crema-age-care-reafirmante-50-g.jpg"
+  },
+  {
+    "id": 14,
+    "name": "Cicatricure - Acqua Defense",
+    "description": "Crema gel facial Acqua Defense",
+    "category": "belleza y salud",
+    "price": 10000,
+    "image": "https://media01.farmaciaslider.com.ar/31504-home_default/cicatricure-aqua-defense-gel-facial-x-50-g.jpg"
+  },
+  {
+    "id": 15,
+    "name": "Cicatricure - gold lift contorno duo",
+    "description": "Crema Cicatricure Gold Lift Contorno Duo 15g",
+    "category": "belleza y salud",
+    "price": 15000,
+    "image": "https://media02.farmaciaslider.com.ar/27935-home_default/cicatricure-contorno-de-ojos-y-boca-gold-lift-15g.jpg"
+  },
+  {
+    "id": 16,
+    "name": "Oleo Extraordinario Elvive",
+    "description": "Oleo Extraordinario Elvive x 100 ml",
+    "category": "belleza y salud",
+    "price": 10000,
+    "image": "https://www.maxidescuento.com.ar/31273-home_default/elvive-oleo-extraordinario-x100m-7509552874204.jpg"
+  },
+  {
+    "id": 17,
+    "name": "Dove - Nutrición + Geranio",
+    "description": "Máscara de Tratamiento Nutrición + Geranio 190 ml",
+    "category": "belleza y salud",
+    "price": 4000,
+    "image": "https://www.maxidescuento.com.ar/24736-home_default/dove-poder-plantas-mascara-x190g-nutricionger-7891150079168.jpg"
+  },
+  {
+    "id": 18,
+    "name": "Dove - Fuerza + Bambú",
+    "description": "Máscara de Tratamiento Fuerza + Bambú 190 ml",
+    "category": "belleza y salud",
+    "price": 4000,
+    "image": "https://www.maxidescuento.com.ar/24732-home_default/dove-poder-plantas-mascara-x190g-fuerzabamb-7891150079175.jpg"
+  },
+  {
+    "id": 19,
+    "name": "Goicoechea - Crema Corporal 200ml",
+    "description": "Crema Corporal ANTICELULITIS, REAFIRMANTE CON TONIFYER, ULTRA NUTRITIVA 200 Ml",
+    "category": "belleza y salud",
+    "price": 4000,
+    "image": "https://scontent.faep8-2.fna.fbcdn.net/v/t45.5328-4/487463892_948966420653049_6564072009606525075_n.jpg"
+  },
+  {
+    "id": 20,
+    "name": "Goicoechea - Crema Corporal 400ml",
+    "description": "Crema Corporal ANTICELULITIS, REAFIRMANTE CON TONIFYER, ULTRA NUTRITIVA 400 Ml",
+    "category": "belleza y salud",
+    "price": 7000,
+    "image": "https://media03.farmaciaslider.com.ar/28066-home_default/goicoechea-crema-anti-celulitis-cellumodel-400-ml.jpg"
+  },
+  {
+    "id": 21,
+    "name": "Diabet Tx - Urea 250g",
+    "description": "Goicoechea Diabet Tx Plus con Urea de 250g",
+    "category": "belleza y salud",
+    "price": 12000,
+    "image": "https://media01.farmaciaslider.com.ar/27984-home_default/goicoechea-crema-diabet-tx-plus-250g.jpg"
+  },
+  {
+    "id": 22,
+    "name": "Filtro para jarra de agua",
+    "description": "Filtro repuesto para jarras purificadoras de agua HUMMA BRITA AQUATAL",
+    "category": "hogar",
+    "price": 20000,
+    "image": "https://acdn-us.mitiendanube.com/stores/001/319/444/products/f003-2-13405ad6d2085c6aad17268606081580-640-0.jpg"
+  },
+  {
+    "id": 23,
+    "name": "Tope Retén Magnético",
+    "description": "Tope Reten Magnetico (para Puerta de Alacena/Placard/Mueble)",
+    "category": "hogar",
+    "price": 2000,
+    "image": "https://http2.mlstatic.com/D_NQ_NP_709892-MLA82445236863_022025-O.webp"
+  },
+  {
+    "id": 24,
+    "name": "Soporte para tablet",
+    "description": "Soporte ergonómico para tablet regulable",
+    "category": "tecnologia",
+    "price": 6000,
+    "image": "https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/513742957_1884112839037719_1419711277244536399_n.jpg"
+  },
+  {
+    "id": 25,
+    "name": "Memoria Ram Notebook PC2 6400s",
+    "description": "Memoria Ram Notebook Samsung PC2 6400s 1gb (Usado)",
+    "category": "tecnologia",
+    "price": 10000,
+    "image": "https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/472654458_561349773381128_4167182688371471431_n.jpg"
+  },
+  {
+    "id": 26,
+    "name": "Control Remoto Ml‑L3",
+    "description": "Para Cámaras Nikon D5100 D7000 D60 D50",
+    "category": "tecnologia",
+    "price": 12000,
+    "image": "https://scontent.faep9-1.fna.fbcdn.net/v/t45.5328-4/513497980_1983324922475194_2664873477283943488_n.jpg"
+  },
+  {
+    "id": 27,
+    "name": "Monitor TV LED 24\"",
+    "description": "Monitor TV Led Samsung 24\" Con Control Remoto Original",
+    "category": "tecnologia",
+    "price": 160000,
+    "image": "https://scontent.faep9-1.fna.fbcdn.net/v/t45.5328-4/469431001_1122627365877773_7918036702855604620_n.jpg"
+  },
+  {
+    "id": 28,
+    "name": "Panel LED OSR",
+    "description": "Panel LED para montar redondo OSR 12W",
+    "category": "iluminacion",
+    "price": 10000,
+    "image": "https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/514326164_787280863955834_8252442924369959274_n.jpg"
+  },
+  {
+    "id": 29,
+    "name": "Panel luz‑led con trípode",
+    "description": "Panel fotográfico luz led de estudio con trípode",
+    "category": "iluminacion",
+    "price": 20000,
+    "image": "https://scontent.faep9-1.fna.fbcdn.net/v/t45.5328-4/489372761_4122568464644726_7857917372036163224_n.jpg"
+  },
+  {
+    "id": 30,
+    "name": "Lámpara Giratoria RGB",
+    "description": "Lámpara Led Giratoria colores RGB",
+    "category": "iluminacion",
+    "price": 10000,
+    "image": "https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/511783729_1091194709493269_8461442551131199976_n.jpg"
+  },
+  {
+    "id": 31,
+    "name": "Reloj - Proyector De Estrellas",
+    "description": "Reloj Despertador Con Proyector De Estrellas",
+    "category": "iluminacion",
+    "price": 15000,
+    "image": "https://scontent.faep9-1.fna.fbcdn.net/v/t45.5328-4/511684208_9982610345127562_311900068419805306_n.jpg"
+  },
+  {
+    "id": 32,
+    "name": "Proyector De Estrella",
+    "description": "Proyector De Estrella USB Luz Nocturna Ajustable ROJO o AZUL",
+    "category": "iluminacion",
+    "price": 15000,
+    "image": "https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/502914259_1216871766129292_392938729135581550_n.jpg"
+  },
+  {
+    "id": 33,
+    "name": "Tapa de válvula luminosa",
+    "description": "Tapa de válvula luminosa VERDE ROJO AMARILLO AZUL LILA para auto, moto o bici (2 unidades)",
+    "category": "otros",
+    "price": 10000,
+    "image": null,
+    "videos": ["ANi7AntZ3yk","JcOQ06g5xuQ","f9D91A4Mnas","TK2L3oZ7bJQ","PXDrcUiD2JI"]
+  },
+  {
+    "id": 34,
+    "name": "Kit luces led",
+    "description": "Kit luces led para bici, moto ROJO, VERDE, AMARILLO (contiene 2 luces, pilas y adaptador)",
+    "category": "iluminacion",
+    "price": 10000,
+    "image": "https://scontent.faep9-1.fna.fbcdn.net/v/t45.5328-4/507356573_602417742890999_3855102879034225977_n.jpg"
+  },
+  {
+    "id": 35,
+    "name": "Set luces Led para Bicicleta",
+    "description": "Set luces Led de silicona para Bicicleta",
+    "category": "iluminacion",
+    "price": 10000,
+    "image": "https://scontent.faep9-3.fna.fbcdn.net/v/t45.5328-4/487394893_1410830963667053_6261612786186856615_n.jpg"
+  },
+  {
+    "id": 36,
+    "name": "Guirnalda Multicolor Alambre",
+    "description": "Luces Guirnalda Microled Multicolor Alambre Tira 30 Led a pilas",
+    "category": "iluminacion",
+    "price": 4000,
+    "image": "https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/469769982_556178450562865_8547927125764781894_n.jpg"
+  },
+  {
+    "id": 37,
+    "name": "Masajeador para cabeza",
+    "description": "Reduce stress y tensión",
+    "category": "otros",
+    "price": 5000,
+    "image": "https://scontent.faep8-1.fna.fbcdn.net/v/t45.5328-4/489372356_24208722232057290_6170429473881959568_n.jpg"
+  },
+  {
+    "id": 38,
+    "name": "Cerradura de Exterior Kallay",
+    "description": "Cerradura de Exterior 4006 Kallay",
+    "category": "otros",
+    "price": 25000,
+    "image": "https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/469427572_911788534352859_3161911887165690497_n.jpg"
+  },
+  {
+    "id": 39,
+    "name": "Aire Acondicionado Split Surrey",
+    "description": "Aire Acondicionado Split Frío Calor 4500w Surrey, en sus cajas (sin usar)",
+    "category": "otros",
+    "price": 850000,
+    "image": "https://scontent.faep9-3.fna.fbcdn.net/v/t45.5328-4/487457945_1607431383309902_4543877066974451173_n.jpg"
+  },
+  {
+    "id": 40,
+    "name": "Heladera No Frost Patrick",
+    "description": "Heladera No Frost Patrick HPK350",
+    "category": "otros",
+    "price": 450000,
+    "image": "https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/469320193_1277784243373625_3363885638670734403_n.jpg"
+  },
+  {
+    "id": 41,
+    "name": "Cortadora de pelo Dragon",
+    "description": "Cortadora de pelo, definidora carga USB",
+    "category": "otros",
+    "price": 15000,
+    "image": "https://scontent.faep8-2.fna.fbcdn.net/v/t45.5328-4/486780928_2083847302132760_458651653765465052_n.jpg"
+  },
+  {
+    "id": 42,
+    "name": "Piedra mágica",
+    "description": "Piedra depiladora mágica",
+    "category": "otros",
+    "price": 10000,
+    "image": "https://scontent.faep8-1.fna.fbcdn.net/v/t45.5328-4/472701165_587993770752584_4399958792086145358_n.jpg"
+  }
+]
