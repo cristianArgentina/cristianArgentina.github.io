@@ -91,6 +91,22 @@
       display: inline-block;
     }
 
+    .precio-wsp {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .whatsapp-btn {
+      margin-left: 10px;
+      font-size: 1.4em;
+      text-decoration: none;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+
     #no-results {
       text-align: center;
       color: #888;
@@ -166,10 +182,18 @@
         const info = document.createElement('div');
         info.className = 'info';
         info.innerHTML = `
-      <h2>${p.name}</h2>
-      <p>${p.description}</p>
-      <p class="precio">$${p.price.toLocaleString()}</p>
-    `;
+          <h2>${p.name}</h2>
+          <p>${p.description}</p>
+          <div class="precio-wsp">
+            <p class="precio">$${p.price.toLocaleString()}</p>
+            <a class="whatsapp-btn" 
+              href="https://wa.me/5491138863899?text=Hola,%20quiero%20consultar%20por%20el%20producto:%20${encodeURIComponent(nombre)}" 
+              target="_blank" 
+              title="Consultar por WhatsApp">
+              🟢
+            </a>
+          </div>
+        `;
         div.appendChild(info);
 
         return div;
