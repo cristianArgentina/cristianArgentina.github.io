@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Showroom - Productos</title>
+  <title>Lista de Productos</title>
   <style>
     * {
       box-sizing: border-box;
@@ -623,6 +623,7 @@
       // Vaciar contenedor y reinsertar
       contenedor.innerHTML = '';
       productos.forEach(p => contenedor.appendChild(p));
+      if (window.inicializarVideosYouTube) inicializarVideosYouTube();
     }
 
     buscador.addEventListener('input', filtrarYOrdenar);
@@ -633,58 +634,61 @@
   </script>
 
   <script>
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.body.appendChild(tag);
+    const tagYT = document.createElement('script');
+    tagYT.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tagYT);
 
     const players = [];
 
-    function onYouTubeIframeAPIReady() {
-      const productos = document.querySelectorAll('.producto-video');
-      productos.forEach((producto, index) => {
-        const videoIds = producto.dataset.videos.split(',');
-        const playerId = `youtubePlayer${index}`;
+    function inicializarVideosYouTube() {
+      document.querySelectorAll('.producto-video').forEach((producto, index) => {
+        if (producto.getAttribute('data-video-ready')) return;
 
-        // Crear dinámicamente el iframe con el primer video como src
+        const videoIds = producto.dataset.videos.split(',');
+        const playerId = `youtubePlayer${index}-${Date.now()}`;
+
         const iframe = document.createElement('iframe');
         iframe.id = playerId;
         iframe.width = "100%";
         iframe.height = "250";
         iframe.frameBorder = "0";
-        //        iframe.allow = "autoplay; encrypted-media";
         iframe.allow = "autoplay; fullscreen; encrypted-media";
         iframe.allowFullscreen = true;
-        iframe.src = `https://www.youtube.com/embed/${videoIds[0]}?enablejsapi=1&mute=1&rel=0&controls=0&modestbranding=1&showinfo=0&disablekb=1&fs=0`;
+        iframe.src = `https://www.youtube.com/embed/${videoIds[0]}?enablejsapi=1&mute=1&rel=0&controls=0`;
 
         const container = producto.querySelector('.video-container');
-        container.innerHTML = ''; // Asegura que esté limpio
+        container.innerHTML = '';
         container.appendChild(iframe);
 
-        // Crear reproductor con API de YouTube
         const player = new YT.Player(playerId, {
           events: {
-            'onReady': (event) => {
+            'onReady': event => {
               event.target.mute();
               event.target.playVideo();
             },
-          'onStateChange': (event) => {
-            if (event.data === YT.PlayerState.ENDED) {
-              const current = players[index].currentIndex || 0;
-              const next = (current + 1) % videoIds.length;
-              players[index].currentIndex = next;
-              event.target.loadVideoById(videoIds[next]);
-              event.target.mute(); // vuelve a mutear
-              event.target.playVideo(); // fuerza reproducción
+            'onStateChange': event => {
+              if (event.data === YT.PlayerState.ENDED) {
+                let current = player.currentIndex || 0;
+                const next = (current + 1) % videoIds.length;
+                player.currentIndex = next;
+                event.target.loadVideoById(videoIds[next]);
+                event.target.mute();
+                event.target.playVideo();
+              }
             }
           }
-        }
-      });
+        });
 
-        players.push({ player, currentIndex: 0, videoIds });
+        player.currentIndex = 0;
+        players.push(player);
+        producto.setAttribute('data-video-ready', 'true');
       });
     }
-  </script>
 
+    function onYouTubeIframeAPIReady() {
+      inicializarVideosYouTube();
+    }
+  </script>
 
 </body>
 
