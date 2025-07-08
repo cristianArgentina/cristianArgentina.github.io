@@ -478,7 +478,6 @@
     <div class="producto producto-video" data-categoria="otros" data-precio="10000"
       data-videos="ANi7AntZ3yk,JcOQ06g5xuQ,f9D91A4Mnas,TK2L3oZ7bJQ,PXDrcUiD2JI">
       <div class="video-container">
-        <iframe class="youtubePlayer" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </div>
       <div class="info">
         <h2>Tapa de válvula luminosa</h2>
@@ -657,8 +656,6 @@
         iframe.allowFullscreen = true;
         iframe.src = `https://www.youtube.com/embed/${videoIds[0]}?enablejsapi=1&mute=1&rel=0&controls=0&modestbranding=1&showinfo=0&disablekb=1&fs=0`;
 
-
-
         const container = producto.querySelector('.video-container');
         container.innerHTML = ''; // Asegura que esté limpio
         container.appendChild(iframe);
@@ -666,16 +663,22 @@
         // Crear reproductor con API de YouTube
         const player = new YT.Player(playerId, {
           events: {
-            'onStateChange': (event) => {
-              if (event.data === YT.PlayerState.ENDED) {
-                const current = players[index].currentIndex || 0;
-                const next = (current + 1) % videoIds.length;
-                players[index].player.loadVideoById(videoIds[next]);
-                players[index].currentIndex = next;
-              }
+            'onReady': (event) => {
+              event.target.mute();
+              event.target.playVideo();
+            },
+          'onStateChange': (event) => {
+            if (event.data === YT.PlayerState.ENDED) {
+              const current = players[index].currentIndex || 0;
+              const next = (current + 1) % videoIds.length;
+              players[index].currentIndex = next;
+              event.target.loadVideoById(videoIds[next]);
+              event.target.mute(); // vuelve a mutear
+              event.target.playVideo(); // fuerza reproducción
             }
           }
-        });
+        }
+      });
 
         players.push({ player, currentIndex: 0, videoIds });
       });
