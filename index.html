@@ -53,10 +53,14 @@
 
     .producto img {
       width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      display: block;
+      height: 200px;
+      /* o ajustá según el diseño */
+      object-fit: contain;
+      /* 'contain' asegura que no se recorte nada */
+      background-color: #f0f0f0;
+      /* opcional: relleno gris claro */
+      padding: 10px;
+      /* opcional: espacio alrededor */
     }
 
     .info {
