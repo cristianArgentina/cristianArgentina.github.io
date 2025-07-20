@@ -90,29 +90,32 @@
   </div>
 
   <script>
-    function _0xabc1(_0x1a9e, _0x37f6) {
-      const _0x4ef2 = ["\x6C\x6F\x67\x75\x65\x61\x64\x6F\x41\x64\x6D\x69\x6E", "\x67\x65\x74\x49\x74\x65\x6D", "\x74\x72\x75\x65", "\x64\x69\x73\x70\x6C\x61\x79", "\x6C\x6F\x67\x69\x6E\x2D\x62\x6F\x78", "\x73\x74\x79\x6C\x65", "\x6E\x6F\x6E\x65", "\x70\x61\x73\x73\x77\x6F\x72\x64", "\x54\x75\x43\x6C\x61\x76\x65\x53\x65\x63\x72\x65\x74\x61\x31\x32\x33", "\x6D\x73\x67", "\x69\x6E\x6E\x65\x72\x48\x54\x4D\x4C"];
-      const pass = document[_0x4ef2[1]](_0x4ef2[7]).value;
-      if (pass === _0x4ef2[8]) {
-        localStorage.setItem(_0x4ef2[0], _0x4ef2[2]);
-        document.getElementById("login-box")[_0x4ef2[5]][_0x4ef2[3]] = _0x4ef2[6];
-        document.getElementById("admin-content")[_0x4ef2[5]][_0x4ef2[3]] = _0x4ef2[2];
-      } else {
-        document.getElementById(_0x4ef2[9])[_0x4ef2[10]] = "Contraseña incorrecta";
-      }
+    const claveCorrecta = "TuClaveSecreta123";
+
+    function mostrarLogin() {
+      document.getElementById("login-box").style.display = "block";
+    }
+
+    function mostrarAdmin() {
+      document.getElementById("admin-content").style.display = "block";
     }
 
     function checkPassword() {
-      _0xabc1();
+      const input = document.getElementById("password").value;
+      if (input === claveCorrecta) {
+        localStorage.setItem("logueadoAdmin", "true");
+        location.reload(); // recargar para mostrar contenido
+      } else {
+        document.getElementById("msg").textContent = "Contraseña incorrecta";
+      }
     }
 
-    (function () {
-      if (localStorage.getItem("logueadoAdmin") === "true") {
-        document.getElementById("admin-content").style.display = "block";
-      } else {
-        document.getElementById("login-box").style.display = "block";
-      }
-    })();
+    // Verificar al cargar
+    if (localStorage.getItem("logueadoAdmin") === "true") {
+      mostrarAdmin();
+    } else {
+      mostrarLogin();
+    }
   </script>
   <script>
     let productos = [];
