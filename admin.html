@@ -116,6 +116,17 @@
     td input.precio-input {
       text-align: right;
     }
+
+    select {
+      background-color: #222;
+      color: #f1f1f1;
+      border: 1px solid #555;
+      border-radius: 6px;
+      padding: 6px;
+      width: 90%;
+      margin: 0 auto;
+      display: block;
+    }
   </style>
 
 </head>
@@ -181,6 +192,7 @@
   </script>
   <script>
     let productos = [];
+    const categoriasDisponibles = ["belleza y salud", "hogar", "tecnologia", "iluminacion"];
 
     async function cargarProductos() {
       const res = await fetch('./productosData.json');
@@ -199,7 +211,7 @@
         <td><input value="${prod.description}" onchange="productos[${i}].description = this.value" /></td>
         <td><input type="number" class="precio-input sin-flechas" value="${prod.price}" onchange="productos[${i}].price = parseFloat(this.value)" /></td>
         <td><input type="number" value="${prod.stock || 0}" onchange="productos[${i}].stock = parseInt(this.value)" /></td>
-        <td><input value="${prod.category}" onchange="productos[${i}].category = this.value" /></td>
+        <td><select onchange="productos[${i}].category = this.value">${categoriasDisponibles.map(cat => `<option value="${cat}" ${cat === prod.category ? 'selected' : ''}>${cat}</option>`).join('')}</select></td>
         <td><input value="${prod.image}" onchange="productos[${i}].image = this.value" /></td>
       `;
         tbody.appendChild(tr);
