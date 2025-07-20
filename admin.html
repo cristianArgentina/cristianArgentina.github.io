@@ -7,11 +7,6 @@
   <meta name="robots" content="noindex">
   <title>Panel de Administración</title>
   <style>
-    /*body {
-      font-family: sans-serif;
-      margin: 2em;
-    }*/
-
     #admin-content {
       display: none;
     }
@@ -35,9 +30,14 @@
       margin-bottom: 20px;
     }
 
+    .tabla-wrapper {
+      overflow-x: auto;
+    }
+
     table {
       border-collapse: collapse;
       width: 100%;
+      min-width: 800px;
       margin-top: 20px;
     }
 
@@ -47,17 +47,35 @@
       padding: 8px;
     }
 
-    /*
-    input,
-    select {
-      width: 100%;
+    th.precio,
+    td.precio {
+      width: 90px;
+      text-align: right;
     }
 
-    button {
-      margin-top: 10px;
+    th.stock,
+    td.stock {
+      width: 70px;
+      text-align: center;
     }
-    */
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 768px) {
+      table {
+        font-size: 14px;
+      }
+
+      th,
+      td {
+        padding: 6px;
+      }
+    }
   </style>
+
 </head>
 
 <body>
