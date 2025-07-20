@@ -207,7 +207,9 @@
     }
 
     function agregarProducto() {
+      const nuevoId = Date.now();
       productos.push({
+        id: nuevoId,
         name: '',
         description: '',
         price: 0,
