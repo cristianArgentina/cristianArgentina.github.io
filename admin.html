@@ -88,22 +88,24 @@
 
   <div id="admin-content">
     <h1>Panel de Administración</h1>
-    <table id="tabla-productos">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Precio</th>
-          <th>Stock</th>
-          <th>Categoría</th>
-          <th>Imagen</th>
-          <th>Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Productos cargados aquí -->
-      </tbody>
-    </table>
+    <div class="tabla-wrapper">
+      <table id="tabla-productos">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th class="precio">Precio</th>
+            <th class="stock">Stock</th>
+            <th>Categoría</th>
+            <th>Imagen</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Productos cargados aquí -->
+        </tbody>
+      </table>
+    </div>
     <button onclick="guardarCambios()">💾 Guardar cambios</button>
   </div>
 
