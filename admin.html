@@ -1,0 +1,109 @@
+<!-- admin.html -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel de Administración</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+
+    input,
+    select {
+      width: 100%;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Panel de Administración</h1>
+  <table id="tabla-productos">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th>Categoría</th>
+        <th>Imagen</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Productos cargados aquí -->
+    </tbody>
+  </table>
+  <button onclick="guardarCambios()">💾 Guardar cambios</button>
+
+  <script>
+    let productos = [];
+
+    async function cargarProductos() {
+      const res = await fetch('./productosData.json');
+      productos = await res.json();
+      const tbody = document.querySelector('#tabla-productos tbody');
+      tbody.innerHTML = '';
+
+      productos.forEach((prod, i) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><input value="${prod.name}" onchange="productos[${i}].name = this.value" /></td>
+          <td><input value="${prod.description}" onchange="productos[${i}].description = this.value" /></td>
+          <td><input type="number" value="${prod.price}" onchange="productos[${i}].price = parseFloat(this.value)" /></td>
+          <td><input type="number" value="${prod.stock || 0}" onchange="productos[${i}].stock = parseInt(this.value)" /></td>
+          <td><input value="${prod.category}" onchange="productos[${i}].category = this.value" /></td>
+          <td><input value="${prod.image}" onchange="productos[${i}].image = this.value" /></td>
+          <td><button onclick="eliminarProducto(${i})">🗑️ Eliminar</button></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function eliminarProducto(index) {
+      productos.splice(index, 1);
+      cargarProductos();
+    }
+
+    function guardarCambios() {
+      const contenido = JSON.stringify(productos, null, 2);
+      const blob = new Blob([contenido], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'productosData.json';
+      a.click();
+
+      URL.revokeObjectURL(url);
+    }
+
+    cargarProductos();
+  </script>
+</body>
+
+</html>
