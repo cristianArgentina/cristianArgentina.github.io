@@ -76,9 +76,7 @@
     }
 
     th.categoria,
-    td.categoria,
-    th.accion,
-    td.accion {
+    td.categoria {
       width: 100px;
     }
 
@@ -142,7 +140,6 @@
             <th class="stock">Stock</th>
             <th class="categoria">Categoría</th>
             <th>Imagen</th>
-            <th class="accion">Acción</th>
           </tr>
         </thead>
         <tbody>
@@ -150,6 +147,7 @@
         </tbody>
       </table>
     </div>
+    <button onclick="agregarProducto()">➕ Agregar producto</button>
     <button onclick="guardarCambios()">💾 Guardar cambios</button>
   </div>
 
@@ -187,27 +185,37 @@
     async function cargarProductos() {
       const res = await fetch('./productosData.json');
       productos = await res.json();
+      renderTabla();
+    }
+
+    function renderTabla() {
       const tbody = document.querySelector('#tabla-productos tbody');
       tbody.innerHTML = '';
 
       productos.forEach((prod, i) => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td><input value="${prod.name}" onchange="productos[${i}].name = this.value" /></td>
-          <td><input value="${prod.description}" onchange="productos[${i}].description = this.value" /></td>
-          <td><input type="number" class="sin-flechas" value="${prod.price}" onchange="productos[${i}].price = parseFloat(this.value)" /></td>
-          <td><input type="number" value="${prod.stock || 0}" onchange="productos[${i}].stock = parseInt(this.value)" /></td>
-          <td><input value="${prod.category}" onchange="productos[${i}].category = this.value" /></td>
-          <td><input value="${prod.image}" onchange="productos[${i}].image = this.value" /></td>
-          <td><button onclick="eliminarProducto(${i})">🗑️ Eliminar</button></td>
-        `;
+        <td><input value="${prod.name}" onchange="productos[${i}].name = this.value" /></td>
+        <td><input value="${prod.description}" onchange="productos[${i}].description = this.value" /></td>
+        <td><input type="number" class="precio-input sin-flechas" value="${prod.price}" onchange="productos[${i}].price = parseFloat(this.value)" /></td>
+        <td><input type="number" value="${prod.stock || 0}" onchange="productos[${i}].stock = parseInt(this.value)" /></td>
+        <td><input value="${prod.category}" onchange="productos[${i}].category = this.value" /></td>
+        <td><input value="${prod.image}" onchange="productos[${i}].image = this.value" /></td>
+      `;
         tbody.appendChild(tr);
       });
     }
 
-    function eliminarProducto(index) {
-      productos.splice(index, 1);
-      cargarProductos();
+    function agregarProducto() {
+      productos.push({
+        name: '',
+        description: '',
+        price: 0,
+        stock: 0,
+        category: '',
+        image: ''
+      });
+      renderTabla();
     }
 
     function guardarCambios() {
@@ -225,6 +233,7 @@
 
     cargarProductos();
   </script>
+
 </body>
 
 </html>
