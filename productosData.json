@@ -15,16 +15,16 @@
     "category": "belleza y salud",
     "price": 9000,
     "image": "https://media02.farmaciaslider.com.ar/27994-home_default/goicoechea-crema-diabetex-nf-mph-400-ml.jpg",
-    "stock": 0
+    "stock": 4
   },
   {
     "id": 3,
     "name": "DiabeTX - Urea + Calendula",
-    "description": "Crema Corporal Plus Urea 5% + Calendula 1% 200 Ml",
+    "description": "Crema Corporal Plus Urea 5% + Calendula 1%  x 200 ml200 Ml",
     "category": "belleza y salud",
     "price": 9000,
     "image": "https://media02.farmaciaslider.com.ar/27983-home_default/goicoechea-diabet-tx-plus-envase-x-200-ml.jpg",
-    "stock": 0
+    "stock": 2
   },
   {
     "id": 4,
@@ -33,7 +33,7 @@
     "category": "belleza y salud",
     "price": 15000,
     "image": "https://media03.farmaciaslider.com.ar/42077-home_default/cicatricure-neuro-zen-crema-x-50-gr.jpg",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 5,
@@ -51,7 +51,7 @@
     "category": "belleza y salud",
     "price": 14000,
     "image": "https://media03.farmaciaslider.com.ar/27829-home_default/cicatricure-crema-antiedad-tricure-50-gr.jpg",
-    "stock": 0
+    "stock": 2
   },
   {
     "id": 7,
@@ -60,7 +60,7 @@
     "category": "belleza y salud",
     "price": 15000,
     "image": "https://media01.farmaciaslider.com.ar/27940-home_default/cicatricure-crema-antiarrugas-nueva-formula-con-biopeptide-60g.jpg",
-    "stock": 0
+    "stock": 4
   },
   {
     "id": 8,
@@ -69,7 +69,7 @@
     "category": "belleza y salud",
     "price": 8000,
     "image": "https://www.maxidescuento.com.ar/22725-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-anti-estrias-7798140254423.jpg",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 9,
@@ -78,7 +78,7 @@
     "category": "belleza y salud",
     "price": 10000,
     "image": "https://media01.farmaciaslider.com.ar/27902-home_default/cicatricure-gel-para-cicatrices-60-g.jpg",
-    "stock": 0
+    "stock": 4
   },
   {
     "id": 10,
@@ -87,7 +87,7 @@
     "category": "belleza y salud",
     "price": 8000,
     "image": "https://www.maxidescuento.com.ar/19734-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-reparacion-7798140254409.jpg",
-    "stock": 0
+    "stock": 2
   },
   {
     "id": 11,
@@ -96,7 +96,7 @@
     "category": "belleza y salud",
     "price": 10000,
     "image": "https://media02.farmaciaslider.com.ar/27834-home_default/cicatricure-urea-corporal-250-g.jpg",
-    "stock": 0
+    "stock": 2
   },
   {
     "id": 12,
@@ -105,7 +105,7 @@
     "category": "belleza y salud",
     "price": 10000,
     "image": "https://media02.farmaciaslider.com.ar/27877-home_default/cicatricure-crema-age-care-humectante-50-g.jpg",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 13,
@@ -114,7 +114,7 @@
     "category": "belleza y salud",
     "price": 10000,
     "image": "https://media03.farmaciaslider.com.ar/27872-home_default/cicatricure-crema-age-care-reafirmante-50-g.jpg",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 14,
@@ -132,7 +132,7 @@
     "category": "belleza y salud",
     "price": 15000,
     "image": "https://media02.farmaciaslider.com.ar/27935-home_default/cicatricure-contorno-de-ojos-y-boca-gold-lift-15g.jpg",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 16,
@@ -168,7 +168,7 @@
     "category": "belleza y salud",
     "price": 4000,
     "image": "https://cdn.batitienda.com/baticloud/images/product_picture_3a5b8b1676084d1ca0e071a3b94ac684_637857979416483024_0_l.webp",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 20,
@@ -177,7 +177,7 @@
     "category": "belleza y salud",
     "price": 7000,
     "image": "https://media03.farmaciaslider.com.ar/28066-home_default/goicoechea-crema-anti-celulitis-cellumodel-400-ml.jpg",
-    "stock": 0
+    "stock": 2
   },
   {
     "id": 21,
@@ -186,7 +186,7 @@
     "category": "belleza y salud",
     "price": 12000,
     "image": "https://media01.farmaciaslider.com.ar/27984-home_default/goicoechea-crema-diabet-tx-plus-250g.jpg",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 22,
@@ -195,7 +195,7 @@
     "category": "hogar",
     "price": 20000,
     "image": "https://acdn-us.mitiendanube.com/stores/001/319/444/products/f003-2-13405ad6d2085c6aad17268606081580-640-0.jpg",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 23,
@@ -213,7 +213,7 @@
     "category": "tecnologia",
     "price": 6000,
     "image": "https://http2.mlstatic.com/D_NQ_NP_898342-MLA81968553114_022025-O.webp",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 25,
@@ -222,7 +222,7 @@
     "category": "tecnologia",
     "price": 10000,
     "image": "https://scontent.faep9-2.fna.fbcdn.net/v/t45.5328-4/472654458_561349773381128_4167182688371471431_n.jpg?stp=c35.0.260.260a_dst-jpg_p261x260_tt6&_nc_cat=106&ccb=1-7&_nc_sid=247b10&_nc_eui2=AeGXG0YZ_AuocrClr6TmtIv6OhRvB6FRfzg6FG8HoVF_OP5FyhWrCei2nAn2enBMqvhqk9rgM5s2PTkF1hcnwc9z&_nc_ohc=N7uhrBG1GPAQ7kNvwFZ_bN4&_nc_oc=AdnhRvCLeOhTkJpHJu6Y7xwAOCscbbnDOcTwQ9y4ouLS_ATHtdL6lp8XyksT6j1fuaxpzZXwp1ystd13b99I2GUK&_nc_zt=23&_nc_ht=scontent.faep9-2.fna&_nc_gid=sTcuFXnOl4_DaldyMsrOpg&oh=00_AfTiRwFAWmir6rwgrQa9GJuDYLmB_qqyq0QFkmKJF0hYlw&oe=68708218",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 26,
@@ -231,7 +231,7 @@
     "category": "tecnologia",
     "price": 12000,
     "image": "https://www.nikon.com.ar/uploads/accesorios/large/20150429-054111.png",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 27,
@@ -240,7 +240,7 @@
     "category": "tecnologia",
     "price": 160000,
     "image": "https://santafecomputacion.com.ar/productos/get-imagen/1550",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 28,
@@ -249,7 +249,7 @@
     "category": "iluminacion",
     "price": 10000,
     "image": "https://http2.mlstatic.com/D_NQ_NP_819043-MLA82795711660_032025-O.webp",
-    "stock": 0
+    "stock": 2
   },
   {
     "id": 29,
@@ -258,7 +258,7 @@
     "category": "iluminacion",
     "price": 20000,
     "image": "https://http2.mlstatic.com/D_NQ_NP_758794-MLA82767947144_032025-O.webp",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 30,
@@ -267,7 +267,7 @@
     "category": "iluminacion",
     "price": 10000,
     "image": "https://acdn-us.mitiendanube.com/stores/001/155/056/products/1-18b160c7c0c32147ed17292664690658-1024-1024.webp",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 31,
@@ -276,7 +276,7 @@
     "category": "iluminacion",
     "price": 15000,
     "image": "https://oportunidades-vip.com.ar/wp-content/uploads/2025/07/Reloj_Despertador_Proyector_Estrellas_Con_Musica_Y_Alarma_D_900218-MLA33074242954_122019-O.jpg",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 32,
@@ -285,7 +285,7 @@
     "category": "iluminacion",
     "price": 15000,
     "image": "https://http2.mlstatic.com/D_NQ_NP_623534-MLA54225599890_032023-O.webp",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 33,
@@ -337,7 +337,7 @@
     "category": "belleza y salud",
     "price": 5000,
     "image": "https://acdn-us.mitiendanube.com/stores/002/449/287/products/d_864943-mla49726052127_042022-o-49b2ddbc31f298773016651688921970-1024-1024.jpg",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 38,
@@ -346,7 +346,7 @@
     "category": "hogar",
     "price": 25000,
     "image": "https://www.kallay.com/img/products/23/gallery/20230728165553919600_image.jpg",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 39,
@@ -355,7 +355,7 @@
     "category": "hogar",
     "price": 850000,
     "image": "https://www.surair.com.ar/wp-content/uploads/2024/04/01-plantilla-surrey-pria-evolution-4500-1.webp",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 40,
@@ -364,7 +364,7 @@
     "category": "hogar",
     "price": 450000,
     "image": "https://santimaria.com.ar/wp-content/uploads/2021/11/PATRICK-HPK-350NFB-600x600.jpg",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 41,
@@ -382,7 +382,7 @@
     "category": "belleza y salud",
     "price": 10000,
     "image": "https://acdn-us.mitiendanube.com/stores/001/131/056/products/depila1-cafe071c04ad00005417207881726815-480-0.png",
-    "stock": 0
+    "stock": 1
   },
   {
     "id": 43,
@@ -391,7 +391,7 @@
     "category": "hogar",
     "price": 20000,
     "image": "https://www.bomberomania.com.ar/wp-content/uploads/productos/Mini-Anafe-Calentador-Portatil-Plegable-Camping-Moonhill-CS101A-6-500x500.webp",
-    "stock": 0
+    "stock": 4
   },
   {
     "id": 44,
@@ -410,5 +410,14 @@
     "stock": 2,
     "category": "belleza y salud",
     "image": "https://www.lorealparis.com.ar/-/media/project/loreal/brand-sites/oap/americas/ar/articles/dream-liso/menos-mb.png"
+  },
+  {
+    "id": 1753052409102,
+    "name": "Cicatricure - Age Care Aclarante",
+    "description": "Crema facial Age Care Aclarante 50g",
+    "price": 10000,
+    "stock": 1,
+    "category": "belleza y salud",
+    "image": "https://media01.farmaciaslider.com.ar/27882-thickbox_default/cicatricure-crema-age-care-aclarante-50-g.jpg"
   }
 ]
