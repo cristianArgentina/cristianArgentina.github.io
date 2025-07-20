@@ -1,76 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Acceso restringido</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
+      font-family: sans-serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       height: 100vh;
+      background-color: #f4f4f4;
     }
-
-    .login-container {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
     }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
     button {
-      width: 100%;
-      padding: 12px;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 6px;
       cursor: pointer;
-    }
-
-    button:hover {
-      background: #0056b3;
-    }
-
-    .error {
-      color: red;
-      margin-top: 10px;
     }
   </style>
 </head>
-
 <body>
-  <div class="login-container">
-    <h2>Acceso Administrador</h2>
-    <form id="loginForm">
-      <input type="password" id="password" placeholder="Contraseña" required />
-      <button onclick="login()">Entrar</button>
-    </form>
-    <div id="error" class="error" style="display: none;">Contraseña incorrecta</div>
-  </div>
+  <h2>Consola privada</h2>
+  <input type="password" id="password" placeholder="Contraseña de acceso" />
+  <button onclick="login()">Entrar</button>
+
   <script>
-function login(){
-  var _0x4e0d=["value","getElementById","password","TuClaveSecreta123","href","location","admin.html","alert"];
-  var pass=document[_0x4e0d[1]](_0x4e0d[2])[_0x4e0d[0]];
-  if(pass===_0x4e0d[3]){
-    window[_0x4e0d[5]][_0x4e0d[4]]=_0x4e0d[6];
-  }else{
-    window[_0x4e0d[7]]("Contraseña incorrecta");
-  }
-}
+    // Contraseña: TuClaveSecreta123
+    function login(){
+      var _0x4e0d=["value","getElementById","password","TuClaveSecreta123","href","location","admin.html","alert"];
+      var pass=document[_0x4e0d[1]](_0x4e0d[2])[_0x4e0d[0]];
+      if(pass===_0x4e0d[3]){
+        window[_0x4e0d[5]][_0x4e0d[4]]=_0x4e0d[6];
+      }else{
+        window[_0x4e0d[7]]("Contraseña incorrecta");
+      }
+    }
   </script>
 </body>
-
 </html>
