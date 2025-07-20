@@ -259,10 +259,16 @@
     "id": 33,
     "name": "Tapa de válvula luminosa",
     "description": "Tapa de válvula luminosa VERDE ROJO AMARILLO AZUL LILA para auto, moto o bici (2 unidades)",
-    "category": "otros",
+    "category": "iluminacion",
     "price": 10000,
     "image": null,
-    "videos": ["ANi7AntZ3yk","JcOQ06g5xuQ","f9D91A4Mnas","TK2L3oZ7bJQ","PXDrcUiD2JI"]
+    "videos": [
+      "ANi7AntZ3yk",
+      "JcOQ06g5xuQ",
+      "f9D91A4Mnas",
+      "TK2L3oZ7bJQ",
+      "PXDrcUiD2JI"
+    ]
   },
   {
     "id": 34,
@@ -300,7 +306,7 @@
     "id": 38,
     "name": "Cerradura de Exterior Kallay",
     "description": "Cerradura de Exterior 4006 Kallay",
-    "category": "otros",
+    "category": "hogar",
     "price": 25000,
     "image": "https://www.kallay.com/img/products/23/gallery/20230728165553919600_image.jpg"
   },
@@ -308,7 +314,7 @@
     "id": 39,
     "name": "Aire Acondicionado Split Surrey",
     "description": "Aire Acondicionado Split Frío Calor 4500w Surrey, en sus cajas (sin usar)",
-    "category": "otros",
+    "category": "hogar",
     "price": 850000,
     "image": "https://www.surair.com.ar/wp-content/uploads/2024/04/01-plantilla-surrey-pria-evolution-4500-1.webp"
   },
@@ -316,7 +322,7 @@
     "id": 40,
     "name": "Heladera No Frost Patrick",
     "description": "Heladera No Frost Patrick HPK350",
-    "category": "otros",
+    "category": "hogar",
     "price": 450000,
     "image": "https://santimaria.com.ar/wp-content/uploads/2021/11/PATRICK-HPK-350NFB-600x600.jpg"
   },
@@ -343,5 +349,14 @@
     "category": "hogar",
     "price": 20000,
     "image": "https://www.bomberomania.com.ar/wp-content/uploads/productos/Mini-Anafe-Calentador-Portatil-Plegable-Camping-Moonhill-CS101A-6-500x500.webp"
+  },
+  {
+    "id": 44,
+    "name": "TRESemmé - Spray sellado",
+    "description": "Coat spray sellado antifrizz",
+    "price": 10000,
+    "stock": 1,
+    "category": "belleza y salud",
+    "image": "https://media03.farmaciaslider.com.ar/49276-thickbox_default/tresemme-keratina-antifrizz-coat-spray-x-190-ml-.jpg"
   }
 ]
