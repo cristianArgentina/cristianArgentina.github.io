@@ -252,16 +252,23 @@
         description: '',
         price: 0,
         stock: 0,
-        category: '',
+        category: 'belleza y salud',
         image: ''
       });
       renderTabla();
     }
 
     function guardarCambios() {
+      const faltantes = productos.filter(p => !p.category || p.category === '');
+      if (faltantes.length > 0) {
+        alert('Hay productos sin categoría asignada. Por favor, seleccione una categoría antes de guardar.');
+        return;
+      }
+
       const contenido = JSON.stringify(productos, null, 2);
       const blob = new Blob([contenido], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
+      alert('Productos guardados con éxito.');
 
       const a = document.createElement('a');
       a.href = url;
