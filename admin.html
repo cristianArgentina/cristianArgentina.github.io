@@ -79,7 +79,8 @@
     td.categoria {
       width: 100px;
     }
-/*
+
+    /*
     input {
       width: 90%;
       margin: 0 auto;
@@ -226,6 +227,10 @@
       tbody.innerHTML = '';
 
       productos.forEach((prod, i) => {
+        // Asegurar que 'stock' exista
+        if (typeof prod.stock === 'undefined') {
+          prod.stock = 0;
+        }
         const tr = document.createElement('tr');
         tr.innerHTML = `
         <td><input class="campo" value="${prod.name}" onchange="productos[${i}].name = this.value" /></td>
