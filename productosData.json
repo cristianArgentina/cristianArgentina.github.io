@@ -150,7 +150,7 @@
     "category": "belleza y salud",
     "price": 4000,
     "image": "https://www.maxidescuento.com.ar/24736-home_default/dove-poder-plantas-mascara-x190g-nutricionger-7891150079168.jpg",
-    "stock": 0
+    "stock": 999
   },
   {
     "id": 18,
@@ -159,7 +159,7 @@
     "category": "belleza y salud",
     "price": 4000,
     "image": "https://www.maxidescuento.com.ar/24732-home_default/dove-poder-plantas-mascara-x190g-fuerzabamb-7891150079175.jpg",
-    "stock": 0
+    "stock": 999
   },
   {
     "id": 19,
@@ -204,7 +204,7 @@
     "category": "hogar",
     "price": 2000,
     "image": "https://http2.mlstatic.com/D_NQ_NP_709892-MLA82445236863_022025-O.webp",
-    "stock": 0
+    "stock": 19
   },
   {
     "id": 24,
@@ -301,7 +301,7 @@
       "TK2L3oZ7bJQ",
       "PXDrcUiD2JI"
     ],
-    "stock": 0
+    "stock": 999
   },
   {
     "id": 34,
@@ -310,7 +310,7 @@
     "category": "iluminacion",
     "price": 10000,
     "image": "https://acdn-us.mitiendanube.com/stores/149/327/products/3232322332323232321-9d8295f9477340183416250003280585-480-0.png",
-    "stock": 0
+    "stock": 999
   },
   {
     "id": 35,
@@ -319,7 +319,7 @@
     "category": "iluminacion",
     "price": 10000,
     "image": "https://http2.mlstatic.com/D_NQ_NP_733029-MLA46882553081_072021-O.webp",
-    "stock": 0
+    "stock": 999
   },
   {
     "id": 36,
@@ -328,7 +328,7 @@
     "category": "iluminacion",
     "price": 4000,
     "image": "https://cotillonmartin.com.ar/wp-content/uploads/2024/12/Luces-led-multicolor-x-30-u-a-pila.jpg",
-    "stock": 0
+    "stock": 999
   },
   {
     "id": 37,
@@ -373,7 +373,7 @@
     "category": "belleza y salud",
     "price": 15000,
     "image": "https://acdn-us.mitiendanube.com/stores/001/738/520/products/51dm6jdzcnl-_ac_uf10001000_ql80_1-0f2572d3e53ac9bcf116880478438025-1024-1024.jpg",
-    "stock": 0
+    "stock": 999
   },
   {
     "id": 42,
