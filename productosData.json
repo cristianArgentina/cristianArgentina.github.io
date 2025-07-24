@@ -419,5 +419,14 @@
     "stock": 1,
     "category": "belleza y salud",
     "image": "https://media01.farmaciaslider.com.ar/27882-thickbox_default/cicatricure-crema-age-care-aclarante-50-g.jpg"
+  },
+  {
+    "id": 1753378215630,
+    "name": "Elvive - Serum Glycolic Gloss",
+    "description": "Serum Elvive Glycolic Gloss 100ml",
+    "price": 11000,
+    "stock": 1,
+    "category": "belleza y salud",
+    "image": "https://media03.farmaciaslider.com.ar/39769-thickbox_default/elvive-glycolic-gloss-serum-x-100-ml.jpg"
   }
 ]
