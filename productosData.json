@@ -141,7 +141,7 @@
     "category": "belleza y salud",
     "price": 10000,
     "image": "https://www.maxidescuento.com.ar/31273-home_default/elvive-oleo-extraordinario-x100m-7509552874204.jpg",
-    "stock": 7
+    "stock": 6
   },
   {
     "id": 17,
@@ -407,7 +407,7 @@
     "name": "Elvive - Serum Dream Liso",
     "description": "Serum Elvive Dream Liso 100ml",
     "price": 15000,
-    "stock": 4,
+    "stock": 3,
     "category": "belleza y salud",
     "image": "https://www.lorealparis.com.ar/-/media/project/loreal/brand-sites/oap/americas/ar/articles/dream-liso/menos-mb.png"
   },
