@@ -428,5 +428,23 @@
     "stock": 1,
     "category": "belleza y salud",
     "image": "https://media03.farmaciaslider.com.ar/39769-thickbox_default/elvive-glycolic-gloss-serum-x-100-ml.jpg"
+  },
+  {
+    "id": 1754014227211,
+    "name": "MESSI - Jabón Líquido",
+    "description": "Jabón Líquido y Shower Gel 300ml",
+    "price": 7000,
+    "stock": 2,
+    "category": "belleza y salud",
+    "image": "https://media02.farmaciaslider.com.ar/33281-thickbox_default/algabo-mundial-messi-300ml-jab-liq.jpg"
+  },
+  {
+    "id": 1754014416312,
+    "name": "Hello Kitty - Jabón Líquido",
+    "description": "Jabón Líquido y Shower Gel 300ml",
+    "price": 7000,
+    "stock": 2,
+    "category": "belleza y salud",
+    "image": "https://pedidosfarma.vtexassets.com/arquivos/ids/195229-800-800?v=638150075881630000&width=800&height=800&aspect=true"
   }
 ]
