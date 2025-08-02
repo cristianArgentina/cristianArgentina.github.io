@@ -171,6 +171,43 @@
       z-index: 10;
       text-align: center;
     }
+
+    .stock-alert {
+      font-weight: bold;
+      text-align: center;
+      margin: 8px 12px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      animation: parpadeo 1s infinite alternate;
+    }
+
+    .stock-bajo {
+      background-color: #ffcccc;
+      color: #a30000;
+    }
+
+    .stock-medio {
+      background-color: #fff3cd;
+      color: #856404;
+      animation: none;
+    }
+
+    .stock-alto {
+      background-color: #d4edda;
+      color: #155724;
+      animation: none;
+    }
+
+    @keyframes parpadeo {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0.5;
+      }
+    }
   </style>
 </head>
 
@@ -237,6 +274,24 @@
           </div>
         `;
         div.appendChild(info);
+        // Alerta visual de stock bajo
+        if (p.stock > 0) {
+          const stockAlert = document.createElement('div');
+          stockAlert.className = 'stock-alert';
+
+          if (p.stock <= 3) {
+            stockAlert.textContent = '¡Últimas unidades!';
+            stockAlert.classList.add('stock-bajo');
+          } else if (p.stock <= 10) {
+            stockAlert.textContent = 'Stock limitado';
+            stockAlert.classList.add('stock-medio');
+          } else {
+            stockAlert.textContent = 'Disponible';
+            stockAlert.classList.add('stock-alto');
+          }
+
+          div.appendChild(stockAlert);
+        }
 
         return div;
       }
