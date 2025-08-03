@@ -74,6 +74,23 @@
       width: 100%;
     }
 
+    .buscador-con-icono i {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: #999;
+    }
+
+    .buscador-con-icono input {
+      width: 100%;
+      padding: 8px 8px 8px 36px;
+      /* Espacio para el ícono */
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
     @media (min-aspect-ratio: 4/3) {
       .barra-superior {
         flex-direction: row;
@@ -302,7 +319,10 @@
     <h1 class="titulo-pagina">
       <i class="fas fa-shopping-cart icono-carrito"></i> Catálogo de Productos
     </h1>
-    <input type="text" id="buscador" placeholder="🔍 Buscar productos...">
+    <div class="buscador-con-icono">
+      <i class="fas fa-search"></i>
+      <input type="text" id="buscador" placeholder="Buscar productos...">
+    </div>
     <select id="categoriaSelector">
       <option value="">Todas las categorías</option>
       <option value="belleza y salud" selected>Belleza y salud</option>
