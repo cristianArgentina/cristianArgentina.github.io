@@ -53,9 +53,9 @@
       flex-direction: column;
       align-items: center;
       gap: 12px;
-      max-width: 100%;
+      /*  max-width: 100%;*/
       margin: 20px auto;
-      padding: 10px;
+      /*  padding: 10px;*/
     }
 
     #buscador,
@@ -72,18 +72,20 @@
       .barra-filtros {
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
         gap: 20px;
       }
 
       .titulo-pagina {
-        flex-basis: 100%;
-        text-align: center;
+        flex: 1 1 auto;
+        font-size: 1.8rem;
       }
 
       #buscador,
       #categoriaSelector {
-        max-width: 300px;
+        flex: 0 1 250px;
+        max-width: 250px;
+        margin: 0;
       }
     }
 
