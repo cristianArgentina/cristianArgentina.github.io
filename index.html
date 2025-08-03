@@ -70,26 +70,28 @@
 
     .buscador-con-icono {
       position: relative;
-      display: inline-block;
       width: 100%;
-      max-width: 300px;
     }
 
     .buscador-con-icono i {
       position: absolute;
       top: 50%;
-      left: 10px;
+      left: 12px;
       transform: translateY(-50%);
-      color: #999;
+      color: #888;
+      pointer-events: none;
     }
 
     .buscador-con-icono input {
       width: 100%;
-      padding: 8px 8px 8px 36px;
-      /* Espacio para el ícono */
+      padding: 10px 12px 10px 36px;
+      /* deja espacio para el ícono a la izquierda */
+      font-size: 16px;
       border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
+      border-radius: 8px;
+      /* mismo que el select */
+      background-color: #fff;
+      box-shadow: none;
     }
 
     @media (min-aspect-ratio: 4/3) {
