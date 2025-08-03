@@ -46,10 +46,11 @@
     #buscador,
     #categoriaSelector {
       flex: 1;
-      padding: 10px;
+      padding: 10px 12px;
       font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 8px;
+      width: 100%;
     }
 
     @media (min-aspect-ratio: 4/3) {
@@ -64,6 +65,23 @@
       #categoriaSelector {
         max-width: 100%;
       }
+    }
+
+    #buscador::placeholder {
+      color: #aaa;
+    }
+
+    #buscador::placeholder {
+      color: #aaa;
+    }
+
+    #categoriaSelector {
+      background-color: #fff;
+      appearance: none;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/271/271228.png');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 12px;
     }
 
     .productos {
@@ -234,7 +252,7 @@
 <body>
   <h1>Catálogo de Productos</h1>
   <div class="barra-filtros">
-    <input type="text" id="buscador" placeholder="Buscar productos...">
+    <input type="text" id="buscador" placeholder="🔍 Buscar productos...">
     <select id="categoriaSelector">
       <option value="">Todas las categorías</option>
       <option value="belleza y salud" selected>Belleza y salud</option>
