@@ -101,6 +101,25 @@
       color: #aaa;
     }
 
+    .icono-carrito {
+      animation: rebote 1.5s infinite ease-in-out;
+      color: #fff;
+      font-size: 1.8rem;
+      margin-right: 10px;
+    }
+
+    @keyframes rebote {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
     #categoriaSelector {
       background-color: #fff;
       appearance: none;
