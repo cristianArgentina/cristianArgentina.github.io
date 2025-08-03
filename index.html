@@ -64,7 +64,6 @@
       transition: all 0.3s ease;
     }
 
-    #buscador-con-icono,
     #categoriaSelector {
       flex: 1;
       padding: 10px 12px;
@@ -72,6 +71,13 @@
       border: 1px solid #ccc;
       border-radius: 8px;
       width: 100%;
+    }
+
+    .buscador-con-icono {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      max-width: 300px;
     }
 
     .buscador-con-icono i {
@@ -103,7 +109,7 @@
         font-size: 1.8rem;
       }
 
-      #buscador-con-icono,
+      .buscador-con-icono,
       #categoriaSelector {
         flex: 0 1 250px;
         max-width: 250px;
@@ -111,11 +117,11 @@
       }
     }
 
-    #buscador-con-icono::placeholder {
+    .buscador-con-icono::placeholder {
       color: #aaa;
     }
 
-    #buscador-con-icono::placeholder {
+    .buscador-con-icono::placeholder {
       color: #aaa;
     }
 
