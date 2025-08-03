@@ -34,13 +34,28 @@
       color: #444;
     }
 
+    .titulo-pagina {
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: center;
+      color: #5c2dab;
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background: linear-gradient(to right, #f2e7ff, #ffffff);
+      border: 2px solid #d3bfff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(140, 92, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
     .barra-filtros {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      align-items: center;
+      gap: 12px;
       max-width: 100%;
-      margin: 10px auto;
-      padding: 0 10px;
+      margin: 20px auto;
+      padding: 10px;
     }
 
     #buscador,
@@ -56,14 +71,19 @@
     @media (min-aspect-ratio: 4/3) {
       .barra-filtros {
         flex-direction: row;
-        max-width: 800px;
+        flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
+        gap: 20px;
+      }
+
+      .titulo-pagina {
+        flex-basis: 100%;
+        text-align: center;
       }
 
       #buscador,
       #categoriaSelector {
-        max-width: 100%;
+        max-width: 300px;
       }
     }
 
@@ -250,8 +270,8 @@
 </head>
 
 <body>
-  <h1>Catálogo de Productos</h1>
   <div class="barra-filtros">
+    <h1 class="titulo-pagina">🛒 Catálogo de Productos</h1>
     <input type="text" id="buscador" placeholder="🔍 Buscar productos...">
     <select id="categoriaSelector">
       <option value="">Todas las categorías</option>
