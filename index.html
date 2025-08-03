@@ -34,16 +34,36 @@
       color: #444;
     }
 
+    .barra-filtros {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 100%;
+      margin: 10px auto;
+      padding: 0 10px;
+    }
+
     #buscador,
     #categoriaSelector {
-      width: 100%;
-      max-width: 400px;
-      margin: 10px auto;
-      display: block;
+      flex: 1;
       padding: 10px;
       font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 8px;
+    }
+
+    @media (min-aspect-ratio: 4/3) {
+      .barra-filtros {
+        flex-direction: row;
+        max-width: 800px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #buscador,
+      #categoriaSelector {
+        max-width: 100%;
+      }
     }
 
     .productos {
@@ -213,14 +233,16 @@
 
 <body>
   <h1>Catálogo de Productos</h1>
-  <input type="text" id="buscador" placeholder="Buscar productos..." />
-  <select id="categoriaSelector">
-    <option value="">Todas las categorías</option>
-    <option value="belleza y salud" selected>Belleza y salud</option>
-    <option value="hogar">Hogar</option>
-    <option value="tecnologia">Tecnología</option>
-    <option value="iluminacion">Iluminación</option>
-  </select>
+  <div class="barra-filtros">
+    <input type="text" id="buscador" placeholder="Buscar productos...">
+    <select id="categoriaSelector">
+      <option value="">Todas las categorías</option>
+      <option value="belleza y salud" selected>Belleza y salud</option>
+      <option value="hogar">Hogar</option>
+      <option value="tecnologia">Tecnología</option>
+      <option value="iluminacion">Iluminación</option>
+    </select>
+  </div>
 
   <div class="productos" id="contenedor-productos">
   </div>
@@ -282,9 +304,9 @@
           if (p.stock <= 2) {
             stockAlert.textContent = '¡Últimas unidades!';
             stockAlert.classList.add('stock-bajo');
-   /*       } else if (p.stock <= 4) {
-            stockAlert.textContent = 'Stock limitado';
-            stockAlert.classList.add('stock-medio');*/
+            /*       } else if (p.stock <= 4) {
+                     stockAlert.textContent = 'Stock limitado';
+                     stockAlert.classList.add('stock-medio');*/
           } else {
             stockAlert.textContent = 'Disponible';
             stockAlert.classList.add('stock-alto');
