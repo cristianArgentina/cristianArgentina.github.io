@@ -258,7 +258,7 @@
     "category": "iluminacion",
     "price": 20000,
     "image": "https://http2.mlstatic.com/D_NQ_NP_758794-MLA82767947144_032025-O.webp",
-    "stock": 4
+    "stock": 1
   },
   {
     "id": 30,
@@ -446,5 +446,14 @@
     "stock": 2,
     "category": "belleza y salud",
     "image": "https://pedidosfarma.vtexassets.com/arquivos/ids/195229-800-800?v=638150075881630000&width=800&height=800&aspect=true"
+  },
+  {
+    "id": 1723248251587,
+    "name": "Panel luz‑led con trípode y rótula",
+    "description": "Panel fotográfico luz led de estudio con trípode y rótula",
+    "category": "iluminacion",
+    "price": 22000,
+    "image": "https://drive.google.com/file/d/181Q5SuYeV-rvA69JB3JinFMNIIiN5Uu8/view?usp=sharing",
+    "stock": 2
   }
 ]
