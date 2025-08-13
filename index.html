@@ -62,38 +62,31 @@
     function hideLoader() {
       loader.classList.remove('active');
     }
-    (async () => {
-      showLoader();
-      const res = await fetch(`${API_URL}/products`);
-      if (!res.ok) throw new Error('Error en la respuesta de la API');
-      hideLoader();
-      const productos = await res.json();
 
-      function crearProductoElem(p) {
-        const div = document.createElement('div');
-        div.className = 'producto' + (p.videos.length > 0 ? ' producto-video' : '') + (p.stock <= 0 ? ' agotado' : '');
-        div.dataset.categoria = p.category;
-        div.dataset.precio = p.price;
-        if (p.videos.length > 0) div.dataset.videos = p.videos.join(',');
+    function crearProductoElem(p) {
+      const div = document.createElement('div');
+      div.className = 'producto' + (p.videos.length > 0 ? ' producto-video' : '') + (p.stock <= 0 ? ' agotado' : '');
+      div.dataset.categoria = p.category;
+      div.dataset.precio = p.price;
+      if (p.videos.length > 0) div.dataset.videos = p.videos.join(',');
 
-        if (p.videos.length > 0) {
-          const vidCont = document.createElement('div');
-          vidCont.className = 'video-container';
-          div.appendChild(vidCont);
-        } else {
-          const imgWrapper = document.createElement('div');
-          imgWrapper.className = 'img-wrapper';
-          imgWrapper.innerHTML = `
+      if (p.videos.length > 0) {
+        const vidCont = document.createElement('div');
+        vidCont.className = 'video-container';
+        div.appendChild(vidCont);
+      } else {
+        const imgWrapper = document.createElement('div');
+        imgWrapper.className = 'img-wrapper';
+        imgWrapper.innerHTML = `
           <img src="${p.image}" alt="${p.name}">
           ${p.stock <= 0 ? '<div class="marca-agua">AGOTADO</div>' : ''}
           `;
-          div.appendChild(imgWrapper);
-        }
+        div.appendChild(imgWrapper);
+      }
 
-
-        const info = document.createElement('div');
-        info.className = 'info';
-        info.innerHTML = `
+      const info = document.createElement('div');
+      info.className = 'info';
+      info.innerHTML = `
           <h2>${p.name}</h2>
           <p>${p.description}</p>
           <div class="precio-wsp">
@@ -106,99 +99,111 @@
             </a>
           </div>
         `;
-        div.appendChild(info);
-        // Alerta visual de stock bajo
-        if (p.stock > 0) {
-          const stockAlert = document.createElement('div');
-          stockAlert.className = 'stock-alert';
+      div.appendChild(info);
+      // Alerta visual de stock bajo
+      if (p.stock > 0) {
+        const stockAlert = document.createElement('div');
+        stockAlert.className = 'stock-alert';
 
-          if (p.stock <= 2) {
-            stockAlert.textContent = '¡Últimas unidades!';
-            stockAlert.classList.add('stock-bajo');
-          } else {
-            stockAlert.textContent = 'Disponible';
-            stockAlert.classList.add('stock-alto');
-          }
-
-          div.appendChild(stockAlert);
+        if (p.stock <= 2) {
+          stockAlert.textContent = '¡Últimas unidades!';
+          stockAlert.classList.add('stock-bajo');
+        } else {
+          stockAlert.textContent = 'Disponible';
+          stockAlert.classList.add('stock-alto');
         }
 
-        return div;
+        div.appendChild(stockAlert);
+      }
+      return div;
+    }
+
+    function filtrarYOrdenar(productosElems) {
+      const texto = buscador.value.toLowerCase();
+      const categoria = categoriaSelector.value;
+
+      let lista = productosElems;
+
+      if (categoria) {
+        lista = lista.filter(e => e.dataset.categoria === categoria);
       }
 
-      const productosElems = productos.map(p => crearProductoElem(p));
-      productosElems.forEach(e => contenedor.appendChild(e));
+      lista = lista.filter(e =>
+        e.innerText.toLowerCase().includes(texto)
+      );
 
-      const productosOriginales = [...productosElems];
+      lista.sort((a, b) =>
+        Number(b.dataset.precio) - Number(a.dataset.precio)
+      );
 
-      function filtrarYOrdenar() {
-        const texto = buscador.value.toLowerCase();
-        const categoria = categoriaSelector.value;
+      contenedor.innerHTML = '';
+      lista.forEach(e => contenedor.appendChild(e));
+      if (window.inicializarVideosYouTube) inicializarVideosYouTube();
+      noResults.style.display = lista.length === 0 ? 'block' : 'none';
+    }
 
-        let lista = productosOriginales;
+    (async () => {
+      try {
+        showLoader();
+        const res = await fetch(`${API_URL}/products`);
+        if (!res.ok) throw new Error('Error en la respuesta de la API');
+        const productos = await res.json();
 
-        if (categoria) {
-          lista = lista.filter(e => e.dataset.categoria === categoria);
-        }
+        const productosElems = productos.map(p => crearProductoElem(p));
+        productosElems.forEach(e => contenedor.appendChild(e));
 
-        lista = lista.filter(e =>
-          e.innerText.toLowerCase().includes(texto)
-        );
+        const productosOriginales = [...productosElems];
 
-        lista.sort((a, b) =>
-          Number(b.dataset.precio) - Number(a.dataset.precio)
-        );
+        buscador.addEventListener('input', filtrarYOrdenar(productosOriginales));
+        categoriaSelector.addEventListener('change', filtrarYOrdenar(productosOriginales));
 
-        contenedor.innerHTML = '';
-        lista.forEach(e => contenedor.appendChild(e));
-        if (window.inicializarVideosYouTube) inicializarVideosYouTube();
-        noResults.style.display =
-          lista.length === 0 ? 'block' : 'none';
+        filtrarYOrdenar(productosOriginales);
+
+        // Carga de YouTube
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(tag);
+
+      } catch (error) {
+        console.error(error);
+        noResults.textContent = 'Error al cargar los productos.';
+        noResults.style.display = 'block';
+      } finally {
+        hideLoader();
       }
+    })();
 
-      buscador.addEventListener('input', filtrarYOrdenar);
-      categoriaSelector.addEventListener('change', filtrarYOrdenar);
+    // Función para inicializar videos YouTube (de tu código original)
+    window.inicializarVideosYouTube = () => {
+      document.querySelectorAll('.producto-video').forEach((prod, i) => {
+        if (prod.dataset.videoReady) return;
+        const ids = prod.dataset.videos.split(',');
+        const playerId = `yt-${i}-${Date.now()}`;
+        const iframe = document.createElement('iframe');
+        iframe.id = playerId;
+        iframe.src = `https://www.youtube.com/embed/${ids[0]}?enablejsapi=1&mute=1&rel=0&controls=0`;
+        iframe.allow = "autoplay; fullscreen; encrypted-media";
+        iframe.frameBorder = 0;
+        prod.querySelector('.video-container').appendChild(iframe);
 
-      filtrarYOrdenar();
-
-      // Carga de YouTube
-      const tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      document.body.appendChild(tag);
-
-      const players = [];
-      window.inicializarVideosYouTube = () => {
-        document.querySelectorAll('.producto-video').forEach((prod, i) => {
-          if (prod.dataset.videoReady) return;
-          const ids = prod.dataset.videos.split(',');
-          const playerId = `yt-${i}-${Date.now()}`;
-          const iframe = document.createElement('iframe');
-          iframe.id = playerId;
-          iframe.src = `https://www.youtube.com/embed/${ids[0]}?enablejsapi=1&mute=1&rel=0&controls=0`;
-          iframe.allow = "autoplay; fullscreen; encrypted-media";
-          iframe.frameBorder = 0;
-          prod.querySelector('.video-container').appendChild(iframe);
-
-          new YT.Player(playerId, {
-            events: {
-              onReady: e => { e.target.mute(); e.target.playVideo(); },
-              onStateChange: ev => {
-                if (ev.data === YT.PlayerState.ENDED) {
-                  const ply = ev.target;
-                  ply.loadVideoById(ids[(ply.currentIndex = ((ply.currentIndex || 0) + 1) % ids.length)]);
-                  ply.mute(); ply.playVideo();
-                }
+        new YT.Player(playerId, {
+          events: {
+            onReady: e => { e.target.mute(); e.target.playVideo(); },
+            onStateChange: ev => {
+              if (ev.data === YT.PlayerState.ENDED) {
+                const ply = ev.target;
+                ply.loadVideoById(ids[(ply.currentIndex = ((ply.currentIndex || 0) + 1) % ids.length)]);
+                ply.mute(); ply.playVideo();
               }
             }
-          });
-          prod.dataset.videoReady = true;
+          }
         });
-      };
+        prod.dataset.videoReady = true;
+      });
+    };
 
-      window.onYouTubeIframeAPIReady = window.inicializarVideosYouTube;
-    })();
+    window.onYouTubeIframeAPIReady = window.inicializarVideosYouTube;
   </script>
-
 
 </body>
 
