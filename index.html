@@ -48,7 +48,13 @@
 
   <script type="module">
     import { API_URL } from './config.js';
+
+    // Variables DOM declaradas al inicio
     const loader = document.getElementById('loader-container');
+    const contenedor = document.getElementById('contenedor-productos');
+    const buscador = document.getElementById('buscador');
+    const categoriaSelector = document.getElementById('categoriaSelector');
+    const noResults = document.getElementById('no-results');
 
     function showLoader() {
       loader.classList.add('active');
@@ -59,12 +65,9 @@
     (async () => {
       showLoader();
       const res = await fetch(`${API_URL}/products`);
+      if (!res.ok) throw new Error('Error en la respuesta de la API');
       hideLoader();
       const productos = await res.json();
-
-      const contenedor = document.getElementById('contenedor-productos');
-      const buscador = document.getElementById('buscador');
-      const categoriaSelector = document.getElementById('categoriaSelector');
 
       function crearProductoElem(p) {
         const div = document.createElement('div');
@@ -112,9 +115,6 @@
           if (p.stock <= 2) {
             stockAlert.textContent = '¡Últimas unidades!';
             stockAlert.classList.add('stock-bajo');
-            /*       } else if (p.stock <= 4) {
-                     stockAlert.textContent = 'Stock limitado';
-                     stockAlert.classList.add('stock-medio');*/
           } else {
             stockAlert.textContent = 'Disponible';
             stockAlert.classList.add('stock-alto');
@@ -152,7 +152,7 @@
         contenedor.innerHTML = '';
         lista.forEach(e => contenedor.appendChild(e));
         if (window.inicializarVideosYouTube) inicializarVideosYouTube();
-        document.getElementById('no-results').style.display =
+        noResults.style.display =
           lista.length === 0 ? 'block' : 'none';
       }
 
