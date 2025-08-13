@@ -380,7 +380,27 @@
     import { API_URL } from './config.js';
 
     (async () => {
-      const res = await fetch(`${API_URL}/products`);
+
+      {db.products.updateOne(
+  { imagen: "https://oportcantidad-vip.com.ar/wp-content/uploads/2025/07/Reloj_Despertador_Proyector_Estrellas_Con_Musica_Y_Alarma_D_900218-MLA33074242954_122019-O.jpg" },
+  { $set: { imagen: "https://oportunidades-vip.com.ar/wp-content/uploads/2025/07/Reloj_Despertador_Proyector_Estrellas_Con_Musica_Y_Alarma_D_900218-MLA33074242954_122019-O.jpg" } }
+)}    await fetch(`${API_URL}/products`);
+      const res = await fetch(`${API_URL}/updateProduct`(32,  {
+    "id": 31,
+    "name": "Reloj - Proyector De Estrellas",
+    "description": "Reloj Despertador Con Proyector De Estrellas",
+    "category": "iluminacion",
+    "price": 15000,
+    "image": "https://oportunidades-vip.com.ar/wp-content/uploads/2025/07/Reloj_Despertador_Proyector_Estrellas_Con_Musica_Y_Alarma_D_900218-MLA33074242954_122019-O.jpg",
+    "stock": 1,
+    "lotes": [
+      {
+        "fechaIngreso": "2025-01-01",
+        "cantidad": 1,
+        "costoUnitario": null
+      }
+    ]
+  }));
       const productos = await res.json();
 
       const contenedor = document.getElementById('contenedor-productos');
