@@ -389,12 +389,12 @@
 
       function crearProductoElem(p) {
         const div = document.createElement('div');
-        div.className = 'producto' + (p.videos ? ' producto-video' : '') + (p.stock <= 0 ? ' agotado' : '');
+        div.className = 'producto' + (p.videos.length > 0 ? ' producto-video' : '') + (p.stock <= 0 ? ' agotado' : '');
         div.dataset.categoria = p.category;
         div.dataset.precio = p.price;
-        if (p.videos) div.dataset.videos = p.videos.join(',');
+        if (p.videos.length > 0) div.dataset.videos = p.videos.join(',');
 
-        if (p.videos) {
+        if (p.videos.length > 0) {
           const vidCont = document.createElement('div');
           vidCont.className = 'video-container';
           div.appendChild(vidCont);
