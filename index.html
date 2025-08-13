@@ -56,6 +56,9 @@
     const categoriaSelector = document.getElementById('categoriaSelector');
     const noResults = document.getElementById('no-results');
 
+    // Lista de productos original para filtrado
+    let productosOriginales = [];
+
     function showLoader() {
       loader.classList.add('active');
     }
@@ -152,7 +155,7 @@
         const productosElems = productos.map(p => crearProductoElem(p));
         productosElems.forEach(e => contenedor.appendChild(e));
 
-        const productosOriginales = [...productosElems];
+        productosOriginales = [...productosElems];
 
         buscador.addEventListener('input', filtrarYOrdenar(productosOriginales));
         categoriaSelector.addEventListener('change', filtrarYOrdenar(productosOriginales));
