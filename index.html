@@ -376,9 +376,11 @@
 
   <p id="no-results">No se encontraron productos que coincidan con la búsqueda o filtro.</p>
 
-  <script>
+  <script type="module">
+    import { API_URL } from './config.js';
+
     (async () => {
-      const res = await fetch('./productosData.json');
+      const res = await fetch(`${API_URL}/products`);
       const productos = await res.json();
 
       const contenedor = document.getElementById('contenedor-productos');
