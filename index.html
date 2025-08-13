@@ -128,21 +128,21 @@
       let lista = productosElems;
 
       if (categoria) {
-        lista = lista.filter(e => e.dataset.categoria === categoria);
+        lista = lista.filter(e => (e.dataset.categoria || '').toLowerCase() === categoria.toLowerCase());
       }
 
       lista = lista.filter(e =>
         e.innerText.toLowerCase().includes(texto)
       );
 
-      lista.sort((a, b) =>
+      const ordenados = [...lista].sort((a, b) =>
         Number(b.dataset.precio) - Number(a.dataset.precio)
       );
 
       contenedor.innerHTML = '';
-      lista.forEach(e => contenedor.appendChild(e));
+      ordenados.forEach(e => contenedor.appendChild(e));
       if (window.inicializarVideosYouTube) inicializarVideosYouTube();
-      noResults.style.display = lista.length === 0 ? 'block' : 'none';
+      noResults.style.display = ordenados.length === 0 ? 'block' : 'none';
     }
 
     (async () => {
@@ -157,8 +157,8 @@
 
         productosOriginales = [...productosElems];
 
-        buscador.addEventListener('input', filtrarYOrdenar(productosOriginales));
-        categoriaSelector.addEventListener('change', filtrarYOrdenar(productosOriginales));
+        buscador.addEventListener('input', () => filtrarYOrdenar(productosOriginales));
+        categoriaSelector.addEventListener('change', () => filtrarYOrdenar(productosOriginales));
 
         filtrarYOrdenar(productosOriginales);
 
