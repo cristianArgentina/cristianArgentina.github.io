@@ -1,0 +1,142 @@
+    #admin-content {
+        display: none;
+    }
+
+    #login-box {
+        display: none;
+    }
+
+    input,
+    button {
+        padding: 8px;
+        margin: 10px;
+    }
+
+    body {
+        font-family: Arial;
+        padding: 20px;
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #555;
+    }
+
+    input::placeholder {
+        color: #aaa;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    .tabla-wrapper {
+        overflow-x: auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 800px;
+        margin-top: 20px;
+        background-color: #1e1e1e;
+        color: #e0e0e0;
+    }
+
+    th,
+    td {
+        border: 1px solid #333;
+        padding: 8px;
+    }
+
+    th.precio,
+    td.precio,
+    th.stock,
+    td.stock {
+        width: 70px;
+    }
+
+    th.categoria,
+    td.categoria {
+        width: 100px;
+    }
+
+    /*
+    input {
+      width: 90%;
+      margin: 0 auto;
+      display: block;
+    }
+*/
+    @media (max-width: 768px) {
+        table {
+            font-size: 14px;
+        }
+
+        th,
+        td {
+            padding: 6px;
+        }
+    }
+
+    input.sin-flechas::-webkit-inner-spin-button,
+    input.sin-flechas::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input.sin-flechas {
+        -moz-appearance: textfield;
+    }
+
+    table input {
+        text-align: center;
+        padding-left: 1px;
+        padding-right: 1px;
+    }
+
+    td input.precio-input {
+        text-align: right;
+    }
+
+    .campo {
+        background-color: #222;
+        color: #f1f1f1;
+        border: 1px solid #555;
+        border-radius: 6px;
+        padding: 8px;
+        width: 90%;
+        margin: 0 auto;
+        display: block;
+        box-sizing: border-box;
+    }
+
+    .campo:focus {
+        outline: none;
+        /* Quita el borde azul por defecto del navegador */
+        border: 1px solid #4dabf7;
+        /* Un azul claro tipo highlight */
+        box-shadow: 0 0 4px #4dabf7;
+    }
+
+    .campo::placeholder {
+        color: #aaa;
+    }
+
+    input.campo {
+        text-align: center;
+    }
+
+    input.precio-input {
+        text-align: right;
+    }
