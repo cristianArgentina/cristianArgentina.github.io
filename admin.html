@@ -83,8 +83,8 @@
           <td>${prod.stock}</td>
           <td>${prod.category}</td>
           <td>
-            <button onclick="editarProducto('${prod._id}')">✏️</button>
-            <button onclick="eliminarProducto('${prod._id}')">🗑️</button>
+            <button onclick="editarProducto('${prod.id}')">✏️</button>
+            <button onclick="eliminarProducto('${prod.id}')">🗑️</button>
           </td>
         `;
         tbody.appendChild(tr);
@@ -96,7 +96,7 @@
       const prod = await getProductById(id);
       document.getElementById("form-titulo").textContent = "Editar producto";
       document.getElementById("form-producto").style.display = "block";
-      document.getElementById("prod-id").value = prod._id;
+      document.getElementById("prod-id").value = prod.id;
       document.getElementById("prod-nombre").value = prod.name;
       document.getElementById("prod-descripcion").value = prod.description;
       document.getElementById("prod-precio").value = prod.price;
