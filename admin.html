@@ -70,6 +70,14 @@
       import { getProducts, getProductById, createProduct, updateProduct, deleteProduct } from './api.js';
       const claveCorrecta = "TuClaveSecreta123";
 
+      function mostrarLogin() {
+        document.getElementById("login-box").style.display = "block";
+      }
+
+      function mostrarAdmin() {
+        document.getElementById("admin-content").style.display = "block";
+      }
+
       // LOGIN
       function checkPassword() {
         const input = document.getElementById("password").value;
