@@ -67,7 +67,6 @@
     </div>
 
     <script type="module">
-      import { getProducts, getProductById, createProduct, updateProduct, deleteProduct } from './api.js';
       const claveCorrecta = "TuClaveSecreta123";
 
       function mostrarLogin() {
@@ -104,6 +103,7 @@
     </script>
     <script type="module">
       import { API_URL } from './config.js';
+      import { getProducts, getProductById, createProduct, updateProduct, deleteProduct } from './api.js';
 
       let productos = [];
       const categoriasDisponibles = ["belleza y salud", "hogar", "tecnologia", "iluminacion"];
