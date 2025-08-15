@@ -1,84 +1,103 @@
-/* --- Dark mode base --- */
+/* ==== ESTILO GENERAL DARK MODE ==== */
 body {
-  font-family: Arial, sans-serif;
   background-color: #121212;
-  color: #e0e0e0;
-  padding: 20px;
+  color: #f5f5f5;
+  font-family: Arial, sans-serif;
   margin: 0;
+  padding: 0;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
+h1, h2 {
+  color: #ffffff;
 }
 
-/* --- Botones --- */
-button {
-  background-color: #1e88e5;
+input, textarea, select {
+  background: #1e1e1e;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 8px;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #4cafef;
+}
+
+/* ==== BOTONES ==== */
+.btn-primary {
+  background: #4cafef;
   color: white;
+  padding: 8px 12px;
   border: none;
-  padding: 8px 14px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.2s ease;
 }
 
-button:hover {
-  background-color: #1565c0;
+.btn-primary:hover {
+  background: #3a9dd8;
 }
 
-/* --- Tabla --- */
+.btn-danger {
+  background: #e74c3c;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background: #c0392b;
+}
+
+/* ==== TABLA ==== */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: #1e1e1e;
-}
-
-th {
-  background-color: #2c2c2c;
-  color: #e0e0e0;
-  font-weight: bold;
 }
 
 th, td {
+  border: 1px solid #333;
   padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #333;
 }
 
-tr:hover {
-  background-color: #2a2a2a;
+th {
+  background: #1f1f1f;
 }
 
-/* --- Modal --- */
+tr:nth-child(even) {
+  background: #1a1a1a;
+}
+
+/* ==== MODAL ==== */
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 1000;
   left: 0; top: 0;
   width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.85); /* Más opaco */
+  background: rgba(0, 0, 0, 0.85); /* Menos transparente */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Caja del modal más pequeña y centrada */
-.modal-contenido {
+.modal-content {
   background: #1e1e1e;
   padding: 20px;
-  width: 90%;        /* Evita que ocupe todo el ancho */
-  max-width: 420px;  /* Tamaño máximo */
-  border-radius: 10px;
+  width: 90%;
+  max-width: 450px; /* Más reducido */
+  border-radius: 12px;
   box-shadow: 0 0 15px rgba(0,0,0,0.5);
   position: relative;
 }
 
-/* Botón de cerrar */
-.cerrar {
+.close {
   position: absolute;
   top: 10px;
   right: 15px;
@@ -87,32 +106,16 @@ tr:hover {
   color: #bbb;
 }
 
-.cerrar:hover {
+.close:hover {
   color: white;
 }
 
-/* --- Inputs y selects --- */
-input, textarea, select {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 12px;
-  background-color: #2c2c2c;
-  border: 1px solid #444;
-  border-radius: 6px;
-  color: #e0e0e0;
-}
-
-input:focus, textarea:focus, select:focus {
-  outline: none;
-  border-color: #1e88e5;
-}
-
-/* --- Botón dentro del modal --- */
-form button {
-  width: 100%;
-  background-color: #43a047;
-}
-
-form button:hover {
-  background-color: #2e7d32;
+/* ==== LOGIN ==== */
+#login-box {
+  max-width: 300px;
+  margin: 100px auto;
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
