@@ -1,142 +1,87 @@
-    #admin-content {
-        display: none;
-    }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  padding: 20px;
+}
 
-    #login-box {
-        display: none;
-    }
+h1 {
+  text-align: center;
+}
 
-    input,
-    button {
-        padding: 8px;
-        margin: 10px;
-    }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
 
-    body {
-        font-family: Arial;
-        padding: 20px;
-        background-color: #121212;
-        color: #e0e0e0;
-    }
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
 
-    button {
-        background-color: #333;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+th {
+  background-color: #4CAF50;
+  color: white;
+}
 
-    button:hover {
-        background-color: #555;
-    }
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-    input::placeholder {
-        color: #aaa;
-    }
+button {
+  cursor: pointer;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+}
 
-    h1 {
-        margin-bottom: 20px;
-    }
+.btn-primary {
+  background-color: #4CAF50;
+  color: white;
+}
 
-    .tabla-wrapper {
-        overflow-x: auto;
-    }
+.btn-danger {
+  background-color: #f44336;
+  color: white;
+}
 
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        min-width: 800px;
-        margin-top: 20px;
-        background-color: #1e1e1e;
-        color: #e0e0e0;
-    }
+.modal {
+  display: none; /* oculto por defecto */
+  position: fixed;
+  z-index: 1;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
 
-    th,
-    td {
-        border: 1px solid #333;
-        padding: 8px;
-    }
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 20px;
+  border-radius: 6px;
+  width: 400px;
+}
 
-    th.precio,
-    td.precio,
-    th.stock,
-    td.stock {
-        width: 70px;
-    }
+.close {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    th.categoria,
-    td.categoria {
-        width: 100px;
-    }
+form label {
+  display: block;
+  margin-top: 10px;
+}
 
-    /*
-    input {
-      width: 90%;
-      margin: 0 auto;
-      display: block;
-    }
-*/
-    @media (max-width: 768px) {
-        table {
-            font-size: 14px;
-        }
-
-        th,
-        td {
-            padding: 6px;
-        }
-    }
-
-    input.sin-flechas::-webkit-inner-spin-button,
-    input.sin-flechas::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    input.sin-flechas {
-        -moz-appearance: textfield;
-    }
-
-    table input {
-        text-align: center;
-        padding-left: 1px;
-        padding-right: 1px;
-    }
-
-    td input.precio-input {
-        text-align: right;
-    }
-
-    .campo {
-        background-color: #222;
-        color: #f1f1f1;
-        border: 1px solid #555;
-        border-radius: 6px;
-        padding: 8px;
-        width: 90%;
-        margin: 0 auto;
-        display: block;
-        box-sizing: border-box;
-    }
-
-    .campo:focus {
-        outline: none;
-        /* Quita el borde azul por defecto del navegador */
-        border: 1px solid #4dabf7;
-        /* Un azul claro tipo highlight */
-        box-shadow: 0 0 4px #4dabf7;
-    }
-
-    .campo::placeholder {
-        color: #aaa;
-    }
-
-    input.campo {
-        text-align: center;
-    }
-
-    input.precio-input {
-        text-align: right;
-    }
+form input, form textarea {
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
