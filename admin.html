@@ -25,10 +25,10 @@
     <table id="tablaProductos">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Nombre</th>
           <th>Precio</th>
           <th>Stock</th>
+          <th>Categoría</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -50,7 +50,14 @@
           <textarea id="description"></textarea>
 
           <label>Categoría:</label>
-          <input type="text" id="category">
+          <select id="category" required>
+            <option value="">Seleccionar categoría</option>
+            <option value="Electrónica">Electrónica</option>
+            <option value="Hogar">Hogar</option>
+            <option value="Ropa">Ropa</option>
+            <option value="Juguetes">Juguetes</option>
+            <option value="Otros">Otros</option>
+          </select>
 
           <label>Precio:</label>
           <input type="number" id="price" step="0.01" required>
@@ -98,10 +105,10 @@
         productos.forEach(prod => {
           const tr = document.createElement("tr");
           tr.innerHTML = `
-      <td>${prod.id}</td>
       <td>${prod.name}</td>
       <td>$${prod.price}</td>
       <td>${prod.stock}</td>
+      <td>${prod.category || "Sin categoría"}</td>
       <td>
         <button class="btn-primary" onclick="editarProducto(${prod.id})">✏️</button>
         <button class="btn-danger" onclick="eliminarProducto(${prod.id})">🗑️</button>
