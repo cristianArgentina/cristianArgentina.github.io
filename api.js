@@ -64,3 +64,21 @@ export async function createSale(saleData) {
   if (!res.ok) throw new Error("Error al registrar venta");
   return await res.json();
 }
+
+/* ---------------------- LOTES ---------------------- */
+
+export async function addLote(productId, loteData) {
+  const res = await fetch(`${API_URL}/products/${productId}/lotes`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(loteData)
+  });
+  return res.json();
+}
+
+export async function deleteLote(productId, loteIndex) {
+  const res = await fetch(`${API_URL}/products/${productId}/lotes/${loteIndex}`, {
+    method: "DELETE"
+  });
+  return res.json();
+}
