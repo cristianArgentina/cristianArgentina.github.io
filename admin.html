@@ -19,7 +19,11 @@
 
   <div id="admin-content" style="display:none;">
     <h1>📦 Panel de Administración</h1>
-
+    <div class="tabs">
+      <button id="tabProductos" class="btn-primary">🛒 Productos</button>
+      <button id="tabVentas" class="btn-secondary">💵 Ventas</button>
+    </div>
+    <div id="vistaProductos"></div>
     <button id="btnNuevo" class="btn-primary">➕ Agregar nuevo producto</button>
 
     <table id="tablaProductos">
@@ -34,114 +38,148 @@
       </thead>
       <tbody></tbody>
     </table>
-
-    <!-- Modal -->
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <span id="closeModalBtn" class="close">&times;</span>
-        <h2 id="formTitulo">Editar Producto</h2>
-        <form id="formProducto">
-          <input type="hidden" id="productId">
-
-          <label>Nombre:</label>
-          <input type="text" id="name" required>
-
-          <label>Descripción:</label>
-          <textarea id="description"></textarea>
-
-          <label>Categoría:</label>
-          <select name="category" id="category" required></select>
-
-          <label>Precio:</label>
-          <input type="number" id="price" step="0.01" required>
-
-          <label>Imagen URL:</label>
-          <input type="text" id="image">
-
-          <label>Stock:</label>
-          <input type="number" id="stock" required>
-
-          <button type="submit" class="btn-primary">💾 Guardar</button>
-
-          <h3>📦 Lotes del producto</h3>
-          <table id="tablaLotes">
-            <thead>
-              <tr>
-                <th>Cantidad</th>
-                <th>Costo Unitario</th>
-                <th>Fecha Ingreso</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-
-          <h4>➕ Agregar Lote</h4>
-          <div class="form-lote">
-            <input type="number" id="loteCantidad" placeholder="Cantidad" min="1" required>
-            <input type="number" id="loteCosto" placeholder="Costo unitario" step="0.01">
-            <input type="date" id="loteFecha">
-            <button type="button" id="btnAgregarLote">Agregar</button>
-          </div>
-
-        </form>
-      </div>
+    <div id="vistaVentas" style="display:none;">
+      <button id="btnNuevaVenta" class="btn-primary">➕ Registrar venta</button>
+      <table id="tablaVentas">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Costo Unitario</th>
+            <th>Ganancia</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
+  </div>
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="closeModalBtn" class="close">&times;</span>
+      <h2 id="formTitulo">Editar Producto</h2>
+      <form id="formProducto">
+        <input type="hidden" id="productId">
 
-    <script type="module">
-      const claveCorrecta = "TuClaveSecreta123";
+        <label>Nombre:</label>
+        <input type="text" id="name" required>
 
-      function mostrarLogin() {
-        document.getElementById("login-box").style.display = "block";
-      }
+        <label>Descripción:</label>
+        <textarea id="description"></textarea>
 
-      function mostrarAdmin() {
-        document.getElementById("admin-content").style.display = "block";
-      }
+        <label>Categoría:</label>
+        <select name="category" id="category" required></select>
 
-      // LOGIN
-      function checkPassword() {
-        const input = document.getElementById("password").value;
-        if (input === claveCorrecta) {
-          localStorage.setItem("logueadoAdmin", "true");
-          location.reload();
-        } else {
-          document.getElementById("msg").textContent = "Contraseña incorrecta";
-        }
-      }
+        <label>Precio:</label>
+        <input type="number" id="price" step="0.01" required>
 
-      if (localStorage.getItem("logueadoAdmin") === "true") {
-        document.getElementById("login-box").style.display = "none";
-        document.getElementById("admin-content").style.display = "block";
-      }
+        <label>Imagen URL:</label>
+        <input type="text" id="image">
 
-      // Verificar al cargar
-      if (localStorage.getItem("logueadoAdmin") === "true") {
-        mostrarAdmin();
+        <label>Stock:</label>
+        <input type="number" id="stock" required>
+
+        <button type="submit" class="btn-primary">💾 Guardar</button>
+
+        <h3>📦 Lotes del producto</h3>
+        <table id="tablaLotes">
+          <thead>
+            <tr>
+              <th>Cantidad</th>
+              <th>Costo Unitario</th>
+              <th>Fecha Ingreso</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <h4>➕ Agregar Lote</h4>
+        <div class="form-lote">
+          <input type="number" id="loteCantidad" placeholder="Cantidad" min="1" required>
+          <input type="number" id="loteCosto" placeholder="Costo unitario" step="0.01">
+          <input type="date" id="loteFecha">
+          <button type="button" id="btnAgregarLote">Agregar</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <!-- Modal Venta -->
+  <div id="modalVenta" class="modal">
+    <div class="modal-content">
+      <span id="closeModalVenta" class="close">&times;</span>
+      <h2>Registrar Venta</h2>
+      <form id="formVenta">
+        <label>Producto:</label>
+        <select id="ventaProducto" required></select>
+
+        <label>Cantidad:</label>
+        <input type="number" id="ventaCantidad" required min="1">
+
+        <label>Precio de venta unitario:</label>
+        <input type="number" id="ventaPrecio" required step="0.01">
+
+        <button type="submit" class="btn-primary">💾 Guardar</button>
+      </form>
+    </div>
+  </div>
+  <script type="module">
+    const claveCorrecta = "TuClaveSecreta123";
+
+    function mostrarLogin() {
+      document.getElementById("login-box").style.display = "block";
+    }
+
+    function mostrarAdmin() {
+      document.getElementById("admin-content").style.display = "block";
+    }
+
+    // LOGIN
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      if (input === claveCorrecta) {
+        localStorage.setItem("logueadoAdmin", "true");
+        location.reload();
       } else {
-        mostrarLogin();
+        document.getElementById("msg").textContent = "Contraseña incorrecta";
       }
-      window.checkPassword = checkPassword;
-    </script>
-    <script type="module">
-      import { API_URL } from './config.js';
-      import { getProducts, getProductById, createProduct, updateProduct, deleteProduct, addLote, deleteLote } from './api.js';
+    }
 
-      let productos = [];
-      const categoriasDisponibles = ["belleza y salud", "hogar", "tecnologia", "iluminacion"];
-      let productoActual = null;
+    if (localStorage.getItem("logueadoAdmin") === "true") {
+      document.getElementById("login-box").style.display = "none";
+      document.getElementById("admin-content").style.display = "block";
+    }
 
-      // Llamar a esta función al iniciar
-      cargarOpcionesCategoria();
+    // Verificar al cargar
+    if (localStorage.getItem("logueadoAdmin") === "true") {
+      mostrarAdmin();
+    } else {
+      mostrarLogin();
+    }
+    window.checkPassword = checkPassword;
+  </script>
+  <script type="module">
+    import { API_URL } from './config.js';
+    import { getProducts, getProductById, createProduct, updateProduct, deleteProduct, addLote, deleteLote } from './api.js';
 
-      let editando = false;
+    let productos = [];
+    const categoriasDisponibles = ["belleza y salud", "hogar", "tecnologia", "iluminacion"];
+    let productoActual = null;
 
-      async function cargarProductos() {
-        tablaProductos.innerHTML = "";
-        const productos = await getProducts();
-        productos.forEach(prod => {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
+    // Llamar a esta función al iniciar
+    cargarOpcionesCategoria();
+
+    let editando = false;
+
+    async function cargarProductos() {
+      tablaProductos.innerHTML = "";
+      const productos = await getProducts();
+      productos.forEach(prod => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
       <td>${prod.name}</td>
       <td>$${prod.price}</td>
       <td>${prod.stock}</td>
@@ -151,45 +189,45 @@
         <button class="btn-danger" onclick="eliminarProducto(${prod.id})">🗑️</button>
       </td>
     `;
-          tablaProductos.appendChild(tr);
-        });
-      }
+        tablaProductos.appendChild(tr);
+      });
+    }
 
-      // Función para llenar el <select> dinámicamente
-      function cargarOpcionesCategoria() {
-        const categorySelect = document.getElementById("category");
-        categorySelect.innerHTML = `<option value="">Seleccionar categoría</option>`;
-        categoriasDisponibles.map(cat => {
-          const option = document.createElement("option");
-          option.value = cat;
-          option.textContent = cat;
-          categorySelect.appendChild(option);
-        });
-      }
+    // Función para llenar el <select> dinámicamente
+    function cargarOpcionesCategoria() {
+      const categorySelect = document.getElementById("category");
+      categorySelect.innerHTML = `<option value="">Seleccionar categoría</option>`;
+      categoriasDisponibles.map(cat => {
+        const option = document.createElement("option");
+        option.value = cat;
+        option.textContent = cat;
+        categorySelect.appendChild(option);
+      });
+    }
 
-      window.editarProducto = async (id) => {
-        const producto = await getProductById(id);
-        productoActual = producto;
-        editando = true;
-        formTitulo.textContent = "Editar Producto";
-        formProducto.productId.value = producto.id;
-        formProducto.name.value = producto.name;
-        formProducto.description.value = producto.description || "";
-        formProducto.category.value = producto.category || "";
-        formProducto.price.value = producto.price;
-        formProducto.image.value = producto.image || "";
-        formProducto.stock.value = producto.stock;
+    window.editarProducto = async (id) => {
+      const producto = await getProductById(id);
+      productoActual = producto;
+      editando = true;
+      formTitulo.textContent = "Editar Producto";
+      formProducto.productId.value = producto.id;
+      formProducto.name.value = producto.name;
+      formProducto.description.value = producto.description || "";
+      formProducto.category.value = producto.category || "";
+      formProducto.price.value = producto.price;
+      formProducto.image.value = producto.image || "";
+      formProducto.stock.value = producto.stock;
 
-        renderLotes(producto.lotes);
-        abrirModal();
-      };
+      renderLotes(producto.lotes);
+      abrirModal();
+    };
 
-      function renderLotes(lotes) {
-        const tbody = document.querySelector("#tablaLotes tbody");
-        tbody.innerHTML = "";
-        lotes.forEach((lote, index) => {
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
+    function renderLotes(lotes) {
+      const tbody = document.querySelector("#tablaLotes tbody");
+      tbody.innerHTML = "";
+      lotes.forEach((lote, index) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
       <td>${lote.cantidad}</td>
       <td>${lote.costoUnitario ?? "-"}</td>
       <td>${new Date(lote.fechaIngreso).toLocaleDateString()}</td>
@@ -197,91 +235,159 @@
         <button onclick="eliminarLote(${index})">🗑️</button>
       </td>
     `;
-          tbody.appendChild(tr);
-        });
-      }
+        tbody.appendChild(tr);
+      });
+    }
 
-      window.eliminarLote = async (loteIndex) => {
-        if (confirm("¿Eliminar este lote?")) {
-          await deleteLote(productoActual.id, loteIndex);
-          const actualizado = await getProductById(productoActual.id);
-          productoActual = actualizado;
-          renderLotes(actualizado.lotes);
-          cargarProductos();
-        }
-      };
-
-      document.getElementById("btnAgregarLote").addEventListener("click", async () => {
-        const cantidad = parseInt(document.getElementById("loteCantidad").value);
-        const costoUnitario = parseFloat(document.getElementById("loteCosto").value) || null;
-        const fechaIngreso = document.getElementById("loteFecha").value || null;
-
-        if (!cantidad) {
-          alert("Cantidad requerida");
-          return;
-        }
-
-        await addLote(productoActual.id, { cantidad, costoUnitario, fechaIngreso });
+    window.eliminarLote = async (loteIndex) => {
+      if (confirm("¿Eliminar este lote?")) {
+        await deleteLote(productoActual.id, loteIndex);
         const actualizado = await getProductById(productoActual.id);
         productoActual = actualizado;
         renderLotes(actualizado.lotes);
         cargarProductos();
+      }
+    };
 
-        document.getElementById("loteCantidad").value = "";
-        document.getElementById("loteCosto").value = "";
-        document.getElementById("loteFecha").value = "";
-      });
+    document.getElementById("btnAgregarLote").addEventListener("click", async () => {
+      const cantidad = parseInt(document.getElementById("loteCantidad").value);
+      const costoUnitario = parseFloat(document.getElementById("loteCosto").value) || null;
+      const fechaIngreso = document.getElementById("loteFecha").value || null;
 
-      window.eliminarProducto = async (id) => {
-        if (confirm("¿Seguro que deseas eliminar este producto?")) {
-          await deleteProduct(id);
-          cargarProductos();
-        }
-      };
-
-      btnNuevo.addEventListener("click", () => {
-        editando = false;
-        formTitulo.textContent = "Agregar Nuevo Producto";
-        formProducto.reset();
-        abrirModal();
-      });
-
-      formProducto.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const data = {
-          name: formProducto.name.value,
-          description: formProducto.description.value,
-          category: formProducto.category.value,
-          price: parseFloat(formProducto.price.value),
-          image: formProducto.image.value,
-          stock: parseInt(formProducto.stock.value)
-        };
-
-        if (editando) {
-          await updateProduct(formProducto.productId.value, data);
-        } else {
-          await createProduct(data);
-        }
-
-        cerrarModal();
-        cargarProductos();
-      });
-
-      closeModalBtn.addEventListener("click", cerrarModal);
-      window.onclick = (event) => {
-        if (event.target === modal) cerrarModal();
-      };
-
-      function abrirModal() {
-        modal.style.display = "block";
+      if (!cantidad) {
+        alert("Cantidad requerida");
+        return;
       }
 
-      function cerrarModal() {
-        modal.style.display = "none";
-      }
-
+      await addLote(productoActual.id, { cantidad, costoUnitario, fechaIngreso });
+      const actualizado = await getProductById(productoActual.id);
+      productoActual = actualizado;
+      renderLotes(actualizado.lotes);
       cargarProductos();
-    </script>
+
+      document.getElementById("loteCantidad").value = "";
+      document.getElementById("loteCosto").value = "";
+      document.getElementById("loteFecha").value = "";
+    });
+
+    window.eliminarProducto = async (id) => {
+      if (confirm("¿Seguro que deseas eliminar este producto?")) {
+        await deleteProduct(id);
+        cargarProductos();
+      }
+    };
+
+    btnNuevo.addEventListener("click", () => {
+      editando = false;
+      formTitulo.textContent = "Agregar Nuevo Producto";
+      formProducto.reset();
+      abrirModal();
+    });
+
+    formProducto.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = {
+        name: formProducto.name.value,
+        description: formProducto.description.value,
+        category: formProducto.category.value,
+        price: parseFloat(formProducto.price.value),
+        image: formProducto.image.value,
+        stock: parseInt(formProducto.stock.value)
+      };
+
+      if (editando) {
+        await updateProduct(formProducto.productId.value, data);
+      } else {
+        await createProduct(data);
+      }
+
+      cerrarModal();
+      cargarProductos();
+    });
+
+    closeModalBtn.addEventListener("click", cerrarModal);
+    window.onclick = (event) => {
+      if (event.target === modal) cerrarModal();
+    };
+
+    function abrirModal() {
+      modal.style.display = "block";
+    }
+
+    function cerrarModal() {
+      modal.style.display = "none";
+    }
+
+    cargarProductos();
+  </script>
+  <script type="module">
+    import { getSales, createSale } from './api.js';
+    import { getProducts } from './api.js';
+
+    const vistaProductos = document.getElementById("vistaProductos");
+    const vistaVentas = document.getElementById("vistaVentas");
+    const btnNuevaVenta = document.getElementById("btnNuevaVenta");
+    const tablaVentas = document.querySelector("#tablaVentas tbody");
+
+    // Tabs
+    tabProductos.addEventListener("click", () => {
+      vistaProductos.style.display = "block";
+      vistaVentas.style.display = "none";
+    });
+    tabVentas.addEventListener("click", () => {
+      vistaProductos.style.display = "none";
+      vistaVentas.style.display = "block";
+      cargarVentas();
+    });
+
+    // Cargar ventas
+    async function cargarVentas() {
+      tablaVentas.innerHTML = "";
+      const ventas = await getSales();
+      ventas.forEach(v => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+      <td>${new Date(v.createdAt).toLocaleDateString()}</td>
+      <td>${v.productId}</td> 
+      <td>${v.cantidad}</td>
+      <td>$${v.precioVenta}</td>
+      <td>$${v.precioCosto?.toFixed(2)}</td>
+      <td>$${v.ganancia?.toFixed(2)}</td>
+    `;
+        tablaVentas.appendChild(tr);
+      });
+    }
+
+
+    // Abrir modal venta
+    btnNuevaVenta.addEventListener("click", async () => {
+      const productos = await getProducts();
+      const select = document.getElementById("ventaProducto");
+      select.innerHTML = "";
+      productos.forEach(p => {
+        const option = document.createElement("option");
+        option.value = p.id;
+        option.textContent = p.name;
+        select.appendChild(option);
+      });
+      modalVenta.style.display = "block";
+    });
+
+    // Guardar venta
+    formVenta.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const productId = ventaProducto.value;
+      const cantidad = parseInt(ventaCantidad.value);
+      const precioVenta = parseFloat(ventaPrecio.value);
+
+      await createSale({ productId, cantidad, precioVenta });
+
+      modalVenta.style.display = "none";
+      cargarVentas(); // refresca la tabla de ventas
+    });
+
+  </script>
 </body>
 
 </html>
