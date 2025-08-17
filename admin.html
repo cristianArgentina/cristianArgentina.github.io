@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel de Administración</title>
   <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="./css/loaderadmin.css">
 </head>
 
 <body>
@@ -164,6 +165,7 @@
   <script type="module">
     import { API_URL } from './config.js';
     import { getProducts, getProductById, createProduct, updateProduct, deleteProduct, addLote, deleteLote } from './api.js';
+    import { showLoader, hideLoader } from "./js/loaderadmin.js";
 
     let productos = [];
     const categoriasDisponibles = ["belleza y salud", "hogar", "tecnologia", "iluminacion"];
@@ -175,11 +177,13 @@
     let editando = false;
 
     async function cargarProductos() {
-      tablaProductos.innerHTML = "";
-      const productos = await getProducts();
-      productos.forEach(prod => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
+      showLoader("Cargando productos... 🐥");
+      try {
+        tablaProductos.innerHTML = "";
+        const productos = await getProducts();
+        productos.forEach(prod => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
       <td>${prod.name}</td>
       <td>$${prod.price}</td>
       <td>${prod.stock}</td>
@@ -189,8 +193,11 @@
         <button class="btn-danger" onclick="eliminarProducto(${prod.id})">🗑️</button>
       </td>
     `;
-        tablaProductos.appendChild(tr);
-      });
+          tablaProductos.appendChild(tr);
+        });
+      } finally {
+        hideLoader();
+      }
     }
 
     // Función para llenar el <select> dinámicamente
