@@ -83,30 +83,30 @@
         <input type="number" id="stock" required>
 
         <button type="submit" class="btn-primary">💾 Guardar</button>
-
-        <h3>📦 Lotes del producto</h3>
-        <table id="tablaLotes">
-          <thead>
-            <tr>
-              <th>Cantidad</th>
-              <th>Costo Unitario</th>
-              <th>Fecha Ingreso</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-
-        <h4>➕ Agregar Lote</h4>
-        <div class="form-lote">
-          <input type="number" id="loteCantidad" placeholder="Cantidad" min="1" required>
-          <input type="number" id="loteCosto" placeholder="Costo unitario" step="0.01">
-          <input type="date" id="loteFecha">
-          <button type="button" id="btnAgregarLote">Agregar</button>
-        </div>
-
+        <button type="button" id="btnCerrarModal">Cancelar</button>
       </form>
+      <!-- Sección de lotes separada -->
+      <hr>
+      <h3>📦 Lotes del producto</h3>
+      <table id="tablaLotes">
+        <thead>
+          <tr>
+            <th>Cantidad</th>
+            <th>Costo Unitario</th>
+            <th>Fecha Ingreso</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="formLote"></div>
+      <h4>➕ Agregar Lote</h4>
+      <input type="number" id="loteCantidad" placeholder="Cantidad" min="1" required>
+      <input type="number" id="loteCosto" placeholder="Costo unitario" step="0.01">
+      <input type="date" id="loteFecha">
+      <button type="button" id="btnAgregarLote">Agregar</button>
     </div>
+  </div>
   </div>
   <!-- Modal Venta -->
   <div id="modalVenta" class="modal">
