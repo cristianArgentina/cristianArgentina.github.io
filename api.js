@@ -76,9 +76,10 @@ export async function addLote(productId, loteData) {
   return res.json();
 }
 
-export async function deleteLote(productId, loteIndex) {
-  const res = await fetch(`${API_URL}/products/${productId}/lotes/${loteIndex}`, {
+export async function deleteLote(productId, loteId) {
+  const res = await fetch(`${API_URL}/products/${productId}/lotes/${loteId}`, {
     method: "DELETE"
   });
-  return res.json();
+  if (!res.ok) throw new Error("Error al eliminar lote");
+  return await res.json();
 }

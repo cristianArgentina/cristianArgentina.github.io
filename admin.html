@@ -232,23 +232,23 @@
     function renderLotes(lotes) {
       const tbody = document.querySelector("#tablaLotes tbody");
       tbody.innerHTML = "";
-      lotes.forEach((lote, index) => {
+      lotes.forEach((lote) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
       <td>${lote.cantidad}</td>
       <td>${lote.costoUnitario ?? "-"}</td>
       <td>${new Date(lote.fechaIngreso).toLocaleDateString()}</td>
       <td>
-        <button onclick="eliminarLote(${index})">🗑️</button>
+        <button onclick="eliminarLote('${lote._id}')">🗑️</button>
       </td>
     `;
         tbody.appendChild(tr);
       });
     }
 
-    window.eliminarLote = async (loteIndex) => {
+    window.eliminarLote = async (loteId) => {
       if (confirm("¿Eliminar este lote?")) {
-        await deleteLote(productoActual.id, loteIndex);
+        await deleteLote(productoActual.id, loteId);
         const actualizado = await getProductById(productoActual.id);
         productoActual = actualizado;
         renderLotes(actualizado.lotes);
