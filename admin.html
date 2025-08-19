@@ -34,6 +34,7 @@
             <th>Stock</th>
             <th>Categoría</th>
             <th>Acciones</th>
+            <th>Lotes</th> <!-- nueva columna -->
           </tr>
         </thead>
         <tbody></tbody>
@@ -83,7 +84,6 @@
         <input type="number" id="stock" required>
 
         <button type="submit" class="btn-primary">💾 Guardar</button>
-        <button type="button" id="btnCerrarModal">Cancelar</button>
       </form>
       <!-- Sección de lotes separada -->
       <hr>
@@ -99,14 +99,7 @@
         </thead>
         <tbody></tbody>
       </table>
-      <div id="formLote"></div>
-      <h4>➕ Agregar Lote</h4>
-      <input type="number" id="loteCantidad" placeholder="Cantidad" min="1" required>
-      <input type="number" id="loteCosto" placeholder="Costo unitario" step="0.01">
-      <input type="date" id="loteFecha">
-      <button type="button" id="btnAgregarLote">Agregar</button>
     </div>
-  </div>
   </div>
   <!-- Modal Venta -->
   <div id="modalVenta" class="modal">
@@ -192,6 +185,15 @@
         <button class="btn-primary" onclick="editarProducto(${prod.id})">✏️</button>
         <button class="btn-danger" onclick="eliminarProducto(${prod.id})">🗑️</button>
       </td>
+      <td>
+        <button class="btn-secondary" onclick="mostrarFormLote(${prod.id})">➕ Lote</button>
+        <div id="formLote-${prod.id}" class="form-lote" style="display:none; margin-top:5px;">
+          <input type="number" id="cantidad-${prod.id}" placeholder="Cantidad" min="1" required>
+          <input type="number" id="costo-${prod.id}" placeholder="Costo unitario" step="0.01">
+          <input type="date" id="fecha-${prod.id}">
+          <button onclick="guardarLote(${prod.id})">Guardar</button>
+        </div>
+      </td>
     `;
           tablaProductos.appendChild(tr);
         });
@@ -256,26 +258,27 @@
       }
     };
 
-    document.getElementById("btnAgregarLote").addEventListener("click", async () => {
-      const cantidad = parseInt(document.getElementById("loteCantidad").value);
-      const costoUnitario = parseFloat(document.getElementById("loteCosto").value) || null;
-      const fechaIngreso = document.getElementById("loteFecha").value || null;
+    window.mostrarFormLote = (id) => {
+      const form = document.getElementById(`formLote-${id}`);
+      form.style.display = form.style.display === "none" ? "block" : "none";
+    };
+
+    window.guardarLote = async (id) => {
+      const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value);
+      const costoUnitario = parseFloat(document.getElementById(`costo-${id}`).value) || null;
+      const fechaIngreso = document.getElementById(`fecha-${id}`).value || null;
 
       if (!cantidad) {
-        alert("Cantidad requerida");
+        alert("La cantidad es obligatoria");
         return;
       }
 
-      await addLote(productoActual.id, { cantidad, costoUnitario, fechaIngreso });
-      const actualizado = await getProductById(productoActual.id);
-      productoActual = actualizado;
-      renderLotes(actualizado.lotes);
-      cargarProductos();
+      await addLote(id, { cantidad, costoUnitario, fechaIngreso });
+      alert("✅ Lote agregado correctamente");
 
-      document.getElementById("loteCantidad").value = "";
-      document.getElementById("loteCosto").value = "";
-      document.getElementById("loteFecha").value = "";
-    });
+      // refrescamos productos
+      cargarProductos();
+    };
 
     window.eliminarProducto = async (id) => {
       if (confirm("¿Seguro que deseas eliminar este producto?")) {
