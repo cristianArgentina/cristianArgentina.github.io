@@ -164,11 +164,18 @@ select {
   width: 90%;
   max-width: 700px;
   max-height: 80vh; /* límite en alto */
-  background: #fff;
+  /*background: #fff;*/
   border-radius: 12px;
   box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
   z-index: 1000;
   overflow: hidden; /* oculta desbordes */
+
+  /*padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;*/
+  background-color: rgba(18, 18, 18, 0.8);
 }
 
 /* Contenido con scroll */
@@ -178,6 +185,14 @@ select {
   overflow-y: auto; /* activa scroll vertical */
   scrollbar-width: thin; /* Firefox */
   scrollbar-color: #888 #f1f1f1; /* Firefox */
+
+  background-color: #1f1f1f;
+/*  margin: auto;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 450px;*/
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+
 }
 
 /* Scroll bonito en Chrome/Edge */
