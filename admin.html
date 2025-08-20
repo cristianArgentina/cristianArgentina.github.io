@@ -41,20 +41,7 @@
       </table>
     </div>
     <div id="vistaVentas" style="display:none;">
-      <button id="btnNuevaVenta" class="btn-primary">➕ Registrar venta</button>
-      <table id="tablaVentas">
-        <thead>
-          <tr>
-            <th>Fecha</th>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Precio Unitario</th>
-            <th>Costo Unitario</th>
-            <th>Ganancia</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <div id="contenedorVentas"></div>
     </div>
   </div>
   <!-- addModal -->
@@ -414,14 +401,76 @@
 
     cargarProductos();
   </script>
-  <script type="module">
-    import { getSales, createSale } from './api.js';
-    import { getProducts } from './api.js';
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    const vistaProductos = document.getElementById("vistaProductos");
-    const vistaVentas = document.getElementById("vistaVentas");
-    const btnNuevaVenta = document.getElementById("btnNuevaVenta");
-    const tablaVentas = document.querySelector("#tablaVentas tbody");
+  <script type="module">/*
+import { getSales, createSale } from './api.js';
+import { getProducts } from './api.js';
+
+const vistaProductos = document.getElementById("vistaProductos");
+const vistaVentas = document.getElementById("vistaVentas");
+const btnNuevaVenta = document.getElementById("btnNuevaVenta");
+const tablaVentas = document.querySelector("#tablaVentas tbody");
+
+// Tabs
+tabProductos.addEventListener("click", () => {
+vistaProductos.style.display = "block";
+vistaVentas.style.display = "none";
+});
+tabVentas.addEventListener("click", () => {
+vistaProductos.style.display = "none";
+vistaVentas.style.display = "block";
+cargarVentas();
+});
+
+ 
+// Cargar ventas
+/*    async function cargarVentas() {
+tablaVentas.innerHTML = "";
+const ventas = await getSales();
+ventas.forEach(v => {
+const tr = document.createElement("tr");
+tr.innerHTML = `
+<td>${new Date(v.createdAt).toLocaleDateString()}</td>
+<td>${v.productId}</td> 
+<td>${v.cantidad}</td>
+<td>$${v.precioVenta}</td>
+<td>$${v.precioCosto?.toFixed(2)}</td>
+<td>$${v.ganancia?.toFixed(2)}</td>
+`;
+tablaVentas.appendChild(tr);
+});
+}
+
+
+// Abrir modal venta
+btnNuevaVenta.addEventListener("click", async () => {
+const productos = await getProducts();
+const select = document.getElementById("ventaProducto");
+select.innerHTML = "";
+productos.forEach(p => {
+const option = document.createElement("option");
+option.value = p.id;
+option.textContent = p.name;
+select.appendChild(option);
+});
+modalVenta.style.display = "block";
+});
+
+// Guardar venta
+formVenta.addEventListener("submit", async (e) => {
+e.preventDefault();
+
+const productId = ventaProducto.value;
+const cantidad = parseInt(ventaCantidad.value);
+const precioVenta = parseFloat(ventaPrecio.value);
+
+await createSale({ productId, cantidad, precioVenta });
+
+modalVenta.style.display = "none";
+cargarVentas(); // refresca la tabla de ventas
+});
+*/
 
     // Tabs
     tabProductos.addEventListener("click", () => {
@@ -434,53 +483,25 @@
       cargarVentas();
     });
 
-    // Cargar ventas
+    // Cargar ventas.html dentro del contenedor
     async function cargarVentas() {
-      tablaVentas.innerHTML = "";
-      const ventas = await getSales();
-      ventas.forEach(v => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-      <td>${new Date(v.createdAt).toLocaleDateString()}</td>
-      <td>${v.productId}</td> 
-      <td>${v.cantidad}</td>
-      <td>$${v.precioVenta}</td>
-      <td>$${v.precioCosto?.toFixed(2)}</td>
-      <td>$${v.ganancia?.toFixed(2)}</td>
-    `;
-        tablaVentas.appendChild(tr);
-      });
+
+      fetch("ventas.html")
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById("contenedorVentas").innerHTML = html;
+          // cargar CSS dinámicamente
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = "./css/ventas.css";
+          document.head.appendChild(link);
+          // cargar JS de ventas
+          const script = document.createElement("script");
+          script.src = "./js/ventas.js";
+          script.onload = () => initVentas(); // ejecutar inicialización
+          document.body.appendChild(script);
+        });
     }
-
-
-    // Abrir modal venta
-    btnNuevaVenta.addEventListener("click", async () => {
-      const productos = await getProducts();
-      const select = document.getElementById("ventaProducto");
-      select.innerHTML = "";
-      productos.forEach(p => {
-        const option = document.createElement("option");
-        option.value = p.id;
-        option.textContent = p.name;
-        select.appendChild(option);
-      });
-      modalVenta.style.display = "block";
-    });
-
-    // Guardar venta
-    formVenta.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const productId = ventaProducto.value;
-      const cantidad = parseInt(ventaCantidad.value);
-      const precioVenta = parseFloat(ventaPrecio.value);
-
-      await createSale({ productId, cantidad, precioVenta });
-
-      modalVenta.style.display = "none";
-      cargarVentas(); // refresca la tabla de ventas
-    });
-
   </script>
 </body>
 

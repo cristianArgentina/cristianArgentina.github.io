@@ -1,0 +1,31 @@
+/* KPIs */
+#resumenVentas {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+#resumenVentas .kpi {
+  flex: 1;
+  background: #1f1f1f;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.3);
+}
+
+/* Filtros */
+.filtros {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Gráfico */
+.grafico-container {
+  background: #1f1f1f;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}

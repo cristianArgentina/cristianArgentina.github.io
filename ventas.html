@@ -1,0 +1,39 @@
+<div id="vistaVentas" style="display:none;">
+
+    <!-- KPIs -->
+    <div id="resumenVentas" class="resumen">
+        <div class="kpi">📅 Ventas hoy: <span id="ventasHoy">0</span></div>
+        <div class="kpi">💰 Total facturado: $<span id="totalFacturado">0</span></div>
+        <div class="kpi">📈 Margen promedio: <span id="margenPromedio">0%</span></div>
+        <div class="kpi">📦 Producto más vendido: <span id="productoTop">-</span></div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filtros">
+        <label>Desde: <input type="date" id="fechaInicio"></label>
+        <label>Hasta: <input type="date" id="fechaFin"></label>
+        <button id="btnFiltrar" class="btn-primary">Filtrar</button>
+        <button id="btnExportarCSV" class="btn-primary">⬇ Exportar CSV</button>
+        <button id="btnNuevaVenta" class="btn-primary">➕ Registrar venta</button>
+    </div>
+
+    <!-- Gráfico -->
+    <div class="grafico-container">
+        <canvas id="graficoVentas"></canvas>
+    </div>
+
+    <!-- Tabla -->
+    <table id="tablaVentas">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Costo Unitario</th>
+                <th>Ganancia</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
