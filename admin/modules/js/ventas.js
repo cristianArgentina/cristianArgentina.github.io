@@ -1,6 +1,6 @@
 // ventas.js
 
-import { getSales, createSale, getProducts } from "../../api.js";
+import { getSales, createSale, getProducts } from "../../../api.js";
 
 class VentasPanel extends HTMLElement {
   constructor() {

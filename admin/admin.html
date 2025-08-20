@@ -215,8 +215,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script type="module">/*
-import { getSales, createSale } from './api.js';
-import { getProducts } from './api.js';
+
 
 const btnNuevaVenta = document.getElementById("btnNuevaVenta");
 const tablaVentas = document.querySelector("#tablaVentas tbody");
@@ -268,29 +267,8 @@ await createSale({ productId, cantidad, precioVenta });
 modalVenta.style.display = "none";
 cargarVentas(); // refresca la tabla de ventas
 });
-*//*
-      const vistaProductos = document.getElementById("vistaProductos");
-      const vistaVentas = document.getElementById("vistaVentas");
-      // Tabs
-      tabProductos.addEventListener("click", () => {
-        vistaProductos.style.display = "block";
-        vistaVentas.style.display = "none";
-      });
-      tabVentas.addEventListener("click", () => {
-        vistaProductos.style.display = "none";
-        vistaVentas.style.display = "block";
-        cargarVentas();
-      });
 
-      // Datos de prueba (luego lo cambiamos por fetch a la API)
-      window.ventasData = [
-        { fecha: "2025-08-01", producto: "Producto A", cantidad: 5, precio: 100, costo: 60 },
-        { fecha: "2025-08-02", producto: "Producto B", cantidad: 3, precio: 200, costo: 120 },
-        { fecha: "2025-08-03", producto: "Producto A", cantidad: 2, precio: 100, costo: 60 },
-        { fecha: "2025-08-03", producto: "Producto C", cantidad: 1, precio: 500, costo: 300 },
-      ];
-      // Cargar ventas.html dentro del contenedor
-      async function cargarVentas() {
+
 
         fetch("ventas.html")
           .then(r => r.text())
