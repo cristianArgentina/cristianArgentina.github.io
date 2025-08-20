@@ -394,11 +394,6 @@
       cargarProductos();
     });
 
-    closeModalBtn.addEventListener("click", cerrarModal);
-    window.onclick = (event) => {
-      if (event.target === modal) cerrarModal();
-    };
-
     function cerrarModal() {
       document.querySelectorAll(".modal").forEach(m => m.style.display = "none");
     }
