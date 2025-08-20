@@ -11,6 +11,7 @@ class VentasPanel extends HTMLElement {
   connectedCallback() {
     this.render();
     this.loadVentas();
+    this.setupEventListeners(); // <-- inicializamos eventos
   }
 
   render() {
@@ -106,40 +107,46 @@ async addVenta(nuevaVenta) {
   }
 }
 
-const btnNuevaVenta = document.getElementById("btnNuevaVenta");
-const tablaVentas = document.querySelector("#tablaVentas tbody");
+setupEventListeners() {
+  const btnNuevaVenta = this.shadowRoot.getElementById("btnNuevaVenta");
+  const modalVenta = this.shadowRoot.getElementById("modalVenta");
+  const closeModalVenta = this.shadowRoot.getElementById("closeModalVenta");
+  const formVenta = this.shadowRoot.getElementById("formVenta");
+  const ventaProducto = this.shadowRoot.getElementById("ventaProducto");
+  const ventaCantidad = this.shadowRoot.getElementById("ventaCantidad");
+  const ventaPrecio = this.shadowRoot.getElementById("ventaPrecio");
 
- 
+  // Abrir modal
+  btnNuevaVenta.addEventListener("click", async () => {
+    const productos = await getProducts();
+    ventaProducto.innerHTML = "";
+    productos.forEach(p => {
+      const option = document.createElement("option");
+      option.value = p.id;
+      option.textContent = p.name;
+      ventaProducto.appendChild(option);
+    });
+    modalVenta.style.display = "block";
+  });
 
+  // Cerrar modal
+  closeModalVenta.addEventListener("click", () => {
+    modalVenta.style.display = "none";
+  });
 
-// Abrir modal venta
-btnNuevaVenta.addEventListener("click", async () => {
-const productos = await getProducts();
-const select = document.getElementById("ventaProducto");
-select.innerHTML = "";
-productos.forEach(p => {
-const option = document.createElement("option");
-option.value = p.id;
-option.textContent = p.name;
-select.appendChild(option);
-});
-modalVenta.style.display = "block";
-});
+  // Guardar venta
+  formVenta.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-// Guardar venta
-formVenta.addEventListener("submit", async (e) => {
-e.preventDefault();
+    const productId = ventaProducto.value;
+    const cantidad = parseInt(ventaCantidad.value);
+    const precioVenta = parseFloat(ventaPrecio.value);
 
-const productId = ventaProducto.value;
-const cantidad = parseInt(ventaCantidad.value);
-const precioVenta = parseFloat(ventaPrecio.value);
+    await this.addVenta({ productId, cantidad, precioVenta });
 
-await createSale({ productId, cantidad, precioVenta });
-
-modalVenta.style.display = "none";
-this.loadVentas();; // refresca la tabla de ventas
-});
-
+    modalVenta.style.display = "none";
+  });
+}
 }
 
 customElements.define("ventas-panel", VentasPanel);
