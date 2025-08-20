@@ -35,6 +35,7 @@ class VentasPanel extends HTMLElement {
       </style>
       <section>
         <h2>📊 Ventas</h2>
+        <button id="btnNuevaVenta" class="btn-primary">➕ Registrar venta</button>
         <table>
           <thead>
             <tr>
@@ -50,6 +51,25 @@ class VentasPanel extends HTMLElement {
             <!-- filas dinámicas -->
           </tbody>
         </table>
+          <!--Modal Venta-- >
+      <div id="modalVenta" class="modal">
+        <div class="modal-content">
+          <span id="closeModalVenta" class="close">&times;</span>
+          <h2>Registrar Venta</h2>
+          <form id="formVenta">
+            <label>Producto:</label>
+            <select id="ventaProducto" required></select>
+
+            <label>Cantidad:</label>
+            <input type="number" id="ventaCantidad" required min="1">
+
+              <label>Precio de venta unitario:</label>
+              <input type="number" id="ventaPrecio" required step="0.01">
+
+                <button type="submit" class="btn-primary">💾 Guardar</button>
+              </form>
+            </div>
+        </div>
       </section>
     `;
   }
@@ -62,12 +82,12 @@ class VentasPanel extends HTMLElement {
       ventas.forEach(v => {
         const row = document.createElement("tr");
         row.innerHTML = `
-        <td>${new Date(v.createdAt).toLocaleDateString()}<</td>
+        <td>${new Date(v.createdAt).toLocaleDateString()}</td>
         <td>${v.productId}</td>
         <td>${v.cantidad}</td>
         <td>$${v.precioVenta}</td>
         <td>$${v.precioCosto?.toFixed(2)}</td>
-        <td>$${v.ganancia?.toFixed(2)}<</td>
+        <td>$${v.ganancia?.toFixed(2)}</td>
         `;
         tbody.appendChild(row);
       });
@@ -75,6 +95,51 @@ class VentasPanel extends HTMLElement {
       console.error("Error cargando ventas:", err);
     }
   }
+
+async addVenta(nuevaVenta) {
+  try {
+    const venta = await createSale(nuevaVenta);
+    console.log("Venta creada:", venta);
+    this.loadVentas(); // recargar lista
+  } catch (err) {
+    console.error("Error al crear venta:", err);
+  }
+}
+
+const btnNuevaVenta = document.getElementById("btnNuevaVenta");
+const tablaVentas = document.querySelector("#tablaVentas tbody");
+
+ 
+
+
+// Abrir modal venta
+btnNuevaVenta.addEventListener("click", async () => {
+const productos = await getProducts();
+const select = document.getElementById("ventaProducto");
+select.innerHTML = "";
+productos.forEach(p => {
+const option = document.createElement("option");
+option.value = p.id;
+option.textContent = p.name;
+select.appendChild(option);
+});
+modalVenta.style.display = "block";
+});
+
+// Guardar venta
+formVenta.addEventListener("submit", async (e) => {
+e.preventDefault();
+
+const productId = ventaProducto.value;
+const cantidad = parseInt(ventaCantidad.value);
+const precioVenta = parseFloat(ventaPrecio.value);
+
+await createSale({ productId, cantidad, precioVenta });
+
+modalVenta.style.display = "none";
+this.loadVentas();; // refresca la tabla de ventas
+});
+
 }
 
 customElements.define("ventas-panel", VentasPanel);

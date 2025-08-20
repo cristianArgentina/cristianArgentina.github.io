@@ -221,23 +221,6 @@ const btnNuevaVenta = document.getElementById("btnNuevaVenta");
 const tablaVentas = document.querySelector("#tablaVentas tbody");
 
  
-// Cargar ventas
-/*    async function cargarVentas() {
-tablaVentas.innerHTML = "";
-const ventas = await getSales();
-ventas.forEach(v => {
-const tr = document.createElement("tr");
-tr.innerHTML = `
-<td>${new Date(v.createdAt).toLocaleDateString()}</td>
-<td>${v.productId}</td> 
-<td>${v.cantidad}</td>
-<td>$${v.precioVenta}</td>
-<td>$${v.precioCosto?.toFixed(2)}</td>
-<td>$${v.ganancia?.toFixed(2)}</td>
-`;
-tablaVentas.appendChild(tr);
-});
-}
 
 
 // Abrir modal venta
@@ -268,24 +251,6 @@ modalVenta.style.display = "none";
 cargarVentas(); // refresca la tabla de ventas
 });
 
-
-
-        fetch("ventas.html")
-          .then(r => r.text())
-          .then(html => {
-            document.getElementById("contenedorVentas").innerHTML = html;
-            // cargar CSS dinámicamente
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = "./css/ventas.css";
-            document.head.appendChild(link);
-            // cargar JS de ventas
-            const script = document.createElement("script");
-            script.src = "./js/ventas.js";
-            script.onload = () => initVentas(); // ejecutar inicialización
-            document.body.appendChild(script);
-          });
-      }*/
     /*
   <div id="vistaProductos">
       <button id="btnNuevo" class="btn-primary">➕ Agregar nuevo producto</button>
@@ -416,26 +381,6 @@ cargarVentas(); // refresca la tabla de ventas
       </table>
     </div>
   </div>
-
-  <!--Modal Venta-- >
-      <div id="modalVenta" class="modal">
-        <div class="modal-content">
-          <span id="closeModalVenta" class="close">&times;</span>
-          <h2>Registrar Venta</h2>
-          <form id="formVenta">
-            <label>Producto:</label>
-            <select id="ventaProducto" required></select>
-
-            <label>Cantidad:</label>
-            <input type="number" id="ventaCantidad" required min="1">
-
-              <label>Precio de venta unitario:</label>
-              <input type="number" id="ventaPrecio" required step="0.01">
-
-                <button type="submit" class="btn-primary">💾 Guardar</button>
-              </form>
-            </div>
-        </div>
         */
   </script>
 </body>
