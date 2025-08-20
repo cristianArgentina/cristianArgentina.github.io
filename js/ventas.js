@@ -1,11 +1,3 @@
-// Datos de prueba (luego lo cambiamos por fetch a la API)
-window.ventasData = [
-  { fecha: "2025-08-01", producto: "Producto A", cantidad: 5, precio: 100, costo: 60 },
-  { fecha: "2025-08-02", producto: "Producto B", cantidad: 3, precio: 200, costo: 120 },
-  { fecha: "2025-08-03", producto: "Producto A", cantidad: 2, precio: 100, costo: 60 },
-  { fecha: "2025-08-03", producto: "Producto C", cantidad: 1, precio: 500, costo: 300 },
-];
-
 // Renderizar tabla
 function renderTablaVentas() {
   const tbody = document.querySelector("#tablaVentas tbody");
