@@ -62,12 +62,12 @@ class VentasPanel extends HTMLElement {
       ventas.forEach(v => {
         const row = document.createElement("tr");
         row.innerHTML = `
-        <td>${v.fecha}</td>
-        <td>${v.producto}</td>
+        <td>${new Date(v.createdAt).toLocaleDateString()}<</td>
+        <td>${v.productId}</td>
         <td>${v.cantidad}</td>
-        <td>$${v.precio}</td>
-        <td>$${v.costo}</td>
-        <td>$${(v.precio - v.costo) * v.cantidad}</td>
+        <td>$${v.precioVenta}</td>
+        <td>$${v.precioCosto?.toFixed(2)}</td>
+        <td>$${v.ganancia?.toFixed(2)}<</td>
         `;
         tbody.appendChild(row);
       });
