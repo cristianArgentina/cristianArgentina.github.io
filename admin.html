@@ -354,7 +354,7 @@
     btnNuevo.addEventListener("click", () => {
       formTitulo.textContent = "Agregar Nuevo Producto";
       formAddProducto.reset();
-        document.getElementById("modalAdd").style.display = "block";
+      document.getElementById("modalAdd").style.display = "block";
     });
 
     formAddProducto.addEventListener("submit", async (e) => {
@@ -393,7 +393,7 @@
     };
 
     function cerrarModal() {
-      modal.style.display = "none";
+      document.querySelectorAll(".modal").forEach(m => m.style.display = "none");
     }
 
     cargarProductos();
