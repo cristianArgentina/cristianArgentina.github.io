@@ -1,5 +1,7 @@
 // ventas.js
 
+import { getSales, createSale, getProducts } from "../../api.js";
+
 class VentasPanel extends HTMLElement {
   constructor() {
     super();
@@ -8,6 +10,7 @@ class VentasPanel extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    this.loadVentas();
   }
 
   render() {
@@ -40,7 +43,7 @@ class VentasPanel extends HTMLElement {
               <th>Cantidad</th>
               <th>Precio</th>
               <th>Costo</th>
-              <th>Ganancia/th>
+              <th>Ganancia</th>
             </tr>
           </thead>
           <tbody id="tabla-ventas">
@@ -49,30 +52,28 @@ class VentasPanel extends HTMLElement {
         </table>
       </section>
     `;
-
-    this.loadVentas();
   }
 
-  loadVentas() {
-    // 🚀 simulo datos (después lo conectás a tu API o store.js)
-    const ventas = [
-  { fecha: "2025-08-01", producto: "Producto A", cantidad: 5, precio: 100, costo: 60 },
-  { fecha: "2025-08-02", producto: "Producto B", cantidad: 3, precio: 200, costo: 120 },
-    ];
+    async loadVentas() {
+    try {
+      const ventas = await getSales(); // 🚀 desde la API
+      const tbody = this.shadowRoot.getElementById("tabla-ventas");
 
-    const tbody = this.shadowRoot.getElementById("tabla-ventas");
-    ventas.forEach(v => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-      <td>${v.fecha}</td>
-      <td>${v.producto}</td>
-      <td>${v.cantidad}</td>
-      <td>$${v.precio}</td>
-      <td>$${v.costo}</td>
-      <td>$${(v.precio - v.costo) * v.cantidad}</td>
-      `;
-      tbody.appendChild(row);
-    });
+      ventas.forEach(v => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+        <td>${v.fecha}</td>
+        <td>${v.producto}</td>
+        <td>${v.cantidad}</td>
+        <td>$${v.precio}</td>
+        <td>$${v.costo}</td>
+        <td>$${(v.precio - v.costo) * v.cantidad}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    } catch (err) {
+      console.error("Error cargando ventas:", err);
+    }
   }
 }
 

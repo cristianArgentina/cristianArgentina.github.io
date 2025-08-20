@@ -218,21 +218,8 @@
 import { getSales, createSale } from './api.js';
 import { getProducts } from './api.js';
 
-const vistaProductos = document.getElementById("vistaProductos");
-const vistaVentas = document.getElementById("vistaVentas");
 const btnNuevaVenta = document.getElementById("btnNuevaVenta");
 const tablaVentas = document.querySelector("#tablaVentas tbody");
-
-// Tabs
-tabProductos.addEventListener("click", () => {
-vistaProductos.style.display = "block";
-vistaVentas.style.display = "none";
-});
-tabVentas.addEventListener("click", () => {
-vistaProductos.style.display = "none";
-vistaVentas.style.display = "block";
-cargarVentas();
-});
 
  
 // Cargar ventas
