@@ -22,10 +22,17 @@
   align-items: center;
 }
 
-/* Gráfico */
-.grafico-container {
-  background: #1f1f1f;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 1rem;
+#vistaVentas {
+  margin: 20px;
+}
+
+#tablaVentas {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#tablaVentas th, #tablaVentas td {
+  border: 1px solid #444;
+  padding: 8px;
+  text-align: left;
 }
