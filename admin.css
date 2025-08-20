@@ -77,68 +77,33 @@ tr:nth-child(even) {
 }
 
 /* ==== MODAL ==== */
-/*
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  padding-top: 50px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(18, 18, 18, 0.8);
-}
 
-.modal-content {
-  background-color: #1f1f1f;
-  margin: auto;
-  padding: 20px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 450px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
-}
-
-.close {
-  color: #bbb;
-  float: right;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.close:hover {
-  color: white;
-}
-*/
 /* Ocultar todos los modales al inicio */
 .modal {
   display: none;
-  /* 👈 Esto los oculta */
   position: fixed;
   z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0,0,0,0.6); /* fondo oscuro */
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.6);
-  /* Fondo oscuro */
 }
 
-/* Caja de contenido del modal */
 .modal-content {
-  background: #fff;
+  background: #1f1f1f; /* mismo estilo dark */
   margin: 5% auto;
   padding: 20px;
   border-radius: 12px;
   width: 90%;
   max-width: 600px;
-  max-height: 90vh;
-  /* 👈 Evita que desborde */
+  max-height: 80vh;
   overflow-y: auto;
-  /* 👈 Scroll si hay demasiada info */
+  color: #fff;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
 }
+
 
 /* ======== FORMULARIO ======== */
 form {
@@ -184,68 +149,16 @@ select {
 
 /* ======== Modal de editar producto ======== */
 
-#modal {
-  display: none;
-  /* se muestra con JS */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 700px;
-  max-height: 80vh;
-  /* límite en alto */
-  /*background: #fff;*/
-  border-radius: 12px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  overflow: hidden;
-  /* oculta desbordes */
-
-  /*padding-top: 50px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;*/
-  background: rgba(18, 18, 18, 0.8);
-}
-
-/* Contenido con scroll */
 #modal .modal-content {
-  padding: 20px;
   max-height: 70vh;
-  /* espacio para el header y botones */
   overflow-y: auto;
-  /* activa scroll vertical */
   scrollbar-width: thin;
-  /* Firefox */
-  scrollbar-color: #888 #f1f1f1;
-  /* Firefox */
-
-  background-color: #1f1f1f;
-  /*  margin: auto;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 450px;*/
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
-
+  scrollbar-color: #888 #1f1f1f;
 }
-
-/* Scroll bonito en Chrome/Edge */
 #modal .modal-content::-webkit-scrollbar {
   width: 8px;
 }
-
-#modal .modal-content::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
 #modal .modal-content::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 10px;
-}
-
-#modal .modal-content::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }
