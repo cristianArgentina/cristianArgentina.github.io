@@ -11,7 +11,6 @@
 </head>
 
 <body>
-  <div id="admin-content" style="display:none;">
     <h1>📦 Panel de Administración</h1>
     <main id="content">
       <!-- primero carga el login -->
@@ -20,6 +19,7 @@
     <script type="module" src="admin.js"></script>
 
     <script type="module">
+      /*
       import { API_URL } from './config.js';
       import { getProducts, getProductById, createProduct, updateProduct, deleteProduct, addLote, deleteLote } from './api.js';
       import { showLoader, hideLoader } from "./js/loaderadmin.js";
@@ -209,7 +209,7 @@
         }
       });
 
-      cargarProductos();
+      cargarProductos();*/
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -280,7 +280,7 @@ await createSale({ productId, cantidad, precioVenta });
 modalVenta.style.display = "none";
 cargarVentas(); // refresca la tabla de ventas
 });
-*/
+*//*
       const vistaProductos = document.getElementById("vistaProductos");
       const vistaVentas = document.getElementById("vistaVentas");
       // Tabs
@@ -319,7 +319,7 @@ cargarVentas(); // refresca la tabla de ventas
             script.onload = () => initVentas(); // ejecutar inicialización
             document.body.appendChild(script);
           });
-      }
+      }*/
     /*
   <div id="vistaProductos">
       <button id="btnNuevo" class="btn-primary">➕ Agregar nuevo producto</button>
@@ -472,7 +472,6 @@ cargarVentas(); // refresca la tabla de ventas
           </div>
           */
     </script>
-    <script src="admin.js"></script>
 </body>
 
 </html>
