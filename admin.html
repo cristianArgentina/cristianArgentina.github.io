@@ -268,10 +268,14 @@
     }
 
     // Función para llenar el <select> dinámicamente
-    function cargarOpcionesCategoria() {
-      const categorySelect = document.getElementById("category");
+    // Función para llenar el <select> dinámicamente en cualquier modal
+    function cargarOpcionesCategoria(selectId) {
+      const categorySelect = document.getElementById(selectId);
+      if (!categorySelect) return; // seguridad por si no existe el select
+
       categorySelect.innerHTML = `<option value="">Seleccionar categoría</option>`;
-      categoriasDisponibles.map(cat => {
+
+      categoriasDisponibles.forEach(cat => {
         const option = document.createElement("option");
         option.value = cat;
         option.textContent = cat;
@@ -279,7 +283,9 @@
       });
     }
 
+
     window.editarProducto = async (id) => {
+      cargarOpcionesCategoria("categoryEdit");
       const producto = await getProductById(id);
       productoActual = producto;
       formTitulo.textContent = "Editar Producto";
@@ -352,6 +358,7 @@
     };
 
     btnNuevo.addEventListener("click", () => {
+      cargarOpcionesCategoria("categoryAdd");
       formTitulo.textContent = "Agregar Nuevo Producto";
       formAddProducto.reset();
       document.getElementById("modalAdd").style.display = "block";
