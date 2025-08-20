@@ -58,7 +58,7 @@
     </div>
   </div>
   <!-- addModal -->
-  <div id="modal" class="modal">
+  <div id="modalAdd" class="modal">
     <div class="modal-content">
       <span id="closeModalBtn" class="close">&times;</span>
       <h2 id="formTitulo">Agregar Producto</h2>
@@ -68,37 +68,37 @@
         <!-- Nombre -->
         <div class="form-group">
           <label for="productName">Nombre</label>
-          <input type="text" id="name" class="form-control" required>
+          <input type="text" id="nameAdd" class="form-control" required>
         </div>
 
         <!-- Descripción -->
         <div class="form-group">
           <label for="productDescription">Descripción</label>
-          <textarea id="description" class="form-control"></textarea>
+          <textarea id="descriptionAdd" class="form-control"></textarea>
         </div>
 
         <!-- Precio + Stock en la misma fila -->
         <div class="form-row">
           <div class="form-group half">
             <label for="productPrice">Precio</label>
-            <input type="number" id="price" class="form-control" required>
+            <input type="number" id="priceAdd" class="form-control" required>
           </div>
           <div class="form-group half">
             <label for="productStock">Stock</label>
-            <input type="number" id="stock" class="form-control" required>
+            <input type="number" id="stockAdd" class="form-control" required>
           </div>
         </div>
 
         <!-- Categoría -->
         <div class="form-group">
           <label for="productCategory">Categoría</label>
-          <select name="category" id="category" class="form-control" required></select>
+          <select name="category" id="categoryAdd" class="form-control" required></select>
         </div>
 
         <!-- Imagen -->
         <div class="form-group">
           <label for="productImagen">Imagen URL</label>
-          <input type="text" id="image" class="form-control">
+          <input type="text" id="imageAdd" class="form-control">
         </div>
 
         <button type="submit" class="btn-primary">💾 Guardar</button>
@@ -106,47 +106,47 @@
     </div>
   </div>
   <!-- editModal -->
-  <div id="modal" class="modal">
+  <div id="modalEdit" class="modal">
     <div class="modal-content">
       <span id="closeModalBtn" class="close">&times;</span>
       <h2 id="formTitulo">Editar Producto</h2>
       <form id="formEditProducto">
-        <input type="hidden" id="productId">
+        <input type="hidden" id="productIdEdit">
 
         <!-- Nombre -->
         <div class="form-group">
           <label for="productName">Nombre</label>
-          <input type="text" id="name" class="form-control" required>
+          <input type="text" id="nameEdit" class="form-control" required>
         </div>
 
         <!-- Descripción -->
         <div class="form-group">
           <label for="productDescription">Descripción</label>
-          <textarea id="description" class="form-control"></textarea>
+          <textarea id="descriptionEdit" class="form-control"></textarea>
         </div>
 
         <!-- Precio + Stock en la misma fila -->
         <div class="form-row">
           <div class="form-group half">
             <label for="productPrice">Precio</label>
-            <input type="number" id="price" class="form-control" required>
+            <input type="number" id="priceEdit" class="form-control" required>
           </div>
           <div class="form-group half">
             <label for="productStock">Stock</label>
-            <input type="number" id="stock" class="form-control" required>
+            <input type="number" id="stockEdit" class="form-control" required>
           </div>
         </div>
 
         <!-- Categoría -->
         <div class="form-group">
           <label for="productCategory">Categoría</label>
-          <select name="category" id="category" class="form-control" required></select>
+          <select name="category" id="categoryEdit" class="form-control" required></select>
         </div>
 
         <!-- Imagen -->
         <div class="form-group">
           <label for="productImagen">Imagen URL</label>
-          <input type="text" id="image" class="form-control">
+          <input type="text" id="imageEdit" class="form-control">
         </div>
 
         <button type="submit" class="btn-primary">💾 Guardar</button>
@@ -283,16 +283,16 @@
       const producto = await getProductById(id);
       productoActual = producto;
       formTitulo.textContent = "Editar Producto";
-      formEditProducto.productId.value = producto.id;
-      formEditProducto.name.value = producto.name;
-      formEditProducto.description.value = producto.description || "";
-      formEditProducto.category.value = producto.category || "";
-      formEditProducto.price.value = producto.price;
-      formEditProducto.image.value = producto.image || "";
-      formEditProducto.stock.value = producto.stock;
+      formEditProducto.productIdEdit.value = producto.id;
+      formEditProducto.nameEdit.value = producto.name;
+      formEditProducto.descriptionEdit.value = producto.description || "";
+      formEditProducto.categoryEdit.value = producto.category || "";
+      formEditProducto.priceEdit.value = producto.price;
+      formEditProducto.imageEdit.value = producto.image || "";
+      formEditProducto.stockEdit.value = producto.stock;
 
       renderLotes(producto.lotes);
-      abrirModal();
+      document.getElementById("modalEdit").style.display = "block";
     };
 
     function renderLotes(lotes) {
@@ -354,18 +354,18 @@
     btnNuevo.addEventListener("click", () => {
       formTitulo.textContent = "Agregar Nuevo Producto";
       formAddProducto.reset();
-      abrirModal();
+        document.getElementById("modalAdd").style.display = "block";
     });
 
     formAddProducto.addEventListener("submit", async (e) => {
       e.preventDefault();
       const data = {
-        name: formAddProducto.name.value,
-        description: formAddProducto.description.value,
-        category: formAddProducto.category.value,
-        price: parseFloat(formAddProducto.price.value),
-        image: formAddProducto.image.value,
-        stock: parseInt(formAddProducto.stock.value)
+        name: formAddProducto.nameAdd.value,
+        description: formAddProducto.descriptionAdd.value,
+        category: formAddProducto.categoryAdd.value,
+        price: parseFloat(formAddProducto.priceAdd.value),
+        image: formAddProducto.imageAdd.value,
+        stock: parseInt(formAddProducto.stockAdd.value)
       };
       await createProduct(data);
       cerrarModal();
@@ -375,14 +375,14 @@
     formEditProducto.addEventListener("submit", async (e) => {
       e.preventDefault();
       const data = {
-        name: formEditProducto.name.value,
-        description: formEditProducto.description.value,
-        category: formEditProducto.category.value,
-        price: parseFloat(formEditProducto.price.value),
-        image: formEditProducto.image.value,
-        stock: parseInt(formEditProducto.stock.value)
+        name: formEditProducto.nameEdit.value,
+        description: formEditProducto.descriptionEdit.value,
+        category: formEditProducto.categoryEdit.value,
+        price: parseFloat(formEditProducto.priceEdit.value),
+        image: formEditProducto.imageEdit.value,
+        stock: parseInt(formEditProducto.stockEdit.value)
       };
-      await updateProduct(formEditProducto.productId.value, data);
+      await updateProduct(formEditProducto.productIdEdit.value, data);
       cerrarModal();
       cargarProductos();
     });
@@ -391,10 +391,6 @@
     window.onclick = (event) => {
       if (event.target === modal) cerrarModal();
     };
-
-    function abrirModal() {
-      modal.style.display = "block";
-    }
 
     function cerrarModal() {
       modal.style.display = "none";
