@@ -37,12 +37,16 @@ function renderAdminLayout() {
 
   content.innerHTML = `
     <nav>
-      <button onclick="showModule('ventas')">Ventas</button>
-      <button onclick="showModule('productos')">Productos</button>
-      <button onclick="showModule('lotes')">Lotes</button>
+      <button id="btn-ventas">Ventas</button>
+      <button id="btn-productos">Productos</button>
+      <button id="btn-lotes">Lotes</button>
     </nav>
     <section id="panel"></section>
   `;
+  // ahora asignás los eventos desde JS
+  document.getElementById("btn-ventas").addEventListener("click", () => showModule("ventas"));
+  document.getElementById("btn-productos").addEventListener("click", () => showModule("productos"));
+  document.getElementById("btn-lotes").addEventListener("click", () => showModule("lotes"));
 }
 
 function showModule(name) {
