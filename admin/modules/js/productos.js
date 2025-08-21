@@ -145,9 +145,9 @@ class ProductosPanel extends HTMLElement {
     document.getElementById("formLote").addEventListener("submit", async (e) => {
       e.preventDefault();
       const productId = e.target.loteProductoId.value;
-      const cantidad = parseInt(e.target.cantidad.value);
-      const costoUnitario = parseFloat(form.costoUnitario.value)
-      const fecha = e.target.fecha.value;
+      const cantidad = parseInt(e.target.loteUnidades.value);
+      const costoUnitario = parseFloat(form.loteCosto.value)
+      const fecha = e.target.loteFecha.value;
       await addLote(productId, { cantidad, costoUnitario,  fecha });
       this.loadProductos();
       document.getElementById("modalLote").style.display = "none";
