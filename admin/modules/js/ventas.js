@@ -113,7 +113,7 @@ async addVenta(nuevaVenta) {
         option.textContent = p.name;
         ventaProducto.appendChild(option);
       });
-      modalVenta.style.display = "block";
+      modalVenta.style.display = "flex"; // 👈 SOLO acá
     });
 
     // cerrar modal
