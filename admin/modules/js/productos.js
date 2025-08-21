@@ -169,10 +169,8 @@ class ProductosPanel extends HTMLElement {
     lotesDiv.innerHTML = "";
     producto.lotes?.forEach(l => {
       const loteEl = document.createElement("div");
-      const fecha = l.fechaIngreso ?? "Sin fecha";
-      const unidades = l.unidades ?? 0;
       const costo = l.costoUnitario != null ? `$${l.costoUnitario.toFixed(2)}` : "N/A";
-      loteEl.textContent = `Lote ${l.id} - Cantidad: ${unidades} - Costo unitario: $${costo} - Fecha: ${fecha}`;
+      loteEl.textContent = `Lote ${l.id} - Cantidad: ${l.cantidad} - Costo unitario: $${l.costoUnitario ?? "-"} - Fecha: ${new Date(l.fechaIngreso).toLocaleDateString()}`;
       const btnDel = document.createElement("button");
       btnDel.textContent = "❌";
       btnDel.addEventListener("click", async () => {
