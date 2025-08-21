@@ -1,6 +1,7 @@
 // ventas.js
 
 import { getSales, createSale, getProducts } from "../../../api.js";
+import { showLoader, hideLoader } from "./loaderadmin.js";
 
 class VentasPanel extends HTMLElement {
   constructor() {
@@ -76,6 +77,7 @@ class VentasPanel extends HTMLElement {
   }
 
     async loadVentas() {
+      showLoader("Cargando productos... 🐥");
     try {
       const ventas = await getSales(); // 🚀 desde la API
       const tbody = this.shadowRoot.getElementById("tabla-ventas");
@@ -95,6 +97,8 @@ class VentasPanel extends HTMLElement {
       });
     } catch (err) {
       console.error("Error cargando ventas:", err);
+    } finally {
+      hideLoader();
     }
   }
 
