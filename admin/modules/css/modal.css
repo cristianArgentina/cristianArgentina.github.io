@@ -1,82 +1,71 @@
-/* Fondo */
+/* fondo que cubre toda la pantalla */
 .modal {
-  display: none;
+  display: none; /* oculto por defecto */
   position: fixed;
-  z-index: 1000;
-  inset: 0; /* equivale a top/left/right/bottom: 0 */
+  z-index: 9999; /* siempre arriba */
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7); /* overlay oscuro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Contenido */
+/* caja de contenido centrada */
 .modal-content {
-  background-color: #fff;
-  margin: 10% auto;
+  background-color: #1e1e1e; /* gris oscuro */
+  color: #f1f1f1;
   padding: 20px;
   border-radius: 12px;
   width: 400px;
   max-width: 90%;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  animation: modalFadeIn 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease;
 }
 
-/* Botón de cerrar */
+/* X de cerrar */
 .close {
-  color: #666;
+  color: #aaa;
   float: right;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   cursor: pointer;
-  line-height: 1;
 }
-
 .close:hover {
-  color: #000;
+  color: #fff;
 }
 
-/* Formularios dentro de la modal */
-.modal-content h2 {
-  margin-top: 0;
-}
-
-.modal-content form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.modal-content form label {
-  font-weight: bold;
-}
-
-.modal-content form input,
-.modal-content form select,
-.modal-content form textarea {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
+/* inputs y select */
+.modal-content input,
+.modal-content select {
   width: 100%;
+  padding: 8px;
+  margin: 6px 0 12px 0;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #2a2a2a;
+  color: #f1f1f1;
 }
 
-.modal-content form button {
-  padding: 10px;
-  background: #007bff;
+/* botón */
+.btn-primary {
+  background: #0078d4;
   color: #fff;
   border: none;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  width: 100%;
+  font-size: 15px;
+}
+.btn-primary:hover {
+  background: #005fa3;
 }
 
-.modal-content form button:hover {
-  background: #0056b3;
-}
-
-/* Animación */
-@keyframes modalFadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* animación suave */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
