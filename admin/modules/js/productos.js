@@ -130,7 +130,7 @@ class ProductosPanel extends HTMLElement {
       const id = e.target.productoId.value;
       const actualizado = {
         name: e.target.nombre.value,
-        description: parseFloat(e.target.descripcion.value),
+        description: e.target.descripcion.value,
         price: parseFloat(e.target.precio.value),
         stock: parseInt(e.target.stock.value),
         category: e.target.categoria.value,

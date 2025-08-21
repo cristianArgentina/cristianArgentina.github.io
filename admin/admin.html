@@ -135,34 +135,6 @@
       }
     };
 
-    window.mostrarFormLote = (id) => {
-      const form = document.getElementById(`formLote-${id}`);
-      form.style.display = form.style.display === "none" ? "block" : "none";
-    };
-
-    window.guardarLote = async (id) => {
-      const cantidad = parseInt(document.getElementById(`cantidad-${id}`).value);
-      const costoUnitario = parseFloat(document.getElementById(`costo-${id}`).value) || null;
-      const fechaIngreso = document.getElementById(`fecha-${id}`).value || null;
-
-      if (!cantidad) {
-        alert("La cantidad es obligatoria");
-        return;
-      }
-
-      await addLote(id, { cantidad, costoUnitario, fechaIngreso });
-      alert("✅ Lote agregado correctamente");
-
-      // refrescamos productos
-      cargarProductos();
-    };
-
-    window.eliminarProducto = async (id) => {
-      if (confirm("¿Seguro que deseas eliminar este producto?")) {
-        await deleteProduct(id);
-        cargarProductos();
-      }
-    };
 
     btnNuevo.addEventListener("click", () => {
       cargarOpcionesCategoria("categoryAdd");
