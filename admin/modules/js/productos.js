@@ -43,7 +43,7 @@ class ProductosPanel extends HTMLElement {
   }
 
   async loadProductos() {
-    cconst tbody = this.shadowRoot.getElementById("tabla-productos");
+    const tbody = this.shadowRoot.getElementById("tabla-productos");
     tbody.innerHTML = "";
     showLoader("Cargando productos... 🐥");
     try {
