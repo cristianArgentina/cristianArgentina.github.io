@@ -173,7 +173,7 @@ class ProductosPanel extends HTMLElement {
       const btnDel = document.createElement("button");
       btnDel.textContent = "❌";
       btnDel.addEventListener("click", async () => {
-        await deleteLote(producto.id, l.id);
+        await deleteLote(producto.id, l._id);
         this.fillEditarProductoModal(await getProductById(producto.id));
         this.loadProductos();
       });
