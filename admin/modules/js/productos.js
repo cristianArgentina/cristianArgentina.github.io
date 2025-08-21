@@ -146,7 +146,7 @@ class ProductosPanel extends HTMLElement {
       e.preventDefault();
       const productId = e.target.loteProductoId.value;
       const cantidad = parseInt(e.target.loteUnidades.value);
-      const costoUnitario = parseFloat(form.loteCosto.value)
+      const costoUnitario = parseFloat(e.target.loteCosto.value)
       const fecha = e.target.loteFecha.value;
       await addLote(productId, { cantidad, costoUnitario,  fecha });
       this.loadProductos();
