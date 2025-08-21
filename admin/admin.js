@@ -1,36 +1,3 @@
-function cargarVentas() {
-  fetch("ventas.html")
-    .then(r => r.text())
-    .then(html => {
-      document.getElementById("contenedorVentas").innerHTML = html;
-
-      // agregar CSS
-      if (!document.querySelector('link[href="ventas.css"]')) {
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = ".\css\ventas.css";
-        document.head.appendChild(link);
-      }
-
-      // agregar JS
-      if (!window.ventasCargado) {
-        window.ventasCargado = true;
-        const script = document.createElement("script");
-        script.src = ".\js\ventas.js";
-        script.onload = () => initVentas();
-        document.body.appendChild(script);
-      } else {
-        initVentas(); // ya estaba cargado
-      }
-    });
-}
-
-// Escuchar si login fue exitoso
-document.addEventListener("loginSuccess", () => {
-  const content = document.getElementById("content");
-  content.innerHTML = ""; // limpiar login
-  renderAdminLayout();
-});
 
 function renderAdminLayout() {
   const content = document.getElementById("content");
@@ -71,3 +38,9 @@ function showModule(name) {
       break;
   }
 }
+// Evento global de login exitoso
+document.addEventListener("loginSuccess", () => {
+  const content = document.getElementById("content");
+  content.innerHTML = ""; // limpiar login
+  renderAdminLayout();
+});
