@@ -91,7 +91,7 @@ async addVenta(nuevaVenta) {
   } catch (err) {
     console.error("Error al crear venta:", err);
   }
-
+}
     setupEventListeners() {
     const btnNuevaVenta = this.shadowRoot.getElementById("btnNuevaVenta");
 
