@@ -1,6 +1,6 @@
-import { 
-  getProducts, getProductById, createProduct, 
-  updateProduct, deleteProduct, addLote, deleteLote 
+import {
+  getProducts, getProductById, createProduct,
+  updateProduct, deleteProduct, addLote, deleteLote
 } from "../../../api.js";
 import { showLoader, hideLoader } from "./loaderadmin.js";
 
@@ -148,7 +148,7 @@ class ProductosPanel extends HTMLElement {
       const cantidad = parseInt(e.target.loteUnidades.value);
       const costoUnitario = parseFloat(e.target.loteCosto.value)
       const fecha = e.target.loteFecha.value;
-      await addLote(productId, { cantidad, costoUnitario,  fecha });
+      await addLote(productId, { cantidad, costoUnitario, fecha });
       this.loadProductos();
       document.getElementById("modalLote").style.display = "none";
     });
@@ -161,13 +161,19 @@ class ProductosPanel extends HTMLElement {
     form.precio.value = producto.price;
     form.stock.value = producto.stock;
     form.categoria.value = producto.category;
+    form.descripcion.value = producto.description;
+    form.urlImage.value = producto.image;
 
     // Lotes del producto
     const lotesDiv = document.getElementById("editarLotes");
+    const fecha = l.fechaIngreso ?? "Sin fecha";
+    const unidades = l.unidades ?? 0;
+    const costo = l.costoUnitario != null ? `$${l.costoUnitario.toFixed(2)}` : "N/A";
+
     lotesDiv.innerHTML = "";
     producto.lotes?.forEach(l => {
       const loteEl = document.createElement("div");
-      loteEl.textContent = `Lote ${l.id} - Cantidad: ${l.cantidad} - Costo unitario: $${l.costoUnitario.toFixed(2)} - Fecha: ${l.fecha}`;
+      loteEl.textContent = `Lote ${l.id} - Cantidad: ${unidades} - Costo unitario: $${costo} - Fecha: ${fecha}`;
       const btnDel = document.createElement("button");
       btnDel.textContent = "❌";
       btnDel.addEventListener("click", async () => {
