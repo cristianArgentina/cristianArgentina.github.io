@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="admin.css" />
   <link rel="stylesheet" href="./modules/css/loaderadmin.css">
   <link rel="stylesheet" href="./modules/css/modal.css">
-
 </head>
 
 <body>
@@ -18,9 +17,17 @@
     <!-- primero carga el login -->
     <login-box></login-box>
   </main>
+  <div id="modals-container"></div>
   <script type="module" src="./modules/js/login.js"></script>
   <script type="module" src="admin.js"></script>
-
+  <script type="module">
+    async function loadModals() {
+      const res = await fetch("./modules/html/modalventa.html");
+      const html = await res.text();
+      document.getElementById("modals-container").innerHTML = html;
+    }
+    loadModals();
+  </script>
   <script type="module">
     /*
     import { API_URL } from './config.js';
@@ -322,68 +329,68 @@ cargarVentas(); // refresca la tabla de ventas
     </div>
   </div>
   <!--editModal -->
-  <div id="modalEdit" class="modal">
-    <div class="modal-content">
-      <span id="closeEditModalBtn" class="close">&times;</span>
-      <h2 id="formTitulo">Editar Producto</h2>
-      <form id="formEditProducto">
-        <input type="hidden" id="productIdEdit">
+      <div id="modalEdit" class="modal">
+        <div class="modal-content">
+          <span id="closeEditModalBtn" class="close">&times;</span>
+          <h2 id="formTitulo">Editar Producto</h2>
+          <form id="formEditProducto">
+            <input type="hidden" id="productIdEdit">
 
-        <!-- Nombre -->
-        <div class="form-group">
-          <label for="nameEdit">Nombre</label>
-          <input type="text" id="nameEdit" class="form-control" required>
+              <!-- Nombre -->
+              <div class="form-group">
+                <label for="nameEdit">Nombre</label>
+                <input type="text" id="nameEdit" class="form-control" required>
+              </div>
+
+              <!-- Descripción -->
+              <div class="form-group">
+                <label for="descriptionEdit">Descripción</label>
+                <textarea id="descriptionEdit" class="form-control"></textarea>
+              </div>
+
+              <!-- Precio + Stock en la misma fila -->
+              <div class="form-row">
+                <div class="form-group half">
+                  <label for="priceEdit">Precio</label>
+                  <input type="number" id="priceEdit" class="form-control" required>
+                </div>
+                <div class="form-group half">
+                  <label for="stockEdit">Stock</label>
+                  <input type="number" id="stockEdit" class="form-control" required>
+                </div>
+              </div>
+
+              <!-- Categoría -->
+              <div class="form-group">
+                <label for="categoryEdit">Categoría</label>
+                <select name="category" id="categoryEdit" class="form-control" required></select>
+              </div>
+
+              <!-- Imagen -->
+              <div class="form-group">
+                <label for="imageEdit">Imagen URL</label>
+                <input type="text" id="imageEdit" class="form-control">
+              </div>
+
+              <button type="submit" class="btn-primary">💾 Guardar</button>
+          </form>
+          <!-- Sección de lotes separada -->
+          <hr>
+            <h3>📦 Lotes del producto</h3>
+            <table id="tablaLotes">
+              <thead>
+                <tr>
+                  <th>Cantidad</th>
+                  <th>Costo Unitario</th>
+                  <th>Fecha Ingreso</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
         </div>
-
-        <!-- Descripción -->
-        <div class="form-group">
-          <label for="descriptionEdit">Descripción</label>
-          <textarea id="descriptionEdit" class="form-control"></textarea>
-        </div>
-
-        <!-- Precio + Stock en la misma fila -->
-        <div class="form-row">
-          <div class="form-group half">
-            <label for="priceEdit">Precio</label>
-            <input type="number" id="priceEdit" class="form-control" required>
-          </div>
-          <div class="form-group half">
-            <label for="stockEdit">Stock</label>
-            <input type="number" id="stockEdit" class="form-control" required>
-          </div>
-        </div>
-
-        <!-- Categoría -->
-        <div class="form-group">
-          <label for="categoryEdit">Categoría</label>
-          <select name="category" id="categoryEdit" class="form-control" required></select>
-        </div>
-
-        <!-- Imagen -->
-        <div class="form-group">
-          <label for="imageEdit">Imagen URL</label>
-          <input type="text" id="imageEdit" class="form-control">
-        </div>
-
-        <button type="submit" class="btn-primary">💾 Guardar</button>
-      </form>
-      <!-- Sección de lotes separada -->
-      <hr>
-      <h3>📦 Lotes del producto</h3>
-      <table id="tablaLotes">
-        <thead>
-          <tr>
-            <th>Cantidad</th>
-            <th>Costo Unitario</th>
-            <th>Fecha Ingreso</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-        */
+      </div>
+      */
   </script>
 </body>
 
