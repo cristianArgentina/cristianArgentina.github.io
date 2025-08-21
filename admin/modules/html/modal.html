@@ -18,58 +18,99 @@
     </div>
 </div>
 
-<!-- Modal Nuevo Producto -->
 <div id="modalNuevoProducto" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2>➕ Nuevo Producto</h2>
     <form id="formNuevoProducto">
-      <input type="text" name="nombre" placeholder="Nombre" required>
-      <input type="number" name="precio" placeholder="Precio" required step="0.01">
-      <input type="number" name="stock" placeholder="Stock" required min="0">
-      <select name="categoria" required>
+      <label for="nuevoNombre">Nombre:</label>
+      <input type="text" id="nuevoNombre" name="nombre" required>
+
+      <label for="nuevoDescripcion">Descripción:</label>
+      <textarea id="nuevoDescripcion" name="descripcion" required></textarea>
+
+      <label for="nuevoPrecio">Precio:</label>
+      <input type="number" id="nuevoPrecio" name="precio" required step="0.01">
+
+      <label for="nuevoStock">Stock:</label>
+      <input type="number" id="nuevoStock" name="stock" required min="0">
+
+      <label for="nuevoCategoria">Categoría:</label>
+      <select id="nuevoCategoria" name="categoria" required>
         <option value="belleza y salud">Belleza y Salud</option>
         <option value="hogar">Hogar</option>
         <option value="tecnologia">Tecnología</option>
         <option value="iluminacion">Iluminación</option>
       </select>
-      <button type="submit" class="btn-primary">Guardar</button>
+
+      <label for="nuevoUrlImage">URL Imagen:</label>
+      <input type="text" id="nuevoUrlImage" name="urlImage">
+
+      <button type="submit" class="btn-primary">💾 Guardar</button>
     </form>
   </div>
 </div>
 
-<!-- Modal Editar Producto -->
+
 <div id="modalEditarProducto" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2>✏️ Editar Producto</h2>
     <form id="formEditarProducto">
       <input type="hidden" name="productoId">
-      <input type="text" name="nombre" required>
-      <input type="number" name="precio" required step="0.01">
-      <input type="number" name="stock" required min="0">
-      <select name="categoria" required>
+
+      <label for="editarNombre">Nombre:</label>
+      <input type="text" id="editarNombre" name="nombre" required>
+
+      <label for="editarDescripcion">Descripción:</label>
+      <textarea id="editarDescripcion" name="descripcion" required></textarea>
+
+      <label for="editarPrecio">Precio:</label>
+      <input type="number" id="editarPrecio" name="precio" required step="0.01">
+
+      <label for="editarStock">Stock:</label>
+      <input type="number" id="editarStock" name="stock" required min="0">
+
+      <label for="editarCategoria">Categoría:</label>
+      <select id="editarCategoria" name="categoria" required>
         <option value="belleza y salud">Belleza y Salud</option>
         <option value="hogar">Hogar</option>
         <option value="tecnologia">Tecnología</option>
         <option value="iluminacion">Iluminación</option>
       </select>
-      <div id="editarLotes"></div>
+
+      <label for="editarUrlImage">URL Imagen:</label>
+      <input type="text" id="editarUrlImage" name="urlImage">
+
+      <h3>Lotes del producto</h3>
+      <div id="editarLotes">
+        <!-- Aquí se listarán los lotes con fecha ingreso, unidades y costo unitario -->
+      </div>
+
       <button type="submit" class="btn-primary">Actualizar</button>
     </form>
   </div>
 </div>
 
-<!-- Modal Lote -->
+
 <div id="modalLote" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2>➕ Agregar Lote</h2>
     <form id="formLote">
       <input type="hidden" name="loteProductoId" id="loteProductoId">
-      <input type="number" name="cantidad" placeholder="Cantidad" required>
-      <input type="date" name="fecha" required>
+
+      <label for="loteFecha">Fecha Ingreso:</label>
+      <input type="date" id="loteFecha" name="fecha" required>
+
+      <label for="loteUnidades">Unidades:</label>
+      <input type="number" id="loteUnidades" name="unidades" required min="1">
+
+      <label for="loteCosto">Costo Unitario:</label>
+      <input type="number" id="loteCosto" name="costoUnitario" required step="0.01">
+
       <button type="submit" class="btn-primary">Guardar</button>
     </form>
   </div>
 </div>
+

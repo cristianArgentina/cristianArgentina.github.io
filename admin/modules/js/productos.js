@@ -19,59 +19,40 @@ class ProductosPanel extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
       <style>
-        section {
-          padding: 1rem;
-          font-family: sans-serif;
-        }
-        h2 { margin-bottom: 1rem; }
-        table {
-          width: 100%;
-          border-collapse: collapse;
-        }
-        th, td {
-          border: 1px solid #ccc;
-          padding: 0.5rem;
-          text-align: left;
-        }
-        button.action {
-          margin: 0 2px;
-          padding: 0.2rem 0.5rem;
-          font-size: 0.9rem;
-        }
+        table { width: 100%; border-collapse: collapse; font-family: sans-serif; }
+        th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+        .btn-primary { background: #0078d4; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+        .btn-primary:hover { background: #005fa3; }
       </style>
-      <section>
-        <h2>📦 Productos</h2>
-        <button id="btnNuevo" class="btn-primary">➕ Agregar nuevo producto</button>
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Stock</th>
-              <th>Categoría</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="tabla-productos">
-            <!-- filas dinámicas -->
-          </tbody>
-        </table>
-      </section>
+
+      <h2>📦 Productos</h2>
+      <button id="btnNuevo" class="btn-primary">➕ Agregar nuevo producto</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Categoría</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-productos"></tbody>
+      </table>
     `;
   }
 
   async loadProductos() {
-          showLoader("Cargando productos... 🐥");
+    cconst tbody = this.shadowRoot.getElementById("tabla-productos");
+    tbody.innerHTML = "";
+    showLoader("Cargando productos... 🐥");
     try {
       const productos = await getProducts();
-      const tbody = this.shadowRoot.getElementById("tabla-productos");
-      tbody.innerHTML = "";
-
       productos.forEach(p => {
         const row = document.createElement("tr");
         row.innerHTML = `
           <td>${p.name}</td>
-          <td>$${p.price}</td>
+          <td>$${p.price.toFixed(2)}</td>
           <td>${p.stock}</td>
           <td>${p.category}</td>
           <td>
@@ -130,10 +111,12 @@ class ProductosPanel extends HTMLElement {
     document.getElementById("formNuevoProducto").addEventListener("submit", async (e) => {
       e.preventDefault();
       const nuevo = {
-        name: e.target.nombre.value,
-        price: parseFloat(e.target.precio.value),
-        stock: parseInt(e.target.stock.value),
-        category: e.target.categoria.value
+        name: form.nombre.value,
+        description: form.descripcion.value,
+        price: parseFloat(form.precio.value),
+        stock: parseInt(form.stock.value),
+        category: form.categoria.value,
+        image: form.urlImage.value
       };
       await createProduct(nuevo);
       this.loadProductos();
@@ -147,9 +130,11 @@ class ProductosPanel extends HTMLElement {
       const id = e.target.productoId.value;
       const actualizado = {
         name: e.target.nombre.value,
+        description: parseFloat(e.target.descripcion.value),
         price: parseFloat(e.target.precio.value),
         stock: parseInt(e.target.stock.value),
-        category: e.target.categoria.value
+        category: e.target.categoria.value,
+        image: e.target.urlImage.value
       };
       await updateProduct(id, actualizado);
       this.loadProductos();
@@ -161,8 +146,9 @@ class ProductosPanel extends HTMLElement {
       e.preventDefault();
       const productId = e.target.loteProductoId.value;
       const cantidad = parseInt(e.target.cantidad.value);
+      const costoUnitario = parseFloat(form.costoUnitario.value)
       const fecha = e.target.fecha.value;
-      await addLote(productId, { cantidad, fecha });
+      await addLote(productId, { cantidad, costoUnitario,  fecha });
       this.loadProductos();
       document.getElementById("modalLote").style.display = "none";
     });
@@ -181,7 +167,7 @@ class ProductosPanel extends HTMLElement {
     lotesDiv.innerHTML = "";
     producto.lotes?.forEach(l => {
       const loteEl = document.createElement("div");
-      loteEl.textContent = `Lote ${l.id} - Cantidad: ${l.cantidad} - Fecha: ${l.fecha}`;
+      loteEl.textContent = `Lote ${l.id} - Cantidad: ${l.cantidad} - Costo unitario: $${l.costoUnitario.toFixed(2)} - Fecha: ${l.fecha}`;
       const btnDel = document.createElement("button");
       btnDel.textContent = "❌";
       btnDel.addEventListener("click", async () => {
