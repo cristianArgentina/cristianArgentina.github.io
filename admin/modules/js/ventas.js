@@ -52,7 +52,7 @@ class VentasPanel extends HTMLElement {
             <!-- filas dinámicas -->
           </tbody>
         </table>
-          <!--Modal Venta-- >
+          <!-- Modal Venta -->
       <div id="modalVenta" class="modal">
         <div class="modal-content">
           <span id="closeModalVenta" class="close">&times;</span>
@@ -79,6 +79,7 @@ class VentasPanel extends HTMLElement {
     try {
       const ventas = await getSales(); // 🚀 desde la API
       const tbody = this.shadowRoot.getElementById("tabla-ventas");
+      tbody.innerHTML = ""; // 🔥 limpia antes de repintar
 
       ventas.forEach(v => {
         const row = document.createElement("tr");
