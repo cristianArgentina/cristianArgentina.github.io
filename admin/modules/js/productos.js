@@ -164,64 +164,34 @@ fillEditarProductoModal(producto) {
   form.descripcion.value = producto.description;
   form.urlImage.value = producto.image;
 
-  // Lotes del producto
-  const lotesDiv = document.getElementById("editarLotes");
-  lotesDiv.innerHTML = "";
+// Lotes del producto
+const lotesDiv = document.getElementById("editarLotes");
+lotesDiv.innerHTML = "";
 
-  if (producto.lotes?.length) {
-    // Crear tabla
-    const table = document.createElement("table");
-    table.classList.add("tabla-lotes");
+producto.lotes?.forEach(l => {
+  const fila = document.createElement("tr");
 
-    // Encabezados
-    table.innerHTML = `
-      <thead>
-        <tr>
-          <th>Cantidad</th>
-          <th>Costo unitario</th>
-          <th>Fecha ingreso</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    `;
+  fila.innerHTML = `
+    <td>${l.cantidad ?? "-"}</td>
+    <td>$${l.costoUnitario != null ? l.costoUnitario.toFixed(2) : "-"}</td>
+    <td>${l.fechaIngreso ? new Date(l.fechaIngreso).toLocaleDateString() : "-"}</td>
+    <td>
+      <button title="Eliminar lote">❌</button>
+    </td>
+  `;
 
-    const tbody = table.querySelector("tbody");
+  const btnDel = fila.querySelector("button");
+  btnDel.addEventListener("click", async () => {
+    const confirmar = confirm("¿Seguro que deseas eliminar este lote?");
+    if (confirmar) {
+      await deleteLote(producto.id, l._id);
+      this.fillEditarProductoModal(await getProductById(producto.id));
+      this.loadProductos();
+    }
+  });
 
-    producto.lotes.forEach(l => {
-      const row = document.createElement("tr");
-
-      const tdCantidad = document.createElement("td");
-      tdCantidad.textContent = l.cantidad ?? "-";
-
-      const tdCosto = document.createElement("td");
-      tdCosto.textContent = l.costoUnitario != null ? `$${l.costoUnitario.toFixed(2)}` : "-";
-
-      const tdFecha = document.createElement("td");
-      tdFecha.textContent = l.fechaIngreso ? new Date(l.fechaIngreso).toLocaleDateString() : "-";
-
-      const tdAcciones = document.createElement("td");
-      const btnDel = document.createElement("button");
-      btnDel.textContent = "❌";
-      btnDel.addEventListener("click", async () => {
-        await deleteLote(producto.id, l._id);
-        this.fillEditarProductoModal(await getProductById(producto.id));
-        this.loadProductos();
-      });
-      tdAcciones.appendChild(btnDel);
-
-      row.appendChild(tdCantidad);
-      row.appendChild(tdCosto);
-      row.appendChild(tdFecha);
-      row.appendChild(tdAcciones);
-
-      tbody.appendChild(row);
-    });
-
-    lotesDiv.appendChild(table);
-  } else {
-    lotesDiv.textContent = "Este producto no tiene lotes cargados.";
-  }
+  lotesDiv.querySelector("tbody").appendChild(fila);
+});
 }
 }
 
