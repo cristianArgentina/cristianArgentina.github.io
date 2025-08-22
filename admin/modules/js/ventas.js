@@ -123,10 +123,10 @@ actualizarKPIs(ventas, productosMap) {
   const productoTop = productoTopId ? (productosMap[productoTopId] || productoTopId) : "-";
 
   // ⚡️ spans están fuera del shadow DOM
-  document.getElementById("ventasHoy").textContent = ventas.length;
-  document.getElementById("totalFacturado").textContent = totalFacturado.toFixed(2);
-  document.getElementById("margenPromedio").textContent = margenPromedio + "%";
-  document.getElementById("productoTop").textContent = productoTop;
+  this.shadowRoot.getElementById("ventasHoy").textContent = ventas.length;
+  this.shadowRoot.getElementById("totalFacturado").textContent = totalFacturado.toFixed(2);
+  this.shadowRoot.getElementById("margenPromedio").textContent = margenPromedio + "%";
+  this.shadowRoot.getElementById("productoTop").textContent = productoTop;
 }
 
 
