@@ -107,6 +107,13 @@ class ProductosPanel extends HTMLElement {
       });
     });
 
+    // Cerrar al hacer click fuera del contenido del modal
+    window.addEventListener("click", (e) => {
+      if (e.target.classList.contains("modal")) {
+        e.target.style.display = "none";
+      }
+    });
+
     // Form nuevo producto
     document.getElementById("formNuevoProducto").addEventListener("submit", async (e) => {
       e.preventDefault();
