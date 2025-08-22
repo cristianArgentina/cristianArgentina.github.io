@@ -164,34 +164,46 @@ fillEditarProductoModal(producto) {
   form.descripcion.value = producto.description;
   form.urlImage.value = producto.image;
 
-// Lotes del producto
-const lotesDiv = document.getElementById("editarLotes");
-lotesDiv.innerHTML = "";
-
-producto.lotes?.forEach(l => {
-  const fila = document.createElement("tr");
-
-  fila.innerHTML = `
-    <td>${l.cantidad ?? "-"}</td>
-    <td>$${l.costoUnitario != null ? l.costoUnitario.toFixed(2) : "-"}</td>
-    <td>${l.fechaIngreso ? new Date(l.fechaIngreso).toLocaleDateString() : "-"}</td>
-    <td>
-      <button title="Eliminar lote">❌</button>
-    </td>
+  // Tabla de lotes
+  const lotesDiv = document.getElementById("editarLotes");
+  lotesDiv.innerHTML = `
+    <table class="tabla-lotes">
+      <thead>
+        <tr>
+          <th>Cantidad</th>
+          <th>Costo unitario</th>
+          <th>Fecha ingreso</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   `;
 
-  const btnDel = fila.querySelector("button");
-  btnDel.addEventListener("click", async () => {
-    const confirmar = confirm("¿Seguro que deseas eliminar este lote?");
-    if (confirmar) {
-      await deleteLote(producto.id, l._id);
-      this.fillEditarProductoModal(await getProductById(producto.id));
-      this.loadProductos();
-    }
-  });
+  const tbody = lotesDiv.querySelector("tbody");
 
-  lotesDiv.querySelector("tbody").appendChild(fila);
-});
+  producto.lotes?.forEach(l => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td>${l.cantidad ?? "-"}</td>
+      <td>$${l.costoUnitario != null ? l.costoUnitario.toFixed(2) : "-"}</td>
+      <td>${l.fechaIngreso ? new Date(l.fechaIngreso).toLocaleDateString() : "-"}</td>
+      <td><button class="btn-delete-lote">❌</button></td>
+    `;
+
+    const btnDel = tr.querySelector(".btn-delete-lote");
+    btnDel.addEventListener("click", async () => {
+      const confirmar = confirm("¿Seguro que deseas eliminar este lote?");
+      if (confirmar) {
+        await deleteLote(producto.id, l._id);
+        this.fillEditarProductoModal(await getProductById(producto.id));
+        this.loadProductos();
+      }
+    });
+
+    tbody.appendChild(tr);
+  });
 }
 }
 
