@@ -12,7 +12,6 @@ class VentasPanel extends HTMLElement {
   connectedCallback() {
     this.render();
     this.loadVentas();
-    this.actualizarKPIs();
     this.setupEventListeners();
    }
 
@@ -73,31 +72,63 @@ class VentasPanel extends HTMLElement {
     `;
   }
 
-    async loadVentas() {
-      showLoader("Cargando ventas... 🐥");
-    try {
-      const ventas = await getSales(); // 🚀 desde la API
-      const tbody = this.shadowRoot.getElementById("tabla-ventas");
-      tbody.innerHTML = ""; // 🔥 limpia antes de repintar
+async loadVentas() {
+  showLoader("Cargando ventas... 🐥");
+  try {
+    const [ventas, productos] = await Promise.all([
+      getSales(),
+      getProducts()
+    ]);
 
-      ventas.forEach(v => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
+    // 📦 indexar productos por id
+    const productosMap = {};
+    productos.forEach(p => { productosMap[p.id] = p.name });
+
+    const tbody = this.shadowRoot.getElementById("tabla-ventas");
+    tbody.innerHTML = "";
+
+    ventas.forEach(v => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
         <td>${new Date(v.createdAt).toLocaleDateString()}</td>
-        <td>${v.productId}</td>
+        <td>${productosMap[v.productId] || "❓"}</td>
         <td>${v.cantidad}</td>
         <td>$${v.precioVenta}</td>
-        <td>$${v.precioCosto?.toFixed(2)}</td>
-        <td>$${v.ganancia?.toFixed(2)}</td>
-        `;
-        tbody.appendChild(row);
-      });
-    } catch (err) {
-      console.error("Error cargando ventas:", err);
-    } finally {
-      hideLoader();
-    }
+        <td>$${v.precioCosto?.toFixed(2) ?? "-"}</td>
+        <td>$${v.ganancia?.toFixed(2) ?? "-"}</td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    // ✅ actualizar KPIs con productos
+    this.actualizarKPIs(ventas, productosMap);
+
+  } catch (err) {
+    console.error("Error cargando ventas:", err);
+  } finally {
+    hideLoader();
   }
+}
+
+// KPIs
+actualizarKPIs(ventas, productosMap) {
+  const totalFacturado = ventas.reduce((sum, v) => sum + v.precioVenta * v.cantidad, 0);
+  const totalGanancia = ventas.reduce((sum, v) => sum + (v.ganancia ?? 0), 0);
+  const margenPromedio = totalFacturado ? ((totalGanancia / totalFacturado) * 100).toFixed(1) : 0;
+
+  // 📦 conteo por producto
+  const conteo = {};
+  ventas.forEach(v => { conteo[v.productId] = (conteo[v.productId] || 0) + v.cantidad });
+  const productoTopId = Object.entries(conteo).sort((a,b) => b[1]-a[1])[0]?.[0] || null;
+  const productoTop = productoTopId ? (productosMap[productoTopId] || productoTopId) : "-";
+
+  // ⚡️ spans están fuera del shadow DOM
+  document.getElementById("ventasHoy").textContent = ventas.length;
+  document.getElementById("totalFacturado").textContent = totalFacturado.toFixed(2);
+  document.getElementById("margenPromedio").textContent = margenPromedio + "%";
+  document.getElementById("productoTop").textContent = productoTop;
+}
+
 
 async addVenta(nuevaVenta) {
   try {
@@ -150,27 +181,6 @@ async addVenta(nuevaVenta) {
       modalVenta.style.display = "none";
     });
   }
-
-  // KPIs
-  actualizarKPIs() {
-  const totalFacturado = ventasData.reduce((sum, v) => sum + v.precio * v.cantidad, 0);
-  const totalGanancia = ventasData.reduce((sum, v) => sum + (v.precio - v.costo) * v.cantidad, 0);
-  const margenPromedio = totalFacturado ? ((totalGanancia / totalFacturado) * 100).toFixed(1) : 0;
-
-  const conteo = {};
-  ventasData.forEach(v => { conteo[v.producto] = (conteo[v.producto] || 0) + v.cantidad });
-  const productoTop = Object.entries(conteo).sort((a,b) => b[1]-a[1])[0]?.[0] || "-";
-
-  document.getElementById("ventasHoy").textContent = ventasData.length;
-  document.getElementById("totalFacturado").textContent = totalFacturado;
-  document.getElementById("margenPromedio").textContent = margenPromedio + "%";
-  document.getElementById("productoTop").textContent = productoTop;
-}
 }
 
 customElements.define("ventas-panel", VentasPanel);
-/*
-  actualizarKPIs();
-
-
-*/
