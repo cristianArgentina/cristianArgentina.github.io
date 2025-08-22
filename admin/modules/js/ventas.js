@@ -152,7 +152,7 @@ async addVenta(nuevaVenta) {
   }
 
   // KPIs
-function actualizarKPIs() {
+  actualizarKPIs() {
   const totalFacturado = ventasData.reduce((sum, v) => sum + v.precio * v.cantidad, 0);
   const totalGanancia = ventasData.reduce((sum, v) => sum + (v.precio - v.costo) * v.cantidad, 0);
   const margenPromedio = totalFacturado ? ((totalGanancia / totalFacturado) * 100).toFixed(1) : 0;
