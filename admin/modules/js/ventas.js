@@ -12,6 +12,7 @@ class VentasPanel extends HTMLElement {
   connectedCallback() {
     this.render();
     this.loadVentas();
+    this.actualizarKPIs();
     this.setupEventListeners();
    }
 
@@ -37,6 +38,21 @@ class VentasPanel extends HTMLElement {
       </style>
       <section>
         <h2>📊 Ventas</h2>
+            <div id="resumenVentas" class="resumen">
+        <div class="kpi">📅 Ventas hoy: <span id="ventasHoy">0</span></div>
+        <div class="kpi">💰 Total facturado: $<span id="totalFacturado">0</span></div>
+        <div class="kpi">📈 Margen promedio: <span id="margenPromedio">0%</span></div>
+        <div class="kpi">📦 Producto más vendido: <span id="productoTop">-</span></div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filtros">
+        <label>Desde: <input type="date" id="fechaInicio"></label>
+        <label>Hasta: <input type="date" id="fechaFin"></label>
+        <button id="btnFiltrar" class="btn-primary">Filtrar</button>
+        <button id="btnExportarCSV" class="btn-primary">⬇ Exportar CSV</button>
+        <button id="btnNuevaVenta" class="btn-primary">➕ Registrar venta</button>
+    </div>
         <button id="btnNuevaVenta" class="btn-primary">➕ Registrar venta</button>
         <table>
           <thead>
@@ -134,13 +150,8 @@ async addVenta(nuevaVenta) {
       modalVenta.style.display = "none";
     });
   }
-}
 
-customElements.define("ventas-panel", VentasPanel);
-/*
-  actualizarKPIs();
-
-// KPIs
+  // KPIs
 function actualizarKPIs() {
   const totalFacturado = ventasData.reduce((sum, v) => sum + v.precio * v.cantidad, 0);
   const totalGanancia = ventasData.reduce((sum, v) => sum + (v.precio - v.costo) * v.cantidad, 0);
@@ -155,4 +166,11 @@ function actualizarKPIs() {
   document.getElementById("margenPromedio").textContent = margenPromedio + "%";
   document.getElementById("productoTop").textContent = productoTop;
 }
+}
+
+customElements.define("ventas-panel", VentasPanel);
+/*
+  actualizarKPIs();
+
+
 */
