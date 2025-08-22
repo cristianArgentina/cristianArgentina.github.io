@@ -154,22 +154,53 @@ class ProductosPanel extends HTMLElement {
     });
   }
 
-  fillEditarProductoModal(producto) {
-    const form = document.getElementById("formEditarProducto");
-    form.productoId.value = producto.id;
-    form.nombre.value = producto.name;
-    form.precio.value = producto.price;
-    form.stock.value = producto.stock;
-    form.categoria.value = producto.category;
-    form.descripcion.value = producto.description;
-    form.urlImage.value = producto.image;
+fillEditarProductoModal(producto) {
+  const form = document.getElementById("formEditarProducto");
+  form.productoId.value = producto.id;
+  form.nombre.value = producto.name;
+  form.precio.value = producto.price;
+  form.stock.value = producto.stock;
+  form.categoria.value = producto.category;
+  form.descripcion.value = producto.description;
+  form.urlImage.value = producto.image;
 
-    // Lotes del producto
-    const lotesDiv = document.getElementById("editarLotes");
-    lotesDiv.innerHTML = "";
-    producto.lotes?.forEach(l => {
-      const loteEl = document.createElement("div");
-      loteEl.textContent = `Cantidad: ${l.cantidad} - Costo unitario: $${l.costoUnitario ?? "-"} - Fecha: ${new Date(l.fechaIngreso).toLocaleDateString()}`;
+  // Lotes del producto
+  const lotesDiv = document.getElementById("editarLotes");
+  lotesDiv.innerHTML = "";
+
+  if (producto.lotes?.length) {
+    // Crear tabla
+    const table = document.createElement("table");
+    table.classList.add("tabla-lotes");
+
+    // Encabezados
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>Cantidad</th>
+          <th>Costo unitario</th>
+          <th>Fecha ingreso</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    `;
+
+    const tbody = table.querySelector("tbody");
+
+    producto.lotes.forEach(l => {
+      const row = document.createElement("tr");
+
+      const tdCantidad = document.createElement("td");
+      tdCantidad.textContent = l.cantidad ?? "-";
+
+      const tdCosto = document.createElement("td");
+      tdCosto.textContent = l.costoUnitario != null ? `$${l.costoUnitario.toFixed(2)}` : "-";
+
+      const tdFecha = document.createElement("td");
+      tdFecha.textContent = l.fechaIngreso ? new Date(l.fechaIngreso).toLocaleDateString() : "-";
+
+      const tdAcciones = document.createElement("td");
       const btnDel = document.createElement("button");
       btnDel.textContent = "❌";
       btnDel.addEventListener("click", async () => {
@@ -177,10 +208,21 @@ class ProductosPanel extends HTMLElement {
         this.fillEditarProductoModal(await getProductById(producto.id));
         this.loadProductos();
       });
-      loteEl.appendChild(btnDel);
-      lotesDiv.appendChild(loteEl);
+      tdAcciones.appendChild(btnDel);
+
+      row.appendChild(tdCantidad);
+      row.appendChild(tdCosto);
+      row.appendChild(tdFecha);
+      row.appendChild(tdAcciones);
+
+      tbody.appendChild(row);
     });
+
+    lotesDiv.appendChild(table);
+  } else {
+    lotesDiv.textContent = "Este producto no tiene lotes cargados.";
   }
+}
 }
 
 customElements.define("productos-panel", ProductosPanel);

@@ -1,20 +1,24 @@
 /* fondo que cubre toda la pantalla */
 .modal {
-  display: none; /* oculto por defecto */
+  display: none;
+  /* oculto por defecto */
   position: fixed;
-  z-index: 9999; /* siempre arriba */
+  z-index: 9999;
+  /* siempre arriba */
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* overlay oscuro */
+  background-color: rgba(0, 0, 0, 0.7);
+  /* overlay oscuro */
   align-items: center;
   justify-content: center;
 }
 
 /* caja de contenido centrada */
 .modal-content {
-  background-color: #1e1e1e; /* gris oscuro */
+  background-color: #1e1e1e;
+  /* gris oscuro */
   color: #f1f1f1;
   padding: 20px;
   border-radius: 12px;
@@ -32,6 +36,7 @@
   font-weight: bold;
   cursor: pointer;
 }
+
 .close:hover {
   color: #fff;
 }
@@ -59,12 +64,70 @@
   width: 100%;
   font-size: 15px;
 }
+
 .btn-primary:hover {
   background: #005fa3;
 }
 
 /* animación suave */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Tabla de lotes dentro de la modal */
+.tabla-lotes {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: #2b2b2b;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.tabla-lotes th,
+.tabla-lotes td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #444;
+}
+
+.tabla-lotes th {
+  background-color: #1f1f1f;
+  color: #ddd;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tabla-lotes tr:nth-child(even) {
+  background-color: #333;
+}
+
+.tabla-lotes tr:hover {
+  background-color: #3d3d3d;
+}
+
+.tabla-lotes td {
+  color: #ccc;
+}
+
+.tabla-lotes button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.2s ease;
+}
+
+.tabla-lotes button:hover {
+  transform: scale(1.2);
 }
