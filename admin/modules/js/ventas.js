@@ -17,8 +17,8 @@ class VentasPanel extends HTMLElement {
 
   render() {
     this.shadowRoot.innerHTML = `
+      <link rel="stylesheet" href="../admin/modules/css/ventas.css">
       <style>
-        @import url("../admin/modules/css/ventas.css");
         section {
           padding: 1rem;
           font-family: sans-serif;
