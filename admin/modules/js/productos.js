@@ -78,7 +78,7 @@ render() {
           border: 1px solid #ddd;
           border-radius: 8px;
           padding: 0.5rem;
-          background: #fff;
+          background: #2a2a2a;
           box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
