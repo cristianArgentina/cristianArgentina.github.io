@@ -261,44 +261,29 @@ fillEditarProductoModal(producto) {
   form.urlImage.value = producto.image;
 
   // Tabla de lotes
-  const lotesDiv = document.getElementById("editarLotes");
-  lotesDiv.innerHTML = `
-    <table class="tabla-lotes">
-      <thead>
-        <tr>
-          <th>Cantidad</th>
-          <th>Costo unitario</th>
-          <th>Fecha ingreso</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  `;
-
-  const tbody = lotesDiv.querySelector("tbody");
+  const lotesTbody = document.getElementById("editarLotes");
+  lotesTbody.innerHTML = "";
 
   producto.lotes?.forEach(l => {
-    const tr = document.createElement("tr");
+    const row = document.createElement("tr");
 
-    tr.innerHTML = `
+    row.innerHTML = `
+      <td>${l.fechaIngreso ? new Date(l.fechaIngreso).toLocaleDateString() : "-"}</td>
       <td>${l.cantidad ?? "-"}</td>
       <td>$${l.costoUnitario != null ? l.costoUnitario.toFixed(2) : "-"}</td>
-      <td>${l.fechaIngreso ? new Date(l.fechaIngreso).toLocaleDateString() : "-"}</td>
-      <td><button class="btn-delete-lote">❌</button></td>
+      <td><button class="btn-del">❌</button></td>
     `;
 
-    const btnDel = tr.querySelector(".btn-delete-lote");
+    const btnDel = row.querySelector(".btn-del");
     btnDel.addEventListener("click", async () => {
-      const confirmar = confirm("¿Seguro que deseas eliminar este lote?");
-      if (confirmar) {
+    if (confirm("¿Seguro que deseas eliminar este lote?")) {
         await deleteLote(producto.id, l._id);
         this.fillEditarProductoModal(await getProductById(producto.id));
         this.loadProductos();
       }
     });
-
-    tbody.appendChild(tr);
+    
+  lotesTbody.appendChild(row);
   });
 }
 }
