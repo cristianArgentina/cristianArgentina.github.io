@@ -55,7 +55,6 @@ class VentasPanel extends HTMLElement {
             <button id="btnNuevaVenta" class="btn-primary">➕ Registrar venta</button>
          </div>
         </div>
-        <button id="btnNuevaVenta" class="btn-primary">➕ Registrar venta</button>
         <table>
           <thead>
             <tr>
