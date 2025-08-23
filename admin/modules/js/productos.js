@@ -16,31 +16,120 @@ class ProductosPanel extends HTMLElement {
     this.setupEventListeners();
   }
 
-  render() {
-    this.shadowRoot.innerHTML = `
-      <style>
-        table { width: 100%; border-collapse: collapse; font-family: sans-serif; }
-        th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
-        .btn-primary { background: #0078d4; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
-        .btn-primary:hover { background: #005fa3; }
-      </style>
+render() {
+  this.shadowRoot.innerHTML = `
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-      <h2>📦 Productos</h2>
-      <button id="btnNuevo" class="btn-primary">➕ Agregar nuevo producto</button>
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Categoría</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody id="tabla-productos"></tbody>
-      </table>
-    `;
-  }
+      h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        font-family: sans-serif;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: sans-serif;
+        font-size: 0.9rem;
+      }
+
+      th, td {
+        border: 1px solid #ccc;
+        padding: 0.6rem;
+        text-align: left;
+      }
+
+      th {
+        background: #f5f5f5;
+      }
+
+      .btn-primary {
+        background: #0078d4;
+        color: #fff;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+      .btn-primary:hover {
+        background: #005fa3;
+      }
+
+      /* --- Responsive --- */
+      @media (max-width: 768px) {
+        table, thead, tbody, th, td, tr {
+          display: block;
+        }
+
+        thead tr {
+          display: none; /* Ocultamos cabecera */
+        }
+
+        tr {
+          margin-bottom: 1rem;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          padding: 0.5rem;
+          background: #fff;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        td {
+          border: none;
+          padding: 0.5rem;
+          position: relative;
+          text-align: right;
+        }
+
+        td::before {
+          content: attr(data-label);
+          position: absolute;
+          left: 0;
+          width: 50%;
+          font-weight: bold;
+          text-align: left;
+        }
+
+        td:last-child {
+          display: flex;
+          justify-content: flex-end;
+          gap: 6px;
+        }
+
+        .action {
+          padding: 6px;
+          font-size: 1rem;
+          border: none;
+          background: none;
+          cursor: pointer;
+        }
+      }
+    </style>
+
+    <h2>📦 Productos</h2>
+    <button id="btnNuevo" class="btn-primary">➕ Agregar nuevo producto</button>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Categoría</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-productos"></tbody>
+    </table>
+  `;
+}
 
   async loadProductos() {
     const tbody = this.shadowRoot.getElementById("tabla-productos");
@@ -51,11 +140,11 @@ class ProductosPanel extends HTMLElement {
       productos.forEach(p => {
         const row = document.createElement("tr");
         row.innerHTML = `
-          <td>${p.name}</td>
-          <td>$${p.price.toFixed(2)}</td>
-          <td>${p.stock}</td>
-          <td>${p.category}</td>
-          <td>
+          <td data-label="Nombre">${p.name}</td>
+          <td data-label="Precio">$${p.price.toFixed(2)}</td>
+          <td data-label="Stock">${p.stock}</td>
+          <td data-label="Categoría">${p.category}</td>
+          <td data-label="Acciones">
             <button class="action btnEditar" data-id="${p.id}">✏️</button>
             <button class="action btnEliminar" data-id="${p.id}">🗑️</button>
             <button class="action btnLote" data-id="${p.id}">➕ Lote</button>
