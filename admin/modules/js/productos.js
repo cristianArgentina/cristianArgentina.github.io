@@ -85,9 +85,8 @@ render() {
         td {
           border: none;
           padding: 0.5rem;              
-          padding-left: 55%; /* 🧠 clave para que el texto no se encime */
           position: relative;
-          text-align:  left !important;;
+          text-align: right;
         }
 
         td::before {
