@@ -17,7 +17,7 @@ class VentasPanel extends HTMLElement {
 
   render() {
     this.shadowRoot.innerHTML = `
-      <link rel="stylesheet" href="../admin/modules/css/ventas.css">
+      <link rel="stylesheet" href="../css/ventas.css">
       <style>
         section {
           padding: 1rem;

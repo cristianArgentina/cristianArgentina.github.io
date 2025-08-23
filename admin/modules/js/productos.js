@@ -86,7 +86,7 @@ render() {
           border: none;
           padding: 0.5rem;
           position: relative;
-          text-align: left !important;
+          text-align:  left !important;;
         }
 
         td::before {
