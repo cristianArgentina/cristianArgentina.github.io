@@ -109,6 +109,7 @@ async loadVentas() {
   } catch (err) {
     console.error("Error cargando ventas:", err);
   } finally {
+    this.shadowRoot.getElementById("vistaVentas").style.display = "block";
     hideLoader();
   }
 }
