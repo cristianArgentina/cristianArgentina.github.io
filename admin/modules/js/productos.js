@@ -207,12 +207,12 @@ render() {
     document.getElementById("formNuevoProducto").addEventListener("submit", async (e) => {
       e.preventDefault();
       const nuevo = {
-        name: form.nombre.value,
-        description: form.descripcion.value,
-        price: parseFloat(form.precio.value),
-        stock: parseInt(form.stock.value),
-        category: form.categoria.value,
-        image: form.urlImage.value
+        name: e.target.nombre.value,
+        description: e.target.descripcion.value,
+        price: parseFloat(e.target.precio.value),
+        stock: parseInt(e.target.stock.value),
+        category: e.target.categoria.value,
+        image: e.target.urlImage.value
       };
       await createProduct(nuevo);
       this.loadProductos();
