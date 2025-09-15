@@ -96,8 +96,6 @@
         const productos = await res.json();
 
         const productosElems = productos.map(p => crearProductoElem(p));
-        productosElems.forEach(e => contenedor.appendChild(e));
-
         productosOriginales = [...productosElems];
 
       } catch (err) {
