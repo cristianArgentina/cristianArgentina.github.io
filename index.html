@@ -40,6 +40,9 @@
   </div>
   <div id="categorias" class="categorias-container">
   </div>
+  <div id="loader-container">
+    Cargando<span class="dots"><span>.</span><span>.</span><span>.</span></span>
+  </div>
   <div class="productos" id="contenedor-productos">
   </div>
 
@@ -63,11 +66,15 @@
       <div id="loader-container">
         Cargando<span class="dots"><span>.</span><span>.</span><span>.</span></span>
       </div>
-
-      showLoader();
-      hideLoader();
-
     */
+
+    function mostrarLoader() {
+      document.getElementById("loader").style.display = "flex";
+    }
+    function ocultarLoader() {
+      document.getElementById("loader").style.display = "none";
+    }
+
     const categorias = [
       { id: "belleza y salud", nombre: "Belleza y Salud", icono: "🧴" },
       { id: "hogar", nombre: "Hogar", icono: "🏠" },
@@ -117,11 +124,10 @@
         // ✅ Mostramos de caché
         filtrarYOrdenar(productosOriginales);
       } else {
-        contenedor.innerHTML = `<div id="loader-container">
-        Cargando<span class="dots"><span>.</span><span>.</span><span>.</span></span>
-      </div>`;
+        mostrarLoader()
         // ❌ Si aún no hay caché, pedimos al backend
         await precargarProductos()
+        ocultarLoader()
         filtrarYOrdenar(productosOriginales);
       }
     });
