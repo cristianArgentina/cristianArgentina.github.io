@@ -408,7 +408,7 @@ h1 {
 
 /* Tarjeta de categoría */
 .card-categoria {
-    background: #1e1e1e;
+    background: #6b1fc8;
     /* fondo oscuro */
     color: #f5f5f5;
     /* texto claro */
@@ -440,8 +440,7 @@ h1 {
 .card-categoria:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
-    background: #292929;
-}
+    background: #3c1270
 
 @media (max-width: 768px) {
     #categoriaSelector {
@@ -456,6 +455,6 @@ h1 {
 
 .card-categoria.active {
   border: 2px solid #007bff;
-  background: #e6f0ff;
+  background: #277dff;
   box-shadow: 0 0 8px rgba(0,123,255,0.6);
 }
