@@ -108,23 +108,20 @@
       );
     }, 400);
 
-    // Cuando el usuario hace clic en una categoría, quitamos la instrucción y el pulso
-    document.getElementById("categorias").addEventListener("click", () => {
-      document.getElementById("instruccion").style.display = "none";
-      document.querySelectorAll(".card-categoria").forEach(c =>
-        c.classList.remove("hint")
-      );
-    });
-
     document.getElementById("categorias").addEventListener("click", async (e) => {
       const card = e.target.closest(".card-categoria");
       if (!card) return;
 
       categorySelected = card.dataset.id;
-
+      
+      document.getElementById("instruccion").style.display = "none";
+      document.querySelectorAll(".card-categoria").forEach(c =>
+        c.classList.remove("hint")
+      );
       document.querySelectorAll(".card-categoria").forEach(c =>
         c.classList.remove("active")
       );
+
 
       // 2. Agregar la clase a la card clickeada
       card.classList.add("active");
