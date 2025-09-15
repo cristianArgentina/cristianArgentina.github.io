@@ -120,6 +120,13 @@
       categorySelected = card.dataset.id;
       categoriaSelector.value = categorySelected;
 
+      document.querySelectorAll(".card-categoria").forEach(c =>
+        c.classList.remove("active")
+      );
+
+      // 2. Agregar la clase a la card clickeada
+      card.classList.add("active");
+
       if (productosOriginales.length > 0) {
         // ✅ Mostramos de caché
         filtrarYOrdenar(productosOriginales);
