@@ -30,13 +30,6 @@
       <i class="fas fa-search"></i>
       <input type="text" id="buscador" placeholder="Buscar productos...">
     </div>
-    <select id="categoriaSelector">
-      <option value="">Todas las categorías</option>
-      <option value="belleza y salud" selected>Belleza y salud</option>
-      <option value="hogar">Hogar</option>
-      <option value="tecnologia">Tecnología</option>
-      <option value="iluminacion">Iluminación</option>
-    </select>
   </div>
   <div id="instruccion">
     👉 Selecciona una categoría para explorar productos
@@ -58,18 +51,11 @@
     const loader = document.getElementById('loader-container');
     const contenedor = document.getElementById('contenedor-productos');
     const buscador = document.getElementById('buscador');
-    const categoriaSelector = document.getElementById('categoriaSelector');
     const noResults = document.getElementById('no-results');
     let categorySelected = ''
 
     // Lista de productos original para filtrado
     let productosOriginales = [];
-
-    /*
-      <div id="loader-container">
-        Cargando<span class="dots"><span>.</span><span>.</span><span>.</span></span>
-      </div>
-    */
 
     function mostrarLoader() {
       document.getElementById("loader").style.display = "flex";
@@ -97,7 +83,6 @@
     renderCategorias();
 
     buscador.addEventListener('input', () => filtrarYOrdenar(productosOriginales));
-    categoriaSelector.addEventListener('change', () => filtrarYOrdenar(productosOriginales));
 
     async function precargarProductos() {
       try {
@@ -136,7 +121,6 @@
       if (!card) return;
 
       categorySelected = card.dataset.id;
-      categoriaSelector.value = categorySelected;
 
       document.querySelectorAll(".card-categoria").forEach(c =>
         c.classList.remove("active")
@@ -219,7 +203,7 @@
 
     function filtrarYOrdenar(productosElems) {
       const texto = buscador.value.toLowerCase();
-      categorySelected = categoriaSelector.value;
+      categorySelected = '';
 
       let lista = productosElems;
 

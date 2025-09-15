@@ -58,15 +58,6 @@ h1 {
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-#categoriaSelector {
-    flex: 1;
-    padding: 10px 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    width: 100%;
-}
-
 .buscador-con-icono {
     position: relative;
     width: 100%;
@@ -95,8 +86,7 @@ h1 {
     box-shadow: none;
 }
 
-.buscador-con-icono input,
-#categoriaSelector {
+.buscador-con-icono input {
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
     color: #8037ce;
@@ -122,8 +112,7 @@ h1 {
         font-size: 1.8rem;
     }
 
-    .buscador-con-icono,
-    #categoriaSelector {
+    .buscador-con-icono {
         flex: 0 1 250px;
         max-width: 250px;
         margin: 0;
@@ -155,16 +144,6 @@ h1 {
     50% {
         transform: translateY(-6px);
     }
-}
-
-#categoriaSelector {
-    appearance: none;
-    background-image: url('https://cdn-icons-png.flaticon.com/512/271/271228.png');
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 12px;
-    padding-right: 36px;
-    /* espacio para la flecha */
 }
 
 .productos {
@@ -441,12 +420,6 @@ h1 {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
     background: #3c1270
-}
-
-@media (max-width: 768px) {
-    #categoriaSelector {
-        display: none;
-    }
 }
 
 .card-categoria:hover {
