@@ -110,8 +110,8 @@
       const card = e.target.closest(".card-categoria");
       if (!card) return;
 
-      //const catId = card.dataset.id;
       categorySelected = card.dataset.id;
+      categoriaSelector.value = categorySelected;
 
       if (productosOriginales.length > 0) {
         // ✅ Mostramos de caché
