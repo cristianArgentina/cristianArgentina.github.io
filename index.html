@@ -38,8 +38,7 @@
       <option value="iluminacion">Iluminación</option>
     </select>
   </div>
-  <div id="loader-container">
-    Cargando<span class="dots"><span>.</span><span>.</span><span>.</span></span>
+  <div id="categorias" class="categorias-container">
   </div>
   <div class="productos" id="contenedor-productos">
   </div>
@@ -55,16 +54,95 @@
     const buscador = document.getElementById('buscador');
     const categoriaSelector = document.getElementById('categoriaSelector');
     const noResults = document.getElementById('no-results');
+    const categorySelected = ''
 
     // Lista de productos original para filtrado
     let productosOriginales = [];
 
-    function showLoader() {
-      loader.classList.add('active');
+    /*
+      <div id="loader-container">
+        Cargando<span class="dots"><span>.</span><span>.</span><span>.</span></span>
+      </div>
+
+      showLoader();
+      hideLoader();
+
+    */
+    const categorias = [
+      { id: "belleza y salud", nombre: "Belleza y Salud", icono: "🧴" },
+      { id: "hogar", nombre: "Hogar", icono: "🏠" },
+      { id: "tecnologia", nombre: "Tecnología", icono: "💻" },
+      { id: "iluminacion", nombre: "Iluminación", icono: "💡" },
+    ];
+
+    function renderCategorias() {
+      const cont = document.getElementById("categorias");
+      cont.innerHTML = categorias.map(c => `
+    <div class="card-categoria" data-id="${c.id}">
+      <span class="icono">${c.icono}</span>
+      <h3>${c.nombre}</h3>
+    </div>
+  `).join("");
     }
-    function hideLoader() {
-      loader.classList.remove('active');
+    renderCategorias();
+
+    async function precargarProductos() {
+      try {
+        const res = await fetch(`${API_URL}/products`);
+        if (!res.ok) throw new Error('Error en la respuesta de la API');
+        const productos = await res.json();
+
+        const productosElems = productos.map(p => crearProductoElem(p));
+        productosElems.forEach(e => contenedor.appendChild(e));
+
+        productosOriginales = [...productosElems];
+
+      } catch (err) {
+        console.error("Error al despertar backend", err);
+        noResults.textContent = 'Error al cargar los productos.';
+        noResults.style.display = 'block';
+      }
     }
+    precargarProductos();
+
+    document.getElementById("categorias").addEventListener("click", async (e) => {
+      const card = e.target.closest(".card-categoria");
+      if (!card) return;
+
+      //const catId = card.dataset.id;
+      categorySelected = card.dataset.id;
+      document.getElementById("productos").innerHTML = `<div id="loader-container">
+        Cargando<span class="dots"><span>.</span><span>.</span><span>.</span></span>
+      </div>`;
+
+      if (productosOriginales.length > 0) {
+        // ✅ Mostramos de caché
+        buscador.addEventListener('input', () => filtrarYOrdenar(productosOriginales));
+        categoriaSelector.addEventListener('change', () => filtrarYOrdenar(productosOriginales));
+
+        filtrarYOrdenar(productosOriginales);
+      } else {
+        // ❌ Si aún no hay caché, pedimos al backend
+        await precargarProductos()
+        buscador.addEventListener('input', () => filtrarYOrdenar(productosOriginales));
+        categoriaSelector.addEventListener('change', () => filtrarYOrdenar(productosOriginales));
+
+        filtrarYOrdenar(productosOriginales);
+      }
+    });
+    /*
+        function showLoader() {
+          loader.classList.add('active');
+        }
+        function hideLoader() {
+          loader.classList.remove('active');
+        }
+    */
+
+    // Carga de YouTube
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
 
     function crearProductoElem(p) {
       const div = document.createElement('div');
@@ -123,12 +201,12 @@
 
     function filtrarYOrdenar(productosElems) {
       const texto = buscador.value.toLowerCase();
-      const categoria = categoriaSelector.value;
+      categorySelected = categoriaSelector.value;
 
       let lista = productosElems;
 
-      if (categoria) {
-        lista = lista.filter(e => (e.dataset.categoria || '').toLowerCase() === categoria.toLowerCase());
+      if (categorySelected) {
+        lista = lista.filter(e => (e.dataset.categoria || '').toLowerCase() === categorySelected.toLowerCase());
       }
 
       lista = lista.filter(e =>
@@ -144,37 +222,6 @@
       if (window.inicializarVideosYouTube) inicializarVideosYouTube();
       noResults.style.display = ordenados.length === 0 ? 'block' : 'none';
     }
-
-    (async () => {
-      try {
-        showLoader();
-        const res = await fetch(`${API_URL}/products`);
-        if (!res.ok) throw new Error('Error en la respuesta de la API');
-        const productos = await res.json();
-
-        const productosElems = productos.map(p => crearProductoElem(p));
-        productosElems.forEach(e => contenedor.appendChild(e));
-
-        productosOriginales = [...productosElems];
-
-        buscador.addEventListener('input', () => filtrarYOrdenar(productosOriginales));
-        categoriaSelector.addEventListener('change', () => filtrarYOrdenar(productosOriginales));
-
-        filtrarYOrdenar(productosOriginales);
-
-        // Carga de YouTube
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        document.body.appendChild(tag);
-
-      } catch (error) {
-        console.error(error);
-        noResults.textContent = 'Error al cargar los productos.';
-        noResults.style.display = 'block';
-      } finally {
-        hideLoader();
-      }
-    })();
 
     // Función para inicializar videos YouTube (de tu código original)
     window.inicializarVideosYouTube = () => {
