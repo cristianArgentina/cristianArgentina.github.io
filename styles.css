@@ -450,12 +450,58 @@ h1 {
 }
 
 .card-categoria:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card-categoria.active {
-  border: 2px solid #007bff;
-  background: #277dff;
-  box-shadow: 0 0 8px rgba(0,123,255,0.6);
+    border: 2px solid #007bff;
+    background: #277dff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+}
+
+/* Texto instructivo */
+#instruccion {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+    margin: 1rem 0;
+    animation: bounce 1.2s infinite;
+    font-family: "Poppins", sans-serif;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* Pulso en las cards */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0, 123, 255, 0.4);
+    }
+
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0, 123, 255, 0);
+    }
+}
+
+.card-categoria.hint {
+    animation: pulse 1.8s infinite;
+    border-radius: 12px;
+    cursor: pointer;
 }

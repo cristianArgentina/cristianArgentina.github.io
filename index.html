@@ -38,6 +38,9 @@
       <option value="iluminacion">Iluminación</option>
     </select>
   </div>
+  <div id="instruccion">
+    👉 Selecciona una categoría para explorar productos
+  </div>
   <div id="categorias" class="categorias-container">
   </div>
   <div id="loader-container">
@@ -112,6 +115,21 @@
       }
     }
     precargarProductos();
+
+    // Activar animación de pulso en todas las categorías
+    setTimeout(() => {
+      document.querySelectorAll(".card-categoria").forEach(c =>
+        c.classList.add("hint")
+      );
+    }, 400);
+
+    // Cuando el usuario hace clic en una categoría, quitamos la instrucción y el pulso
+    document.getElementById("categorias").addEventListener("click", () => {
+      document.getElementById("instruccion").style.display = "none";
+      document.querySelectorAll(".card-categoria").forEach(c =>
+        c.classList.remove("hint")
+      );
+    });
 
     document.getElementById("categorias").addEventListener("click", async (e) => {
       const card = e.target.closest(".card-categoria");
