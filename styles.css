@@ -441,6 +441,7 @@ h1 {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
     background: #3c1270
+}
 
 @media (max-width: 768px) {
     #categoriaSelector {
