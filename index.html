@@ -58,10 +58,10 @@
     let productosOriginales = [];
 
     function mostrarLoader() {
-      document.getElementById("loader").style.display = "flex";
+      loader.style.display = "flex";
     }
     function ocultarLoader() {
-      document.getElementById("loader").style.display = "none";
+      loader.style.display = "none";
     }
 
     const categorias = [
@@ -200,7 +200,6 @@
 
     function filtrarYOrdenar(productosElems) {
       const texto = buscador.value.toLowerCase();
-      categorySelected = '';
 
       let lista = productosElems;
 
