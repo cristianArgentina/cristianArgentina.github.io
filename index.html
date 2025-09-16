@@ -113,28 +113,26 @@
       if (!card) return;
 
       categorySelected = card.dataset.id;
-      
+
       document.getElementById("instruccion").style.display = "none";
-      document.querySelectorAll(".card-categoria").forEach(c =>
-        c.classList.remove("hint")
-      );
-      document.querySelectorAll(".card-categoria").forEach(c =>
-        c.classList.remove("active")
-      );
-
-
-      // 2. Agregar la clase a la card clickeada
+      document.querySelectorAll(".card-categoria").forEach(c => c.classList.remove("hint", "active"));
       card.classList.add("active");
 
+      mostrarLoader(); // ✅ SIEMPRE mostramos loader antes de filtrar
+
       if (productosOriginales.length > 0) {
-        // ✅ Mostramos de caché
-        filtrarYOrdenar(productosOriginales);
+        // Si ya está precargado
+        setTimeout(() => {
+          filtrarYOrdenar(productosOriginales);
+          ocultarLoader();
+        }, 400); // un mini delay para que se note
       } else {
-        mostrarLoader()
-        // ❌ Si aún no hay caché, pedimos al backend
-        await precargarProductos()
-        ocultarLoader()
-        filtrarYOrdenar(productosOriginales);
+        try {
+          await precargarProductos();
+          filtrarYOrdenar(productosOriginales);
+        } finally {
+          ocultarLoader();
+        }
       }
     });
 
