@@ -3,6 +3,7 @@
 
 <head>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="./admin/modules/css/loader-wake-up-backend.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <!-- Google tag (gtag.js) -->
@@ -36,9 +37,6 @@
   </div>
   <div id="categorias" class="categorias-container">
   </div>
-  <div id="loader-container">
-    Cargando<span class="dots"><span>.</span><span>.</span><span>.</span></span>
-  </div>
   <div class="productos" id="contenedor-productos">
   </div>
 
@@ -46,9 +44,10 @@
 
   <script type="module">
     import { API_URL } from './config.js';
+    import { initLoaderArt } from './admin/modules/js/loader-wake-up-backend.js';
 
     // Variables DOM declaradas al inicio
-    const loader = document.getElementById('loader-container');
+ //   const loader = document.getElementById('loader-container');
     const contenedor = document.getElementById('contenedor-productos');
     const buscador = document.getElementById('buscador');
     const noResults = document.getElementById('no-results');
@@ -56,14 +55,14 @@
 
     // Lista de productos original para filtrado
     let productosOriginales = [];
-
+/*
     function mostrarLoader() {
       loader.style.display = "flex";
     }
     function ocultarLoader() {
       loader.style.display = "none";
     }
-
+*/
     const categorias = [
       { id: "belleza y salud", nombre: "Belleza y Salud", icono: "🧴" },
       { id: "hogar", nombre: "Hogar", icono: "🏠" },
@@ -118,20 +117,23 @@
       document.querySelectorAll(".card-categoria").forEach(c => c.classList.remove("hint", "active"));
       card.classList.add("active");
 
-      mostrarLoader(); // ✅ SIEMPRE mostramos loader antes de filtrar
+      //mostrarLoader(); // ✅ SIEMPRE mostramos loader antes de filtrar
+      const hideLoaderArt = initLoaderArt();
 
       if (productosOriginales.length > 0) {
         // Si ya está precargado
         setTimeout(() => {
           filtrarYOrdenar(productosOriginales);
-          ocultarLoader();
+          //ocultarLoader();
+          hideLoaderArt(); // Ocultar loader cuando recibimos respuesta
         }, 400); // un mini delay para que se note
       } else {
         try {
           await precargarProductos();
           filtrarYOrdenar(productosOriginales);
         } finally {
-          ocultarLoader();
+          hideLoaderArt(); // Ocultar loader cuando recibimos respuesta
+          //ocultarLoader();
         }
       }
     });

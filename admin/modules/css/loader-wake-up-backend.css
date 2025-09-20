@@ -1,0 +1,36 @@
+/* loader-wake-up-backend.css */
+
+#loader-art {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0e0e0e; /* Fondo oscuro elegante */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.loader-text {
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  margin-top: 20px;
+  letter-spacing: 1px;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px #fffa, 0 0 10px #fff; }
+  100% { text-shadow: 0 0 20px #ffd, 0 0 30px #ff9; }
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
