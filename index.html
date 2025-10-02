@@ -40,6 +40,9 @@
   </div>
   <div class="productos" id="contenedor-productos">
   </div>
+  <a id="whatsapp-float" class="whatsapp-float" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
 
   <p id="no-results">No se encontraron productos que coincidan con la búsqueda o filtro.</p>
 
@@ -144,6 +147,23 @@
         }
       }
     });
+    
+    const wspBtn = document.getElementById("whatsapp-float");
+
+    wspBtn.addEventListener("click", () => {
+      const seleccionados = [...document.querySelectorAll(".producto-check:checked")]
+        .map(chk => chk.dataset.nombre);
+
+      if (seleccionados.length === 0) {
+        alert("Selecciona al menos un producto para consultar");
+        return;
+      }
+
+      const mensaje = `Hola, me interesan los siguientes productos:\n- ${seleccionados.join("\n- ")}`;
+      const url = `https://wa.me/5491138863899?text=${encodeURIComponent(mensaje)}`;
+
+      window.open(url, "_blank");
+    });
 
     // Carga de YouTube
     const tag = document.createElement('script');
@@ -177,13 +197,11 @@
           <h2>${p.name}</h2>
           <p>${p.description}</p>
           <div class="precio-wsp">
-            <p class="precio">$${p.price.toLocaleString()}</p>
-            <a class="whatsapp-btn"
-              href="https://wa.me/5491138863899?text=Hola,%20quiero%20consultar%20por%20el%20producto:%20${encodeURIComponent(p.name)}" 
-              target="_blank" 
-              title="Consultar por WhatsApp">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height: 36px;">
-            </a>
+            <label class="seleccionar">
+              <input type="checkbox" class="producto-check" data-nombre="Nombre producto">
+              Seleccionar
+            </label>
+            <span class="precio">$${p.price.toLocaleString()}</span>
           </div>
         `;
       div.appendChild(info);
@@ -204,6 +222,15 @@
       }
       return div;
     }
+
+    /*
+                <a class="whatsapp-btn"
+                  href="https://wa.me/5491138863899?text=Hola,%20quiero%20consultar%20por%20el%20producto:%20${encodeURIComponent(p.name)}" 
+                  target="_blank" 
+                  title="Consultar por WhatsApp">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height: 36px;">
+                </a>
+    */
 
     function filtrarYOrdenar(productosElems) {
       const texto = buscador.value.toLowerCase();
