@@ -91,7 +91,9 @@
         const res = await fetch(`${API_URL}/products`);
         if (!res.ok) throw new Error('Error en la respuesta de la API');
         const productos = await res.json();
-        hideLoader();
+        setTimeout(() => {
+          hideLoader();
+        }, 400); // un mini delay para que se note
 
         const productosElems = productos.map(p => crearProductoElem(p));
         productosOriginales = [...productosElems];
