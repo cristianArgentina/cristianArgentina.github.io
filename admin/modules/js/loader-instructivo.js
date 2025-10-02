@@ -35,7 +35,10 @@ export function initLoaderInstructivo() {
   // Animaciones secuenciales
   setTimeout(() => card1.classList.add("show"), 500);    // derecha
   setTimeout(() => card2.classList.add("show"), 3500);   // izquierda
-  setTimeout(() => card3.classList.add("show"), 6500);   // derecha
+  setTimeout(() =>  {
+  console.log("Mostrando card3"); // debug
+  card3.classList.add("show");
+}, 6500);   // derecha//card3.classList.add("show"), 6500);   // derecha
 
   // Loader overlay si tarda demasiado
   setTimeout(() => {
