@@ -33,6 +33,10 @@
   transform: translateX(-100%);
 }
 
+.instructivo-step.from-left.show {
+  transform: translateX(0);
+}
+
 .instructivo-icon {
   font-size: 28px;
   margin-bottom: 8px;
