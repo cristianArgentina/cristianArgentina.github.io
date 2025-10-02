@@ -8,7 +8,7 @@ export function initLoaderInstructivo() {
       <div class="instructivo-icon">✅</div>
       <p>Marca los productos que te interesen en la casilla de verificación.</p>
     </div>
-    <div class="instructivo-step" id="card2">
+    <div class="instructivo-step from-left" id="card2">
       <div class="instructivo-icon">🛒</div>
       <p>Puedes seleccionar varios artículos a la vez.</p>
     </div>
