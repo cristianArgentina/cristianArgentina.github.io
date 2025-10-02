@@ -1,42 +1,63 @@
 #loader-instructivo {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: #111;
-  color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-  z-index: 9999;
-  padding: 20px;
-  font-family: "Poppins", sans-serif;
+  gap: 15px;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  transition: opacity 0.5s ease;
 }
 
 .instructivo-step {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 12px;
-  padding: 15px 20px;
-  margin: 10px 0;
-  max-width: 320px;
-  width: 90%;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
-  animation: fadeInUp 0.8s ease forwards;
   opacity: 0;
+  transform: translateX(100%);
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-size: 16px;
+  max-width: 320px;
+  text-align: center;
+  transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
-.instructivo-step:nth-child(1) { animation-delay: 0.3s; }
-.instructivo-step:nth-child(2) { animation-delay: 0.6s; }
-.instructivo-step:nth-child(3) { animation-delay: 0.9s; }
+.instructivo-step.show {
+  opacity: 1;
+  transform: translateX(0);
+}
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+.instructivo-step.from-left {
+  transform: translateX(-100%);
 }
 
 .instructivo-icon {
-  font-size: 2rem;
+  font-size: 28px;
   margin-bottom: 8px;
+}
+
+/* Loader */
+#loader-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #ddd;
+  border-top: 6px solid #25D366;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
