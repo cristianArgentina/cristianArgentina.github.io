@@ -32,6 +32,10 @@
   transform: translateX(0);
 }
 
+.instructivo-step.from-left {
+  transform: translateX(-100%);
+}
+
 .instructivo-step.from-left.show {
   transform: translateX(0);
 }
