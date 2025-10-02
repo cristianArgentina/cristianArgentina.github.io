@@ -31,6 +31,8 @@ export function initLoaderInstructivo() {
     document.getElementById("card3")
   ];
 
+  const loaderOverlay = document.getElementById("loader-overlay"); // 👈 aquí
+
   // Mostrar tarjetas con delay
   setTimeout(() => {
     cards[0].classList.add("show"); // derecha
@@ -46,7 +48,7 @@ export function initLoaderInstructivo() {
 
   // Si backend tarda más de 9.5s, mostrar loader overlay
   const loaderTimeout = setTimeout(() => {
-    document.getElementById("loader-overlay").style.display = "flex";
+    loaderOverlay.style.display = "flex";
   }, 9500);
 
   // función para ocultarlo
