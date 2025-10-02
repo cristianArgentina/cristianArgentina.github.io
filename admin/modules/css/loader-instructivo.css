@@ -1,13 +1,16 @@
 #loader-instructivo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255,255,255,0.92); /* cubre toda la pantalla */
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
+  justify-content: center;
+  gap: 20px;
+  z-index: 9999; /* siempre por encima */
   transition: opacity 0.5s ease;
 }
 
@@ -15,22 +18,18 @@
   opacity: 0;
   transform: translateX(100%);
   background: #fff;
-  padding: 15px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  font-size: 16px;
-  max-width: 320px;
+  padding: 20px 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  font-size: 17px;
+  max-width: 340px;
   text-align: center;
   transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
 .instructivo-step.show {
   opacity: 1;
-  transform: translateX(0) !important; /* aseguramos override */
-}
-
-.instructivo-step.from-left {
-  transform: translateX(-100%);
+  transform: translateX(0);
 }
 
 .instructivo-step.from-left.show {
@@ -38,11 +37,11 @@
 }
 
 .instructivo-icon {
-  font-size: 28px;
-  margin-bottom: 8px;
+  font-size: 30px;
+  margin-bottom: 10px;
 }
 
-/* Loader */
+/* Loader overlay centrado */
 #loader-overlay {
   position: absolute;
   inset: 0;
@@ -50,7 +49,7 @@
   display: none;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 0; /* ocupa todo el modal */
 }
 
 .loader {
