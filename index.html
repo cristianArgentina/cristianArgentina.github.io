@@ -93,7 +93,7 @@
         const productos = await res.json();
         setTimeout(() => {
           hideLoader();
-        }, 400); // un mini delay para que se note
+        }, 800); // un mini delay para que se note
 
         const productosElems = productos.map(p => crearProductoElem(p));
         productosOriginales = [...productosElems];
