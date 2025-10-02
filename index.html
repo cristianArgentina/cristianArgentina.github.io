@@ -196,13 +196,11 @@
       info.innerHTML = `
           <h2>${p.name}</h2>
           <p>${p.description}</p>
-          <div class="precio-wsp">
-            <label class="seleccionar">
-              <input type="checkbox" class="producto-check" data-nombre="${p.name} - $${p.price.toLocaleString()}">
-              Seleccionar
-            </label>
+          <label class="precio-wsp">
+            <input type="checkbox" class="producto-check" data-nombre="${p.name} - $${p.price.toLocaleString()}">
+            <span class="checkmark"></span>
             <span class="precio">$${p.price.toLocaleString()}</span>
-          </div>
+          </label>
         `;
       div.appendChild(info);
       // Alerta visual de stock bajo
