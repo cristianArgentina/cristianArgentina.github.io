@@ -96,7 +96,7 @@
         const productos = await res.json();
         setTimeout(() => {
           hideLoader();
-        }, 800); // un mini delay para que se note
+        }, 4000); // un mini delay para que se note
 
         const productosElems = productos.map(p => crearProductoElem(p));
         productosOriginales = [...productosElems];
@@ -115,7 +115,7 @@
       document.querySelectorAll(".card-categoria").forEach(c =>
         c.classList.add("hint")
       );
-    }, 4000);
+    }, 400);
 
     document.getElementById("categorias").addEventListener("click", async (e) => {
       const card = e.target.closest(".card-categoria");
