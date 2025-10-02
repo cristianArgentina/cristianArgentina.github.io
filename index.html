@@ -4,6 +4,7 @@
 <head>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="./admin/modules/css/loader-wake-up-backend.css">
+  <link rel="stylesheet" href="./admin/modules/css/loader-instructivo.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <!-- Google tag (gtag.js) -->
@@ -44,10 +45,12 @@
 
   <script type="module">
     import { API_URL } from './config.js';
-    import { initLoaderArt } from './admin/modules/js/loader-wake-up-backend.js';
+    //import { initLoaderArt } from './admin/modules/js/loader-wake-up-backend.js';
+    import { initLoaderInstructivo } from './loader-instructivo.js';
 
     // Variables DOM declaradas al inicio
- //   const loader = document.getElementById('loader-container');
+    //   const loader = document.getElementById('loader-container');
+    const hideLoader = initLoaderInstructivo();
     const contenedor = document.getElementById('contenedor-productos');
     const buscador = document.getElementById('buscador');
     const noResults = document.getElementById('no-results');
@@ -55,14 +58,14 @@
 
     // Lista de productos original para filtrado
     let productosOriginales = [];
-/*
-    function mostrarLoader() {
-      loader.style.display = "flex";
-    }
-    function ocultarLoader() {
-      loader.style.display = "none";
-    }
-*/
+    /*
+        function mostrarLoader() {
+          loader.style.display = "flex";
+        }
+        function ocultarLoader() {
+          loader.style.display = "none";
+        }
+    */
     const categorias = [
       { id: "belleza y salud", nombre: "Belleza y Salud", icono: "🧴" },
       { id: "hogar", nombre: "Hogar", icono: "🏠" },
@@ -88,6 +91,7 @@
         const res = await fetch(`${API_URL}/products`);
         if (!res.ok) throw new Error('Error en la respuesta de la API');
         const productos = await res.json();
+        hideLoader();
 
         const productosElems = productos.map(p => crearProductoElem(p));
         productosOriginales = [...productosElems];
@@ -96,6 +100,7 @@
         console.error("Error al despertar backend", err);
         noResults.textContent = 'Error al cargar los productos.';
         noResults.style.display = 'block';
+        hideLoader();
       }
     }
     precargarProductos();
@@ -118,21 +123,21 @@
       card.classList.add("active");
 
       //mostrarLoader(); // ✅ SIEMPRE mostramos loader antes de filtrar
-      const hideLoaderArt = initLoaderArt();
+      //const hideLoaderArt = initLoaderArt();
 
       if (productosOriginales.length > 0) {
         // Si ya está precargado
         setTimeout(() => {
           filtrarYOrdenar(productosOriginales);
           //ocultarLoader();
-          hideLoaderArt(); // Ocultar loader cuando recibimos respuesta
+          //hideLoaderArt(); // Ocultar loader cuando recibimos respuesta
         }, 400); // un mini delay para que se note
       } else {
         try {
           await precargarProductos();
           filtrarYOrdenar(productosOriginales);
         } finally {
-          hideLoaderArt(); // Ocultar loader cuando recibimos respuesta
+          //hideLoaderArt(); // Ocultar loader cuando recibimos respuesta
           //ocultarLoader();
         }
       }
