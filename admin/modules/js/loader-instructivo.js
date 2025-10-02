@@ -25,33 +25,24 @@ export function initLoaderInstructivo() {
 
   document.body.appendChild(loader);
 
-  const cards = [
-    document.getElementById("card1"),
-    document.getElementById("card2"),
-    document.getElementById("card3")
-  ];
+  // referencias
+  const card1 = document.getElementById("card1");
+  const card2 = document.getElementById("card2");
+  const card3 = document.getElementById("card3");
+  const loaderOverlay = document.getElementById("loader-overlay");
 
-  const loaderOverlay = document.getElementById("loader-overlay"); // 👈 aquí
 
-  // Mostrar tarjetas con delay
+  // Animaciones secuenciales
+  setTimeout(() => card1.classList.add("show"), 500);    // derecha
+  setTimeout(() => card2.classList.add("show"), 3500);   // izquierda
+  setTimeout(() => card3.classList.add("show"), 6500);   // derecha
+
+  // Loader overlay si tarda demasiado
   setTimeout(() => {
-    cards[0].classList.add("show"); // derecha
-  }, 500);
-
-  setTimeout(() => {
-    cards[1].classList.add("from-left", "show"); // izquierda
-  }, 3500);
-
-  setTimeout(() => {
-    cards[2].classList.add("show"); // derecha
-  }, 6500);
-
-  // Si backend tarda más de 9.5s, mostrar loader overlay
-  const loaderTimeout = setTimeout(() => {
     loaderOverlay.style.display = "flex";
   }, 9500);
 
-  // función para ocultarlo
+  // función para ocultar instructivo
   return function hideLoaderInstructivo() {
     loader.style.opacity = "0";
     setTimeout(() => loader.remove(), 500);
