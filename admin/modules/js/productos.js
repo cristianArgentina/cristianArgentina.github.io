@@ -10,14 +10,22 @@ class ProductosPanel extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
 
+  debounce(func, delay) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
+
   connectedCallback() {
     this.render();
     this.loadProductos();
     this.setupEventListeners();
   }
 
-render() {
-  this.shadowRoot.innerHTML = `
+  render() {
+    this.shadowRoot.innerHTML = `
     <style>
       * {
         box-sizing: border-box;
@@ -129,7 +137,7 @@ render() {
       <tbody id="tabla-productos"></tbody>
     </table>
   `;
-}
+  }
 
   async loadProductos() {
     const tbody = this.shadowRoot.getElementById("tabla-productos");
@@ -204,8 +212,12 @@ render() {
     });
 
     // Form nuevo producto
-    document.getElementById("formNuevoProducto").addEventListener("submit", async (e) => {
+    document.getElementById("formNuevoProducto").addEventListener("submit", this.debounce(async (e) => {
       e.preventDefault();
+
+      const btn = e.target.querySelector("button[type=submit]");
+      btn.disabled = true;
+
       const nuevo = {
         name: e.target.nombre.value,
         description: e.target.descripcion.value,
@@ -215,14 +227,21 @@ render() {
         image: e.target.urlImage.value
       };
       await createProduct(nuevo);
+
       this.loadProductos();
       e.target.reset();
       document.getElementById("modalNuevoProducto").style.display = "none";
-    });
+
+      btn.disabled = false;
+    }, 300));
 
     // Form editar producto
-    document.getElementById("formEditarProducto").addEventListener("submit", async (e) => {
+    document.getElementById("formEditarProducto").addEventListener("submit", this.debounce(async (e) => {
       e.preventDefault();
+
+      const btn = e.target.querySelector("button[type=submit]");
+      btn.disabled = true;
+
       const id = e.target.productoId.value;
       const actualizado = {
         name: e.target.nombre.value,
@@ -235,57 +254,68 @@ render() {
       await updateProduct(id, actualizado);
       this.loadProductos();
       document.getElementById("modalEditarProducto").style.display = "none";
-    });
+
+      btn.disabled = false;
+    }, 300));
 
     // Form agregar lote
-    document.getElementById("formLote").addEventListener("submit", async (e) => {
-      e.preventDefault();
+    document.getElementById("formLote").addEventListener("submit", this.debounce(async (e) => {
+    e.preventDefault();
+
+        const btn = e.target.querySelector("button[type=submit]");
+    btn.disabled = true;
+
+
       const productId = e.target.loteProductoId.value;
       const cantidad = parseInt(e.target.loteUnidades.value);
       const costoUnitario = parseFloat(e.target.loteCosto.value)
       const fecha = e.target.loteFecha.value;
+
       await addLote(productId, { cantidad, costoUnitario, fecha });
+
       this.loadProductos();
       document.getElementById("modalLote").style.display = "none";
-    });
+
+    btn.disabled = false;
+  }, 300));
   }
 
-fillEditarProductoModal(producto) {
-  const form = document.getElementById("formEditarProducto");
-  form.productoId.value = producto.id;
-  form.nombre.value = producto.name;
-  form.precio.value = producto.price;
-  form.stock.value = producto.stock;
-  form.categoria.value = producto.category;
-  form.descripcion.value = producto.description;
-  form.urlImage.value = producto.image;
+  fillEditarProductoModal(producto) {
+    const form = document.getElementById("formEditarProducto");
+    form.productoId.value = producto.id;
+    form.nombre.value = producto.name;
+    form.precio.value = producto.price;
+    form.stock.value = producto.stock;
+    form.categoria.value = producto.category;
+    form.descripcion.value = producto.description;
+    form.urlImage.value = producto.image;
 
-  // Tabla de lotes
-  const lotesTbody = document.getElementById("editarLotes");
-  lotesTbody.innerHTML = "";
+    // Tabla de lotes
+    const lotesTbody = document.getElementById("editarLotes");
+    lotesTbody.innerHTML = "";
 
-  producto.lotes?.forEach(l => {
-    const row = document.createElement("tr");
+    producto.lotes?.forEach(l => {
+      const row = document.createElement("tr");
 
-    row.innerHTML = `
+      row.innerHTML = `
       <td>${l.fechaIngreso ? new Date(l.fechaIngreso).toLocaleDateString() : "-"}</td>
       <td>${l.cantidad ?? "-"}</td>
       <td>$${l.costoUnitario != null ? l.costoUnitario.toFixed(2) : "-"}</td>
       <td><button class="btn-del">❌</button></td>
     `;
 
-    const btnDel = row.querySelector(".btn-del");
-    btnDel.addEventListener("click", async () => {
-    if (confirm("¿Seguro que deseas eliminar este lote?")) {
-        await deleteLote(producto.id, l._id);
-        this.fillEditarProductoModal(await getProductById(producto.id));
-        this.loadProductos();
-      }
+      const btnDel = row.querySelector(".btn-del");
+      btnDel.addEventListener("click", async () => {
+        if (confirm("¿Seguro que deseas eliminar este lote?")) {
+          await deleteLote(producto.id, l._id);
+          this.fillEditarProductoModal(await getProductById(producto.id));
+          this.loadProductos();
+        }
+      });
+
+      lotesTbody.appendChild(row);
     });
-    
-  lotesTbody.appendChild(row);
-  });
-}
+  }
 }
 
 customElements.define("productos-panel", ProductosPanel);
