@@ -13,7 +13,7 @@ class VentasPanel extends HTMLElement {
     this.render();
     this.loadVentas();
     this.setupEventListeners();
-   }
+  }
 
   render() {
     this.shadowRoot.innerHTML = `
@@ -74,24 +74,24 @@ class VentasPanel extends HTMLElement {
     `;
   }
 
-async loadVentas() {
-  showLoader("Cargando ventas... 🐥");
-  try {
-    const [ventas, productos] = await Promise.all([
-      getSales(),
-      getProducts()
-    ]);
+  async loadVentas() {
+    showLoader("Cargando ventas... 🐥");
+    try {
+      const [ventas, productos] = await Promise.all([
+        getSales(),
+        getProducts()
+      ]);
 
-    // 📦 indexar productos por id
-    const productosMap = {};
-    productos.forEach(p => { productosMap[p.id] = p.name });
+      // 📦 indexar productos por id
+      const productosMap = {};
+      productos.forEach(p => { productosMap[p.id] = p.name });
 
-    const tbody = this.shadowRoot.getElementById("tabla-ventas");
-    tbody.innerHTML = "";
+      const tbody = this.shadowRoot.getElementById("tabla-ventas");
+      tbody.innerHTML = "";
 
-    ventas.forEach(v => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
+      ventas.forEach(v => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
         <td>${new Date(v.createdAt).toLocaleDateString()}</td>
         <td>${productosMap[v.productId] || "❓"}</td>
         <td>${v.cantidad}</td>
@@ -99,50 +99,74 @@ async loadVentas() {
         <td>$${v.precioCosto?.toFixed(2) ?? "-"}</td>
         <td>$${v.ganancia?.toFixed(2) ?? "-"}</td>
       `;
-      tbody.appendChild(row);
-    });
+        tbody.appendChild(row);
+      });
 
-    // ✅ actualizar KPIs con productos
-    this.actualizarKPIs(ventas, productosMap);
+      // ✅ actualizar KPIs con productos
+      this.actualizarKPIs(ventas, productosMap);
 
-  } catch (err) {
-    console.error("Error cargando ventas:", err);
-  } finally {
-    this.shadowRoot.getElementById("vistaVentas").style.display = "block";
-    hideLoader();
+    } catch (err) {
+      console.error("Error cargando ventas:", err);
+    } finally {
+      this.shadowRoot.getElementById("vistaVentas").style.display = "block";
+      hideLoader();
+    }
   }
-}
 
-// KPIs
-actualizarKPIs(ventas, productosMap) {
-  const totalFacturado = ventas.reduce((sum, v) => sum + v.precioVenta * v.cantidad, 0);
-  const totalGanancia = ventas.reduce((sum, v) => sum + (v.ganancia ?? 0), 0);
-  const margenPromedio = totalFacturado ? ((totalGanancia / totalFacturado) * 100).toFixed(1) : 0;
+  // KPIs
+  actualizarKPIs(ventas, productosMap) {
+    const totalFacturado = ventas.reduce((sum, v) => sum + v.precioVenta * v.cantidad, 0);
+    const totalGanancia = ventas.reduce((sum, v) => sum + (v.ganancia ?? 0), 0);
+    const margenPromedio = totalFacturado ? ((totalGanancia / totalFacturado) * 100).toFixed(1) : 0;
 
-  // 📦 conteo por producto
-  const conteo = {};
-  ventas.forEach(v => { conteo[v.productId] = (conteo[v.productId] || 0) + v.cantidad });
-  const productoTopId = Object.entries(conteo).sort((a,b) => b[1]-a[1])[0]?.[0] || null;
-  const productoTop = productoTopId ? (productosMap[productoTopId] || productoTopId) : "-";
+    // 📦 conteo por producto
+    const conteo = {};
+    ventas.forEach(v => { conteo[v.productId] = (conteo[v.productId] || 0) + v.cantidad });
+    const productoTopId = Object.entries(conteo).sort((a, b) => b[1] - a[1])[0]?.[0] || null;
+    const productoTop = productoTopId ? (productosMap[productoTopId] || productoTopId) : "-";
 
-  // ⚡️ spans están fuera del shadow DOM
-  this.shadowRoot.getElementById("ventasHoy").textContent = ventas.length;
-  this.shadowRoot.getElementById("totalFacturado").textContent = totalFacturado.toFixed(2);
-  this.shadowRoot.getElementById("margenPromedio").textContent = margenPromedio + "%";
-  this.shadowRoot.getElementById("productoTop").textContent = productoTop;
-}
-
-
-async addVenta(nuevaVenta) {
-  try {
-    const venta = await createSale(nuevaVenta);
-    console.log("Venta creada:", venta);
-    this.loadVentas(); // recargar lista
-  } catch (err) {
-    console.error("Error al crear venta:", err);
+    // ⚡️ spans están fuera del shadow DOM
+    this.shadowRoot.getElementById("ventasHoy").textContent = ventas.length;
+    this.shadowRoot.getElementById("totalFacturado").textContent = totalFacturado.toFixed(2);
+    this.shadowRoot.getElementById("margenPromedio").textContent = margenPromedio + "%";
+    this.shadowRoot.getElementById("productoTop").textContent = productoTop;
   }
-}
-    setupEventListeners() {
+
+  handleNuevaVenta = async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const btn = form.querySelector("button[type=submit]");
+    btn.disabled = true;
+
+    try {
+      const productId = form.ventaProducto.value;
+      const cantidad = parseInt(form.ventaCantidad.value);
+      const precioVenta = parseFloat(form.ventaPrecio.value);
+
+      await this.addVenta({ productId, cantidad, precioVenta });
+
+      // cerrar modal
+      document.getElementById("modalVenta").style.display = "none";
+
+      // limpiar form
+      form.reset();
+
+    } finally {
+      btn.disabled = false;
+    }
+  };
+
+  async addVenta(nuevaVenta) {
+    try {
+      const venta = await createSale(nuevaVenta);
+      console.log("Venta creada:", venta);
+      this.loadVentas(); // recargar lista
+    } catch (err) {
+      console.error("Error al crear venta:", err);
+    }
+  }
+  setupEventListeners() {
     const btnNuevaVenta = this.shadowRoot.getElementById("btnNuevaVenta");
 
     // Modal global (fuera del shadow DOM)
@@ -168,19 +192,6 @@ async addVenta(nuevaVenta) {
 
     // cerrar modal
     closeModalVenta.addEventListener("click", () => {
-      modalVenta.style.display = "none";
-    });
-
-    // guardar venta
-    formVenta.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const productId = ventaProducto.value;
-      const cantidad = parseInt(ventaCantidad.value);
-      const precioVenta = parseFloat(ventaPrecio.value);
-
-      await this.addVenta({ productId, cantidad, precioVenta });
-
       modalVenta.style.display = "none";
     });
   }
