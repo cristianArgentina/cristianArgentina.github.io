@@ -211,74 +211,88 @@ class ProductosPanel extends HTMLElement {
       }
     });
 
-    // Form nuevo producto
-    document.getElementById("formNuevoProducto").addEventListener("submit", this.debounce(async (e) => {
-      e.preventDefault();
+  document.getElementById("formNuevoProducto").addEventListener("submit", this.handleNuevoProducto);
+  document.getElementById("formEditarProducto").addEventListener("submit", this.handleEditarProducto);
+  document.getElementById("formLote").addEventListener("submit", this.handleNuevoLote);
 
-      const btn = e.target.querySelector("button[type=submit]");
-      btn.disabled = true;
-
-      const nuevo = {
-        name: e.target.nombre.value,
-        description: e.target.descripcion.value,
-        price: parseFloat(e.target.precio.value),
-        stock: parseInt(e.target.stock.value),
-        category: e.target.categoria.value,
-        image: e.target.urlImage.value
-      };
-      await createProduct(nuevo);
-
-      this.loadProductos();
-      e.target.reset();
-      document.getElementById("modalNuevoProducto").style.display = "none";
-
-      btn.disabled = false;
-    }, 300));
-
-    // Form editar producto
-    document.getElementById("formEditarProducto").addEventListener("submit", this.debounce(async (e) => {
-      e.preventDefault();
-
-      const btn = e.target.querySelector("button[type=submit]");
-      btn.disabled = true;
-
-      const id = e.target.productoId.value;
-      const actualizado = {
-        name: e.target.nombre.value,
-        description: e.target.descripcion.value,
-        price: parseFloat(e.target.precio.value),
-        stock: parseInt(e.target.stock.value),
-        category: e.target.categoria.value,
-        image: e.target.urlImage.value
-      };
-      await updateProduct(id, actualizado);
-      this.loadProductos();
-      document.getElementById("modalEditarProducto").style.display = "none";
-
-      btn.disabled = false;
-    }, 300));
-
-    // Form agregar lote
-    document.getElementById("formLote").addEventListener("submit", this.debounce(async (e) => {
-    e.preventDefault();
-
-        const btn = e.target.querySelector("button[type=submit]");
-    btn.disabled = true;
-
-
-      const productId = e.target.loteProductoId.value;
-      const cantidad = parseInt(e.target.loteUnidades.value);
-      const costoUnitario = parseFloat(e.target.loteCosto.value)
-      const fecha = e.target.loteFecha.value;
-
-      await addLote(productId, { cantidad, costoUnitario, fecha });
-
-      this.loadProductos();
-      document.getElementById("modalLote").style.display = "none";
-
-    btn.disabled = false;
-  }, 300));
   }
+  
+handleNuevoProducto = async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector("button[type=submit]");
+  btn.disabled = true;
+
+  try {
+    const nuevo = {
+      name: form.nombre.value,
+      description: form.descripcion.value,
+      price: parseFloat(form.precio.value),
+      stock: parseInt(form.stock.value),
+      category: form.categoria.value,
+      image: form.urlImage.value
+    };
+
+    await createProduct(nuevo);
+
+    this.loadProductos();
+    form.reset();
+    document.getElementById("modalNuevoProducto").style.display = "none";
+
+  } finally {
+    btn.disabled = false;
+  }
+};
+
+handleEditarProducto = async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector("button[type=submit]");
+  btn.disabled = true;
+
+  try {
+    const id = form.productoId.value;
+
+    const actualizado = {
+      name: form.nombre.value,
+      description: form.descripcion.value,
+      price: parseFloat(form.precio.value),
+      stock: parseInt(form.stock.value),
+      category: form.categoria.value,
+      image: form.urlImage.value
+    };
+
+    await updateProduct(id, actualizado);
+
+    this.loadProductos();
+    document.getElementById("modalEditarProducto").style.display = "none";
+
+  } finally {
+    btn.disabled = false;
+  }
+};
+
+handleNuevoLote = async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector("button[type=submit]");
+  btn.disabled = true;
+
+  try {
+    const productId = form.loteProductoId.value;
+    const cantidad = parseInt(form.loteUnidades.value);
+    const costoUnitario = parseFloat(form.loteCosto.value);
+    const fecha = form.loteFecha.value;
+
+    await addLote(productId, { cantidad, costoUnitario, fecha });
+
+    this.loadProductos();
+    document.getElementById("modalLote").style.display = "none";
+
+  } finally {
+    btn.disabled = false;
+  }
+};
 
   fillEditarProductoModal(producto) {
     const form = document.getElementById("formEditarProducto");
