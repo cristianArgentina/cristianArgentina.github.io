@@ -177,6 +177,9 @@ class VentasPanel extends HTMLElement {
     const ventaCantidad = document.getElementById("ventaCantidad");
     const ventaPrecio = document.getElementById("ventaPrecio");
 
+    // 👉 ESTA ES LA LÍNEA QUE FALTABA
+    formVenta.addEventListener("submit", this.handleNuevaVenta);
+
     // abrir modal
     btnNuevaVenta.addEventListener("click", async () => {
       const productos = await getProducts();
