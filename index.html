@@ -80,7 +80,7 @@
       const cont = document.getElementById("categorias");
       cont.innerHTML = categorias.map(c => `
     <div class="card-categoria" data-id="${c.id}">
-      <span class="icono">${c.icono}</span>
+      <span class="icono">${c.icono} ${c.nombre}</span>
       <h3>${c.nombre}</h3>
     </div>
   `).join("");
