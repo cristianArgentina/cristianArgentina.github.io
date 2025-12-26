@@ -33,7 +33,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     padding: 20px;
     border-radius: 15px;
     background: linear-gradient(135deg, #8037ce 0%, #c0d5f8 100%);
