@@ -76,14 +76,15 @@
       { id: "iluminacion", nombre: "Iluminación", icono: "💡" },
     ];
 
-    function renderCategorias() {
-      const cont = document.getElementById("categorias");
-      cont.innerHTML = categorias.map(c => `
+function renderCategorias() {
+  const cont = document.getElementById("categorias");
+  cont.innerHTML = categorias.map(c => `
     <div class="card-categoria" data-id="${c.id}">
-      <span class="icono">${c.icono} ${c.nombre}</span>
+      <span class="icono">${c.icono}</span>
+      <span class="nombre">${c.nombre}</span>
     </div>
   `).join("");
-    }
+}
     renderCategorias();
 
     buscador.addEventListener('input', () => filtrarYOrdenar(productosOriginales));
