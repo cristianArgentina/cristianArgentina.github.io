@@ -337,16 +337,16 @@ h1 {
 
 /* Icono */
 .card-categoria .icono {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-bottom: 0.5rem;
 }
 
-/* Título */
+/* Título 
 .card-categoria h3 {
     font-size: 1.1rem;
     margin: 0;
 }
-
+*/
 /* Hover */
 .card-categoria:hover {
     transform: translateY(-5px);
