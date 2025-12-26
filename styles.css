@@ -332,14 +332,13 @@ h1 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    /* Empuja el icono a la izquierda y el texto a la derecha */
+    justify-content: flex-start
 }
 
 /* Icono */
 .card-categoria .icono {
     font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    margin-right: 10px
 }
 
 /* Icono */
