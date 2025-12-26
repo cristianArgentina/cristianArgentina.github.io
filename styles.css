@@ -412,7 +412,7 @@ h1 {
 }
 
 .card-categoria.hint {
-    animation: pulse 1.8s infinite;
+    /*animation: pulse 1.8s infinite;*/
     border-radius: 12px;
     cursor: pointer;
 }
