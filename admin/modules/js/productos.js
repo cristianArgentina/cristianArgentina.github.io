@@ -133,7 +133,7 @@ class ProductosPanel extends HTMLElement {
     <h2>📦 Productos</h2>
     <div class="toolbar">
       <button id="btnNuevo" class="btn-primary">➕ Agregar nuevo producto</button>
-      <button id="btnExportar" class="btn-primary">⬇️ Exportar CSV</button>
+      <button id="btnExportar" class="btn-primary">⬇️ Exportar JSON</button>
     </div>
     <table>
       <thead>
@@ -189,9 +189,8 @@ class ProductosPanel extends HTMLElement {
     const btnExportar = this.shadowRoot.getElementById("btnExportar");
 
     btnExportar.addEventListener("click", () => {
-      this.exportarCSV();
+      this.exportarJSON();
     });
-
 
     // Delegación de eventos en tabla
     this.shadowRoot.getElementById("tabla-productos").addEventListener("click", async (e) => {
@@ -312,64 +311,43 @@ class ProductosPanel extends HTMLElement {
     }
   };
 
-  async exportarCSV() {
+  async exportarJSON() {
     try {
-      showLoader("Generando CSV... 📄");
+      showLoader("Generando JSON... 📄");
 
       const productos = await getProducts();
 
-      const headers = [
-        "id",
-        "name",
-        "description",
-        "category",
-        "price",
-        "stock",
-        "image",
-        "videos"
-      ];
+      // Normalización defensiva
+      const data = productos.map(p => ({
+        id: p.id,
+        name: p.name,
+        description: p.description ?? "",
+        category: p.category,
+        price: Number(p.price),
+        stock: Number(p.stock),
+        image: p.image ?? null,
+        videos: Array.isArray(p.videos) ? p.videos : [],
+        lotes: Array.isArray(p.lotes) ? p.lotes : []
+      }));
 
-      const escapeCSV = (value) => {
-        if (value == null) return "";
-        const str = String(value).replace(/"/g, '""');
-        return `"${str}"`;
-      };
+      const jsonContent = JSON.stringify(data, null, 2);
 
-      const normalizeVideos = (videos) => {
-        if (!Array.isArray(videos)) return "";
-        return videos.join("|");
-      };
+      const blob = new Blob([jsonContent], {
+        type: "application/json;charset=utf-8;"
+      });
 
-      const rows = productos.map(p => [
-        p.id,
-        p.name,
-        p.description,
-        p.category,
-        p.price,
-        p.stock,
-        p.image ?? "",
-        normalizeVideos(p.videos)
-      ].map(escapeCSV).join(","));
-
-
-      const csvContent = [
-        headers.join(","),
-        ...rows
-      ].join("\n");
-
-      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
       const url = URL.createObjectURL(blob);
 
       const a = document.createElement("a");
       a.href = url;
-      a.download = `productos_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.download = `productos_${new Date().toISOString().slice(0, 10)}.json`;
       a.click();
 
       URL.revokeObjectURL(url);
 
     } catch (err) {
-      console.error("Error exportando CSV:", err);
-      alert("No se pudo exportar el archivo CSV");
+      console.error("Error exportando JSON:", err);
+      alert("No se pudo exportar el archivo JSON");
     } finally {
       hideLoader();
     }
