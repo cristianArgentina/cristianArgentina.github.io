@@ -108,10 +108,10 @@
           obj.price = Number(obj.price);
           obj.stock = Number(obj.stock);
           obj.videos = obj.videos ? obj.videos.split('|').filter(Boolean) : [];
-
+console.log("objetos"+obj)
           return obj;
         });
-
+console.log("productos"+productos)
         return productos;
 
       } catch (err) {
