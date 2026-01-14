@@ -76,19 +76,50 @@
       { id: "iluminacion", nombre: "Iluminación", icono: "💡" },
     ];
 
-function renderCategorias() {
-  const cont = document.getElementById("categorias");
-  cont.innerHTML = categorias.map(c => `
+    function renderCategorias() {
+      const cont = document.getElementById("categorias");
+      cont.innerHTML = categorias.map(c => `
     <div class="card-categoria" data-id="${c.id}">
       <span class="icono">${c.icono}</span>
       <span class="nombre">${c.nombre}</span>
     </div>
   `).join("");
-}
+    }
     renderCategorias();
 
     buscador.addEventListener('input', () => filtrarYOrdenar(productosOriginales));
 
+    async function cargarProductosDesdeCSV() {
+      try {
+        const res = await fetch('/data/productosactuales.csv', { cache: 'no-store' });
+        if (!res.ok) throw new Error('CSV no disponible');
+
+        const text = await res.text();
+        const lines = text.split('\n').filter(l => l.trim());
+        const headers = lines.shift().split(',').map(h => h.replace(/"/g, ''));
+
+        const productos = lines.map(line => {
+          const values = line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)
+            .map(v => v.replace(/^"|"$/g, '').replace(/""/g, '"'));
+
+          const obj = {};
+          headers.forEach((h, i) => obj[h] = values[i] ?? '');
+
+          obj.price = Number(obj.price);
+          obj.stock = Number(obj.stock);
+          obj.videos = obj.videos ? obj.videos.split('|').filter(Boolean) : [];
+
+          return obj;
+        });
+
+        return productos;
+
+      } catch (err) {
+        console.warn('No se pudo cargar CSV', err);
+        return [];
+      }
+    }
+/*
     async function precargarProductos() {
       try {
         const res = await fetch(`${API_URL}/products`);
@@ -108,7 +139,51 @@ function renderCategorias() {
         hideLoader();
       }
     }
-    precargarProductos();
+*/
+    async function actualizarDesdeBackend() {
+      try {
+        const res = await fetch(`${API_URL}/products`);
+        if (!res.ok) throw new Error('Backend no disponible');
+
+        const productos = await res.json();
+
+        // Reemplazar datos en memoria
+        renderProductosDesdeDatos(productos);
+
+        // Re-render si hay categoría activa
+        if (categorySelected) {
+          filtrarYOrdenar(productosOriginales);
+        }
+
+        console.info('Productos actualizados desde backend');
+
+      } catch (err) {
+        console.warn('Backend aún dormido');
+      }
+    }
+
+    function renderProductosDesdeDatos(productos) {
+      const elems = productos.map(p => crearProductoElem(p));
+      productosOriginales = elems;
+    }
+
+    (async () => {
+      // 1️⃣ Mostrar loader solo una vez
+      const hide = initLoaderInstructivo();
+
+      // 2️⃣ Cargar CSV inmediatamente
+      const productosCSV = await cargarProductosDesdeCSV();
+      if (productosCSV.length > 0) {
+        renderProductosDesdeDatos(productosCSV);
+      }
+
+      // 3️⃣ Ocultar loader (no depende del backend)
+      hide();
+
+      // 4️⃣ Backend en segundo plano
+      actualizarDesdeBackend();
+    })();
+
 
     // Activar animación de pulso en todas las categorías
     setTimeout(() => {
