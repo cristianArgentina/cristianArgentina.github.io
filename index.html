@@ -97,6 +97,8 @@
         const text = await res.text();
         const lines = text.split('\n').filter(l => l.trim());
         const headers = lines.shift().split(',').map(h => h.replace(/"/g, ''));
+        console.log('HEADER:', headers);
+        console.log('PRIMERA LINEA DATOS:', lines[0]);
 
         const productos = lines.map(line => {
           const values = line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)
@@ -108,10 +110,10 @@
           obj.price = Number(obj.price);
           obj.stock = Number(obj.stock);
           obj.videos = obj.videos ? obj.videos.split('|').filter(Boolean) : [];
-console.log("objetos"+obj)
+          console.log("objetos" + obj)
           return obj;
         });
-console.log("productos"+productos)
+        console.log("productos" + productos)
         return productos;
 
       } catch (err) {
@@ -119,27 +121,27 @@ console.log("productos"+productos)
         return [];
       }
     }
-/*
-    async function precargarProductos() {
-      try {
-        const res = await fetch(`${API_URL}/products`);
-        if (!res.ok) throw new Error('Error en la respuesta de la API');
-        const productos = await res.json();
-        //  setTimeout(() => {
-        hideLoader();
-        //  }, 9900); // un mini delay para que se note
-
-        const productosElems = productos.map(p => crearProductoElem(p));
-        productosOriginales = [...productosElems];
-
-      } catch (err) {
-        console.error("Error al despertar backend", err);
-        noResults.textContent = 'Error al cargar los productos.';
-        noResults.style.display = 'block';
-        hideLoader();
-      }
-    }
-*/
+    /*
+        async function precargarProductos() {
+          try {
+            const res = await fetch(`${API_URL}/products`);
+            if (!res.ok) throw new Error('Error en la respuesta de la API');
+            const productos = await res.json();
+            //  setTimeout(() => {
+            hideLoader();
+            //  }, 9900); // un mini delay para que se note
+    
+            const productosElems = productos.map(p => crearProductoElem(p));
+            productosOriginales = [...productosElems];
+    
+          } catch (err) {
+            console.error("Error al despertar backend", err);
+            noResults.textContent = 'Error al cargar los productos.';
+            noResults.style.display = 'block';
+            hideLoader();
+          }
+        }
+    */
     async function actualizarDesdeBackend() {
       try {
         const res = await fetch(`${API_URL}/products`);
