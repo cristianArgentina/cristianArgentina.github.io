@@ -89,40 +89,33 @@
 
     buscador.addEventListener('input', () => filtrarYOrdenar(productosOriginales));
 
-    async function cargarProductosDesdeCSV() {
+    async function cargarProductosDesdeJSON() {
+      const res = await fetch('/assets/csv/productosactuales.json');
+      if (!res.ok) throw new Error('No se pudo cargar JSON local');
+      return await res.json();
+    }
+
+    function normalizarProducto(p) {
+      return {
+        ...p,
+        image: p.image || null,
+        videos: Array.isArray(p.videos) ? p.videos : [],
+        stock: Number(p.stock) || 0,
+        price: Number(p.price) || 0
+      };
+    }
+
+    async function precargarProductos() {
       try {
-        const res = await fetch('/assets/csv/productosactuales.csv', { cache: 'no-store' });
-        if (!res.ok) throw new Error('CSV no disponible');
-
-        const text = await res.text();
-        const lines = text.split('\n').filter(l => l.trim());
-        const headers = lines.shift().split(',').map(h => h.replace(/"/g, ''));
-        console.log('HEADER:', headers);
-        console.log('PRIMERA LINEA DATOS:', lines[0]);
-
-        const productos = lines.map(line => {
-          const values = line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)
-            .map(v => v.replace(/^"|"$/g, '').replace(/""/g, '"'));
-
-          const obj = {};
-          headers.forEach((h, i) => obj[h] = values[i] ?? '');
-
-          obj.price = Number(obj.price);
-                  console.log("obj.price" + obj.price)
-          obj.stock = Number(obj.stock);
-          console.log("obj.stock" + obj.stock)
-          obj.videos = obj.videos ? obj.videos.split('|').filter(Boolean) : [];
-          console.log("objetos keys" + obj.keys)
-          return obj;
-        });
-
-        return productos;
-
-      } catch (err) {
-        console.warn('No se pudo cargar CSV', err);
-        return [];
+        const productos = await cargarProductosDesdeJSON();
+        productosOriginales = productos.map(p => crearProductoElem(normalizarProducto(p)));
+      } catch (e) {
+        console.error(e);
+        noResults.textContent = 'Error al cargar productos locales.';
+        noResults.style.display = 'block';
       }
     }
+
     /*
         async function precargarProductos() {
           try {
@@ -167,22 +160,19 @@
     }
 
     function renderProductosDesdeDatos(productos) {
-      const elems = productos.map(p => crearProductoElem(p));
-      productosOriginales = elems;
+      productosOriginales = productos.map(p =>
+        crearProductoElem(normalizarProducto(p))
+      );
     }
 
     (async () => {
-      // 1️⃣ Mostrar loader solo una vez
-      const hide = initLoaderInstructivo();
-
-      // 2️⃣ Cargar CSV inmediatamente
-      const productosCSV = await cargarProductosDesdeCSV();
-      if (productosCSV.length > 0) {
-        renderProductosDesdeDatos(productosCSV);
-      }
+      // 2️⃣ Cargar json inmediatamente
+      await precargarProductos();
 
       // 3️⃣ Ocultar loader (no depende del backend)
-      hide();
+      hideLoader();
+
+      filtrarYOrdenar(productosOriginales);
 
       // 4️⃣ Backend en segundo plano
       actualizarDesdeBackend();
@@ -260,7 +250,7 @@
         const vidCont = document.createElement('div');
         vidCont.className = 'video-container';
         div.appendChild(vidCont);
-      } else {
+      } else if (p.image) {
         const imgWrapper = document.createElement('div');
         imgWrapper.className = 'img-wrapper';
         imgWrapper.innerHTML = `
@@ -336,7 +326,9 @@
     window.inicializarVideosYouTube = () => {
       document.querySelectorAll('.producto-video').forEach((prod, i) => {
         if (prod.dataset.videoReady) return;
-        const ids = prod.dataset.videos.split(',');
+        const raw = prod.dataset.videos;
+        if (!raw) return;
+        const ids = raw.split(',');
         const playerId = `yt-${i}-${Date.now()}`;
         const iframe = document.createElement('iframe');
         iframe.id = playerId;
