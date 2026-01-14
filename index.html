@@ -91,7 +91,7 @@
 
     async function cargarProductosDesdeCSV() {
       try {
-        const res = await fetch('/data/productosactuales.csv', { cache: 'no-store' });
+        const res = await fetch('/assets/csv/productosactuales.csv', { cache: 'no-store' });
         if (!res.ok) throw new Error('CSV no disponible');
 
         const text = await res.text();
