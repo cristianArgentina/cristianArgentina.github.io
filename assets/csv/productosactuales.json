@@ -4,11 +4,18 @@
     "name": "Cicatricure - Firmeza",
     "description": "Crema Corporal Hidratación Intensiva, Firmeza 400 Ml",
     "category": "belleza y salud",
-    "price": 8000,
-    "stock": 0,
+    "price": 9000,
+    "stock": 1,
     "image": "https://www.maxidescuento.com.ar/22724-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-firmeza-7798140254416.jpg",
     "videos": [],
-    "lotes": []
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 5511.75,
+        "_id": "696e71c9d5e63ce582047be3",
+        "fechaIngreso": "2026-01-19T18:02:49.663Z"
+      }
+    ]
   },
   {
     "id": 2,
@@ -121,7 +128,7 @@
     "name": "Cicatricure - Antiestrías",
     "description": "Crema Corporal Hidratación Intensiva, Antiestrías 400 Ml",
     "category": "belleza y salud",
-    "price": 8000,
+    "price": 9000,
     "stock": 2,
     "image": "https://www.maxidescuento.com.ar/22725-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-anti-estrias-7798140254423.jpg",
     "videos": [],
@@ -157,7 +164,7 @@
     "name": "Cicatricure - Reparación",
     "description": "Crema Corporal Hidratación Intensiva, Reparación 400 Ml",
     "category": "belleza y salud",
-    "price": 8000,
+    "price": 9000,
     "stock": 1,
     "image": "https://www.maxidescuento.com.ar/19734-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-reparacion-7798140254409.jpg",
     "videos": [],
@@ -332,13 +339,20 @@
   {
     "id": 20,
     "name": "Goicoechea - Crema Corporal 400ml",
-    "description": "Crema Corporal ANTICELULITIS, REAFIRMANTE CON TONIFYER, ULTRA NUTRITIVA 400 Ml",
+    "description": "Crema Corporal ANTICELULITIS 400 Ml",
     "category": "belleza y salud",
-    "price": 7000,
-    "stock": 0,
-    "image": "https://media03.farmaciaslider.com.ar/28066-home_default/goicoechea-crema-anti-celulitis-cellumodel-400-ml.jpg",
+    "price": 9000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/goicoechea400anticelulitis.png",
     "videos": [],
-    "lotes": []
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 5275.27,
+        "_id": "696e7109d5e63ce582047b42",
+        "fechaIngreso": "2026-01-19T17:59:37.938Z"
+      }
+    ]
   },
   {
     "id": 21,
