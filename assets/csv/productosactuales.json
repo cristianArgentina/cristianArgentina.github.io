@@ -129,12 +129,12 @@
     "description": "Crema Corporal Hidratación Intensiva, Antiestrías 400 Ml",
     "category": "belleza y salud",
     "price": 9000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://www.maxidescuento.com.ar/22725-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-anti-estrias-7798140254423.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 4921.31,
         "_id": "68f2bfa922243f53b250a86d",
         "fechaIngreso": "2025-10-17T22:14:01.045Z"
@@ -147,7 +147,7 @@
     "description": "Gel Cicatrices Y Estrías X 60g",
     "category": "belleza y salud",
     "price": 12000,
-    "stock": 1,
+    "stock": 3,
     "image": "https://media01.farmaciaslider.com.ar/27902-home_default/cicatricure-gel-para-cicatrices-60-g.jpg",
     "videos": [],
     "lotes": [
@@ -156,6 +156,12 @@
         "costoUnitario": 6659.25,
         "_id": "695c14906f4cd83de6507b41",
         "fechaIngreso": "2026-01-05T19:44:16.927Z"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 8420,
+        "_id": "696ff19fc18de5ba49dc6fc5",
+        "fechaIngreso": "2026-01-20T21:20:31.956Z"
       }
     ]
   },
@@ -277,17 +283,10 @@
     "description": "Oleo Extraordinario Elvive x 100 ml",
     "category": "belleza y salud",
     "price": 10000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://www.maxidescuento.com.ar/31273-home_default/elvive-oleo-extraordinario-x100m-7509552874204.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 6961.91,
-        "_id": "6953e0510ed69d4a73de7809",
-        "fechaIngreso": "2025-12-30T14:23:13.915Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 17,
@@ -893,10 +892,17 @@
     "description": "Crema de día 5 beneficios 50g",
     "category": "belleza y salud",
     "price": 15000,
-    "stock": 0,
+    "stock": 2,
     "image": "https://cdn.batitienda.com/baticloud/images/product_picture_e8083eda3e184c7aae5181d6342e600b_637857970927290487_0_l.webp",
     "videos": [],
-    "lotes": []
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 9371.25,
+        "_id": "696ff22ac18de5ba49dc7015",
+        "fechaIngreso": "2026-01-20T21:22:50.665Z"
+      }
+    ]
   },
   {
     "id": 1756767484995,
@@ -958,16 +964,10 @@
     "description": "Óleo + Serum Bifásico Dove Bond Intense Repair de 110 ml ",
     "category": "belleza y salud",
     "price": 9000,
-    "stock": 3,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/doveserumoleo.png",
     "videos": [],
     "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 5135.25,
-        "_id": "6913ae001b7640b4c54b2006",
-        "fechaIngreso": "2025-11-11T21:43:28.038Z"
-      },
       {
         "cantidad": 2,
         "costoUnitario": 3664.35,
