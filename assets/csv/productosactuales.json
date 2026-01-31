@@ -147,16 +147,10 @@
     "description": "Gel Cicatrices Y Estrías X 60g",
     "category": "belleza y salud",
     "price": 12000,
-    "stock": 3,
+    "stock": 2,
     "image": "https://media01.farmaciaslider.com.ar/27902-home_default/cicatricure-gel-para-cicatrices-60-g.jpg",
     "videos": [],
     "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 6659.25,
-        "_id": "695c14906f4cd83de6507b41",
-        "fechaIngreso": "2026-01-05T19:44:16.927Z"
-      },
       {
         "cantidad": 2,
         "costoUnitario": 8420,
@@ -1048,10 +1042,17 @@
     "description": "Acondiconador Elvive óleo nutrición cabello seco 400ml",
     "category": "belleza y salud",
     "price": 6000,
-    "stock": 0,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/oleonutricionacondicionador.jpeg",
     "videos": [],
-    "lotes": []
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 4387.16,
+        "_id": "697ba27510e04456fc86d4e9",
+        "fechaIngreso": "2026-01-29T18:09:57.044Z"
+      }
+    ]
   },
   {
     "id": 1757537094876,
@@ -1059,10 +1060,17 @@
     "description": "Shampoo Elvive óleo nutrición cabello seco 400ml",
     "category": "belleza y salud",
     "price": 6000,
-    "stock": 0,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/oleonutricionshampoo.jpeg",
     "videos": [],
-    "lotes": []
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 4387.16,
+        "_id": "697ba28810e04456fc86d53a",
+        "fechaIngreso": "2026-01-29T18:10:16.373Z"
+      }
+    ]
   },
   {
     "id": 1757632522216,
@@ -1088,12 +1096,12 @@
     "description": "2 luces LED de colores para rayos rueda bicicleta",
     "category": "iluminacion",
     "price": 10000,
-    "stock": 6,
+    "stock": 4,
     "image": "https://cristianargentina.github.io/assets/img/ledrayos.png",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 6,
+        "cantidad": 4,
         "costoUnitario": 4799,
         "_id": "696aa4b72e969dc47c2bd66d",
         "fechaIngreso": "2026-01-16T20:51:03.214Z"
@@ -1368,15 +1376,129 @@
     "description": "Protector Solar Fps 50 180ml Piel sensible",
     "category": "belleza y salud",
     "price": 15000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/ninossolardermaglos.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 8434,
         "_id": "69614a76820f0bd620b341cc",
         "fechaIngreso": "2026-01-09T18:35:34.699Z"
+      }
+    ]
+  },
+  {
+    "id": 1769813837098,
+    "name": "Linterna + Encendedor USB",
+    "description": "Mini Linterna recargable con encendedor USB",
+    "category": "iluminacion",
+    "price": 6000,
+    "stock": 3,
+    "image": "https://cristianargentina.github.io/assets/img/encendedorlinterna4.webp",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 3,
+        "costoUnitario": 2500,
+        "_id": "697d37708f5c070c838b4ecc",
+        "fechaIngreso": "2026-01-30T22:57:52.373Z"
+      }
+    ]
+  },
+  {
+    "id": 1769816622318,
+    "name": "Adapatador universal viajero enchufe 110v 220v",
+    "description": "Adaptador Universal Enchufe Internacional",
+    "category": "tecnologia",
+    "price": 6000,
+    "stock": 4,
+    "image": "https://cristianargentina.github.io/‎assets/img/adaptadorviaje0.webp‎",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 4,
+        "costoUnitario": 2500,
+        "_id": "697d42e907016d3c9ad55a62",
+        "fechaIngreso": "2026-01-30T23:46:49.167Z"
+      }
+    ]
+  },
+  {
+    "id": 1769817921006,
+    "name": "Bandolera Cruzada Azul",
+    "description": "Bandolera cruzada de lona color azul",
+    "category": "belleza y salud",
+    "price": 9000,
+    "stock": 4,
+    "image": "https://cristianargentina.github.io/assets/img/mochilabandolera0.webp",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 4,
+        "costoUnitario": 3800,
+        "_id": "697d476707016d3c9ad55c00",
+        "fechaIngreso": "2026-01-31T00:05:59.429Z"
+      },
+      {
+        "cantidad": 4,
+        "costoUnitario": 3800,
+        "_id": "697d476707016d3c9ad55c02",
+        "fechaIngreso": "2026-01-31T00:05:59.452Z"
+      }
+    ]
+  },
+  {
+    "id": 1769819069103,
+    "name": "Kit herramientas para reparación 115 en 1",
+    "description": "herramientas de reparación para dispositivos.",
+    "category": "tecnologia",
+    "price": 15000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/kitcelulares115h0.webp",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 7500,
+        "_id": "697d4bfd07016d3c9ad56048",
+        "fechaIngreso": "2026-01-31T00:25:33.282Z"
+      }
+    ]
+  },
+  {
+    "id": 1769820077562,
+    "name": "Control remoto universal copiador 433mhz",
+    "description": "copiador de control para dispositivos",
+    "category": "tecnologia",
+    "price": 10000,
+    "stock": 2,
+    "image": "https://cristianargentina.github.io/assets/img/controlporton0.webp",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 3500,
+        "_id": "697d4fc007016d3c9ad560f5",
+        "fechaIngreso": "2026-01-31T00:41:36.977Z"
+      }
+    ]
+  },
+  {
+    "id": 1769820795915,
+    "name": "Kit Destornilladores Celulares 16 en 1",
+    "description": "Kit Destornilladores de precisión 16 piezas",
+    "category": "tecnologia",
+    "price": 6000,
+    "stock": 2,
+    "image": "https://cristianargentina.github.io/assets/img/kitcelulares16h0.webp",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 2000,
+        "_id": "697d528a07016d3c9ad561a4",
+        "fechaIngreso": "2026-01-31T00:53:30.386Z"
       }
     ]
   }
