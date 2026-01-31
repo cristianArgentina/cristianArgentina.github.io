@@ -313,7 +313,7 @@
       );
 
       const ordenados = [...lista].sort((a, b) =>
-        Number(b.dataset.precio) - Number(a.dataset.precio)
+        Number(a.dataset.precio) - Number(b.dataset.precio)
       );
 
       contenedor.innerHTML = '';
