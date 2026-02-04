@@ -696,7 +696,7 @@
     "price": 15000,
     "stock": 3,
     "image": "https://acdn-us.mitiendanube.com/stores/001/738/520/products/51dm6jdzcnl-_ac_uf10001000_ql80_1-0f2572d3e53ac9bcf116880478438025-1024-1024.jpg",
-    "videos": [],
+    "videos": ["H8NpIAT4oQw"],
     "lotes": [
       {
         "cantidad": 3,
