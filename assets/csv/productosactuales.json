@@ -263,10 +263,17 @@
     "description": "Oleo Extraordinario Elvive x 100 ml",
     "category": "belleza y salud",
     "price": 10000,
-    "stock": 0,
+    "stock": 2,
     "image": "https://www.maxidescuento.com.ar/31273-home_default/elvive-oleo-extraordinario-x100m-7509552874204.jpg",
     "videos": [],
-    "lotes": []
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 5606.96,
+        "_id": "6984e0ee4982d7970cc967e5",
+        "fechaIngreso": "2026-02-05T18:26:54.857Z"
+      }
+    ]
   },
   {
     "id": 17,
@@ -944,15 +951,15 @@
     "description": "Óleo + Serum Bifásico Dove Bond Intense Repair de 110 ml ",
     "category": "belleza y salud",
     "price": 9000,
-    "stock": 1,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/doveserumoleo.png",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 1,
-        "costoUnitario": 3664.35,
-        "_id": "6931920604c8937d36ff568d",
-        "fechaIngreso": "2025-12-04T13:52:06.940Z"
+        "cantidad": 2,
+        "costoUnitario": 4325.74,
+        "_id": "6984e04b4982d7970cc9678c",
+        "fechaIngreso": "2026-02-05T18:24:11.872Z"
       }
     ]
   },
@@ -980,7 +987,7 @@
     "description": "Mascarilla Elvive Dream Liso 300ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 1,
+    "stock": 3,
     "image": "https://cristianargentina.github.io/assets/img/dreamlisomascara.jpeg",
     "videos": [],
     "lotes": [
@@ -989,6 +996,12 @@
         "costoUnitario": 2192.8,
         "_id": "69499ebcb28c8a6410e44e6d",
         "fechaIngreso": "2025-12-22T19:40:44.284Z"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 3424.95,
+        "_id": "6984de884982d7970cc9662b",
+        "fechaIngreso": "2026-02-05T18:16:40.352Z"
       }
     ]
   },
@@ -1519,7 +1532,7 @@
     "category": "belleza y salud",
     "price": 4000,
     "stock": 1,
-    "image": "https://cristianargentina.github.io/assets/img/mascarahialuroncio.png",
+    "image": "https://cristianargentina.github.io/assets/img/mascarahialuronico.png",
     "videos": [],
     "lotes": [
       {
