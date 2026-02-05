@@ -5,17 +5,10 @@
     "description": "Crema Corporal Hidratación Intensiva, Firmeza 400 Ml",
     "category": "belleza y salud",
     "price": 9000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://www.maxidescuento.com.ar/22724-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-firmeza-7798140254416.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 5511.75,
-        "_id": "696e71c9d5e63ce582047be3",
-        "fechaIngreso": "2026-01-19T18:02:49.663Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 2,
@@ -54,7 +47,7 @@
     "price": 15000,
     "stock": 2,
     "image": "https://media03.farmaciaslider.com.ar/42077-home_default/cicatricure-neuro-zen-crema-x-50-gr.jpg",
-    "videos": ["mpzjh7IogIw"],
+    "videos": [],
     "lotes": [
       {
         "cantidad": 1,
@@ -107,7 +100,7 @@
     "price": 15000,
     "stock": 4,
     "image": "https://media01.farmaciaslider.com.ar/27940-home_default/cicatricure-crema-antiarrugas-nueva-formula-con-biopeptide-60g.jpg",
-    "videos": ["9bpzGWXMxRU"],
+    "videos": [],
     "lotes": [
       {
         "cantidad": 2,
@@ -129,17 +122,10 @@
     "description": "Crema Corporal Hidratación Intensiva, Antiestrías 400 Ml",
     "category": "belleza y salud",
     "price": 9000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://www.maxidescuento.com.ar/22725-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-anti-estrias-7798140254423.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 4921.31,
-        "_id": "68f2bfa922243f53b250a86d",
-        "fechaIngreso": "2025-10-17T22:14:01.045Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 9,
@@ -149,7 +135,7 @@
     "price": 12000,
     "stock": 2,
     "image": "https://media01.farmaciaslider.com.ar/27902-home_default/cicatricure-gel-para-cicatrices-60-g.jpg",
-    "videos": ["Rs-649Rr4eE"],
+    "videos": [],
     "lotes": [
       {
         "cantidad": 2,
@@ -528,7 +514,7 @@
     "price": 15000,
     "stock": 7,
     "image": "https://http2.mlstatic.com/D_NQ_NP_623534-MLA54225599890_032023-O.webp",
-    "videos": ["leLh7gBANL4"],
+    "videos": [],
     "lotes": [
       {
         "cantidad": 7,
@@ -696,7 +682,7 @@
     "price": 15000,
     "stock": 3,
     "image": "https://acdn-us.mitiendanube.com/stores/001/738/520/products/51dm6jdzcnl-_ac_uf10001000_ql80_1-0f2572d3e53ac9bcf116880478438025-1024-1024.jpg",
-    "videos": ["H8NpIAT4oQw"],
+    "videos": [],
     "lotes": [
       {
         "cantidad": 3,
@@ -750,7 +736,7 @@
     "price": 10000,
     "stock": 1,
     "image": "https://assets.unileversolutions.com/v1/133018309.png?im=AspectCrop=(985,985);Resize=(985,985)",
-    "videos": ["Ohn4_GI1pOk"],
+    "videos": [],
     "lotes": [
       {
         "cantidad": 1,
@@ -766,12 +752,12 @@
     "description": "Serum Elvive Dream Liso 100ml",
     "category": "belleza y salud",
     "price": 14000,
-    "stock": 4,
+    "stock": 2,
     "image": "https://www.lorealparis.com.ar/-/media/project/loreal/brand-sites/oap/americas/ar/articles/dream-liso/menos-mb.png",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 4,
+        "cantidad": 2,
         "costoUnitario": 9179.49,
         "_id": "691224d661ff4237e2d2e8f1",
         "fechaIngreso": "2025-11-10T17:45:58.064Z"
@@ -888,7 +874,7 @@
     "price": 15000,
     "stock": 2,
     "image": "https://cdn.batitienda.com/baticloud/images/product_picture_e8083eda3e184c7aae5181d6342e600b_637857970927290487_0_l.webp",
-    "videos": ["EOfVZl19MsA"],
+    "videos": [],
     "lotes": [
       {
         "cantidad": 2,
@@ -958,12 +944,12 @@
     "description": "Óleo + Serum Bifásico Dove Bond Intense Repair de 110 ml ",
     "category": "belleza y salud",
     "price": 9000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/doveserumoleo.png",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 3664.35,
         "_id": "6931920604c8937d36ff568d",
         "fechaIngreso": "2025-12-04T13:52:06.940Z"
@@ -994,12 +980,12 @@
     "description": "Mascarilla Elvive Dream Liso 300ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/dreamlisomascara.jpeg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 2192.8,
         "_id": "69499ebcb28c8a6410e44e6d",
         "fechaIngreso": "2025-12-22T19:40:44.284Z"
@@ -1017,22 +1003,10 @@
     "videos": [],
     "lotes": [
       {
-        "cantidad": 1,
-        "costoUnitario": 2490,
-        "_id": "690f8a4b03e247b70dbd0762",
-        "fechaIngreso": "2025-11-08T18:22:03.675Z"
-      },
-      {
-        "cantidad": 1,
-        "costoUnitario": 2490,
-        "_id": "690f8a4b03e247b70dbd0764",
-        "fechaIngreso": "2025-11-08T18:22:03.683Z"
-      },
-      {
-        "cantidad": 1,
-        "costoUnitario": 2490,
-        "_id": "690f8a4c03e247b70dbd07af",
-        "fechaIngreso": "2025-11-08T18:22:04.838Z"
+        "cantidad": 2,
+        "costoUnitario": 3775.8,
+        "_id": "698124cb90ea0540417ea303",
+        "fechaIngreso": "2026-02-02T22:27:23.888Z"
       }
     ]
   },
@@ -1499,6 +1473,60 @@
         "costoUnitario": 2000,
         "_id": "697d528a07016d3c9ad561a4",
         "fechaIngreso": "2026-01-31T00:53:30.386Z"
+      }
+    ]
+  },
+  {
+    "id": 1770314518029,
+    "name": "Sedal - Máscara Colágeno",
+    "description": "Tratamiento Colageno Vitamina C 300ml",
+    "category": "belleza y salud",
+    "price": 4000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/sedalcolageno.png",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 2783.58,
+        "_id": "6984dc614982d7970cc96477",
+        "fechaIngreso": "2026-02-05T18:07:29.269Z"
+      }
+    ]
+  },
+  {
+    "id": 1770314652369,
+    "name": "Sedal - Máscara Luminous UV",
+    "description": "Tratamiendo Luminous UV 300ml",
+    "category": "belleza y salud",
+    "price": 4000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/sedalluminous.png",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 2783.58,
+        "_id": "6984dc6a4982d7970cc964cd",
+        "fechaIngreso": "2026-02-05T18:07:38.847Z"
+      }
+    ]
+  },
+  {
+    "id": 1770314738907,
+    "name": "Sedal - Máscara Hialurónico",
+    "description": "Tratamiento Hiauluronico Vitamina A 300ml",
+    "category": "belleza y salud",
+    "price": 4000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/mascarahialuroncio.png",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 2783.58,
+        "_id": "6984dc704982d7970cc96524",
+        "fechaIngreso": "2026-02-05T18:07:44.579Z"
       }
     ]
   }
