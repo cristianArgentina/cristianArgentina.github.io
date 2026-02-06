@@ -26,11 +26,11 @@ class ProductosPanel extends HTMLElement {
     };
   }
 
-  connectedCallback() {
-    this.render();
-    this.loadProductos();
-    this.setupEventListeners();
-  }
+connectedCallback() {
+  this.render();
+  this.setupEventListeners(); // primero DOM listo
+  this.loadProductos();       // después datos
+}
 
   render() {
     this.shadowRoot.innerHTML = `
@@ -63,7 +63,7 @@ class ProductosPanel extends HTMLElement {
       }
 
       th {
-        background: #f5f5f5;
+        background: #353535;
       }
 
       .btn-primary {
