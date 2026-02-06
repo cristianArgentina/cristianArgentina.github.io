@@ -8,6 +8,14 @@ class ProductosPanel extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
+    this.productos = [];
+    this.sortKey = null;
+    this.sortDir = 1; // 1 asc | -1 desc
+    this.filters = {
+      search: "",
+      category: "",
+      stockMin: 0
+    };
   }
 
   debounce(func, delay) {
@@ -131,54 +139,151 @@ class ProductosPanel extends HTMLElement {
     </style>
 
     <h2>📦 Productos</h2>
-    <div class="toolbar">
-      <button id="btnNuevo" class="btn-primary">➕ Agregar nuevo producto</button>
-      <button id="btnExportar" class="btn-primary">⬇️ Exportar JSON</button>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Precio</th>
-          <th>Stock</th>
-          <th>Categoría</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody id="tabla-productos"></tbody>
+<div class="toolbar">
+  <button id="btnNuevo" class="btn-primary">➕ Agregar nuevo producto</button>
+  <button id="btnExportar" class="btn-primary">⬇️ Exportar JSON</button>
+
+  <input id="searchInput" placeholder="Buscar nombre..." />
+
+  <select id="filterCategoria">
+    <option value="">Todas categorías</option>
+  </select>
+
+  <input id="filterStock" type="number" min="0" placeholder="Stock mín" style="width:90px">
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th data-sort="name">Nombre ⬍</th>
+      <th data-sort="price">Precio ⬍</th>
+      <th data-sort="stock">Stock ⬍</th>
+      <th data-sort="category">Categoría ⬍</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
     </table>
   `;
   }
 
-  async loadProductos() {
-    const tbody = this.shadowRoot.getElementById("tabla-productos");
-    tbody.innerHTML = "";
-    showLoader("Cargando productos... 🐥");
-    try {
-      const productos = await getProducts();
-      productos.forEach(p => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td data-label="Nombre">${p.name}</td>
-          <td data-label="Precio">$${p.price.toFixed(2)}</td>
-          <td data-label="Stock">${p.stock}</td>
-          <td data-label="Categoría">${p.category}</td>
-          <td data-label="Acciones">
-            <button class="action btnEditar" data-id="${p.id}">✏️</button>
-            <button class="action btnEliminar" data-id="${p.id}">🗑️</button>
-            <button class="action btnLote" data-id="${p.id}">➕ Lote</button>
-          </td>
-        `;
-        tbody.appendChild(row);
-      });
-    } catch (err) {
-      console.error("Error cargando productos:", err);
-    } finally {
-      hideLoader();
-    }
+async loadProductos() {
+  showLoader("Cargando productos... 🐥");
+
+  try {
+    this.productos = await getProducts();
+    this.renderCategorias();
+    this.renderTabla();
+  } finally {
+    hideLoader();
+  }
+}
+
+  renderCategorias() {
+  const select = this.shadowRoot.getElementById("filterCategoria");
+
+  const cats = [...new Set(this.productos.map(p => p.category))]
+    .sort((a, b) => a.localeCompare(b));
+
+  select.innerHTML =
+    `<option value="">Todas categorías</option>` +
+    cats.map(c => `<option value="${c}">${c}</option>`).join("");
+}
+
+  renderTabla() {
+  const tbody = this.shadowRoot.getElementById("tabla-productos");
+  tbody.innerHTML = "";
+
+  let data = [...this.productos];
+
+  /* -------- FILTROS -------- */
+  if (this.filters.search) {
+    data = data.filter(p =>
+      p.name.toLowerCase().includes(this.filters.search)
+    );
   }
 
+  if (this.filters.category) {
+    data = data.filter(p => p.category === this.filters.category);
+  }
+
+  if (this.filters.stockMin) {
+    data = data.filter(p => p.stock >= this.filters.stockMin);
+  }
+
+  /* -------- ORDEN -------- */
+  if (this.sortKey) {
+    data.sort((a, b) => {
+      let v1 = a[this.sortKey];
+      let v2 = b[this.sortKey];
+
+      if (typeof v1 === "string")
+        return v1.localeCompare(v2) * this.sortDir;
+
+      return (v1 - v2) * this.sortDir;
+    });
+  }
+
+  /* -------- RENDER -------- */
+  data.forEach(p => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td data-label="Nombre">${p.name}</td>
+      <td data-label="Precio">$${p.price.toFixed(2)}</td>
+      <td data-label="Stock">${p.stock}</td>
+      <td data-label="Categoría">${p.category}</td>
+      <td data-label="Acciones">
+        <button class="action btnEditar" data-id="${p.id}">✏️</button>
+        <button class="action btnEliminar" data-id="${p.id}">🗑️</button>
+        <button class="action btnLote" data-id="${p.id}">➕ Lote</button>
+      </td>
+    `;
+
+    tbody.appendChild(row);
+  });
+}
+
+  
   setupEventListeners() {
+
+   this.shadowRoot.querySelectorAll("th[data-sort]").forEach(th => {
+  th.addEventListener("click", () => {
+    const key = th.dataset.sort;
+
+    if (this.sortKey === key) {
+      this.sortDir *= -1;
+    } else {
+      this.sortKey = key;
+      this.sortDir = 1;
+    }
+
+    this.renderTabla();
+  });
+});
+
+    const searchInput = this.shadowRoot.getElementById("searchInput");
+const filterCategoria = this.shadowRoot.getElementById("filterCategoria");
+const filterStock = this.shadowRoot.getElementById("filterStock");
+
+searchInput.addEventListener(
+  "input",
+  this.debounce(e => {
+    this.filters.search = e.target.value.toLowerCase();
+    this.renderTabla();
+  }, 300)
+);
+
+filterCategoria.addEventListener("change", e => {
+  this.filters.category = e.target.value;
+  this.renderTabla();
+});
+
+filterStock.addEventListener("input", e => {
+  this.filters.stockMin = Number(e.target.value) || 0;
+  this.renderTabla();
+});
+
     const btnNuevo = this.shadowRoot.getElementById("btnNuevo");
 
     // Abrir modal agregar producto
