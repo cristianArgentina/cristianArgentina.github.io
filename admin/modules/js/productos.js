@@ -162,7 +162,7 @@ class ProductosPanel extends HTMLElement {
       <th>Acciones</th>
     </tr>
   </thead>
-
+  <tbody id="tabla-productos"></tbody>
     </table>
   `;
   }
