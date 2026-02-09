@@ -409,12 +409,12 @@
     "description": "Serum Elvive Dream Liso 100ml",
     "category": "belleza y salud",
     "price": 14000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://www.lorealparis.com.ar/-/media/project/loreal/brand-sites/oap/americas/ar/articles/dream-liso/menos-mb.png",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 9179.49,
         "_id": "691224d661ff4237e2d2e8f1",
         "fechaIngreso": "2025-11-10T17:45:58.064Z"
@@ -993,12 +993,12 @@
     "description": "Mascarilla Elvive Dream Liso 300ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 4,
+    "stock": 3,
     "image": "https://cristianargentina.github.io/assets/img/dreamlisomascara.jpeg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 4,
+        "cantidad": 3,
         "costoUnitario": 3846.5,
         "_id": "698a238b5acee68e88006339",
         "fechaIngreso": "2026-02-09T18:12:27.029Z"
@@ -1011,15 +1011,15 @@
     "description": "Crema para peinar Elvive dream liso 250ml ",
     "category": "belleza y salud",
     "price": 6000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/dreamlisopeinar.jpeg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 3775.8,
-        "_id": "698124cb90ea0540417ea303",
-        "fechaIngreso": "2026-02-02T22:27:23.888Z"
+        "_id": "698a5790b53f22bdbdf44f0b",
+        "fechaIngreso": "2026-02-09T21:54:24.947Z"
       }
     ]
   },
@@ -1101,17 +1101,10 @@
     "description": "Shampoo Dream Liso Efecto Keratina 400Ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/dreamshampoo.png",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 4049.55,
-        "_id": "69614604820f0bd620b33e84",
-        "fechaIngreso": "2026-01-09T18:16:36.941Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 1759257775851,
@@ -1119,17 +1112,10 @@
     "description": "Acondicionador Dream Liso Efecto Keratina 400ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/acondicionadorDreamLiso.png",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 4049.55,
-        "_id": "696145f1820f0bd620b33e37",
-        "fechaIngreso": "2026-01-09T18:16:17.392Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 1759871299740,
@@ -1483,7 +1469,7 @@
     "category": "belleza y salud",
     "price": 4000,
     "stock": 0,
-    "image": "https://cristianargentina.github.io/assets/img/mascarahialuronico.png",
+    "image": "https://cristianargentina.github.io/assets/img/sedalhialuronico.png",
     "videos": [],
     "lotes": []
   }
