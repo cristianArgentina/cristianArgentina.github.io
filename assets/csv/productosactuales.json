@@ -5,7 +5,7 @@
     "description": "Gel Cicatrices Y Estrías X 60g",
     "category": "belleza y salud",
     "price": 12000,
-    "stock": 2,
+    "stock": 4,
     "image": "https://media01.farmaciaslider.com.ar/27902-home_default/cicatricure-gel-para-cicatrices-60-g.jpg",
     "videos": [],
     "lotes": [
@@ -14,6 +14,12 @@
         "costoUnitario": 8420,
         "_id": "696ff19fc18de5ba49dc6fc5",
         "fechaIngreso": "2026-01-20T21:20:31.956Z"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 6659.25,
+        "_id": "6989522e25cbcbe9b2e4969c",
+        "fechaIngreso": "2026-02-09T03:19:10.467Z"
       }
     ]
   },
@@ -52,10 +58,17 @@
     "description": "Oleo Extraordinario Elvive x 100 ml",
     "category": "belleza y salud",
     "price": 10000,
-    "stock": 0,
+    "stock": 2,
     "image": "https://www.maxidescuento.com.ar/31273-home_default/elvive-oleo-extraordinario-x100m-7509552874204.jpg",
     "videos": [],
-    "lotes": []
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 7555.8,
+        "_id": "698a23c65acee68e8800638a",
+        "fechaIngreso": "2026-02-09T18:13:26.816Z"
+      }
+    ]
   },
   {
     "id": 17,
@@ -980,10 +993,17 @@
     "description": "Mascarilla Elvive Dream Liso 300ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 0,
+    "stock": 4,
     "image": "https://cristianargentina.github.io/assets/img/dreamlisomascara.jpeg",
     "videos": [],
-    "lotes": []
+    "lotes": [
+      {
+        "cantidad": 4,
+        "costoUnitario": 3846.5,
+        "_id": "698a238b5acee68e88006339",
+        "fechaIngreso": "2026-02-09T18:12:27.029Z"
+      }
+    ]
   },
   {
     "id": 1757535780150,
@@ -1463,7 +1483,7 @@
     "category": "belleza y salud",
     "price": 4000,
     "stock": 0,
-    "image": "https://cristianargentina.github.io/assets/img/sedalhialuronico.png",
+    "image": "https://cristianargentina.github.io/assets/img/mascarahialuronico.png",
     "videos": [],
     "lotes": []
   }
