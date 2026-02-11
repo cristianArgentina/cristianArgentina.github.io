@@ -244,6 +244,7 @@
       div.className = 'producto' + (p.videos.length > 0 ? ' producto-video' : '') + (p.stock <= 0 ? ' agotado' : '');
       div.dataset.categoria = p.category;
       div.dataset.precio = p.price;
+      div.dataset.stock = p.stock;
       if (p.videos.length > 0) div.dataset.videos = p.videos.join(',');
 
       if (p.videos.length > 0) {
@@ -312,9 +313,17 @@
         e.innerText.toLowerCase().includes(texto)
       );
 
-      const ordenados = [...lista].sort((a, b) =>
-        Number(a.dataset.precio) - Number(b.dataset.precio)
-      );
+const ordenados = [...lista].sort((a, b) => {
+  const stockA = Number(a.dataset.stock);
+  const stockB = Number(b.dataset.stock);
+
+  // 👉 agotados al final SIEMPRE
+  if (stockA === 0 && stockB !== 0) return 1;
+  if (stockB === 0 && stockA !== 0) return -1;
+
+  // 👉 después ordenar por precio (tu criterio actual)
+  return Number(a.dataset.precio) - Number(b.dataset.precio);
+});
 
       contenedor.innerHTML = '';
       ordenados.forEach(e => contenedor.appendChild(e));
