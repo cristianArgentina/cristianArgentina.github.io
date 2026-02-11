@@ -58,12 +58,12 @@
     "description": "Oleo Extraordinario Elvive x 100 ml",
     "category": "belleza y salud",
     "price": 10000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://www.maxidescuento.com.ar/31273-home_default/elvive-oleo-extraordinario-x100m-7509552874204.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 7555.8,
         "_id": "698a23c65acee68e8800638a",
         "fechaIngreso": "2026-02-09T18:13:26.816Z"
@@ -975,17 +975,10 @@
     "description": "Mascarilla Oleo Extraordinario Nutrición Universal 300g",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/mascarillaoleoex.png",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 2924.68,
-        "_id": "6931961204c8937d36ff5889",
-        "fechaIngreso": "2025-12-04T14:09:22.457Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 1757535470079,
@@ -1029,17 +1022,10 @@
     "description": "Acondiconador Elvive óleo nutrición cabello seco 400ml",
     "category": "belleza y salud",
     "price": 6000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/oleonutricionacondicionador.jpeg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 4387.16,
-        "_id": "697ba27510e04456fc86d4e9",
-        "fechaIngreso": "2026-01-29T18:09:57.044Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 1757537094876,
@@ -1047,17 +1033,10 @@
     "description": "Shampoo Elvive óleo nutrición cabello seco 400ml",
     "category": "belleza y salud",
     "price": 6000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/oleonutricionshampoo.jpeg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 4387.16,
-        "_id": "697ba28810e04456fc86d53a",
-        "fechaIngreso": "2026-01-29T18:10:16.373Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 1757632522216,
