@@ -1,218 +1,43 @@
 [
   {
-    "id": 9,
-    "name": "Cicatricure - Gel Cicatrices",
-    "description": "Gel Cicatrices Y Estrías X 60g",
+    "id": 1,
+    "name": "Cicatricure - Firmeza",
+    "description": "Crema Corporal Hidratación Intensiva, Firmeza 400 Ml",
     "category": "belleza y salud",
-    "price": 12000,
-    "stock": 4,
-    "image": "https://media01.farmaciaslider.com.ar/27902-home_default/cicatricure-gel-para-cicatrices-60-g.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 2,
-        "costoUnitario": 8420,
-        "_id": "696ff19fc18de5ba49dc6fc5",
-        "fechaIngreso": "2026-01-20T21:20:31.956Z"
-      },
-      {
-        "cantidad": 2,
-        "costoUnitario": 6659.25,
-        "_id": "6989522e25cbcbe9b2e4969c",
-        "fechaIngreso": "2026-02-09T03:19:10.467Z"
-      }
-    ]
-  },
-  {
-    "id": 11,
-    "name": "Cicatricure - Reparación intensiva",
-    "description": "Crema corporal con 10% urea 250g",
-    "category": "belleza y salud",
-    "price": 10000,
-    "stock": 1,
-    "image": "https://media02.farmaciaslider.com.ar/27834-home_default/cicatricure-urea-corporal-250-g.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 5875.35,
-        "_id": "68a74b79a9c62e7b0ddf5c79",
-        "fechaIngreso": "2025-08-21T16:38:17.270Z"
-      }
-    ]
-  },
-  {
-    "id": 15,
-    "name": "Cicatricure - gold lift contorno duo",
-    "description": "Crema Cicatricure Gold Lift Contorno Duo 15g",
-    "category": "belleza y salud",
-    "price": 15000,
+    "price": 9000,
     "stock": 0,
-    "image": "https://media02.farmaciaslider.com.ar/27935-home_default/cicatricure-contorno-de-ojos-y-boca-gold-lift-15g.jpg",
+    "image": "https://www.maxidescuento.com.ar/22724-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-firmeza-7798140254416.jpg",
     "videos": [],
     "lotes": []
   },
   {
-    "id": 16,
-    "name": "Elvive - Oleo Extraordinario",
-    "description": "Oleo Extraordinario Elvive x 100 ml",
+    "id": 2,
+    "name": "DiabeTX - Hidratante",
+    "description": "Crema Corporal Hidratante x 400 ml",
     "category": "belleza y salud",
     "price": 10000,
     "stock": 1,
-    "image": "https://www.maxidescuento.com.ar/31273-home_default/elvive-oleo-extraordinario-x100m-7509552874204.jpg",
+    "image": "https://media02.farmaciaslider.com.ar/27994-home_default/goicoechea-crema-diabetex-nf-mph-400-ml.jpg",
     "videos": [],
     "lotes": [
       {
         "cantidad": 1,
-        "costoUnitario": 7555.8,
-        "_id": "698a23c65acee68e8800638a",
-        "fechaIngreso": "2026-02-09T18:13:26.816Z"
+        "costoUnitario": 2589,
+        "_id": "6941c06987a8e70f3cb457d0",
+        "fechaIngreso": "2025-12-16T20:26:17.582Z"
       }
     ]
   },
   {
-    "id": 17,
-    "name": "Dove - Nutrición + Geranio",
-    "description": "Máscara de Tratamiento Nutrición + Geranio 190 ml",
+    "id": 3,
+    "name": "DiabeTX - Urea + Calendula",
+    "description": "Crema Corporal Plus Urea 5% + Calendula 1% 200 ml",
     "category": "belleza y salud",
-    "price": 4000,
-    "stock": 3,
-    "image": "https://www.maxidescuento.com.ar/24736-home_default/dove-poder-plantas-mascara-x190g-nutricionger-7891150079168.jpg",
+    "price": 9000,
+    "stock": 0,
+    "image": "https://media02.farmaciaslider.com.ar/27983-home_default/goicoechea-diabet-tx-plus-envase-x-200-ml.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 998,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b2a"
-      }
-    ]
-  },
-  {
-    "id": 18,
-    "name": "Dove - Fuerza + Bambú",
-    "description": "Máscara de Tratamiento Fuerza + Bambú 190 ml",
-    "category": "belleza y salud",
-    "price": 4000,
-    "stock": 3,
-    "image": "https://www.maxidescuento.com.ar/24732-home_default/dove-poder-plantas-mascara-x190g-fuerzabamb-7891150079175.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 999,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b2c"
-      }
-    ]
-  },
-  {
-    "id": 21,
-    "name": "Diabet Tx - Urea 250g",
-    "description": "Goicoechea Diabet Tx Plus con Urea 250g",
-    "category": "belleza y salud",
-    "price": 13000,
-    "stock": 2,
-    "image": "https://media01.farmaciaslider.com.ar/27984-home_default/goicoechea-crema-diabet-tx-plus-250g.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 2,
-        "costoUnitario": 4992.3,
-        "_id": "691b588ba5b6642f423939c0",
-        "fechaIngreso": "2025-11-17T17:16:59.438Z"
-      }
-    ]
-  },
-  {
-    "id": 27,
-    "name": "Monitor TV LED 24\"",
-    "description": "Monitor TV Led Samsung 24\" Con Control Remoto Original",
-    "category": "tecnologia",
-    "price": 160000,
-    "stock": 1,
-    "image": "https://santafecomputacion.com.ar/productos/get-imagen/1550",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b3e"
-      }
-    ]
-  },
-  {
-    "id": 29,
-    "name": "Panel luz‑led con trípode",
-    "description": "Panel fotográfico luz led de estudio con trípode",
-    "category": "iluminacion",
-    "price": 20000,
-    "stock": 1,
-    "image": "https://http2.mlstatic.com/D_NQ_NP_758794-MLA82767947144_032025-O.webp",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 12499.5,
-        "fechaIngreso": "2025-06-03T00:00:00.000Z",
-        "_id": "68a3a33c02d19be1278bd1b8"
-      }
-    ]
-  },
-  {
-    "id": 32,
-    "name": "Proyector De Estrella",
-    "description": "Proyector De Estrella USB Luz Nocturna Ajustable ROJO o AZUL",
-    "category": "iluminacion",
-    "price": 15000,
-    "stock": 7,
-    "image": "https://http2.mlstatic.com/D_NQ_NP_623534-MLA54225599890_032023-O.webp",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 7,
-        "costoUnitario": 4290,
-        "_id": "68aef50adc81e80048adb2de",
-        "fechaIngreso": "2025-08-27T12:07:38.271Z"
-      }
-    ]
-  },
-  {
-    "id": 41,
-    "name": "Cortadora de pelo Dragon",
-    "description": "Cortadora de pelo, definidora carga USB",
-    "category": "belleza y salud",
-    "price": 15000,
-    "stock": 3,
-    "image": "https://acdn-us.mitiendanube.com/stores/001/738/520/products/51dm6jdzcnl-_ac_uf10001000_ql80_1-0f2572d3e53ac9bcf116880478438025-1024-1024.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 3,
-        "costoUnitario": 6299.29,
-        "fechaIngreso": "2025-02-08T00:00:00.000Z",
-        "_id": "68a3273e8309095ba5a3d429"
-      }
-    ]
-  },
-  {
-    "id": 43,
-    "name": "Anafe portátil",
-    "description": "Mini anafe portátil plegable a gas butano",
-    "category": "hogar",
-    "price": 20000,
-    "stock": 4,
-    "image": "https://www.bomberomania.com.ar/wp-content/uploads/productos/Mini-Anafe-Calentador-Portatil-Plegable-Camping-Moonhill-CS101A-6-500x500.webp",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 4,
-        "costoUnitario": 8249,
-        "fechaIngreso": "2025-07-09T00:00:00.000Z",
-        "_id": "68a3a20702d19be1278bd018"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 4,
@@ -248,6 +73,119 @@
     "image": "https://media01.farmaciaslider.com.ar/36649-home_default/cicatricure-protector-solar-fps50-x-50-g-.jpg",
     "videos": [],
     "lotes": []
+  },
+  {
+    "id": 6,
+    "name": "Cicatricure - Ácido Hialurónico",
+    "description": "Crema Facial Antiedad Con Ácido Hialurónico 60g",
+    "category": "belleza y salud",
+    "price": 15000,
+    "stock": 1,
+    "image": "https://media03.farmaciaslider.com.ar/27829-home_default/cicatricure-crema-antiedad-tricure-50-gr.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b14"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Cicatricure - Colágeno",
+    "description": "Crema Facial Antiedad Con Colágeno 50g",
+    "category": "belleza y salud",
+    "price": 15000,
+    "stock": 4,
+    "image": "https://media01.farmaciaslider.com.ar/27940-home_default/cicatricure-crema-antiarrugas-nueva-formula-con-biopeptide-60g.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 4883.2,
+        "fechaIngreso": "2025-04-30T00:00:00.000Z",
+        "_id": "68a39b2702d19be1278bcd9f"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 4883.2,
+        "fechaIngreso": "2025-02-25T00:00:00.000Z",
+        "_id": "68a39ba802d19be1278bcde3"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Cicatricure - Antiestrías",
+    "description": "Crema Corporal Hidratación Intensiva, Antiestrías 400 Ml",
+    "category": "belleza y salud",
+    "price": 9000,
+    "stock": 0,
+    "image": "https://www.maxidescuento.com.ar/22725-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-anti-estrias-7798140254423.jpg",
+    "videos": [],
+    "lotes": []
+  },
+  {
+    "id": 9,
+    "name": "Cicatricure - Gel Cicatrices",
+    "description": "Gel Cicatrices Y Estrías X 60g",
+    "category": "belleza y salud",
+    "price": 12000,
+    "stock": 4,
+    "image": "https://media01.farmaciaslider.com.ar/27902-home_default/cicatricure-gel-para-cicatrices-60-g.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 8420,
+        "_id": "696ff19fc18de5ba49dc6fc5",
+        "fechaIngreso": "2026-01-20T21:20:31.956Z"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 6659.25,
+        "_id": "6989522e25cbcbe9b2e4969c",
+        "fechaIngreso": "2026-02-09T03:19:10.467Z"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Cicatricure - Reparación",
+    "description": "Crema Corporal Hidratación Intensiva, Reparación 400 Ml",
+    "category": "belleza y salud",
+    "price": 9000,
+    "stock": 1,
+    "image": "https://www.maxidescuento.com.ar/19734-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-reparacion-7798140254409.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b1c"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Cicatricure - Reparación intensiva",
+    "description": "Crema corporal con 10% urea 250g",
+    "category": "belleza y salud",
+    "price": 10000,
+    "stock": 1,
+    "image": "https://media02.farmaciaslider.com.ar/27834-home_default/cicatricure-urea-corporal-250-g.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 5875.35,
+        "_id": "68a74b79a9c62e7b0ddf5c79",
+        "fechaIngreso": "2025-08-21T16:38:17.270Z"
+      }
+    ]
   },
   {
     "id": 12,
@@ -315,6 +253,136 @@
     "lotes": []
   },
   {
+    "id": 15,
+    "name": "Cicatricure - gold lift contorno duo",
+    "description": "Crema Cicatricure Gold Lift Contorno Duo 15g",
+    "category": "belleza y salud",
+    "price": 15000,
+    "stock": 0,
+    "image": "https://media02.farmaciaslider.com.ar/27935-home_default/cicatricure-contorno-de-ojos-y-boca-gold-lift-15g.jpg",
+    "videos": [],
+    "lotes": []
+  },
+  {
+    "id": 16,
+    "name": "Elvive - Oleo Extraordinario",
+    "description": "Oleo Extraordinario Elvive x 100 ml",
+    "category": "belleza y salud",
+    "price": 10000,
+    "stock": 2,
+    "image": "https://www.maxidescuento.com.ar/31273-home_default/elvive-oleo-extraordinario-x100m-7509552874204.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 7560.46,
+        "_id": "69932e515a0e6429e6dab4d7",
+        "fechaIngreso": "2026-02-16T14:48:49.111Z"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Dove - Nutrición + Geranio",
+    "description": "Máscara de Tratamiento Nutrición + Geranio 190 ml",
+    "category": "belleza y salud",
+    "price": 4000,
+    "stock": 3,
+    "image": "https://www.maxidescuento.com.ar/24736-home_default/dove-poder-plantas-mascara-x190g-nutricionger-7891150079168.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 998,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b2a"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Dove - Fuerza + Bambú",
+    "description": "Máscara de Tratamiento Fuerza + Bambú 190 ml",
+    "category": "belleza y salud",
+    "price": 4000,
+    "stock": 3,
+    "image": "https://www.maxidescuento.com.ar/24732-home_default/dove-poder-plantas-mascara-x190g-fuerzabamb-7891150079175.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 999,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b2c"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Goicoechea - Crema Corporal 200ml",
+    "description": "Crema Corporal ANTICELULITIS, REAFIRMANTE CON TONIFYER, ULTRA NUTRITIVA 200 Ml",
+    "category": "belleza y salud",
+    "price": 5000,
+    "stock": 0,
+    "image": "https://cristianargentina.github.io/assets/img/goicoechea200varices.jpg",
+    "videos": [],
+    "lotes": []
+  },
+  {
+    "id": 20,
+    "name": "Goicoechea - Crema Corporal 400ml",
+    "description": "Crema Corporal ANTICELULITIS 400 Ml",
+    "category": "belleza y salud",
+    "price": 9000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/goicoechea400anticelulitis.png",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 5275.27,
+        "_id": "696e7109d5e63ce582047b42",
+        "fechaIngreso": "2026-01-19T17:59:37.938Z"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Diabet Tx - Urea 250g",
+    "description": "Goicoechea Diabet Tx Plus con Urea 250g",
+    "category": "belleza y salud",
+    "price": 13000,
+    "stock": 2,
+    "image": "https://media01.farmaciaslider.com.ar/27984-home_default/goicoechea-crema-diabet-tx-plus-250g.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 4992.3,
+        "_id": "691b588ba5b6642f423939c0",
+        "fechaIngreso": "2025-11-17T17:16:59.438Z"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Filtro para jarra de agua",
+    "description": "Filtro repuesto para jarras purificadoras de agua HUMMA BRITA AQUATAL",
+    "category": "hogar",
+    "price": 20000,
+    "stock": 4,
+    "image": "https://acdn-us.mitiendanube.com/stores/001/319/444/products/f003-2-13405ad6d2085c6aad17268606081580-640-0.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 4,
+        "costoUnitario": 12629.755,
+        "fechaIngreso": "2025-08-12T00:00:00.000Z",
+        "_id": "68a3251b8309095ba5a3d288"
+      }
+    ]
+  },
+  {
     "id": 23,
     "name": "Tope Retén Magnético",
     "description": "Tope Reten Magnetico (para Puerta de Alacena/Placard/Mueble)",
@@ -333,6 +401,96 @@
     ]
   },
   {
+    "id": 24,
+    "name": "Soporte para tablet",
+    "description": "Soporte ergonómico para tablet regulable",
+    "category": "tecnologia",
+    "price": 6000,
+    "stock": 1,
+    "image": "https://http2.mlstatic.com/D_NQ_NP_898342-MLA81968553114_022025-O.webp",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b38"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Control Remoto Ml‑L3",
+    "description": "Para Cámaras Nikon D5100 D7000 D60 D50",
+    "category": "tecnologia",
+    "price": 12000,
+    "stock": 1,
+    "image": "https://www.nikon.com.ar/uploads/accesorios/large/20150429-054111.png",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 1990,
+        "fechaIngreso": "2025-06-13T00:00:00.000Z",
+        "_id": "68a3a40d02d19be1278bd2c0"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Monitor TV LED 24\"",
+    "description": "Monitor TV Led Samsung 24\" Con Control Remoto Original",
+    "category": "tecnologia",
+    "price": 160000,
+    "stock": 1,
+    "image": "https://santafecomputacion.com.ar/productos/get-imagen/1550",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b3e"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Panel LED OSR",
+    "description": "Panel LED para montar redondo OSR 12W",
+    "category": "iluminacion",
+    "price": 10000,
+    "stock": 2,
+    "image": "https://http2.mlstatic.com/D_NQ_NP_819043-MLA82795711660_032025-O.webp",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b40"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Panel luz‑led con trípode",
+    "description": "Panel fotográfico luz led de estudio con trípode",
+    "category": "iluminacion",
+    "price": 20000,
+    "stock": 1,
+    "image": "https://http2.mlstatic.com/D_NQ_NP_758794-MLA82767947144_032025-O.webp",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 12499.5,
+        "fechaIngreso": "2025-06-03T00:00:00.000Z",
+        "_id": "68a3a33c02d19be1278bd1b8"
+      }
+    ]
+  },
+  {
     "id": 30,
     "name": "Lámpara Giratoria RGB",
     "description": "Lámpara Led Giratoria colores RGB",
@@ -342,6 +500,42 @@
     "image": "https://acdn-us.mitiendanube.com/stores/001/155/056/products/1-18b160c7c0c32147ed17292664690658-1024-1024.webp",
     "videos": [],
     "lotes": []
+  },
+  {
+    "id": 31,
+    "name": "Reloj - Proyector De Estrellas",
+    "description": "Reloj Despertador Con Proyector De Estrellas",
+    "category": "iluminacion",
+    "price": 15000,
+    "stock": 1,
+    "image": "https://oportunidades-vip.com.ar/wp-content/uploads/2025/07/Reloj_Despertador_Proyector_Estrellas_Con_Musica_Y_Alarma_D_900218-MLA33074242954_122019-O.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b46"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Proyector De Estrella",
+    "description": "Proyector De Estrella USB Luz Nocturna Ajustable ROJO o AZUL",
+    "category": "iluminacion",
+    "price": 15000,
+    "stock": 7,
+    "image": "https://http2.mlstatic.com/D_NQ_NP_623534-MLA54225599890_032023-O.webp",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 7,
+        "costoUnitario": 4290,
+        "_id": "68aef50adc81e80048adb2de",
+        "fechaIngreso": "2025-08-27T12:07:38.271Z"
+      }
+    ]
   },
   {
     "id": 33,
@@ -368,214 +562,6 @@
     ]
   },
   {
-    "id": 39,
-    "name": "Aire Acondicionado Split Surrey",
-    "description": "Aire Acondicionado Split Frío Calor 4500w Surrey, en sus cajas (sin usar)",
-    "category": "hogar",
-    "price": 850000,
-    "stock": 1,
-    "image": "https://www.surair.com.ar/wp-content/uploads/2024/04/01-plantilla-surrey-pria-evolution-4500-1.webp",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b56"
-      }
-    ]
-  },
-  {
-    "id": 42,
-    "name": "Piedra mágica",
-    "description": "Piedra depiladora mágica",
-    "category": "belleza y salud",
-    "price": 10000,
-    "stock": 1,
-    "image": "https://acdn-us.mitiendanube.com/stores/001/131/056/products/depila1-cafe071c04ad00005417207881726815-480-0.png",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b5c"
-      }
-    ]
-  },
-  {
-    "id": 1753049727149,
-    "name": "Elvive - Serum Dream Liso",
-    "description": "Serum Elvive Dream Liso 100ml",
-    "category": "belleza y salud",
-    "price": 14000,
-    "stock": 1,
-    "image": "https://www.lorealparis.com.ar/-/media/project/loreal/brand-sites/oap/americas/ar/articles/dream-liso/menos-mb.png",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 9179.49,
-        "_id": "691224d661ff4237e2d2e8f1",
-        "fechaIngreso": "2025-11-10T17:45:58.064Z"
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "name": "DiabeTX - Hidratante",
-    "description": "Crema Corporal Hidratante x 400 ml",
-    "category": "belleza y salud",
-    "price": 10000,
-    "stock": 1,
-    "image": "https://media02.farmaciaslider.com.ar/27994-home_default/goicoechea-crema-diabetex-nf-mph-400-ml.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 2589,
-        "_id": "6941c06987a8e70f3cb457d0",
-        "fechaIngreso": "2025-12-16T20:26:17.582Z"
-      }
-    ]
-  },
-  {
-    "id": 7,
-    "name": "Cicatricure - Colágeno",
-    "description": "Crema Facial Antiedad Con Colágeno 50g",
-    "category": "belleza y salud",
-    "price": 15000,
-    "stock": 4,
-    "image": "https://media01.farmaciaslider.com.ar/27940-home_default/cicatricure-crema-antiarrugas-nueva-formula-con-biopeptide-60g.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 2,
-        "costoUnitario": 4883.2,
-        "fechaIngreso": "2025-04-30T00:00:00.000Z",
-        "_id": "68a39b2702d19be1278bcd9f"
-      },
-      {
-        "cantidad": 2,
-        "costoUnitario": 4883.2,
-        "fechaIngreso": "2025-02-25T00:00:00.000Z",
-        "_id": "68a39ba802d19be1278bcde3"
-      }
-    ]
-  },
-  {
-    "id": 8,
-    "name": "Cicatricure - Antiestrías",
-    "description": "Crema Corporal Hidratación Intensiva, Antiestrías 400 Ml",
-    "category": "belleza y salud",
-    "price": 9000,
-    "stock": 0,
-    "image": "https://www.maxidescuento.com.ar/22725-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-anti-estrias-7798140254423.jpg",
-    "videos": [],
-    "lotes": []
-  },
-  {
-    "id": 10,
-    "name": "Cicatricure - Reparación",
-    "description": "Crema Corporal Hidratación Intensiva, Reparación 400 Ml",
-    "category": "belleza y salud",
-    "price": 9000,
-    "stock": 1,
-    "image": "https://www.maxidescuento.com.ar/19734-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-reparacion-7798140254409.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b1c"
-      }
-    ]
-  },
-  {
-    "id": 19,
-    "name": "Goicoechea - Crema Corporal 200ml",
-    "description": "Crema Corporal ANTICELULITIS, REAFIRMANTE CON TONIFYER, ULTRA NUTRITIVA 200 Ml",
-    "category": "belleza y salud",
-    "price": 5000,
-    "stock": 0,
-    "image": "https://cristianargentina.github.io/assets/img/goicoechea200varices.jpg",
-    "videos": [],
-    "lotes": []
-  },
-  {
-    "id": 22,
-    "name": "Filtro para jarra de agua",
-    "description": "Filtro repuesto para jarras purificadoras de agua HUMMA BRITA AQUATAL",
-    "category": "hogar",
-    "price": 20000,
-    "stock": 4,
-    "image": "https://acdn-us.mitiendanube.com/stores/001/319/444/products/f003-2-13405ad6d2085c6aad17268606081580-640-0.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 4,
-        "costoUnitario": 12629.755,
-        "fechaIngreso": "2025-08-12T00:00:00.000Z",
-        "_id": "68a3251b8309095ba5a3d288"
-      }
-    ]
-  },
-  {
-    "id": 26,
-    "name": "Control Remoto Ml‑L3",
-    "description": "Para Cámaras Nikon D5100 D7000 D60 D50",
-    "category": "tecnologia",
-    "price": 12000,
-    "stock": 1,
-    "image": "https://www.nikon.com.ar/uploads/accesorios/large/20150429-054111.png",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 1990,
-        "fechaIngreso": "2025-06-13T00:00:00.000Z",
-        "_id": "68a3a40d02d19be1278bd2c0"
-      }
-    ]
-  },
-  {
-    "id": 28,
-    "name": "Panel LED OSR",
-    "description": "Panel LED para montar redondo OSR 12W",
-    "category": "iluminacion",
-    "price": 10000,
-    "stock": 2,
-    "image": "https://http2.mlstatic.com/D_NQ_NP_819043-MLA82795711660_032025-O.webp",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 2,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b40"
-      }
-    ]
-  },
-  {
-    "id": 31,
-    "name": "Reloj - Proyector De Estrellas",
-    "description": "Reloj Despertador Con Proyector De Estrellas",
-    "category": "iluminacion",
-    "price": 15000,
-    "stock": 1,
-    "image": "https://oportunidades-vip.com.ar/wp-content/uploads/2025/07/Reloj_Despertador_Proyector_Estrellas_Con_Musica_Y_Alarma_D_900218-MLA33074242954_122019-O.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b46"
-      }
-    ]
-  },
-  {
     "id": 34,
     "name": "Kit luces led",
     "description": "Kit luces led para bici, moto ROJO, VERDE, AMARILLO (contiene 2 luces, pilas y adaptador)",
@@ -590,160 +576,6 @@
         "costoUnitario": null,
         "fechaIngreso": "2025-01-01T00:00:00.000Z",
         "_id": "689bd1e0d9326923139c8b4c"
-      }
-    ]
-  },
-  {
-    "id": 38,
-    "name": "Cerradura de Exterior Kallay",
-    "description": "Cerradura de Exterior 4006 Kallay",
-    "category": "hogar",
-    "price": 25000,
-    "stock": 1,
-    "image": "https://www.kallay.com/img/products/23/gallery/20230728165553919600_image.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b54"
-      }
-    ]
-  },
-  {
-    "id": 44,
-    "name": "TRESemmé - Spray sellado",
-    "description": "Coat spray sellado antifrizz",
-    "category": "belleza y salud",
-    "price": 10000,
-    "stock": 1,
-    "image": "https://assets.unileversolutions.com/v1/133018309.png?im=AspectCrop=(985,985);Resize=(985,985)",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 5458.8,
-        "_id": "68e42a622d651af8a43f00ea",
-        "fechaIngreso": "2025-10-06T20:45:22.158Z"
-      }
-    ]
-  },
-  {
-    "id": 1753378215630,
-    "name": "Elvive - Serum Glycolic Gloss",
-    "description": "Serum Elvive Glycolic Gloss 100ml",
-    "category": "belleza y salud",
-    "price": 11000,
-    "stock": 3,
-    "image": "https://media03.farmaciaslider.com.ar/39769-thickbox_default/elvive-glycolic-gloss-serum-x-100-ml.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 6500.65,
-        "fechaIngreso": "2025-08-06T00:00:00.000Z",
-        "_id": "68a38e0502d19be1278bc7c3"
-      },
-      {
-        "cantidad": 2,
-        "costoUnitario": 6500.65,
-        "fechaIngreso": "2025-08-05T00:00:00.000Z",
-        "_id": "68a38e8202d19be1278bc801"
-      }
-    ]
-  },
-  {
-    "id": 1754014227211,
-    "name": "MESSI - Jabón Líquido",
-    "description": "Jabón Líquido y Shower Gel 300ml",
-    "category": "belleza y salud",
-    "price": 7000,
-    "stock": 2,
-    "image": "https://media02.farmaciaslider.com.ar/33281-thickbox_default/algabo-mundial-messi-300ml-jab-liq.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 2,
-        "costoUnitario": 3449.25,
-        "fechaIngreso": "2025-07-31T00:00:00.000Z",
-        "_id": "68a388a002d19be1278bc5c6"
-      }
-    ]
-  },
-  {
-    "id": 1,
-    "name": "Cicatricure - Firmeza",
-    "description": "Crema Corporal Hidratación Intensiva, Firmeza 400 Ml",
-    "category": "belleza y salud",
-    "price": 9000,
-    "stock": 0,
-    "image": "https://www.maxidescuento.com.ar/22724-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-firmeza-7798140254416.jpg",
-    "videos": [],
-    "lotes": []
-  },
-  {
-    "id": 3,
-    "name": "DiabeTX - Urea + Calendula",
-    "description": "Crema Corporal Plus Urea 5% + Calendula 1% 200 ml",
-    "category": "belleza y salud",
-    "price": 9000,
-    "stock": 0,
-    "image": "https://media02.farmaciaslider.com.ar/27983-home_default/goicoechea-diabet-tx-plus-envase-x-200-ml.jpg",
-    "videos": [],
-    "lotes": []
-  },
-  {
-    "id": 6,
-    "name": "Cicatricure - Ácido Hialurónico",
-    "description": "Crema Facial Antiedad Con Ácido Hialurónico 60g",
-    "category": "belleza y salud",
-    "price": 15000,
-    "stock": 1,
-    "image": "https://media03.farmaciaslider.com.ar/27829-home_default/cicatricure-crema-antiedad-tricure-50-gr.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b14"
-      }
-    ]
-  },
-  {
-    "id": 20,
-    "name": "Goicoechea - Crema Corporal 400ml",
-    "description": "Crema Corporal ANTICELULITIS 400 Ml",
-    "category": "belleza y salud",
-    "price": 9000,
-    "stock": 1,
-    "image": "https://cristianargentina.github.io/assets/img/goicoechea400anticelulitis.png",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 5275.27,
-        "_id": "696e7109d5e63ce582047b42",
-        "fechaIngreso": "2026-01-19T17:59:37.938Z"
-      }
-    ]
-  },
-  {
-    "id": 24,
-    "name": "Soporte para tablet",
-    "description": "Soporte ergonómico para tablet regulable",
-    "category": "tecnologia",
-    "price": 6000,
-    "stock": 1,
-    "image": "https://http2.mlstatic.com/D_NQ_NP_898342-MLA81968553114_022025-O.webp",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b38"
       }
     ]
   },
@@ -802,6 +634,42 @@
     ]
   },
   {
+    "id": 38,
+    "name": "Cerradura de Exterior Kallay",
+    "description": "Cerradura de Exterior 4006 Kallay",
+    "category": "hogar",
+    "price": 25000,
+    "stock": 1,
+    "image": "https://www.kallay.com/img/products/23/gallery/20230728165553919600_image.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b54"
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Aire Acondicionado Split Surrey",
+    "description": "Aire Acondicionado Split Frío Calor 4500w Surrey, en sus cajas (sin usar)",
+    "category": "hogar",
+    "price": 850000,
+    "stock": 1,
+    "image": "https://www.surair.com.ar/wp-content/uploads/2024/04/01-plantilla-surrey-pria-evolution-4500-1.webp",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b56"
+      }
+    ]
+  },
+  {
     "id": 40,
     "name": "Heladera No Frost Patrick",
     "description": "Heladera No Frost Patrick HPK350",
@@ -816,6 +684,96 @@
         "costoUnitario": null,
         "fechaIngreso": "2025-01-01T00:00:00.000Z",
         "_id": "689bd1e0d9326923139c8b58"
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Cortadora de pelo Dragon",
+    "description": "Cortadora de pelo, definidora carga USB",
+    "category": "belleza y salud",
+    "price": 15000,
+    "stock": 3,
+    "image": "https://acdn-us.mitiendanube.com/stores/001/738/520/products/51dm6jdzcnl-_ac_uf10001000_ql80_1-0f2572d3e53ac9bcf116880478438025-1024-1024.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 3,
+        "costoUnitario": 6299.29,
+        "fechaIngreso": "2025-02-08T00:00:00.000Z",
+        "_id": "68a3273e8309095ba5a3d429"
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Piedra mágica",
+    "description": "Piedra depiladora mágica",
+    "category": "belleza y salud",
+    "price": 10000,
+    "stock": 1,
+    "image": "https://acdn-us.mitiendanube.com/stores/001/131/056/products/depila1-cafe071c04ad00005417207881726815-480-0.png",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b5c"
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Anafe portátil",
+    "description": "Mini anafe portátil plegable a gas butano",
+    "category": "hogar",
+    "price": 20000,
+    "stock": 4,
+    "image": "https://www.bomberomania.com.ar/wp-content/uploads/productos/Mini-Anafe-Calentador-Portatil-Plegable-Camping-Moonhill-CS101A-6-500x500.webp",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 4,
+        "costoUnitario": 8249,
+        "fechaIngreso": "2025-07-09T00:00:00.000Z",
+        "_id": "68a3a20702d19be1278bd018"
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "name": "TRESemmé - Spray sellado",
+    "description": "Coat spray sellado antifrizz",
+    "category": "belleza y salud",
+    "price": 10000,
+    "stock": 1,
+    "image": "https://assets.unileversolutions.com/v1/133018309.png?im=AspectCrop=(985,985);Resize=(985,985)",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 5458.8,
+        "_id": "68e42a622d651af8a43f00ea",
+        "fechaIngreso": "2025-10-06T20:45:22.158Z"
+      }
+    ]
+  },
+  {
+    "id": 1753049727149,
+    "name": "Elvive - Serum Dream Liso",
+    "description": "Serum Elvive Dream Liso 100ml",
+    "category": "belleza y salud",
+    "price": 14000,
+    "stock": 1,
+    "image": "https://www.lorealparis.com.ar/-/media/project/loreal/brand-sites/oap/americas/ar/articles/dream-liso/menos-mb.png",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 9179.49,
+        "_id": "691224d661ff4237e2d2e8f1",
+        "fechaIngreso": "2025-11-10T17:45:58.064Z"
       }
     ]
   },
@@ -840,6 +798,48 @@
         "costoUnitario": 4504.15,
         "_id": "68d9b22abafec5eb5eb85438",
         "fechaIngreso": "2025-09-28T22:09:46.877Z"
+      }
+    ]
+  },
+  {
+    "id": 1753378215630,
+    "name": "Elvive - Serum Glycolic Gloss",
+    "description": "Serum Elvive Glycolic Gloss 100ml",
+    "category": "belleza y salud",
+    "price": 11000,
+    "stock": 3,
+    "image": "https://media03.farmaciaslider.com.ar/39769-thickbox_default/elvive-glycolic-gloss-serum-x-100-ml.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 6500.65,
+        "fechaIngreso": "2025-08-06T00:00:00.000Z",
+        "_id": "68a38e0502d19be1278bc7c3"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 6500.65,
+        "fechaIngreso": "2025-08-05T00:00:00.000Z",
+        "_id": "68a38e8202d19be1278bc801"
+      }
+    ]
+  },
+  {
+    "id": 1754014227211,
+    "name": "MESSI - Jabón Líquido",
+    "description": "Jabón Líquido y Shower Gel 300ml",
+    "category": "belleza y salud",
+    "price": 7000,
+    "stock": 2,
+    "image": "https://media02.farmaciaslider.com.ar/33281-thickbox_default/algabo-mundial-messi-300ml-jab-liq.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 3449.25,
+        "fechaIngreso": "2025-07-31T00:00:00.000Z",
+        "_id": "68a388a002d19be1278bc5c6"
       }
     ]
   },
@@ -957,17 +957,10 @@
     "description": "Óleo + Serum Bifásico Dove Bond Intense Repair de 110 ml ",
     "category": "belleza y salud",
     "price": 9000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/doveserumoleo.png",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 4325.74,
-        "_id": "6984e04b4982d7970cc9678c",
-        "fechaIngreso": "2026-02-05T18:24:11.872Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 1757107407247,
@@ -975,10 +968,17 @@
     "description": "Mascarilla Oleo Extraordinario Nutrición Universal 300g",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 0,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/mascarillaoleoex.png",
     "videos": [],
-    "lotes": []
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 4198.39,
+        "_id": "69932f2a5a0e6429e6dab576",
+        "fechaIngreso": "2026-02-16T14:52:26.709Z"
+      }
+    ]
   },
   {
     "id": 1757535470079,
@@ -1022,10 +1022,17 @@
     "description": "Acondiconador Elvive óleo nutrición cabello seco 400ml",
     "category": "belleza y salud",
     "price": 6000,
-    "stock": 0,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/oleonutricionacondicionador.jpeg",
     "videos": [],
-    "lotes": []
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 4198.39,
+        "_id": "69932ed45a0e6429e6dab526",
+        "fechaIngreso": "2026-02-16T14:51:00.610Z"
+      }
+    ]
   },
   {
     "id": 1757537094876,
@@ -1080,10 +1087,17 @@
     "description": "Shampoo Dream Liso Efecto Keratina 400Ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 0,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/dreamshampoo.png",
     "videos": [],
-    "lotes": []
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 4618.65,
+        "_id": "69932f885a0e6429e6dab5c5",
+        "fechaIngreso": "2026-02-16T14:54:00.836Z"
+      }
+    ]
   },
   {
     "id": 1759257775851,
@@ -1091,10 +1105,17 @@
     "description": "Acondicionador Dream Liso Efecto Keratina 400ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 0,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/acondicionadorDreamLiso.png",
     "videos": [],
-    "lotes": []
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 668.79,
+        "_id": "699329245be1896b0090f370",
+        "fechaIngreso": "2026-02-16T14:26:44.356Z"
+      }
+    ]
   },
   {
     "id": 1759871299740,
