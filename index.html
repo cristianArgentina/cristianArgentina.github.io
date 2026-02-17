@@ -184,7 +184,7 @@
       // 4️⃣ Backend en segundo plano
       actualizarDesdeBackend();
     })();
-
+/*
     const wspBtn = document.getElementById("whatsapp-float");
 
     wspBtn.addEventListener("click", () => {
@@ -201,7 +201,35 @@
 
       window.open(url, "_blank");
     });
+*/
 
+const cartBtn = document.getElementById("cart-float");
+const cartCount = document.getElementById("cart-count");
+
+function actualizarContador() {
+  const seleccionados = document.querySelectorAll(".producto-check:checked");
+  cartCount.textContent = seleccionados.length;
+}
+
+document.addEventListener("change", (e) => {
+  if (e.target.classList.contains("producto-check")) {
+    actualizarContador();
+  }
+});
+
+cartBtn.addEventListener("click", () => {
+  const seleccionados = [...document.querySelectorAll(".producto-check:checked")]
+    .map(chk => chk.dataset.nombre);
+
+  if (seleccionados.length === 0) {
+    alert("No hay productos seleccionados");
+    return;
+  }
+
+  alert("Productos en carrito:\n\n" + seleccionados.join("\n"));
+});
+    
+    
     menuList.addEventListener("click", (e) => {
   const item = e.target.closest("li");
   if (!item) return;
