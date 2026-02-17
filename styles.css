@@ -573,3 +573,27 @@ h1 {
   padding: 4px 7px;
   border-radius: 50%;
 }
+
+.precio-carrito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.btn-agregar {
+  background: #222;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-size: 14px;
+}
+
+.btn-agregar:hover {
+  background: #444;
+  transform: scale(1.05);
+}
+
