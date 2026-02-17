@@ -30,9 +30,13 @@
 
     <div id="cart-items"></div>
 
-    <div class="cart-footer">
-      <strong id="cart-total-text">Total: $0</strong>
-    </div>
+<div class="cart-footer">
+  <strong id="cart-total-text">Total: $0</strong>
+  <button id="btn-whatsapp" class="btn-whatsapp">
+    Enviar consulta por WhatsApp
+  </button>
+</div>
+
   </div>
 </div>
 
@@ -337,7 +341,34 @@ function renderCarrito() {
   renderCarrito();
 });
 
-    
+const btnWhatsapp = document.getElementById("btn-whatsapp");
+
+// ⚠️ CAMBIÁ ESTE NÚMERO POR EL TUYO
+const numeroWhatsapp = "5491138863899";
+
+btnWhatsapp.addEventListener("click", () => {
+  if (carrito.length === 0) {
+    alert("El carrito está vacío");
+    return;
+  }
+
+  const detalle = carrito
+    .map(p => `• ${p.nombre} - $${p.precio.toLocaleString()}`)
+    .join("\n");
+
+  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
+
+  const mensaje =
+`Hola, quiero consultar por los siguientes productos:
+
+${detalle}
+
+Total: $${total.toLocaleString()}`;
+
+  const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensaje)}`;
+
+  window.open(url, "_blank");
+});
     
     menuList.addEventListener("click", (e) => {
   const item = e.target.closest("li");
