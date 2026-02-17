@@ -23,23 +23,6 @@
   <title>Catálogo de Productos</title>
 
 </head>
-<div id="cart-modal" class="cart-modal">
-  <div class="cart-modal-content">
-    <span id="cart-close" class="cart-close">×</span>
-    <h2>Tu Carrito</h2>
-
-    <div id="cart-items"></div>
-
-<div class="cart-footer">
-  <strong id="cart-total-text">Total: $0</strong>
-  <button id="btn-whatsapp" class="btn-whatsapp">
-    Enviar consulta por WhatsApp
-  </button>
-</div>
-
-  </div>
-</div>
-
 <body>
   <div class="barra-superior">
     <h1 class="titulo-pagina">
@@ -104,13 +87,7 @@
     */
 
     const modal = document.getElementById("cart-modal");
-const detalleElem = document.getElementById("cart-detalle");
 const closeBtn = document.getElementById("cart-close");
-
-function abrirModal(texto) {
-  detalleElem.textContent = texto;
-  modal.style.display = "flex";
-}
 
 closeBtn.addEventListener("click", () => {
   modal.style.display = "none";
@@ -304,28 +281,7 @@ function renderCarrito() {
 const cartItemsContainer = document.getElementById("cart-items");
 const cartTotalText = document.getElementById("cart-total-text");
 
-function renderCarrito() {
-  cartItemsContainer.innerHTML = "";
-
-  carrito.forEach((item, index) => {
-    const div = document.createElement("div");
-    div.className = "cart-item";
-
-    div.innerHTML = `
-      <span>${item.nombre} - $${item.precio.toLocaleString()}</span>
-      <button data-index="${index}">Eliminar</button>
-    `;
-
-    cartItemsContainer.appendChild(div);
-  });
-
-  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
-  cartTotalText.textContent = "Total: $" + total.toLocaleString();
-
-  actualizarContador();
-}
-
-    cartItemsContainer.addEventListener("click", (e) => {
+  cartItemsContainer.addEventListener("click", (e) => {
   const btn = e.target.closest("button");
   if (!btn) return;
 
@@ -523,6 +479,22 @@ const ordenados = [...lista].sort((a, b) => {
     window.onYouTubeIframeAPIReady = window.inicializarVideosYouTube;
   </script>
 
+<div id="cart-modal" class="cart-modal">
+  <div class="cart-modal-content">
+    <span id="cart-close" class="cart-close">×</span>
+    <h2>Tu Carrito</h2>
+
+    <div id="cart-items"></div>
+
+<div class="cart-footer">
+  <strong id="cart-total-text">Total: $0</strong>
+  <button id="btn-whatsapp" class="btn-whatsapp">
+    Enviar consulta por WhatsApp
+  </button>
+</div>
+
+  </div>
+</div>
 </body>
 
 </html>
