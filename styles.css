@@ -539,3 +539,37 @@ h1 {
     width: 32px;
     height: 32px;
 }
+
+.cart-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: none;
+  background: #222;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.cart-float:hover {
+  background: #333;
+  transform: scale(1.08);
+}
+
+.cart-count {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 7px;
+  border-radius: 50%;
+}
