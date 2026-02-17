@@ -48,9 +48,7 @@
     <li data-id="">📦 - Todas</li>
   </ul>
 </div>
-
-  <div id="categorias" class="categorias-container">
-  </div>
+  
   <div id="instruccion">
     👉 Selecciona una categoría para explorar productos
   </div>
@@ -94,23 +92,6 @@
           loader.style.display = "none";
         }
     */
-    const categorias = [
-      { id: "belleza y salud", nombre: "Belleza y Salud", icono: "🧴" },
-      { id: "hogar", nombre: "Hogar", icono: "🏠" },
-      { id: "tecnologia", nombre: "Tecnología", icono: "💻" },
-      { id: "iluminacion", nombre: "Iluminación", icono: "💡" },
-    ];
-
-    function renderCategorias() {
-      const cont = document.getElementById("categorias");
-      cont.innerHTML = categorias.map(c => `
-    <div class="card-categoria" data-id="${c.id}">
-      <span class="icono">${c.icono}</span>
-      <span class="nombre">${c.nombre}</span>
-    </div>
-  `).join("");
-    }
-    renderCategorias();
 
     buscador.addEventListener('input', () => filtrarYOrdenar(productosOriginales));
 
