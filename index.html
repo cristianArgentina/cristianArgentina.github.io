@@ -59,15 +59,6 @@
   </a>
 
   <p id="no-results">No se encontraron productos que coincidan con la búsqueda o filtro.</p>
-<script>
-  const toggleBtn = document.getElementById("toggleBtn");
-  const menuList = document.getElementById("menuList");
-
-  toggleBtn.addEventListener("click", () => {
-    menuList.classList.toggle("active");
-    toggleBtn.classList.toggle("active");
-  });
-</script>
   
   <script type="module">
     import { API_URL } from './config.js';
@@ -93,6 +84,14 @@
         }
     */
 
+      const toggleBtn = document.getElementById("toggleBtn");
+  const menuList = document.getElementById("menuList");
+
+  toggleBtn.addEventListener("click", () => {
+    menuList.classList.toggle("active");
+    toggleBtn.classList.toggle("active");
+  });
+    
     buscador.addEventListener('input', () => filtrarYOrdenar(productosOriginales));
 
     async function cargarProductosDesdeJSON() {
