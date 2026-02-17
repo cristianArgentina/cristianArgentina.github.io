@@ -27,9 +27,15 @@
   <div class="cart-modal-content">
     <span id="cart-close" class="cart-close">×</span>
     <h2>Tu Carrito</h2>
-    <pre id="cart-detalle"></pre>
+
+    <div id="cart-items"></div>
+
+    <div class="cart-footer">
+      <strong id="cart-total-text">Total: $0</strong>
+    </div>
   </div>
 </div>
+
 <body>
   <div class="barra-superior">
     <h1 class="titulo-pagina">
@@ -244,26 +250,6 @@ document.addEventListener("change", (e) => {
   }
 });
 
-cartBtn.addEventListener("click", () => {
-  if (carrito.length === 0) {
-    abrirModal("El carrito está vacío");
-    return;
-  }
-
-  const detalle = carrito
-    .map(p => `${p.nombre} - $${p.precio.toLocaleString()}`)
-    .join("\n");
-
-  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
-
-  abrirModal(
-    detalle +
-    "\n\n----------------------\n" +
-    "TOTAL: $" + total.toLocaleString()
-  );
-});
-
-
 document.addEventListener("click", (e) => {
   const btn = e.target.closest(".btn-agregar");
   if (!btn) return;
@@ -275,7 +261,7 @@ document.addEventListener("click", (e) => {
   };
 
   carrito.push(item);
-
+renderCarrito();
   actualizarContador();
 
   // efecto visual opcional
@@ -288,6 +274,70 @@ document.addEventListener("click", (e) => {
   }, 800);
 });
 
+    const cartItemsContainer = document.getElementById("cart-items");
+const cartTotalText = document.getElementById("cart-total-text");
+
+function renderCarrito() {
+  cartItemsContainer.innerHTML = "";
+
+  carrito.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.className = "cart-item";
+
+    div.innerHTML = `
+      <span>${item.nombre} - $${item.precio.toLocaleString()}</span>
+      <button data-index="${index}">Eliminar</button>
+    `;
+
+    cartItemsContainer.appendChild(div);
+  });
+
+  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
+  cartTotalText.textContent = "Total: $" + total.toLocaleString();
+
+  actualizarContador();
+}
+const cartItemsContainer = document.getElementById("cart-items");
+const cartTotalText = document.getElementById("cart-total-text");
+
+function renderCarrito() {
+  cartItemsContainer.innerHTML = "";
+
+  carrito.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.className = "cart-item";
+
+    div.innerHTML = `
+      <span>${item.nombre} - $${item.precio.toLocaleString()}</span>
+      <button data-index="${index}">Eliminar</button>
+    `;
+
+    cartItemsContainer.appendChild(div);
+  });
+
+  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
+  cartTotalText.textContent = "Total: $" + total.toLocaleString();
+
+  actualizarContador();
+}
+
+    cartItemsContainer.addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn) return;
+
+  const index = btn.dataset.index;
+
+  carrito.splice(index, 1);
+
+  renderCarrito();
+});
+
+    cartBtn.addEventListener("click", () => {
+  modal.style.display = "flex";
+  renderCarrito();
+});
+
+    
     
     menuList.addEventListener("click", (e) => {
   const item = e.target.closest("li");
