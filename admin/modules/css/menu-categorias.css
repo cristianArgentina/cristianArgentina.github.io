@@ -59,3 +59,39 @@
 .menu-btn.active .arrow {
   transform: rotate(180deg);
 }
+
+/* ===== DESKTOP ===== */
+@media (min-width: 769px) {
+
+  .menu-list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 10px;
+
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+  }
+
+  .menu-list.active {
+    max-height: 100px; /* altura suficiente para una fila */
+    padding: 12px;
+  }
+
+  .menu-list li {
+    white-space: nowrap;
+    border-bottom: none;
+    border-radius: 20px;
+    padding: 10px 16px;
+    background: #444;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+  }
+
+  .menu-list li:hover {
+    background: #555;
+  }
+}
+
