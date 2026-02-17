@@ -280,11 +280,15 @@ cartBtn.addEventListener("click", () => {
       info.innerHTML = `
           <h2>${p.name}</h2>
           <p>${p.description}</p>
-          <label class="precio-wsp">
-            <input type="checkbox" class="producto-check" data-nombre="${p.name} - $${p.price.toLocaleString()}">
-            <span class="checkmark"></span>
+          <div class="precio-carrito">
             <span class="precio">$${p.price.toLocaleString()}</span>
-          </label>
+            <button class="btn-agregar"
+              data-id="${p.id || p.name}"
+              data-nombre="${p.name}"
+              data-precio="${p.price}">
+              Agregar
+            </button>
+          </div>
         `;
       div.appendChild(info);
       // Alerta visual de stock bajo
