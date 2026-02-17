@@ -41,10 +41,11 @@
   </button>
 
   <ul id="menuList" class="menu-list">
-    <li>🧴 - Belleza y Salud</li>
-    <li>🏠 - Hogar</li>
-    <li>💻 - Tecnología</li>
-    <li>💡 - Iluminación</li>
+    <li data-id="belleza y salud">🧴 - Belleza y Salud</li>
+    <li data-id="hogar">🏠 - Hogar</li>
+    <li data-id="tecnologia">💻 - Tecnología</li>
+    <li data-id="iluminacion">💡 - Iluminación</li>
+    <li data-id="">📦 - Todas</li>
   </ul>
 </div>
 
@@ -257,6 +258,24 @@
 
       window.open(url, "_blank");
     });
+
+    menuList.addEventListener("click", (e) => {
+  const item = e.target.closest("li");
+  if (!item) return;
+
+  // 1️⃣ Guardar categoría seleccionada
+  categorySelected = item.dataset.id;
+
+  // 2️⃣ Ocultar mensaje inicial
+  document.getElementById("instruccion").style.display = "none";
+
+  // 3️⃣ Filtrar productos
+  filtrarYOrdenar(productosOriginales);
+
+  // 4️⃣ Cerrar menú
+  menuList.classList.remove("active");
+  toggleBtn.classList.remove("active");
+});
 
     // Carga de YouTube
     const tag = document.createElement('script');
