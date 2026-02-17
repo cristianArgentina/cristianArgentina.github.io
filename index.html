@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="./admin/modules/css/loader-wake-up-backend.css">
   <link rel="stylesheet" href="./admin/modules/css/loader-instructivo.css">
+    <link rel="stylesheet" href="./admin/modules/css/menu-categorias.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <!-- Google tag (gtag.js) -->
@@ -33,6 +34,20 @@
       <input type="text" id="buscador" placeholder="Buscar productos...">
     </div>
   </div>
+  <div class="menu">
+  <button id="toggleBtn" class="menu-btn">
+    ELIGE CATEGORIA
+    <span class="arrow">▼</span>
+  </button>
+
+  <ul id="menuList" class="menu-list">
+    <li>Categoría 1</li>
+    <li>Categoría 2</li>
+    <li>Categoría 3</li>
+    <li>Categoría 4</li>
+  </ul>
+</div>
+
   <div id="categorias" class="categorias-container">
   </div>
   <div id="instruccion">
@@ -45,7 +60,16 @@
   </a>
 
   <p id="no-results">No se encontraron productos que coincidan con la búsqueda o filtro.</p>
+<script>
+  const toggleBtn = document.getElementById("toggleBtn");
+  const menuList = document.getElementById("menuList");
 
+  toggleBtn.addEventListener("click", () => {
+    menuList.classList.toggle("active");
+    toggleBtn.classList.toggle("active");
+  });
+</script>
+  
   <script type="module">
     import { API_URL } from './config.js';
     //import { initLoaderArt } from './admin/modules/js/loader-wake-up-backend.js';
