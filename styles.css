@@ -654,4 +654,20 @@ h1 {
   opacity: 0.8;
 }
 
+.btn-whatsapp {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background: #25D366;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-whatsapp:hover {
+  opacity: 0.9;
+}
+
 
