@@ -1,0 +1,61 @@
+.menu {
+  width: 260px;
+  font-family: Arial, sans-serif;
+}
+
+.menu-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 0 0;
+  background-color: #333;
+  border-radius: 10px;
+  overflow: hidden;
+
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+.menu-list.active {
+  max-height: 300px; /* suficiente para 4 items */
+  opacity: 1;
+}
+
+.menu-list li {
+  padding: 12px;
+  color: white;
+  border-bottom: 1px solid #444;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.menu-list li:last-child {
+  border-bottom: none;
+}
+
+.menu-list li:hover {
+  background-color: #444;
+}
+
+/* Animación flecha */
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.menu-btn.active .arrow {
+  transform: rotate(180deg);
+}
