@@ -60,7 +60,22 @@
 
 
   <p id="no-results">No se encontraron productos que coincidan con la búsqueda o filtro.</p>
-  
+  <div id="cart-modal" class="cart-modal">
+  <div class="cart-modal-content">
+    <span id="cart-close" class="cart-close">×</span>
+    <h2>Tu Carrito</h2>
+
+    <div id="cart-items"></div>
+
+<div class="cart-footer">
+  <strong id="cart-total-text">Total: $0</strong>
+  <button id="btn-whatsapp" class="btn-whatsapp">
+    Enviar consulta por WhatsApp
+  </button>
+</div>
+
+  </div>
+</div>
   <script type="module">
     import { API_URL } from './config.js';
     //import { initLoaderArt } from './admin/modules/js/loader-wake-up-backend.js';
@@ -278,8 +293,6 @@ function renderCarrito() {
 
   actualizarContador();
 }
-const cartItemsContainer = document.getElementById("cart-items");
-const cartTotalText = document.getElementById("cart-total-text");
 
   cartItemsContainer.addEventListener("click", (e) => {
   const btn = e.target.closest("button");
@@ -478,23 +491,6 @@ const ordenados = [...lista].sort((a, b) => {
 
     window.onYouTubeIframeAPIReady = window.inicializarVideosYouTube;
   </script>
-
-<div id="cart-modal" class="cart-modal">
-  <div class="cart-modal-content">
-    <span id="cart-close" class="cart-close">×</span>
-    <h2>Tu Carrito</h2>
-
-    <div id="cart-items"></div>
-
-<div class="cart-footer">
-  <strong id="cart-total-text">Total: $0</strong>
-  <button id="btn-whatsapp" class="btn-whatsapp">
-    Enviar consulta por WhatsApp
-  </button>
-</div>
-
-  </div>
-</div>
 </body>
 
 </html>
