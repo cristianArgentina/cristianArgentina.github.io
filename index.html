@@ -74,7 +74,7 @@
     const buscador = document.getElementById('buscador');
     const noResults = document.getElementById('no-results');
     let categorySelected = ''
-
+    let carrito = [];
     // Lista de productos original para filtrado
     let productosOriginales = [];
     /*
@@ -207,9 +207,10 @@ const cartBtn = document.getElementById("cart-float");
 const cartCount = document.getElementById("cart-count");
 
 function actualizarContador() {
-  const seleccionados = document.querySelectorAll(".producto-check:checked");
-  cartCount.textContent = seleccionados.length;
+  const totalItems = carrito.reduce((acc, p) => acc + p.cantidad, 0);
+  cartCount.textContent = totalItems;
 }
+
 
 document.addEventListener("change", (e) => {
   if (e.target.classList.contains("producto-check")) {
@@ -218,17 +219,49 @@ document.addEventListener("change", (e) => {
 });
 
 cartBtn.addEventListener("click", () => {
-  const seleccionados = [...document.querySelectorAll(".producto-check:checked")]
-    .map(chk => chk.dataset.nombre);
-
-  if (seleccionados.length === 0) {
-    alert("No hay productos seleccionados");
+  if (carrito.length === 0) {
+    alert("El carrito está vacío");
     return;
   }
 
-  alert("Productos en carrito:\n\n" + seleccionados.join("\n"));
+  const detalle = carrito
+    .map(p => `${p.nombre} x${p.cantidad}`)
+    .join("\n");
+
+  alert("Productos en carrito:\n\n" + detalle);
 });
-    
+
+    document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".btn-agregar");
+  if (!btn) return;
+
+  const id = btn.dataset.id;
+  const nombre = btn.dataset.nombre;
+  const precio = Number(btn.dataset.precio);
+
+  const existente = carrito.find(p => p.id === id);
+
+  if (existente) {
+    existente.cantidad++;
+  } else {
+    carrito.push({
+      id,
+      nombre,
+      precio,
+      cantidad: 1
+    });
+  }
+
+  actualizarContador();
+});
+btn.textContent = "Agregado ✓";
+btn.classList.add("agregado");
+
+setTimeout(() => {
+  btn.textContent = "Agregar";
+  btn.classList.remove("agregado");
+}, 1000);
+
     
     menuList.addEventListener("click", (e) => {
   const item = e.target.closest("li");
