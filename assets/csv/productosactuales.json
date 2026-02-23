@@ -269,15 +269,27 @@
     "description": "Oleo Extraordinario Elvive x 100 ml",
     "category": "belleza y salud",
     "price": 10000,
-    "stock": 2,
+    "stock": 9,
     "image": "https://www.maxidescuento.com.ar/31273-home_default/elvive-oleo-extraordinario-x100m-7509552874204.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 7560.46,
         "_id": "69932e515a0e6429e6dab4d7",
         "fechaIngreso": "2026-02-16T14:48:49.111Z"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 5342.7,
+        "_id": "699397510f4a31bc4beb4dfc",
+        "fechaIngreso": "2026-02-16T22:16:49.562Z"
+      },
+      {
+        "cantidad": 6,
+        "costoUnitario": 4095.18,
+        "_id": "6994c4344848c72a28865e5b",
+        "fechaIngreso": "2026-02-17T19:40:36.013Z"
       }
     ]
   },
@@ -747,17 +759,10 @@
     "description": "Coat spray sellado antifrizz",
     "category": "belleza y salud",
     "price": 10000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://assets.unileversolutions.com/v1/133018309.png?im=AspectCrop=(985,985);Resize=(985,985)",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 5458.8,
-        "_id": "68e42a622d651af8a43f00ea",
-        "fechaIngreso": "2025-10-06T20:45:22.158Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 1753049727149,
@@ -765,15 +770,15 @@
     "description": "Serum Elvive Dream Liso 100ml",
     "category": "belleza y salud",
     "price": 14000,
-    "stock": 1,
+    "stock": 2,
     "image": "https://www.lorealparis.com.ar/-/media/project/loreal/brand-sites/oap/americas/ar/articles/dream-liso/menos-mb.png",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 1,
-        "costoUnitario": 9179.49,
-        "_id": "691224d661ff4237e2d2e8f1",
-        "fechaIngreso": "2025-11-10T17:45:58.064Z"
+        "cantidad": 2,
+        "costoUnitario": 4322.83,
+        "_id": "6994c3d14848c72a28865e06",
+        "fechaIngreso": "2026-02-17T19:38:57.178Z"
       }
     ]
   },
@@ -968,15 +973,27 @@
     "description": "Mascarilla Oleo Extraordinario Nutrición Universal 300g",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 2,
+    "stock": 5,
     "image": "https://cristianargentina.github.io/assets/img/mascarillaoleoex.png",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 4198.39,
         "_id": "69932f2a5a0e6429e6dab576",
         "fechaIngreso": "2026-02-16T14:52:26.709Z"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 2966.7,
+        "_id": "6993983a0f4a31bc4beb4eff",
+        "fechaIngreso": "2026-02-16T22:20:42.827Z"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 2273.97,
+        "_id": "6994c4744848c72a28865eb1",
+        "fechaIngreso": "2026-02-17T19:41:40.519Z"
       }
     ]
   },
@@ -986,15 +1003,27 @@
     "description": "Mascarilla Elvive Dream Liso 300ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 3,
+    "stock": 6,
     "image": "https://cristianargentina.github.io/assets/img/dreamlisomascara.jpeg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 3,
+        "cantidad": 2,
         "costoUnitario": 3846.5,
         "_id": "698a238b5acee68e88006339",
         "fechaIngreso": "2026-02-09T18:12:27.029Z"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 3263.7,
+        "_id": "6993977b0f4a31bc4beb4e4e",
+        "fechaIngreso": "2026-02-16T22:17:31.437Z"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 2501.62,
+        "_id": "6994c37d4848c72a28865d61",
+        "fechaIngreso": "2026-02-17T19:37:33.641Z"
       }
     ]
   },
@@ -1004,7 +1033,7 @@
     "description": "Crema para peinar Elvive dream liso 250ml ",
     "category": "belleza y salud",
     "price": 6000,
-    "stock": 1,
+    "stock": 5,
     "image": "https://cristianargentina.github.io/assets/img/dreamlisopeinar.jpeg",
     "videos": [],
     "lotes": [
@@ -1013,6 +1042,18 @@
         "costoUnitario": 3775.8,
         "_id": "698a5790b53f22bdbdf44f0b",
         "fechaIngreso": "2026-02-09T21:54:24.947Z"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 2669.7,
+        "_id": "699397b10f4a31bc4beb4ea1",
+        "fechaIngreso": "2026-02-16T22:18:25.891Z"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 2046.32,
+        "_id": "6994c3a74848c72a28865db4",
+        "fechaIngreso": "2026-02-17T19:38:15.535Z"
       }
     ]
   },
@@ -1022,12 +1063,12 @@
     "description": "Acondiconador Elvive óleo nutrición cabello seco 400ml",
     "category": "belleza y salud",
     "price": 6000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/oleonutricionacondicionador.jpeg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 4198.39,
         "_id": "69932ed45a0e6429e6dab526",
         "fechaIngreso": "2026-02-16T14:51:00.610Z"
@@ -1040,10 +1081,17 @@
     "description": "Shampoo Elvive óleo nutrición cabello seco 400ml",
     "category": "belleza y salud",
     "price": 6000,
-    "stock": 0,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/oleonutricionshampoo.jpeg",
     "videos": [],
-    "lotes": []
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 3471.37,
+        "_id": "6994c0914848c72a28865d0d",
+        "fechaIngreso": "2026-02-17T19:25:05.208Z"
+      }
+    ]
   },
   {
     "id": 1757632522216,
@@ -1087,17 +1135,10 @@
     "description": "Shampoo Dream Liso Efecto Keratina 400Ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/dreamshampoo.png",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 4618.65,
-        "_id": "69932f885a0e6429e6dab5c5",
-        "fechaIngreso": "2026-02-16T14:54:00.836Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 1759257775851,
@@ -1105,17 +1146,10 @@
     "description": "Acondicionador Dream Liso Efecto Keratina 400ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/acondicionadorDreamLiso.png",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 668.79,
-        "_id": "699329245be1896b0090f370",
-        "fechaIngreso": "2026-02-16T14:26:44.356Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 1759871299740,
@@ -1350,12 +1384,12 @@
     "description": "Adaptador Universal Enchufe Internacional",
     "category": "tecnologia",
     "price": 6000,
-    "stock": 4,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/adaptadorviaje0.webp",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 4,
+        "cantidad": 2,
         "costoUnitario": 2500,
         "_id": "697d42e907016d3c9ad55a62",
         "fechaIngreso": "2026-01-30T23:46:49.167Z"
@@ -1392,17 +1426,10 @@
     "description": "herramientas de reparación para dispositivos.",
     "category": "tecnologia",
     "price": 15000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/kitcelulares115h0.webp",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 7500,
-        "_id": "697d4bfd07016d3c9ad56048",
-        "fechaIngreso": "2026-01-31T00:25:33.282Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 1769820077562,
