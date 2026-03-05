@@ -99,7 +99,7 @@
 
     // Lista de productos original para filtrado
     let productosOriginales = [];
-    /*
+        /*
         function mostrarLoader() {
           loader.style.display = "flex";
         }
@@ -179,27 +179,24 @@ modal.addEventListener("click", (e) => {
           }
         }
     */
-    async function actualizarDesdeBackend() {
-      try {
-        const res = await fetch(`${API_URL}/products`);
-        if (!res.ok) throw new Error('Backend no disponible');
+async function actualizarDesdeBackend() {
+  try {
+    const res = await fetch(`${API_URL}/products`);
+    if (!res.ok) throw new Error('Backend no disponible');
 
-        const productos = await res.json();
+    const productos = await res.json();
 
-        // Reemplazar datos en memoria
-        renderProductosDesdeDatos(productos);
+    renderProductosDesdeDatos(productos);
 
-        // Re-render si hay categoría activa
-        if (categorySelected) {
-          filtrarYOrdenar(productosOriginales);
-        }
+    // 🔴 RE-RENDER SIEMPRE
+    filtrarYOrdenar(productosOriginales);
 
-        console.info('Productos actualizados desde backend');
+    console.info('Productos actualizados desde backend');
 
-      } catch (err) {
-        console.warn('Backend aún dormido');
-      }
-    }
+  } catch (err) {
+    console.warn('Backend aún dormido');
+  }
+}
 
     function renderProductosDesdeDatos(productos) {
       productosOriginales = productos.map(p =>
