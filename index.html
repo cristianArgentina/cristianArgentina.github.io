@@ -477,6 +477,7 @@ function filtrarYOrdenar(productosDatos) {
 
     // Función para inicializar videos YouTube (de tu código original)
     window.inicializarVideosYouTube = () => {
+      if (!window.YT || !YT.Player) return; // 👈 evitar ejecutar antes de que cargue la API
       document.querySelectorAll('.producto-video').forEach((prod, i) => {
         if (prod.dataset.videoReady) return;
         const raw = prod.dataset.videos;
