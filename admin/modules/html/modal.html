@@ -43,6 +43,17 @@
         <option value="iluminacion">Iluminación</option>
       </select>
 
+      <label>
+        <input type="checkbox" id="esCombo">
+        Este producto es un combo
+      </label>
+
+      <div id="comboBuilder" style="display:none; margin-top:10px;">
+        <h4>Productos del combo</h4>
+        <div id="comboItems"></div>
+        <button type="button" id="btnAgregarProductoCombo">➕ Agregar producto</button>
+      </div>
+      
       <label for="nuevoUrlImage">URL Imagen:</label>
       <input type="text" id="nuevoUrlImage" name="urlImage">
 
