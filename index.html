@@ -98,7 +98,9 @@
     let carrito = [];
 
     // Lista de productos original para filtrado
-    let productosOriginales = [];
+    /*let productosOriginales = [];*/
+    let productosDatos = [];
+    let productosElems = [];
         /*
         function mostrarLoader() {
           loader.style.display = "flex";
@@ -129,7 +131,7 @@ modal.addEventListener("click", (e) => {
     toggleBtn.classList.toggle("active");
   });
     
-    buscador.addEventListener('input', () => filtrarYOrdenar(productosOriginales));
+    buscador.addEventListener('input', () => filtrarYOrdenar(/*productosOriginales*/productosDatos));
 
     async function cargarProductosDesdeJSON() {
       const res = await fetch('/assets/csv/productosactuales.json');
@@ -150,7 +152,8 @@ modal.addEventListener("click", (e) => {
     async function precargarProductos() {
       try {
         const productos = await cargarProductosDesdeJSON();
-        productosOriginales = productos.map(p => crearProductoElem(normalizarProducto(p)));
+        /*productosOriginales = productos.map(p => crearProductoElem(normalizarProducto(p)));*/
+        productosDatos = productos.map(normalizarProducto)
       } catch (e) {
         console.error(e);
         noResults.textContent = 'Error al cargar productos locales.';
@@ -189,7 +192,7 @@ async function actualizarDesdeBackend() {
     renderProductosDesdeDatos(productos);
 
     // 🔴 RE-RENDER SIEMPRE
-    filtrarYOrdenar(productosOriginales);
+    filtrarYOrdenar(/*productosOriginales*/productosDatos);
 
     console.info('Productos actualizados desde backend');
 
@@ -199,9 +202,11 @@ async function actualizarDesdeBackend() {
 }
 
     function renderProductosDesdeDatos(productos) {
-      productosOriginales = productos.map(p =>
+     /* productosOriginales = productos.map(p =>
         crearProductoElem(normalizarProducto(p))
-      );
+      );*/
+      productosDatos = productos.map(normalizarProducto)
+      productosElems = productosDatos.map(crearProductoElem)
     }
 
     (async () => {
@@ -211,7 +216,7 @@ async function actualizarDesdeBackend() {
       // 3️⃣ Ocultar loader (no depende del backend)
       hideLoader();
 
-      filtrarYOrdenar(productosOriginales);
+      filtrarYOrdenar(/*productosOriginales*/productosDatos);
 
       // 4️⃣ Backend en segundo plano
       actualizarDesdeBackend();
@@ -354,7 +359,7 @@ Total: $${total.toLocaleString()}`;
   document.getElementById("instruccion").style.display = "none";
 
   // 3️⃣ Filtrar productos
-  filtrarYOrdenar(productosOriginales);
+  filtrarYOrdenar(/*productosOriginales*/productosDatos);
 
   // 4️⃣ Cerrar menú
   menuList.classList.remove("active");
@@ -431,36 +436,44 @@ Total: $${total.toLocaleString()}`;
                 </a>
     */
 
-    function filtrarYOrdenar(productosElems) {
-      const texto = buscador.value.toLowerCase();
+function filtrarYOrdenar(productosDatos) {
+  const texto = buscador.value.toLowerCase();
 
-      let lista = productosElems;
+  let lista = productosDatos;
 
-      if (categorySelected) {
-        lista = lista.filter(e => (e.dataset.categoria || '').toLowerCase() === categorySelected.toLowerCase());
-      }
+  if (categorySelected) {
+    lista = lista.filter(p =>
+      (p.category || '').toLowerCase() === categorySelected.toLowerCase()
+    );
+  }
 
-      lista = lista.filter(e =>
-        e.innerText.toLowerCase().includes(texto)
-      );
+  lista = lista.filter(p =>
+    `${p.name} ${p.description}`.toLowerCase().includes(texto)
+  );
 
-const ordenados = [...lista].sort((a, b) => {
-  const stockA = Number(a.dataset.stock);
-  const stockB = Number(b.dataset.stock);
+  const ordenados = [...lista].sort((a, b) => {
 
-  // 👉 agotados al final SIEMPRE
-  if (stockA === 0 && stockB !== 0) return 1;
-  if (stockB === 0 && stockA !== 0) return -1;
+    const stockA = Number(a.stock);
+    const stockB = Number(b.stock);
 
-  // 👉 después ordenar por precio (tu criterio actual)
-  return Number(a.dataset.precio) - Number(b.dataset.precio);
-});
+    // agotados al final
+    if (stockA === 0 && stockB !== 0) return 1;
+    if (stockB === 0 && stockA !== 0) return -1;
 
-      contenedor.innerHTML = '';
-      ordenados.forEach(e => contenedor.appendChild(e));
-      if (window.inicializarVideosYouTube) inicializarVideosYouTube();
-      noResults.style.display = ordenados.length === 0 ? 'block' : 'none';
-    }
+    return Number(a.price) - Number(b.price);
+  });
+
+  contenedor.innerHTML = "";
+
+  ordenados
+    .map(crearProductoElem)
+    .forEach(e => contenedor.appendChild(e));
+
+  if (window.inicializarVideosYouTube)
+    inicializarVideosYouTube();
+
+  noResults.style.display = ordenados.length === 0 ? 'block' : 'none';
+}
 
     // Función para inicializar videos YouTube (de tu código original)
     window.inicializarVideosYouTube = () => {
