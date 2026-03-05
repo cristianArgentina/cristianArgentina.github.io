@@ -297,6 +297,40 @@ filterStock.addEventListener("input", e => {
       this.exportarJSON();
     });
 
+    const esCombo = document.getElementById("esCombo");
+    const comboBuilder = document.getElementById("comboBuilder");
+
+    esCombo.addEventListener("change", () => {
+    comboBuilder.style.display = esCombo.checked ? "block" : "none";
+    });
+
+    const comboItems = document.getElementById("comboItems");
+
+document.getElementById("btnAgregarProductoCombo").addEventListener("click", () => {
+
+  const row = document.createElement("div");
+
+  row.innerHTML = `
+    <select class="combo-product">
+      ${this.productos.map(p =>
+        `<option value="${p.id}">${p.name}</option>`
+      ).join("")}
+    </select>
+
+    <input type="number" class="combo-qty" value="1" min="1" style="width:60px">
+
+    <button type="button" class="removeCombo">❌</button>
+  `;
+
+  row.querySelector(".removeCombo").addEventListener("click", () => {
+    row.remove();
+  });
+
+  comboItems.appendChild(row);
+});
+
+    
+
     // Delegación de eventos en tabla
     this.shadowRoot.getElementById("tabla-productos").addEventListener("click", async (e) => {
       if (e.target.classList.contains("btnEditar")) {
@@ -339,32 +373,47 @@ filterStock.addEventListener("input", e => {
 
   }
 
-  handleNuevoProducto = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector("button[type=submit]");
-    btn.disabled = true;
+handleNuevoProducto = async (e) => {
+  e.preventDefault();
 
-    try {
-      const nuevo = {
-        name: form.nombre.value,
-        description: form.descripcion.value,
-        price: parseFloat(form.precio.value),
-        stock: parseInt(form.stock.value),
-        category: form.categoria.value,
-        image: form.urlImage.value
-      };
+  const form = e.target;
+  const btn = form.querySelector("button[type=submit]");
+  btn.disabled = true;
 
-      await createProduct(nuevo);
+  try {
 
-      this.loadProductos();
-      form.reset();
-      document.getElementById("modalNuevoProducto").style.display = "none";
+    const esCombo = document.getElementById("esCombo").checked;
 
-    } finally {
-      btn.disabled = false;
+    const nuevo = {
+      name: form.nombre.value,
+      description: form.descripcion.value,
+      price: parseFloat(form.precio.value),
+      stock: parseInt(form.stock.value),
+      category: form.categoria.value,
+      image: form.urlImage.value
+    };
+
+    if (esCombo) {
+
+      const items = [...document.querySelectorAll("#comboItems div")];
+
+      nuevo.combo = items.map(row => ({
+        productId: row.querySelector(".combo-product").value,
+        qty: parseInt(row.querySelector(".combo-qty").value)
+      }));
+
     }
-  };
+
+    await createProduct(nuevo);
+
+    this.loadProductos();
+    form.reset();
+    document.getElementById("modalNuevoProducto").style.display = "none";
+
+  } finally {
+    btn.disabled = false;
+  }
+};
 
   handleEditarProducto = async (e) => {
     e.preventDefault();
