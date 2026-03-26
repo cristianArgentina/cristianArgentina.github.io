@@ -5,34 +5,35 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="./admin/modules/css/loader-wake-up-backend.css">
   <link rel="stylesheet" href="./admin/modules/css/loader-instructivo.css">
-    <link rel="stylesheet" href="./admin/modules/css/menu-categorias.css">
+  <link rel="stylesheet" href="./admin/modules/css/menu-categorias.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-89F6NB7TVR"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
 
-  gtag('js', new Date());
+    gtag('js', new Date());
 
-  gtag('config', 'G-89F6NB7TVR', {
-    cookie_domain: 'auto'
-  });
-</script>
+    gtag('config', 'G-89F6NB7TVR', {
+      cookie_domain: 'auto'
+    });
+  </script>
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Catálogo de Productos</title>
-<meta property="og:title" content="Catálogo de Productos" />
-<meta property="og:description" content="Explorá nuestro catálogo actualizado de productos." />
-<meta property="og:image" content="https://cristianargentina.github.io/assets/img/catalogo-preview.jpg" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://cristianargentina.github.io/" />
+  <meta property="og:title" content="Catálogo de Productos" />
+  <meta property="og:description" content="Explorá nuestro catálogo actualizado de productos." />
+  <meta property="og:image" content="https://cristianargentina.github.io/assets/img/catalogo-preview.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cristianargentina.github.io/" />
 
-<meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:card" content="summary_large_image">
 
 </head>
+
 <body>
   <div class="barra-superior">
     <h1 class="titulo-pagina">
@@ -44,48 +45,48 @@
     </div>
   </div>
   <div class="menu">
-  <button id="toggleBtn" class="menu-btn">
-    ELIGE CATEGORIA
-    <span class="arrow">▼</span>
-  </button>
+    <button id="toggleBtn" class="menu-btn">
+      ELIGE CATEGORIA
+      <span class="arrow">▼</span>
+    </button>
 
-  <ul id="menuList" class="menu-list">
-    <li data-id="belleza y salud">🧴 - Belleza y Salud</li>
-    <li data-id="hogar">🏠 - Hogar</li>
-    <li data-id="tecnologia">💻 - Tecnología</li>
-    <li data-id="iluminacion">💡 - Iluminación</li>
-    <li data-id="">📦 - Todas</li>
-  </ul>
-</div>
-  
+    <ul id="menuList" class="menu-list">
+      <li data-id="belleza y salud">🧴 - Belleza y Salud</li>
+      <li data-id="hogar">🏠 - Hogar</li>
+      <li data-id="tecnologia">💻 - Tecnología</li>
+      <li data-id="iluminacion">💡 - Iluminación</li>
+      <li data-id="">📦 - Todas</li>
+    </ul>
+  </div>
+
   <div id="instruccion">
     👉 Selecciona una categoría para explorar productos
   </div>
   <div class="productos" id="contenedor-productos">
   </div>
-<button id="cart-float" class="cart-float">
-  <i class="fas fa-shopping-cart"></i>
-  <span id="cart-count" class="cart-count">0</span>
-</button>
+  <button id="cart-float" class="cart-float">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cart-count" class="cart-count">0</span>
+  </button>
 
 
   <p id="no-results">No se encontraron productos que coincidan con la búsqueda o filtro.</p>
   <div id="cart-modal" class="cart-modal">
-  <div class="cart-modal-content">
-    <span id="cart-close" class="cart-close">×</span>
-    <h2>Tu Carrito</h2>
+    <div class="cart-modal-content">
+      <span id="cart-close" class="cart-close">×</span>
+      <h2>Tu Carrito</h2>
 
-    <div id="cart-items"></div>
+      <div id="cart-items"></div>
 
-<div class="cart-footer">
-  <strong id="cart-total-text">Total: $0</strong>
-  <button id="btn-whatsapp" class="btn-whatsapp">
-    Enviar consulta por WhatsApp
-  </button>
-</div>
+      <div class="cart-footer">
+        <strong id="cart-total-text">Total: $0</strong>
+        <button id="btn-whatsapp" class="btn-whatsapp">
+          Enviar consulta por WhatsApp
+        </button>
+      </div>
 
+    </div>
   </div>
-</div>
   <script type="module">
     import { API_URL } from './config.js';
     //import { initLoaderArt } from './admin/modules/js/loader-wake-up-backend.js';
@@ -104,36 +105,36 @@
     /*let productosOriginales = [];*/
     let productosDatos = [];
     let productosElems = [];
-        /*
-        function mostrarLoader() {
-          loader.style.display = "flex";
-        }
-        function ocultarLoader() {
-          loader.style.display = "none";
-        }
-    */
+    /*
+    function mostrarLoader() {
+      loader.style.display = "flex";
+    }
+    function ocultarLoader() {
+      loader.style.display = "none";
+    }
+*/
 
     const modal = document.getElementById("cart-modal");
-const closeBtn = document.getElementById("cart-close");
+    const closeBtn = document.getElementById("cart-close");
 
-closeBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
 
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.style.display = "none";
-  }
-});
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
 
     const toggleBtn = document.getElementById("toggleBtn");
     const menuList = document.getElementById("menuList");
 
-  toggleBtn.addEventListener("click", () => {
-    menuList.classList.toggle("active");
-    toggleBtn.classList.toggle("active");
-  });
-    
+    toggleBtn.addEventListener("click", () => {
+      menuList.classList.toggle("active");
+      toggleBtn.classList.toggle("active");
+    });
+
     buscador.addEventListener('input', () => filtrarYOrdenar(/*productosOriginales*/productosDatos));
 
     async function cargarProductosDesdeJSON() {
@@ -185,29 +186,29 @@ modal.addEventListener("click", (e) => {
           }
         }
     */
-async function actualizarDesdeBackend() {
-  try {
-    const res = await fetch(`${API_URL}/products`);
-    if (!res.ok) throw new Error('Backend no disponible');
+    async function actualizarDesdeBackend() {
+      try {
+        const res = await fetch(`${API_URL}/products`);
+        if (!res.ok) throw new Error('Backend no disponible');
 
-    const productos = await res.json();
+        const productos = await res.json();
 
-    renderProductosDesdeDatos(productos);
+        renderProductosDesdeDatos(productos);
 
-    // 🔴 RE-RENDER SIEMPRE
-    filtrarYOrdenar(/*productosOriginales*/productosDatos);
+        // 🔴 RE-RENDER SIEMPRE
+        filtrarYOrdenar(/*productosOriginales*/productosDatos);
 
-    console.info('Productos actualizados desde backend');
+        console.info('Productos actualizados desde backend');
 
-  } catch (err) {
-    console.warn('Backend aún dormido');
-  }
-}
+      } catch (err) {
+        console.warn('Backend aún dormido');
+      }
+    }
 
     function renderProductosDesdeDatos(productos) {
-     /* productosOriginales = productos.map(p =>
-        crearProductoElem(normalizarProducto(p))
-      );*/
+      /* productosOriginales = productos.map(p =>
+         crearProductoElem(normalizarProducto(p))
+       );*/
       productosDatos = productos.map(normalizarProducto)
       productosElems = productosDatos.map(crearProductoElem)
     }
@@ -224,154 +225,153 @@ async function actualizarDesdeBackend() {
       // 4️⃣ Backend en segundo plano
       actualizarDesdeBackend();
     })();
-/*
-    const wspBtn = document.getElementById("whatsapp-float");
-
-    wspBtn.addEventListener("click", () => {
-      const seleccionados = [...document.querySelectorAll(".producto-check:checked")]
-        .map(chk => chk.dataset.nombre);
-
-      if (seleccionados.length === 0) {
-        alert("Selecciona al menos un producto para consultar");
-        return;
-      }
-
-      const mensaje = `Hola, me interesan los siguientes productos:\n- ${seleccionados.join("\n- ")}`;
-      const url = `https://wa.me/5491138863899?text=${encodeURIComponent(mensaje)}`;
-
-      window.open(url, "_blank");
-    });
-*/
-
-const cartBtn = document.getElementById("cart-float");
-const cartCount = document.getElementById("cart-count");
+    /*
+        const wspBtn = document.getElementById("whatsapp-float");
     
-function actualizarContador() {
-  cartCount.textContent = carrito.length;
-}
+        wspBtn.addEventListener("click", () => {
+          const seleccionados = [...document.querySelectorAll(".producto-check:checked")]
+            .map(chk => chk.dataset.nombre);
+    
+          if (seleccionados.length === 0) {
+            alert("Selecciona al menos un producto para consultar");
+            return;
+          }
+    
+          const mensaje = `Hola, me interesan los siguientes productos:\n- ${seleccionados.join("\n- ")}`;
+          const url = `https://wa.me/5491138863899?text=${encodeURIComponent(mensaje)}`;
+    
+          window.open(url, "_blank");
+        });
+    */
+
+    const cartBtn = document.getElementById("cart-float");
+    const cartCount = document.getElementById("cart-count");
+
+    function actualizarContador() {
+      cartCount.textContent = carrito.length;
+    }
 
 
 
-document.addEventListener("change", (e) => {
-  if (e.target.classList.contains("producto-check")) {
-    actualizarContador();
-  }
-});
+    document.addEventListener("change", (e) => {
+      if (e.target.classList.contains("producto-check")) {
+        actualizarContador();
+      }
+    });
 
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest(".btn-agregar");
-  if (!btn) return;
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest(".btn-agregar");
+      if (!btn) return;
 
-  const item = {
-    id: btn.dataset.id,
-    nombre: btn.dataset.nombre,
-    precio: Number(btn.dataset.precio)
-  };
+      const item = {
+        id: btn.dataset.id,
+        nombre: btn.dataset.nombre,
+        precio: Number(btn.dataset.precio)
+      };
 
-  carrito.push(item);
-renderCarrito();
-  actualizarContador();
+      carrito.push(item);
+      renderCarrito();
+      actualizarContador();
 
-  // efecto visual opcional
-  btn.textContent = "Agregado ✓";
-  btn.classList.add("agregado");
+      // efecto visual opcional
+      btn.textContent = "Agregado ✓";
+      btn.classList.add("agregado");
 
-  setTimeout(() => {
-    btn.textContent = "Agregar";
-    btn.classList.remove("agregado");
-  }, 800);
-});
+      setTimeout(() => {
+        btn.textContent = "Agregar";
+        btn.classList.remove("agregado");
+      }, 800);
+    });
 
     const cartItemsContainer = document.getElementById("cart-items");
-const cartTotalText = document.getElementById("cart-total-text");
+    const cartTotalText = document.getElementById("cart-total-text");
 
-function renderCarrito() {
-  cartItemsContainer.innerHTML = "";
+    function renderCarrito() {
+      cartItemsContainer.innerHTML = "";
 
-  carrito.forEach((item, index) => {
-    const div = document.createElement("div");
-    div.className = "cart-item";
+      carrito.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "cart-item";
 
-    div.innerHTML = `
+        div.innerHTML = `
       <span>${item.nombre} - $${item.precio.toLocaleString()}</span>
       <button data-index="${index}">Eliminar</button>
     `;
 
-    cartItemsContainer.appendChild(div);
-  });
+        cartItemsContainer.appendChild(div);
+      });
 
-  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
-  cartTotalText.textContent = "Total: $" + total.toLocaleString();
+      const total = carrito.reduce((acc, p) => acc + p.precio, 0);
+      cartTotalText.textContent = "Total: $" + total.toLocaleString();
 
-  actualizarContador();
-}
+      actualizarContador();
+    }
 
-  cartItemsContainer.addEventListener("click", (e) => {
-  const btn = e.target.closest("button");
-  if (!btn) return;
+    cartItemsContainer.addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
 
-  const index = btn.dataset.index;
+      const index = btn.dataset.index;
 
-  carrito.splice(index, 1);
+      carrito.splice(index, 1);
 
-  renderCarrito();
-});
+      renderCarrito();
+    });
 
     cartBtn.addEventListener("click", () => {
-  modal.style.display = "flex";
-  renderCarrito();
-});
+      modal.style.display = "flex";
+      renderCarrito();
+    });
 
-const btnWhatsapp = document.getElementById("btn-whatsapp");
+    const btnWhatsapp = document.getElementById("btn-whatsapp");
 
-// ⚠️ CAMBIÁ ESTE NÚMERO POR EL TUYO
-const numeroWhatsapp = "5491138863899";
+    // ⚠️ CAMBIÁ ESTE NÚMERO POR EL TUYO
+    const numeroWhatsapp = "5491138863899";
 
-btnWhatsapp.addEventListener("click", () => {
-  if (carrito.length === 0) {
-    alert("El carrito está vacío");
-    return;
-  }
+    btnWhatsapp.addEventListener("click", () => {
+      if (carrito.length === 0) {
+        alert("El carrito está vacío");
+        return;
+      }
 
-  const detalle = carrito
-    .map(p => `• ${p.nombre} - $${p.precio.toLocaleString()}`)
-    .join("\n");
+      const detalle = carrito
+        .map(p => `• ${p.nombre} - $${p.precio.toLocaleString()}`)
+        .join("\n");
 
-  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
+      const total = carrito.reduce((acc, p) => acc + p.precio, 0);
 
-  const mensaje =
-`Hola, quiero consultar por los siguientes productos:
+      const mensaje =
+        `Hola, quiero consultar por los siguientes productos:
 
 ${detalle}
 
 Total: $${total.toLocaleString()}`;
 
-  const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensaje)}`;
+      const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensaje)}`;
 
-  window.open(url, "_blank");
-});
-    
+      window.open(url, "_blank");
+    });
+
     menuList.addEventListener("click", (e) => {
-  const item = e.target.closest("li");
-  if (!item) return;
+      const item = e.target.closest("li");
+      if (!item) return;
 
-  // 1️⃣ Guardar categoría seleccionada
-  categorySelected = item.dataset.id;
+      // 1️⃣ Guardar categoría seleccionada
+      categorySelected = item.dataset.id;
 
-  // 2️⃣ Ocultar mensaje inicial
-  document.getElementById("instruccion").style.display = "none";
+      // 2️⃣ Ocultar mensaje inicial
+      document.getElementById("instruccion").style.display = "none";
 
-  // 3️⃣ Filtrar productos
-  filtrarYOrdenar(/*productosOriginales*/productosDatos);
+      // 3️⃣ Filtrar productos
+      filtrarYOrdenar(/*productosOriginales*/productosDatos);
 
-  // 4️⃣ Cerrar menú
-  menuList.classList.remove("active");
-  toggleBtn.classList.remove("active");
-});
+      // 4️⃣ Cerrar menú
+      menuList.classList.remove("active");
+      toggleBtn.classList.remove("active");
+    });
 
     // Carga de YouTube
     const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);
 
     function crearProductoElem(p) {
@@ -439,98 +439,90 @@ Total: $${total.toLocaleString()}`;
                 </a>
     */
 
-function filtrarYOrdenar(productosDatos) {
-  const texto = buscador.value.toLowerCase();
+    function filtrarYOrdenar(productosDatos) {
+      const texto = buscador.value.toLowerCase();
 
-  let lista = productosDatos;
+      let lista = productosDatos;
 
-  if (categorySelected) {
-    lista = lista.filter(p =>
-      (p.category || '').toLowerCase() === categorySelected.toLowerCase()
-    );
-  }
-
-  lista = lista.filter(p =>
-    `${p.name} ${p.description}`.toLowerCase().includes(texto)
-  );
-
-  const ordenados = [...lista].sort((a, b) => {
-
-    const stockA = Number(a.stock);
-    const stockB = Number(b.stock);
-
-    // agotados al final
-    if (stockA === 0 && stockB !== 0) return 1;
-    if (stockB === 0 && stockA !== 0) return -1;
-
-    return Number(a.price) - Number(b.price);
-  });
-
-  contenedor.innerHTML = "";
-
-  ordenados
-    .map(crearProductoElem)
-    .forEach(e => contenedor.appendChild(e));
-
-  if (window.inicializarVideosYouTube)
-    inicializarVideosYouTube();
-
-  noResults.style.display = ordenados.length === 0 ? 'block' : 'none';
-}
-
-    // Función para inicializar videos YouTube (de tu código original)
-window.inicializarVideosYouTube = () => {
-
-  // esperar a que cargue la API
-  if (!window.YT || !YT.Player || !YT.loaded) return;
-
-  document.querySelectorAll('.producto-video').forEach((prod, i) => {
-
-    if (prod.dataset.videoReady) return;
-
-    const raw = prod.dataset.videos;
-    if (!raw) return;
-
-    const ids = raw.split(',');
-    const playerId = `yt-${i}-${Date.now()}`;
-
-    const div = document.createElement('div');
-    div.id = playerId;
-
-    prod.querySelector('.video-container').appendChild(div);
-
-new YT.Player(playerId, {
-  videoId: ids[0],
-  playerVars: {
-    autoplay: 1,
-    mute: 1,
-    rel: 0,
-    controls: 0,
-    origin: window.location.origin
-  },
-      events: {
-        onReady: e => {
-          e.target.mute();
-          e.target.playVideo();
-        },
-        onStateChange: ev => {
-          if (ev.data === YT.PlayerState.ENDED) {
-            const ply = ev.target;
-            ply.currentIndex = ((ply.currentIndex || 0) + 1) % ids.length;
-            ply.loadVideoById(ids[ply.currentIndex]);
-            ply.mute();
-            ply.playVideo();
-          }
-        }
+      if (categorySelected) {
+        lista = lista.filter(p =>
+          (p.category || '').toLowerCase() === categorySelected.toLowerCase()
+        );
       }
-    });
 
-    prod.dataset.videoReady = true;
+      lista = lista.filter(p =>
+        `${p.name} ${p.description}`.toLowerCase().includes(texto)
+      );
 
-  });
-};
+      const ordenados = [...lista].sort((a, b) => {
 
-    window.onYouTubeIframeAPIReady = window.inicializarVideosYouTube;
+        const stockA = Number(a.stock);
+        const stockB = Number(b.stock);
+
+        // agotados al final
+        if (stockA === 0 && stockB !== 0) return 1;
+        if (stockB === 0 && stockA !== 0) return -1;
+
+        return Number(a.price) - Number(b.price);
+      });
+
+      contenedor.innerHTML = "";
+
+      ordenados
+        .map(crearProductoElem)
+        .forEach(e => contenedor.appendChild(e));
+
+      if (window.inicializarVideosYouTube)
+        inicializarVideosYouTube();
+
+      noResults.style.display = ordenados.length === 0 ? 'block' : 'none';
+    }
+
+    window.inicializarVideosYouTube = () => {
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+
+          const iframe = entry.target;
+
+          if (entry.isIntersecting) {
+            // ▶️ entra en pantalla → reproducir
+            iframe.src = iframe.dataset.src;
+          } else {
+            // ⏸ sale de pantalla → pausar (reseteando src)
+            iframe.src = "";
+          }
+
+        });
+      }, {
+        threshold: 0.6 // visible al 60%
+      });
+
+      document.querySelectorAll('.producto-video').forEach((prod) => {
+
+        if (prod.dataset.videoReady) return;
+
+        const raw = prod.dataset.videos;
+        if (!raw) return;
+
+        const id = raw.split(',')[0];
+
+        const container = prod.querySelector('.video-container');
+
+        const iframe = document.createElement('iframe');
+
+        iframe.dataset.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&controls=0&loop=1&playlist=${id}`;
+        iframe.allow = "autoplay; encrypted-media";
+        iframe.frameBorder = "0";
+
+        container.appendChild(iframe);
+
+        observer.observe(iframe);
+
+        prod.dataset.videoReady = true;
+
+      });
+    };
   </script>
 </body>
 
