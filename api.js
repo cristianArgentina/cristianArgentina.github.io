@@ -65,6 +65,16 @@ export async function createSale(saleData) {
   return await res.json();
 }
 
+// Eliminar una venta
+export async function deleteSale(id) {
+  const res = await fetch(`${API_URL}/sales/${id}`, {
+    method: "DELETE"
+  });
+
+  if (!res.ok) throw new Error(`Error al eliminar venta ${id}`);
+  return await res.json();
+}
+
 /* ---------------------- LOTES ---------------------- */
 
 export async function addLote(productId, loteData) {
