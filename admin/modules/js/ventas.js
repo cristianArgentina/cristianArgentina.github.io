@@ -138,33 +138,7 @@ constructor() {
     this.shadowRoot.getElementById("margenPromedio").textContent = margenPromedio + "%";
     this.shadowRoot.getElementById("productoTop").textContent = productoTop;
   }
-
-  const tbody = this.shadowRoot.getElementById("tabla-ventas");
-
-tbody.addEventListener("click", async (e) => {
-  const btn = e.target.closest(".btn-delete");
-  if (!btn) return;
-
-  const id = btn.dataset.id;
-
-  // ⚠️ confirmación
-  const confirmDelete = confirm("¿Eliminar esta venta? Se restaurará el stock.");
-  if (!confirmDelete) return;
-
-  btn.disabled = true;
-  btn.textContent = "⏳";
-
-  try {
-    await deleteSale(id);
-    this.loadVentas(); // recargar
-  } catch (err) {
-    console.error(err);
-    alert("Error al eliminar venta");
-    btn.disabled = false;
-    btn.textContent = "🗑️";
-  }
-});
-    
+   
 handleNuevaVenta = async (e) => {
   e.preventDefault();
 
@@ -244,6 +218,31 @@ handleNuevaVenta = async (e) => {
     closeModalVenta.addEventListener("click", () => {
       modalVenta.style.display = "none";
     });
+
+    const tbody = this.shadowRoot.getElementById("tabla-ventas");
+
+tbody.addEventListener("click", async (e) => {
+  const btn = e.target.closest(".btn-delete");
+  if (!btn) return;
+
+  const id = btn.dataset.id;
+
+  const confirmDelete = confirm("¿Eliminar esta venta? Se restaurará el stock.");
+  if (!confirmDelete) return;
+
+  btn.disabled = true;
+  btn.textContent = "⏳";
+
+  try {
+    await deleteSale(id);
+    this.loadVentas();
+  } catch (err) {
+    console.error(err);
+    alert("Error al eliminar venta");
+    btn.disabled = false;
+    btn.textContent = "🗑️";
+  }
+});
   }
 }
 
