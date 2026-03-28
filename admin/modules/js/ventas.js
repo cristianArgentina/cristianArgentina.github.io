@@ -1,6 +1,6 @@
 // ventas.js
 
-import { getSales, createSale, getProducts } from "../../../api.js";
+import { getSales, createSale, deleteSale, getProducts } from "../../../api.js";
 import { showLoader, hideLoader } from "./loaderadmin.js";
 
 class VentasPanel extends HTMLElement {
@@ -63,8 +63,9 @@ constructor() {
               <th>Producto</th>
               <th>Cantidad</th>
               <th>Precio</th>
-              <th>Costo</th>
+              <th>Costo</th>.
               <th>Ganancia</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody id="tabla-ventas">
@@ -99,7 +100,12 @@ constructor() {
         <td>$${v.precioVenta}</td>
         <td>$${v.precioCosto?.toFixed(2) ?? "-"}</td>
         <td>$${v.ganancia?.toFixed(2) ?? "-"}</td>
-      `;
+          <td>
+            <button class="btn-delete" data-id="${v._id}">
+              🗑️
+            </button>
+          </td>
+        `;
         tbody.appendChild(row);
       });
 
@@ -132,7 +138,33 @@ constructor() {
     this.shadowRoot.getElementById("margenPromedio").textContent = margenPromedio + "%";
     this.shadowRoot.getElementById("productoTop").textContent = productoTop;
   }
-  
+
+  const tbody = this.shadowRoot.getElementById("tabla-ventas");
+
+tbody.addEventListener("click", async (e) => {
+  const btn = e.target.closest(".btn-delete");
+  if (!btn) return;
+
+  const id = btn.dataset.id;
+
+  // ⚠️ confirmación
+  const confirmDelete = confirm("¿Eliminar esta venta? Se restaurará el stock.");
+  if (!confirmDelete) return;
+
+  btn.disabled = true;
+  btn.textContent = "⏳";
+
+  try {
+    await deleteSale(id);
+    this.loadVentas(); // recargar
+  } catch (err) {
+    console.error(err);
+    alert("Error al eliminar venta");
+    btn.disabled = false;
+    btn.textContent = "🗑️";
+  }
+});
+    
 handleNuevaVenta = async (e) => {
   e.preventDefault();
 
