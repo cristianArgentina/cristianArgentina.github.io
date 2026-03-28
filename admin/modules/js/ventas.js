@@ -4,10 +4,11 @@ import { getSales, createSale, getProducts } from "../../../api.js";
 import { showLoader, hideLoader } from "./loaderadmin.js";
 
 class VentasPanel extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" }); // shadow DOM encapsulado
-  }
+constructor() {
+  super();
+  this.attachShadow({ mode: "open" });
+  this.isSubmitting = false; // 🔥 clave
+}
 
   connectedCallback() {
     this.render();
@@ -131,31 +132,45 @@ class VentasPanel extends HTMLElement {
     this.shadowRoot.getElementById("margenPromedio").textContent = margenPromedio + "%";
     this.shadowRoot.getElementById("productoTop").textContent = productoTop;
   }
+  
+handleNuevaVenta = async (e) => {
+  e.preventDefault();
 
-  handleNuevaVenta = async (e) => {
-    e.preventDefault();
+  // 🚫 bloqueo lógico (anti doble click REAL)
+  if (this.isSubmitting) return;
 
-    const form = e.target;
-    const btn = form.querySelector("button[type=submit]");
-    btn.disabled = true;
+  this.isSubmitting = true;
 
-    try {
-      const productId = form.ventaProducto.value;
-      const cantidad = parseInt(form.ventaCantidad.value);
-      const precioVenta = parseFloat(form.ventaPrecio.value);
+  const form = e.target;
+  const btn = form.querySelector("button[type=submit]");
 
-      await this.addVenta({ productId, cantidad, precioVenta });
+  // 🔒 bloqueo visual
+  btn.disabled = true;
+  const textoOriginal = btn.textContent;
+  btn.textContent = "Procesando...";
 
-      // cerrar modal
-      document.getElementById("modalVenta").style.display = "none";
+  try {
+    const productId = form.ventaProducto.value;
+    const cantidad = parseInt(form.ventaCantidad.value);
+    const precioVenta = parseFloat(form.ventaPrecio.value);
 
-      // limpiar form
-      form.reset();
+    await this.addVenta({ productId, cantidad, precioVenta });
 
-    } finally {
-      btn.disabled = false;
-    }
-  };
+    // cerrar modal
+    document.getElementById("modalVenta").style.display = "none";
+
+    // limpiar form
+    form.reset();
+
+  } catch (err) {
+    console.error(err);
+  } finally {
+    // 🔓 desbloqueo
+    this.isSubmitting = false;
+    btn.disabled = false;
+    btn.textContent = textoOriginal;
+  }
+};
 
   async addVenta(nuevaVenta) {
     try {
