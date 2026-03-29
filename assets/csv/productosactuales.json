@@ -6,7 +6,7 @@
     "category": "belleza y salud",
     "price": 9000,
     "stock": 0,
-    "image": "https://www.maxidescuento.com.ar/22724-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-firmeza-7798140254416.jpg",
+    "image": "https://cristianargentina.github.io/assets/img/cicatricurecorporalfirmeza.jpg",
     "videos": [],
     "lotes": []
   },
@@ -81,7 +81,7 @@
     "category": "belleza y salud",
     "price": 15000,
     "stock": 1,
-    "image": "https://media03.farmaciaslider.com.ar/27829-home_default/cicatricure-crema-antiedad-tricure-50-gr.jpg",
+    "image": "https://cristianargentina.github.io/assets/img/cicatricurefacialantiedad.jpg",
     "videos": [],
     "lotes": [
       {
@@ -99,7 +99,7 @@
     "category": "belleza y salud",
     "price": 15000,
     "stock": 4,
-    "image": "https://media01.farmaciaslider.com.ar/27940-home_default/cicatricure-crema-antiarrugas-nueva-formula-con-biopeptide-60g.jpg",
+    "image": "https://cristianargentina.github.io/assets/img/cicatricurefacialcolageno.jpg",
     "videos": [],
     "lotes": [
       {
@@ -200,7 +200,7 @@
     "category": "belleza y salud",
     "price": 10000,
     "stock": 3,
-    "image": "https://media02.farmaciaslider.com.ar/27877-home_default/cicatricure-crema-age-care-humectante-50-g.jpg",
+    "image": "https://cristianargentina.github.io/assets/img/cicatricurefacialhumectante.jpg",
     "videos": [],
     "lotes": [
       {
@@ -230,7 +230,7 @@
     "category": "belleza y salud",
     "price": 10000,
     "stock": 2,
-    "image": "https://media03.farmaciaslider.com.ar/27872-home_default/cicatricure-crema-age-care-reafirmante-50-g.jpg",
+    "image": "https://cristianargentina.github.io/assets/img/cicatricurefacialreafirmante.jpg",
     "videos": [],
     "lotes": [
       {
@@ -275,12 +275,12 @@
     "description": "Oleo Extraordinario Elvive x 100 ml",
     "category": "belleza y salud",
     "price": 10000,
-    "stock": 8,
+    "stock": 7,
     "image": "https://www.maxidescuento.com.ar/31273-home_default/elvive-oleo-extraordinario-x100m-7509552874204.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 4,
+        "cantidad": 3,
         "costoUnitario": 6958.87,
         "_id": "69b1d72564569badf7d45b79",
         "fechaIngreso": "2026-03-11T20:57:09.693Z"
@@ -448,7 +448,7 @@
     "category": "tecnologia",
     "price": 160000,
     "stock": 1,
-    "image": "https://santafecomputacion.com.ar/productos/get-imagen/1550",
+    "image": "https://cristianargentina.github.io/assets/img/led24monitor.jpg",
     "videos": [],
     "lotes": [
       {
@@ -512,17 +512,10 @@
     "description": "Reloj Despertador Con Proyector De Estrellas",
     "category": "iluminacion",
     "price": 15000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://oportunidades-vip.com.ar/wp-content/uploads/2025/07/Reloj_Despertador_Proyector_Estrellas_Con_Musica_Y_Alarma_D_900218-MLA33074242954_122019-O.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b46"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 32,
@@ -577,10 +570,16 @@
     "videos": [],
     "lotes": [
       {
-        "cantidad": 997,
+        "cantidad": 996,
         "costoUnitario": null,
         "fechaIngreso": "2025-01-01T00:00:00.000Z",
         "_id": "689bd1e0d9326923139c8b4c"
+      },
+      {
+        "cantidad": 1,
+        "costoUnitario": 0,
+        "_id": "69c722f9439355b79b690f32",
+        "fechaIngreso": "2026-03-28T00:38:17.456Z"
       }
     ]
   },
@@ -626,12 +625,12 @@
     "description": "Reduce stress y tensión",
     "category": "belleza y salud",
     "price": 5000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://acdn-us.mitiendanube.com/stores/002/449/287/products/d_864943-mla49726052127_042022-o-49b2ddbc31f298773016651688921970-1024-1024.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 5000,
         "_id": "6939c478c545dddb7b732ad9",
         "fechaIngreso": "2025-12-10T19:05:28.363Z"
@@ -753,7 +752,7 @@
     "category": "belleza y salud",
     "price": 10000,
     "stock": 2,
-    "image": "https://assets.unileversolutions.com/v1/133018309.png?im=AspectCrop=(985,985);Resize=(985,985)",
+    "image": "https://cristianargentina.github.io/assets/img/tresemmespraycoat.jpg",
     "videos": [],
     "lotes": [
       {
@@ -770,16 +769,10 @@
     "description": "Serum Elvive Dream Liso 100ml",
     "category": "belleza y salud",
     "price": 14000,
-    "stock": 3,
+    "stock": 2,
     "image": "https://www.lorealparis.com.ar/-/media/project/loreal/brand-sites/oap/americas/ar/articles/dream-liso/menos-mb.png",
     "videos": [],
     "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 6637.95,
-        "_id": "69b482e2125710d75a92659e",
-        "fechaIngreso": "2026-03-13T21:34:26.490Z"
-      },
       {
         "cantidad": 2,
         "costoUnitario": 4887.74,
@@ -795,7 +788,7 @@
     "category": "belleza y salud",
     "price": 10000,
     "stock": 2,
-    "image": "https://media01.farmaciaslider.com.ar/27882-thickbox_default/cicatricure-crema-age-care-aclarante-50-g.jpg",
+    "image": "https://cristianargentina.github.io/assets/img/cicatricurefacialaclarante.jpg",
     "videos": [],
     "lotes": [
       {
@@ -818,16 +811,10 @@
     "description": "Serum Elvive Glycolic Gloss 100ml",
     "category": "belleza y salud",
     "price": 11000,
-    "stock": 3,
+    "stock": 2,
     "image": "https://media03.farmaciaslider.com.ar/39769-thickbox_default/elvive-glycolic-gloss-serum-x-100-ml.jpg",
     "videos": [],
     "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 6500.65,
-        "fechaIngreso": "2025-08-06T00:00:00.000Z",
-        "_id": "68a38e0502d19be1278bc7c3"
-      },
       {
         "cantidad": 2,
         "costoUnitario": 6500.65,
@@ -843,7 +830,7 @@
     "category": "belleza y salud",
     "price": 7000,
     "stock": 2,
-    "image": "https://media02.farmaciaslider.com.ar/33281-thickbox_default/algabo-mundial-messi-300ml-jab-liq.jpg",
+    "image": "https://cristianargentina.github.io/assets/img/algabomessi.jpg",
     "videos": [],
     "lotes": [
       {
@@ -861,7 +848,7 @@
     "category": "belleza y salud",
     "price": 7000,
     "stock": 2,
-    "image": "https://pedidosfarma.vtexassets.com/arquivos/ids/195229-800-800?v=638150075881630000&width=800&height=800&aspect=true",
+    "image": "https://cristianargentina.github.io/assets/img/algabokitty.jpg",
     "videos": [],
     "lotes": [
       {
@@ -896,17 +883,10 @@
     "description": "Crema de día 5 beneficios 50g",
     "category": "belleza y salud",
     "price": 15000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cdn.batitienda.com/baticloud/images/product_picture_e8083eda3e184c7aae5181d6342e600b_637857970927290487_0_l.webp",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 9371.25,
-        "_id": "696ff22ac18de5ba49dc7015",
-        "fechaIngreso": "2026-01-20T21:22:50.665Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 1756767484995,
@@ -914,12 +894,12 @@
     "description": "Purificador de agua con filtro cerámico",
     "category": "hogar",
     "price": 11000,
-    "stock": 4,
+    "stock": 3,
     "image": "https://cristianargentina.github.io/assets/img/sws01.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 4,
+        "cantidad": 3,
         "costoUnitario": 5341.66,
         "_id": "699f3626afa7497fba9230bb",
         "fechaIngreso": "2026-02-25T17:49:26.696Z"
@@ -969,7 +949,7 @@
     "category": "belleza y salud",
     "price": 9000,
     "stock": 1,
-    "image": "https://cristianargentina.github.io/assets/img/doveserumoleo.png",
+    "image": "https://cristianargentina.github.io/assets/img/doveserumoleo.jpg",
     "videos": [],
     "lotes": [
       {
@@ -1098,17 +1078,10 @@
     "description": "Luz trasera de bicicleta con 5 LEDs y 2 haces láser",
     "category": "iluminacion",
     "price": 10000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/luztraseralaser.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 2338,
-        "_id": "68c3591c8838ee9be8ea5859",
-        "fechaIngreso": "2025-09-11T23:19:56.153Z"
-      }
-    ]
+    "lotes": []
   },
   {
     "id": 1757632675239,
@@ -1237,7 +1210,7 @@
     "category": "belleza y salud",
     "price": 8000,
     "stock": 4,
-    "image": "https://cristianargentina.github.io/assets/img/dermaglos50.jpeg",
+    "image": "https://cristianargentina.github.io/assets/img/dermaglos50.jpg",
     "videos": [],
     "lotes": [
       {
@@ -1272,7 +1245,7 @@
     "category": "belleza y salud",
     "price": 5000,
     "stock": 1,
-    "image": "https://cristianargentina.github.io/assets/img/doveacondicionador.jpeg",
+    "image": "https://cristianargentina.github.io/assets/img/doveacondicionador.jpg",
     "videos": [],
     "lotes": [
       {
@@ -1290,7 +1263,7 @@
     "category": "belleza y salud",
     "price": 11000,
     "stock": 1,
-    "image": "https://cristianargentina.github.io/assets/img/repairdoveuv.webp",
+    "image": "https://cristianargentina.github.io/assets/img/repairdoveuv.jpg",
     "videos": [],
     "lotes": [
       {
@@ -1319,7 +1292,7 @@
     "category": "belleza y salud",
     "price": 18000,
     "stock": 0,
-    "image": "https://cristianargentina.github.io/assets/img/protectorsolar250dermaglos.jpeg",
+    "image": "https://cristianargentina.github.io/assets/img/protectorsolar250dermaglos.jpg",
     "videos": [],
     "lotes": []
   },
@@ -1330,7 +1303,7 @@
     "category": "belleza y salud",
     "price": 7000,
     "stock": 2,
-    "image": "https://cristianargentina.github.io/assets/img/postsolardermaglos.jpeg",
+    "image": "https://cristianargentina.github.io/assets/img/postsolardermaglos(1).jpg",
     "videos": [],
     "lotes": [
       {
@@ -1381,7 +1354,7 @@
     "category": "belleza y salud",
     "price": 10000,
     "stock": 0,
-    "image": "https://cristianargentina.github.io/assets/img/autobronceante.jpeg",
+    "image": "https://cristianargentina.github.io/assets/img/autobronceante.jpg",
     "videos": [],
     "lotes": []
   },
