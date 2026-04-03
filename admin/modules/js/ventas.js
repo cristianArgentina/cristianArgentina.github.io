@@ -4,11 +4,11 @@ import { getSales, createSale, deleteSale, getProducts } from "../../../api.js";
 import { showLoader, hideLoader } from "./loaderadmin.js";
 
 class VentasPanel extends HTMLElement {
-constructor() {
-  super();
-  this.attachShadow({ mode: "open" });
-  this.isSubmitting = false; // 🔥 clave
-}
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.isSubmitting = false; // 🔥 clave
+  }
 
   connectedCallback() {
     this.render();
@@ -46,6 +46,46 @@ constructor() {
             <div class="kpi">📈 Margen promedio: <span id="margenPromedio">0%</span></div>
             <div class="kpi">📦 Producto más vendido: <span id="productoTop">-</span></div>
           </div>
+
+          <div id="analytics">
+
+  <div class="controls">
+    <label>Desde: <input type="date" id="fechaInicio"></label>
+    <label>Hasta: <input type="date" id="fechaFin"></label>
+
+    <label>
+      <input type="checkbox" id="toggleCostoCero">
+      Excluir costo = 0
+    </label>
+
+    <button id="btnActualizar" class="btn-primary">Actualizar</button>
+    <button id="btnMasInfo" class="btn-primary">Más info</button>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>🔥 Top productos vendidos</h3>
+      <canvas id="chartTopProductos"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>💰 Facturación</h3>
+      <canvas id="chartFacturacion"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>📈 Mayor ganancia</h3>
+      <canvas id="chartGanancia"></canvas>
+    </div>
+
+    <div class="card">
+      <h3>🧾 Cantidad de ventas</h3>
+      <canvas id="chartVentas"></canvas>
+    </div>
+
+  </div>
+</div>
 
           <!-- Filtros -->
           <div class="filtros">
@@ -121,6 +161,109 @@ constructor() {
   }
 
   // KPIs
+  procesarDatos(ventas, productosMap, desde, hasta, excluirCostoCero) {
+
+    const filtradas = ventas.filter(v => {
+      const fecha = new Date(v.createdAt);
+      return (!desde || fecha >= desde) &&
+        (!hasta || fecha <= hasta);
+    });
+
+    // 🔥 TOP PRODUCTOS
+    const topProductos = {};
+    filtradas.forEach(v => {
+      topProductos[v.productId] = (topProductos[v.productId] || 0) + v.cantidad;
+    });
+
+    const top10 = Object.entries(topProductos)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10);
+
+    // 💰 FACTURACIÓN POR MES
+    const facturacion = {};
+    filtradas.forEach(v => {
+      const mes = new Date(v.createdAt).toISOString().slice(0, 7);
+      facturacion[mes] = (facturacion[mes] || 0) + v.precioVenta * v.cantidad;
+    });
+
+    // 📈 GANANCIA
+    const ganancias = {};
+    filtradas.forEach(v => {
+      if (excluirCostoCero && (!v.precioCosto || v.precioCosto === 0)) return;
+
+      ganancias[v.productId] = (ganancias[v.productId] || 0) + (v.ganancia || 0);
+    });
+
+    const topGanancia = Object.entries(ganancias)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 10);
+
+    // 🧾 CANTIDAD DE VENTAS
+    const ventasPorMes = {};
+    filtradas.forEach(v => {
+      const mes = new Date(v.createdAt).toISOString().slice(0, 7);
+      ventasPorMes[mes] = (ventasPorMes[mes] || 0) + 1;
+    });
+
+    return {
+      top10,
+      facturacion,
+      topGanancia,
+      ventasPorMes
+    };
+  }
+
+  renderCharts(data, productosMap) {
+
+    // 🔥 TOP PRODUCTOS
+    new Chart(this.shadowRoot.getElementById("chartTopProductos"), {
+      type: "bar",
+      data: {
+        labels: data.top10.map(([id]) => productosMap[id] || id),
+        datasets: [{
+          label: "Cantidad",
+          data: data.top10.map(([, v]) => v)
+        }]
+      }
+    });
+
+    // 💰 FACTURACIÓN
+    new Chart(this.shadowRoot.getElementById("chartFacturacion"), {
+      type: "line",
+      data: {
+        labels: Object.keys(data.facturacion),
+        datasets: [{
+          label: "Facturación",
+          data: Object.values(data.facturacion)
+        }]
+      }
+    });
+
+    // 📈 GANANCIA
+    new Chart(this.shadowRoot.getElementById("chartGanancia"), {
+      type: "bar",
+      data: {
+        labels: data.topGanancia.map(([id]) => productosMap[id] || id),
+        datasets: [{
+          label: "Ganancia",
+          data: data.topGanancia.map(([, v]) => v)
+        }]
+      }
+    });
+
+    // 🧾 VENTAS
+    new Chart(this.shadowRoot.getElementById("chartVentas"), {
+      type: "line",
+      data: {
+        labels: Object.keys(data.ventasPorMes),
+        datasets: [{
+          label: "Ventas",
+          data: Object.values(data.ventasPorMes)
+        }]
+      }
+    });
+  }
+
   actualizarKPIs(ventas, productosMap) {
     const totalFacturado = ventas.reduce((sum, v) => sum + v.precioVenta * v.cantidad, 0);
     const totalGanancia = ventas.reduce((sum, v) => sum + (v.ganancia ?? 0), 0);
@@ -138,45 +281,45 @@ constructor() {
     this.shadowRoot.getElementById("margenPromedio").textContent = margenPromedio + "%";
     this.shadowRoot.getElementById("productoTop").textContent = productoTop;
   }
-   
-handleNuevaVenta = async (e) => {
-  e.preventDefault();
 
-  // 🚫 bloqueo lógico (anti doble click REAL)
-  if (this.isSubmitting) return;
+  handleNuevaVenta = async (e) => {
+    e.preventDefault();
 
-  this.isSubmitting = true;
+    // 🚫 bloqueo lógico (anti doble click REAL)
+    if (this.isSubmitting) return;
 
-  const form = e.target;
-  const btn = form.querySelector("button[type=submit]");
+    this.isSubmitting = true;
 
-  // 🔒 bloqueo visual
-  btn.disabled = true;
-  const textoOriginal = btn.textContent;
-  btn.textContent = "Procesando...";
+    const form = e.target;
+    const btn = form.querySelector("button[type=submit]");
 
-  try {
-    const productId = form.ventaProducto.value;
-    const cantidad = parseInt(form.ventaCantidad.value);
-    const precioVenta = parseFloat(form.ventaPrecio.value);
+    // 🔒 bloqueo visual
+    btn.disabled = true;
+    const textoOriginal = btn.textContent;
+    btn.textContent = "Procesando...";
 
-    await this.addVenta({ productId, cantidad, precioVenta });
+    try {
+      const productId = form.ventaProducto.value;
+      const cantidad = parseInt(form.ventaCantidad.value);
+      const precioVenta = parseFloat(form.ventaPrecio.value);
 
-    // cerrar modal
-    document.getElementById("modalVenta").style.display = "none";
+      await this.addVenta({ productId, cantidad, precioVenta });
 
-    // limpiar form
-    form.reset();
+      // cerrar modal
+      document.getElementById("modalVenta").style.display = "none";
 
-  } catch (err) {
-    console.error(err);
-  } finally {
-    // 🔓 desbloqueo
-    this.isSubmitting = false;
-    btn.disabled = false;
-    btn.textContent = textoOriginal;
-  }
-};
+      // limpiar form
+      form.reset();
+
+    } catch (err) {
+      console.error(err);
+    } finally {
+      // 🔓 desbloqueo
+      this.isSubmitting = false;
+      btn.disabled = false;
+      btn.textContent = textoOriginal;
+    }
+  };
 
   async addVenta(nuevaVenta) {
     try {
@@ -187,6 +330,30 @@ handleNuevaVenta = async (e) => {
       console.error("Error al crear venta:", err);
     }
   }
+
+  async actualizarAnalytics() {
+
+    const ventas = await getSales();
+    const productos = await getProducts();
+
+    const productosMap = {};
+    productos.forEach(p => productosMap[p.id] = p.name);
+
+    const desde = this.shadowRoot.getElementById("fechaInicio").value;
+    const hasta = this.shadowRoot.getElementById("fechaFin").value;
+    const excluir = this.shadowRoot.getElementById("toggleCostoCero").checked;
+
+    const data = this.procesarDatos(
+      ventas,
+      productosMap,
+      desde ? new Date(desde) : null,
+      hasta ? new Date(hasta) : null,
+      excluir
+    );
+
+    this.renderCharts(data, productosMap);
+  }
+  
   setupEventListeners() {
     const btnNuevaVenta = this.shadowRoot.getElementById("btnNuevaVenta");
 
@@ -197,6 +364,10 @@ handleNuevaVenta = async (e) => {
     const ventaProducto = document.getElementById("ventaProducto");
     const ventaCantidad = document.getElementById("ventaCantidad");
     const ventaPrecio = document.getElementById("ventaPrecio");
+
+    this.shadowRoot.getElementById("btnActualizar").addEventListener("click", () => {
+      this.actualizarAnalytics();
+    });
 
     // 👉 ESTA ES LA LÍNEA QUE FALTABA
     formVenta.addEventListener("submit", this.handleNuevaVenta);
@@ -221,28 +392,28 @@ handleNuevaVenta = async (e) => {
 
     const tbody = this.shadowRoot.getElementById("tabla-ventas");
 
-tbody.addEventListener("click", async (e) => {
-  const btn = e.target.closest(".btn-delete");
-  if (!btn) return;
+    tbody.addEventListener("click", async (e) => {
+      const btn = e.target.closest(".btn-delete");
+      if (!btn) return;
 
-  const id = btn.dataset.id;
+      const id = btn.dataset.id;
 
-  const confirmDelete = confirm("¿Eliminar esta venta? Se restaurará el stock.");
-  if (!confirmDelete) return;
+      const confirmDelete = confirm("¿Eliminar esta venta? Se restaurará el stock.");
+      if (!confirmDelete) return;
 
-  btn.disabled = true;
-  btn.textContent = "⏳";
+      btn.disabled = true;
+      btn.textContent = "⏳";
 
-  try {
-    await deleteSale(id);
-    this.loadVentas();
-  } catch (err) {
-    console.error(err);
-    alert("Error al eliminar venta");
-    btn.disabled = false;
-    btn.textContent = "🗑️";
-  }
-});
+      try {
+        await deleteSale(id);
+        this.loadVentas();
+      } catch (err) {
+        console.error(err);
+        alert("Error al eliminar venta");
+        btn.disabled = false;
+        btn.textContent = "🗑️";
+      }
+    });
   }
 }
 
