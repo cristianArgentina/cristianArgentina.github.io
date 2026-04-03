@@ -26,11 +26,11 @@ class ProductosPanel extends HTMLElement {
     };
   }
 
-connectedCallback() {
-  this.render();
-  this.setupEventListeners(); // primero DOM listo
-  this.loadProductos();       // después datos
-}
+  connectedCallback() {
+    this.render();
+    this.setupEventListeners(); // primero DOM listo
+    this.loadProductos();       // después datos
+  }
 
   render() {
     this.shadowRoot.innerHTML = `
@@ -79,63 +79,86 @@ connectedCallback() {
         background: #005fa3;
       }
 
-      /* --- Responsive --- */
       @media (max-width: 768px) {
-        table, thead, tbody, th, td, tr {
-          display: block;
-        }
 
-        thead tr {
-          display: none; /* Ocultamos cabecera */
-        }
+  table, thead, tbody {
+    display: block;
+  }
 
-        tr {
-          margin-bottom: 1rem;
-          border: 1px solid #ddd;
-          border-radius: 8px;
-          padding: 0.5rem;
-          background: #2a2a2a;
-          box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
+  thead {
+    display: none;
+  }
 
-        td {
-          border: none;
-          padding: 0.5rem;              
-          position: relative;
-          text-align: right;
-        }
+  tr {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-        td::before {
-          content: attr(data-label);
-          position: absolute;
-          left: 0;
-          width: 50%;
-          font-weight: bold;
-          text-align: left;
-        }
+    height: 75px; /* 🔥 compacta */
+    padding: 8px 10px;
+    margin-bottom: 8px;
 
-        td:last-child {
-          display: flex;
-          justify-content: flex-end;
-          gap: 6px;
-        }
+    border-radius: 10px;
+    background: #2a2a2a;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
 
-        .action {
-          padding: 6px;
-          font-size: 1rem;
-          border: none;
-          background: none;
-          cursor: pointer;
-        }
+  td {
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
 
-        .toolbar {
-          display: flex;
-          gap: 10px;
-          align-items: center;
-          margin-bottom: 1rem;
-          flex-wrap: wrap;
-        }
-      }
+  td::before {
+    display: none; /* ❌ eliminamos labels */
+  }
+
+  /* 🧾 LINEA 1: NOMBRE */
+  .nombre {
+    font-size: 14px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* 📊 LINEA 2: INFO */
+  .info {
+    font-size: 12px;
+    color: #ccc;
+
+    display: flex;
+    gap: 10px;
+  }
+
+  .info span {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  /* 🎮 LINEA 3: ACCIONES */
+  .acciones {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .action {
+    flex: 1;
+    padding: 4px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    background: #3a3a3a;
+  }
+
+  .action:active {
+    transform: scale(0.95);
+  }
+}
     </style>
 
     <h2>📦 Productos</h2>
@@ -167,122 +190,128 @@ connectedCallback() {
   `;
   }
 
-async loadProductos() {
-  showLoader("Cargando productos... 🐥");
+  async loadProductos() {
+    showLoader("Cargando productos... 🐥");
 
-  try {
-    this.productos = await getProducts();
-    this.renderCategorias();
-    this.renderTabla();
-  } finally {
-    hideLoader();
+    try {
+      this.productos = await getProducts();
+      this.renderCategorias();
+      this.renderTabla();
+    } finally {
+      hideLoader();
+    }
   }
-}
 
   renderCategorias() {
-  const select = this.shadowRoot.getElementById("filterCategoria");
+    const select = this.shadowRoot.getElementById("filterCategoria");
 
-  const cats = [...new Set(this.productos.map(p => p.category))]
-    .sort((a, b) => a.localeCompare(b));
+    const cats = [...new Set(this.productos.map(p => p.category))]
+      .sort((a, b) => a.localeCompare(b));
 
-  select.innerHTML =
-    `<option value="">Todas categorías</option>` +
-    cats.map(c => `<option value="${c}">${c}</option>`).join("");
-}
+    select.innerHTML =
+      `<option value="">Todas categorías</option>` +
+      cats.map(c => `<option value="${c}">${c}</option>`).join("");
+  }
 
   renderTabla() {
-  const tbody = this.shadowRoot.getElementById("tabla-productos");
-  tbody.innerHTML = "";
+    const tbody = this.shadowRoot.getElementById("tabla-productos");
+    tbody.innerHTML = "";
 
-  let data = [...this.productos];
+    let data = [...this.productos];
 
-  /* -------- FILTROS -------- */
-  if (this.filters.search) {
-    data = data.filter(p =>
-      p.name.toLowerCase().includes(this.filters.search)
-    );
-  }
+    /* -------- FILTROS -------- */
+    if (this.filters.search) {
+      data = data.filter(p =>
+        p.name.toLowerCase().includes(this.filters.search)
+      );
+    }
 
-  if (this.filters.category) {
-    data = data.filter(p => p.category === this.filters.category);
-  }
+    if (this.filters.category) {
+      data = data.filter(p => p.category === this.filters.category);
+    }
 
-  if (this.filters.stockMin) {
-    data = data.filter(p => p.stock >= this.filters.stockMin);
-  }
+    if (this.filters.stockMin) {
+      data = data.filter(p => p.stock >= this.filters.stockMin);
+    }
 
-  /* -------- ORDEN -------- */
-  if (this.sortKey) {
-    data.sort((a, b) => {
-      let v1 = a[this.sortKey];
-      let v2 = b[this.sortKey];
+    /* -------- ORDEN -------- */
+    if (this.sortKey) {
+      data.sort((a, b) => {
+        let v1 = a[this.sortKey];
+        let v2 = b[this.sortKey];
 
-      if (typeof v1 === "string")
-        return v1.localeCompare(v2) * this.sortDir;
+        if (typeof v1 === "string")
+          return v1.localeCompare(v2) * this.sortDir;
 
-      return (v1 - v2) * this.sortDir;
+        return (v1 - v2) * this.sortDir;
+      });
+    }
+
+    /* -------- RENDER -------- */
+    data.forEach(p => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+  <td data-label="Nombre" class="nombre">
+    ${p.name}
+  </td>
+
+  <td data-label="Info" class="info">
+    <span>💲${p.price.toFixed(2)}</span>
+    <span>📦${p.stock}</span>
+    <span>🏷️${p.category}</span>
+  </td>
+
+  <td data-label="Acciones" class="acciones">
+    <button class="action btnEditar" data-id="${p.id}">✏️</button>
+    <button class="action btnEliminar" data-id="${p.id}">🗑️</button>
+    <button class="action btnLote" data-id="${p.id}">➕</button>
+  </td>
+`;
+
+      tbody.appendChild(row);
     });
   }
 
-  /* -------- RENDER -------- */
-  data.forEach(p => {
-    const row = document.createElement("tr");
 
-    row.innerHTML = `
-      <td data-label="Nombre">${p.name}</td>
-      <td data-label="Precio">$${p.price.toFixed(2)}</td>
-      <td data-label="Stock">${p.stock}</td>
-      <td data-label="Categoría">${p.category}</td>
-      <td data-label="Acciones">
-        <button class="action btnEditar" data-id="${p.id}">✏️</button>
-        <button class="action btnEliminar" data-id="${p.id}">🗑️</button>
-        <button class="action btnLote" data-id="${p.id}">➕ Lote</button>
-      </td>
-    `;
-
-    tbody.appendChild(row);
-  });
-}
-
-  
   setupEventListeners() {
 
-   this.shadowRoot.querySelectorAll("th[data-sort]").forEach(th => {
-  th.addEventListener("click", () => {
-    const key = th.dataset.sort;
+    this.shadowRoot.querySelectorAll("th[data-sort]").forEach(th => {
+      th.addEventListener("click", () => {
+        const key = th.dataset.sort;
 
-    if (this.sortKey === key) {
-      this.sortDir *= -1;
-    } else {
-      this.sortKey = key;
-      this.sortDir = 1;
-    }
+        if (this.sortKey === key) {
+          this.sortDir *= -1;
+        } else {
+          this.sortKey = key;
+          this.sortDir = 1;
+        }
 
-    this.renderTabla();
-  });
-});
+        this.renderTabla();
+      });
+    });
 
     const searchInput = this.shadowRoot.getElementById("searchInput");
-const filterCategoria = this.shadowRoot.getElementById("filterCategoria");
-const filterStock = this.shadowRoot.getElementById("filterStock");
+    const filterCategoria = this.shadowRoot.getElementById("filterCategoria");
+    const filterStock = this.shadowRoot.getElementById("filterStock");
 
-searchInput.addEventListener(
-  "input",
-  this.debounce(e => {
-    this.filters.search = e.target.value.toLowerCase();
-    this.renderTabla();
-  }, 300)
-);
+    searchInput.addEventListener(
+      "input",
+      this.debounce(e => {
+        this.filters.search = e.target.value.toLowerCase();
+        this.renderTabla();
+      }, 300)
+    );
 
-filterCategoria.addEventListener("change", e => {
-  this.filters.category = e.target.value;
-  this.renderTabla();
-});
+    filterCategoria.addEventListener("change", e => {
+      this.filters.category = e.target.value;
+      this.renderTabla();
+    });
 
-filterStock.addEventListener("input", e => {
-  this.filters.stockMin = Number(e.target.value) || 0;
-  this.renderTabla();
-});
+    filterStock.addEventListener("input", e => {
+      this.filters.stockMin = Number(e.target.value) || 0;
+      this.renderTabla();
+    });
 
     const btnNuevo = this.shadowRoot.getElementById("btnNuevo");
 
@@ -301,16 +330,16 @@ filterStock.addEventListener("input", e => {
     const comboBuilder = document.getElementById("comboBuilder");
 
     esCombo.addEventListener("change", () => {
-    comboBuilder.style.display = esCombo.checked ? "block" : "none";
+      comboBuilder.style.display = esCombo.checked ? "block" : "none";
     });
 
     const comboItems = document.getElementById("comboItems");
 
-document.getElementById("btnAgregarProductoCombo").addEventListener("click", () => {
+    document.getElementById("btnAgregarProductoCombo").addEventListener("click", () => {
 
-  const row = document.createElement("div");
+      const row = document.createElement("div");
 
-  row.innerHTML = `
+      row.innerHTML = `
     <select class="combo-product">
       ${this.productos.map(p =>
         `<option value="${p.id}">${p.name}</option>`
@@ -322,14 +351,14 @@ document.getElementById("btnAgregarProductoCombo").addEventListener("click", () 
     <button type="button" class="removeCombo">❌</button>
   `;
 
-  row.querySelector(".removeCombo").addEventListener("click", () => {
-    row.remove();
-  });
+      row.querySelector(".removeCombo").addEventListener("click", () => {
+        row.remove();
+      });
 
-  comboItems.appendChild(row);
-});
+      comboItems.appendChild(row);
+    });
 
-    
+
 
     // Delegación de eventos en tabla
     this.shadowRoot.getElementById("tabla-productos").addEventListener("click", async (e) => {
@@ -373,47 +402,47 @@ document.getElementById("btnAgregarProductoCombo").addEventListener("click", () 
 
   }
 
-handleNuevoProducto = async (e) => {
-  e.preventDefault();
+  handleNuevoProducto = async (e) => {
+    e.preventDefault();
 
-  const form = e.target;
-  const btn = form.querySelector("button[type=submit]");
-  btn.disabled = true;
+    const form = e.target;
+    const btn = form.querySelector("button[type=submit]");
+    btn.disabled = true;
 
-  try {
+    try {
 
-    const esCombo = document.getElementById("esCombo").checked;
+      const esCombo = document.getElementById("esCombo").checked;
 
-    const nuevo = {
-      name: form.nombre.value,
-      description: form.descripcion.value,
-      price: parseFloat(form.precio.value),
-      stock: parseInt(form.stock.value),
-      category: form.categoria.value,
-      image: form.urlImage.value
-    };
+      const nuevo = {
+        name: form.nombre.value,
+        description: form.descripcion.value,
+        price: parseFloat(form.precio.value),
+        stock: parseInt(form.stock.value),
+        category: form.categoria.value,
+        image: form.urlImage.value
+      };
 
-    if (esCombo) {
+      if (esCombo) {
 
-      const items = [...document.querySelectorAll("#comboItems div")];
+        const items = [...document.querySelectorAll("#comboItems div")];
 
-      nuevo.combo = items.map(row => ({
-        productId: row.querySelector(".combo-product").value,
-        qty: parseInt(row.querySelector(".combo-qty").value)
-      }));
+        nuevo.combo = items.map(row => ({
+          productId: row.querySelector(".combo-product").value,
+          qty: parseInt(row.querySelector(".combo-qty").value)
+        }));
 
+      }
+
+      await createProduct(nuevo);
+
+      this.loadProductos();
+      form.reset();
+      document.getElementById("modalNuevoProducto").style.display = "none";
+
+    } finally {
+      btn.disabled = false;
     }
-
-    await createProduct(nuevo);
-
-    this.loadProductos();
-    form.reset();
-    document.getElementById("modalNuevoProducto").style.display = "none";
-
-  } finally {
-    btn.disabled = false;
-  }
-};
+  };
 
   handleEditarProducto = async (e) => {
     e.preventDefault();
