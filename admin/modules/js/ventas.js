@@ -42,10 +42,10 @@ class VentasPanel extends HTMLElement {
         <h2>📊 Ventas</h2>
         <div id="vistaVentas" style="display:none;">  
           <div id="resumenVentas" class="resumen">
-            <div class="kpi">📅 Ventas hoy: <span id="ventasHoy">0</span></div>
+            <div class="kpi">📦 Producto más vendido: <span id="productoTop">-</span></div>
             <div class="kpi">💰 Total facturado: $<span id="totalFacturado">0</span></div>
             <div class="kpi">📈 Margen promedio: <span id="margenPromedio">0%</span></div>
-            <div class="kpi">📦 Producto más vendido: <span id="productoTop">-</span></div>
+            <div class="kpi">📅 Ventas totales: <span id="ventasHoy">0</span></div>
           </div>
 
           <div id="analytics">
@@ -89,8 +89,6 @@ class VentasPanel extends HTMLElement {
 </div>
 
           <!-- Filtros -->
-          <div class="filtros">
-            <button id="btnExportarCSV" class="btn-primary">⬇ Exportar CSV</button>
             <button id="btnNuevaVenta" class="btn-primary">➕ Registrar venta</button>
          </div>
         </div>
