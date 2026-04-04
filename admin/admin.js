@@ -3,15 +3,27 @@ function renderAdminLayout() {
   const content = document.getElementById("content");
 
   content.innerHTML = `
-    <nav>
-      <button id="btn-ventas">Ventas</button>
-      <button id="btn-productos">Productos</button>
+  <header class="admin-header">
+    <h1 class="admin-title">⚙️ Panel de administración</h1>
+
+    <nav class="admin-nav">
+      <button id="btn-ventas" class="nav-btn active">📊 Ventas</button>
+      <button id="btn-productos" class="nav-btn">📦 Productos</button>
     </nav>
-    <section id="panel"></section>
-  `;
+  </header>
+
+  <section id="panel"></section>
+`;
   // ahora asignás los eventos desde JS
-  document.getElementById("btn-ventas").addEventListener("click", () => showModule("ventas"));
-  document.getElementById("btn-productos").addEventListener("click", () => showModule("productos"));
+  document.getElementById("btn-ventas").addEventListener("click", () => {
+    setActiveButton("btn-ventas");
+    showModule("ventas");
+  });
+
+  document.getElementById("btn-productos").addEventListener("click", () => {
+    setActiveButton("btn-productos");
+    showModule("productos");
+  });
 }
 
 function showModule(name) {
@@ -37,3 +49,11 @@ document.addEventListener("loginSuccess", () => {
   content.innerHTML = ""; // limpiar login
   renderAdminLayout();
 });
+
+function setActiveButton(activeId) {
+  document.querySelectorAll(".nav-btn").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  document.getElementById(activeId).classList.add("active");
+}
