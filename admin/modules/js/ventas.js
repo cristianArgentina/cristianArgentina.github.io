@@ -8,6 +8,7 @@ class VentasPanel extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.isSubmitting = false; // 🔥 clave
+    this.charts = {};
   }
 
   connectedCallback() {
@@ -89,9 +90,6 @@ class VentasPanel extends HTMLElement {
 
           <!-- Filtros -->
           <div class="filtros">
-            <label>Desde: <input type="date" id="fechaInicio"></label>
-            <label>Hasta: <input type="date" id="fechaFin"></label>
-            <button id="btnFiltrar" class="btn-primary">Filtrar</button>
             <button id="btnExportarCSV" class="btn-primary">⬇ Exportar CSV</button>
             <button id="btnNuevaVenta" class="btn-primary">➕ Registrar venta</button>
          </div>
@@ -156,6 +154,9 @@ class VentasPanel extends HTMLElement {
       console.error("Error cargando ventas:", err);
     } finally {
       this.shadowRoot.getElementById("vistaVentas").style.display = "block";
+
+      this.actualizarAnalytics();
+
       hideLoader();
     }
   }
@@ -215,8 +216,18 @@ class VentasPanel extends HTMLElement {
 
   renderCharts(data, productosMap) {
 
+    const createOrUpdate = (id, config) => {
+      if (this.charts[id]) {
+        this.charts[id].destroy();
+      }
+      this.charts[id] = new Chart(
+        this.shadowRoot.getElementById(id),
+        config
+      );
+    };
+
     // 🔥 TOP PRODUCTOS
-    new Chart(this.shadowRoot.getElementById("chartTopProductos"), {
+    createOrUpdate("chartTopProductos", {
       type: "bar",
       data: {
         labels: data.top10.map(([id]) => productosMap[id] || id),
@@ -228,10 +239,10 @@ class VentasPanel extends HTMLElement {
     });
 
     // 💰 FACTURACIÓN
-    new Chart(this.shadowRoot.getElementById("chartFacturacion"), {
+    createOrUpdate("chartFacturacion", {
       type: "line",
       data: {
-        labels: Object.keys(data.facturacion),
+        labels: Object.keys(data.facturacion).sort(),
         datasets: [{
           label: "Facturación",
           data: Object.values(data.facturacion)
@@ -240,7 +251,7 @@ class VentasPanel extends HTMLElement {
     });
 
     // 📈 GANANCIA
-    new Chart(this.shadowRoot.getElementById("chartGanancia"), {
+    createOrUpdate("chartGanancia", {
       type: "bar",
       data: {
         labels: data.topGanancia.map(([id]) => productosMap[id] || id),
@@ -252,7 +263,7 @@ class VentasPanel extends HTMLElement {
     });
 
     // 🧾 VENTAS
-    new Chart(this.shadowRoot.getElementById("chartVentas"), {
+    createOrUpdate("chartVentas", {
       type: "line",
       data: {
         labels: Object.keys(data.ventasPorMes),
@@ -352,8 +363,9 @@ class VentasPanel extends HTMLElement {
     );
 
     this.renderCharts(data, productosMap);
+    console.log("Analytics data:", data);
   }
-  
+
   setupEventListeners() {
     const btnNuevaVenta = this.shadowRoot.getElementById("btnNuevaVenta");
 
