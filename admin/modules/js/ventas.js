@@ -8,6 +8,10 @@ class VentasPanel extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.isSubmitting = false; // 🔥 clave
+
+    this.ventas = [];
+    this.productos = [];
+    this.productosMap = {};
     this.charts = {};
   }
 
@@ -119,6 +123,15 @@ class VentasPanel extends HTMLElement {
         getSales(),
         getProducts()
       ]);
+
+      this.ventas = ventas;
+      this.productos = productos;
+
+      // 🔥 map cacheado
+      this.productosMap = {};
+      productos.forEach(p => {
+        this.productosMap[p.id] = p.name;
+      });
 
       // 📦 indexar productos por id
       const productosMap = {};
@@ -342,11 +355,8 @@ class VentasPanel extends HTMLElement {
 
   async actualizarAnalytics() {
 
-    const ventas = await getSales();
-    const productos = await getProducts();
-
-    const productosMap = {};
-    productos.forEach(p => productosMap[p.id] = p.name);
+    const ventas = this.ventas;
+    const productosMap = this.productosMap;
 
     const desde = this.shadowRoot.getElementById("fechaInicio").value;
     const hasta = this.shadowRoot.getElementById("fechaFin").value;
@@ -375,6 +385,12 @@ class VentasPanel extends HTMLElement {
     const ventaCantidad = document.getElementById("ventaCantidad");
     const ventaPrecio = document.getElementById("ventaPrecio");
 
+    const autoUpdate = () => this.actualizarAnalytics();
+
+    this.shadowRoot.getElementById("fechaInicio").addEventListener("change", autoUpdate);
+    this.shadowRoot.getElementById("fechaFin").addEventListener("change", autoUpdate);
+    this.shadowRoot.getElementById("toggleCostoCero").addEventListener("change", autoUpdate);
+
     this.shadowRoot.getElementById("btnActualizar").addEventListener("click", () => {
       this.actualizarAnalytics();
     });
@@ -384,7 +400,7 @@ class VentasPanel extends HTMLElement {
 
     // abrir modal
     btnNuevaVenta.addEventListener("click", async () => {
-      const productos = await getProducts();
+      const productos = this.productos;
       ventaProducto.innerHTML = "";
       productos.forEach(p => {
         const option = document.createElement("option");
