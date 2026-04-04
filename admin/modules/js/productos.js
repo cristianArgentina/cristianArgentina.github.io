@@ -160,8 +160,6 @@ class ProductosPanel extends HTMLElement {
   }
 }
     </style>
-
-    <h2>📦 Productos</h2>
 <div class="toolbar">
   <button id="btnNuevo" class="btn-primary">➕ Agregar nuevo producto</button>
   <button id="btnExportar" class="btn-primary">⬇️ Exportar JSON</button>

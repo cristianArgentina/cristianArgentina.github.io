@@ -43,7 +43,6 @@ class VentasPanel extends HTMLElement {
         }
       </style>
       <section>
-        <h2>📊 Ventas</h2>
         <div id="vistaVentas" style="display:none;">  
           <div id="resumenVentas" class="resumen">
             <div class="kpi">📦 Producto más vendido: <span id="productoTop">-</span></div>
