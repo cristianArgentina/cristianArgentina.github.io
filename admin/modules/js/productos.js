@@ -35,7 +35,7 @@ class ProductosPanel extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
     <link rel="stylesheet"
-      href="/admin/modules/css/adminproductos.css">
+      href="/admin/modules/css/admin-productos.css">
     
     <style>
       * {
