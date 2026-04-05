@@ -34,6 +34,9 @@ class ProductosPanel extends HTMLElement {
 
   render() {
     this.shadowRoot.innerHTML = `
+    <link rel="stylesheet"
+      href="/admin/modules/css/adminproductos.css">
+    
     <style>
       * {
         box-sizing: border-box;
@@ -173,18 +176,24 @@ class ProductosPanel extends HTMLElement {
   <input id="filterStock" type="number" min="0" placeholder="Stock mín" style="width:90px">
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th data-sort="name">Nombre ⬍</th>
-      <th data-sort="price">Precio ⬍</th>
-      <th data-sort="stock">Stock ⬍</th>
-      <th data-sort="category">Categoría ⬍</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody id="tabla-productos"></tbody>
-    </table>
+<div class="toolbar-orden">
+
+  <select id="sortField">
+    <option value="">Ordenar por</option>
+    <option value="name">Nombre</option>
+    <option value="price">Precio</option>
+    <option value="stock">Stock</option>
+    <option value="category">Categoría</option>
+  </select>
+
+  <select id="sortDir">
+    <option value="1">Ascendente</option>
+    <option value="-1">Descendente</option>
+  </select>
+
+</div>
+
+<div id="grid-productos"></div>
   `;
   }
 
@@ -212,65 +221,98 @@ class ProductosPanel extends HTMLElement {
   }
 
   renderTabla() {
-    const tbody = this.shadowRoot.getElementById("tabla-productos");
-    tbody.innerHTML = "";
+
+    const container =
+      this.shadowRoot.getElementById("grid-productos");
+
+    container.innerHTML = "";
 
     let data = [...this.productos];
 
-    /* -------- FILTROS -------- */
+    /* FILTROS */
+
     if (this.filters.search) {
+
       data = data.filter(p =>
-        p.name.toLowerCase().includes(this.filters.search)
+        p.name.toLowerCase()
+          .includes(this.filters.search)
       );
     }
 
     if (this.filters.category) {
-      data = data.filter(p => p.category === this.filters.category);
+
+      data = data.filter(p =>
+        p.category === this.filters.category
+      );
     }
 
     if (this.filters.stockMin) {
-      data = data.filter(p => p.stock >= this.filters.stockMin);
+
+      data = data.filter(p =>
+        p.stock >= this.filters.stockMin
+      );
     }
 
-    /* -------- ORDEN -------- */
+    /* ORDEN */
+
     if (this.sortKey) {
+
       data.sort((a, b) => {
+
         let v1 = a[this.sortKey];
         let v2 = b[this.sortKey];
 
-        if (typeof v1 === "string")
-          return v1.localeCompare(v2) * this.sortDir;
+        if (typeof v1 === "string") {
+          return v1.localeCompare(v2)
+            * this.sortDir;
+        }
 
-        return (v1 - v2) * this.sortDir;
+        return (v1 - v2)
+          * this.sortDir;
+
       });
+
     }
 
-    /* -------- RENDER -------- */
+    /* RENDER CARDS */
+
     data.forEach(p => {
-      const row = document.createElement("tr");
 
-      row.innerHTML = `
-  <td data-label="Nombre" class="nombre">
-    ${p.name}
-  </td>
+      const card =
+        document.createElement("div");
 
-  <td data-label="Info" class="info">
-    <span>💲${p.price.toFixed(2)}</span>
-    <span>📦${p.stock}</span>
-    <span>🏷️${p.category}</span>
-  </td>
+      card.className = "product-card";
 
-  <td data-label="Acciones" class="acciones">
-    <button class="action btnEditar" data-id="${p.id}">✏️</button>
-    <button class="action btnEliminar" data-id="${p.id}">🗑️</button>
-    <button class="action btnLote" data-id="${p.id}">➕</button>
-  </td>
-`;
+      card.innerHTML = `
+    
+      <div class="product-name">
+        ${p.name}
+      </div>
 
-      tbody.appendChild(row);
+      <div class="product-info">
+        <span>💲${p.price.toFixed(2)}</span>
+        <span>📦${p.stock}</span>
+        <span>🏷️${p.category}</span>
+      </div>
+
+      <div class="product-actions">
+
+        <button class="action btnEditar"
+          data-id="${p.id}">✏️</button>
+
+        <button class="action btnEliminar"
+          data-id="${p.id}">🗑️</button>
+
+        <button class="action btnLote"
+          data-id="${p.id}">➕</button>
+
+      </div>
+    `;
+
+      container.appendChild(card);
+
     });
   }
-
 
   setupEventListeners() {
 
@@ -398,6 +440,27 @@ class ProductosPanel extends HTMLElement {
     document.getElementById("formEditarProducto").addEventListener("submit", this.handleEditarProducto);
     document.getElementById("formLote").addEventListener("submit", this.handleNuevoLote);
 
+    const sortField =
+      this.shadowRoot.getElementById("sortField");
+
+    const sortDir =
+      this.shadowRoot.getElementById("sortDir");
+
+    sortField.addEventListener("change", e => {
+
+      this.sortKey = e.target.value;
+
+      this.renderTabla();
+
+    });
+
+    sortDir.addEventListener("change", e => {
+
+      this.sortDir = Number(e.target.value);
+
+      this.renderTabla();
+
+    });
   }
 
   handleNuevoProducto = async (e) => {
