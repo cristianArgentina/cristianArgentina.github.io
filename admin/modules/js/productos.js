@@ -113,23 +113,30 @@ class ProductosPanel extends HTMLElement {
   }
 }
     </style>
-<div class="toolbar">
-  <button id="btnNuevo" class="btn-primary">➕ Agregar nuevo producto</button>
-  <button id="btnExportar" class="btn-primary">⬇️ Exportar JSON</button>
+<div class="top-bar">
 
-  <input id="searchInput" placeholder="Buscar nombre..." />
+  <input
+    id="searchInput"
+    placeholder="🔍 Buscar producto..."
+  />
 
   <select id="filterCategoria">
-    <option value="">Todas categorías</option>
+    <option value="">
+      🏷 Todas categorías
+    </option>
   </select>
 
-  <input id="filterStock" type="number" min="0" placeholder="Stock mín" style="width:90px">
-</div>
-
-<div class="toolbar-orden">
+  <input
+    id="filterStock"
+    type="number"
+    min="0"
+    placeholder="📦 Stock mín"
+  />
 
   <select id="sortField">
-    <option value="">Ordenar por</option>
+    <option value="">
+      🔽 Ordenar por
+    </option>
     <option value="name">Nombre</option>
     <option value="price">Precio</option>
     <option value="stock">Stock</option>
@@ -137,12 +144,23 @@ class ProductosPanel extends HTMLElement {
   </select>
 
   <select id="sortDir">
-    <option value="1">Ascendente</option>
-    <option value="-1">Descendente</option>
+    <option value="1">⬆ Asc</option>
+    <option value="-1">⬇ Desc</option>
   </select>
 
-</div>
+  <button id="btnExportar"
+    class="btn-secondary">
+    📤 Exportar
+  </button>
 
+</div>
+<button
+  id="btnNuevo"
+  class="fab">
+
+  ➕
+
+</button>
 <div id="grid-productos"></div>
   `;
   }
