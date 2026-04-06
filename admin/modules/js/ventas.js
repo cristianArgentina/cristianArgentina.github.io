@@ -90,27 +90,15 @@ class VentasPanel extends HTMLElement {
 
   </div>
 </div>
-
-          <!-- Filtros -->
-            <button id="btnNuevaVenta" class="btn-primary">➕ Registrar venta</button>
-         </div>
+</div>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Precio</th>
-              <th>Costo</th>.
-              <th>Ganancia</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="tabla-ventas">
-            <!-- filas dinámicas -->
-          </tbody>
-        </table>
+          <div class="ventas-toolbar">
+            <button id="btnNuevaVenta" class="btn-fab">
+              ➕ Nueva venta
+            </button>
+          </div>
+        <div id="ventas-container">
+        </div>
       </section>
     `;
   }
@@ -136,26 +124,10 @@ class VentasPanel extends HTMLElement {
       const productosMap = {};
       productos.forEach(p => { productosMap[p.id] = p.name });
 
-      const tbody = this.shadowRoot.getElementById("tabla-ventas");
-      tbody.innerHTML = "";
-
-      ventas.forEach(v => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-        <td>${new Date(v.createdAt).toLocaleDateString()}</td>
-        <td>${productosMap[v.productId] || "❓"}</td>
-        <td>${v.cantidad}</td>
-        <td>$${v.precioVenta}</td>
-        <td>$${v.precioCosto?.toFixed(2) ?? "-"}</td>
-        <td>$${v.ganancia?.toFixed(2) ?? "-"}</td>
-          <td>
-            <button class="btn-delete" data-id="${v._id}">
-              🗑️
-            </button>
-          </td>
-        `;
-        tbody.appendChild(row);
-      });
+      this.renderVentasCards(
+        ventas,
+        productosMap
+      );
 
       // ✅ actualizar KPIs con productos
       this.actualizarKPIs(ventas, productosMap);
@@ -169,6 +141,92 @@ class VentasPanel extends HTMLElement {
 
       hideLoader();
     }
+  }
+
+  renderVentasCards(ventas, productosMap) {
+
+    const container =
+      this.shadowRoot
+        .getElementById("ventas-container");
+
+    container.innerHTML = "";
+
+    const grupos =
+      this.groupVentasByFecha(ventas);
+
+    Object.entries(grupos)
+      .sort((a, b) => new Date(b[0]) - new Date(a[0]))
+      .forEach(([fecha, ventasDelDia]) => {
+
+        const totalDia =
+  ventasDelDia.reduce(
+    (sum,v)=> sum +
+      v.precioVenta * v.cantidad,
+    0
+  ); 
+        const section =
+          document.createElement("div");
+
+        section.className =
+          "ventas-dia";
+
+        section.innerHTML = `
+<h3 class="fecha">
+ 📅 ${fecha}
+ 💰 $${this.formatPrice(totalDia)}
+</h3>
+
+        <div class="ventas-grid"></div>
+      `;
+
+        const grid =
+          section.querySelector(".ventas-grid");
+
+        ventasDelDia.forEach(v => {
+
+          const card =
+            document.createElement("div");
+
+          card.className =
+            "venta-card";
+
+          card.innerHTML = `
+          <div class="venta-header">
+            <div class="venta-nombre">
+              ${productosMap[v.productId] || "❓"}
+            </div>
+          </div>
+
+          <div class="venta-info">
+            <span>
+              💲 ${this.formatPrice(v.precioVenta)}
+            </span>
+
+            <span>
+              📦 x${v.cantidad}
+            </span>
+
+            <span>
+              💰 +${this.formatPrice(v.ganancia || 0)}
+            </span>
+          </div>
+
+          <div class="venta-actions">
+            <button
+              class="action btn-delete"
+              data-id="${v._id}">
+              🗑️
+            </button>
+          </div>
+        `;
+
+          grid.appendChild(card);
+
+        });
+
+        container.appendChild(section);
+
+      });
   }
 
   // KPIs
@@ -373,6 +431,26 @@ class VentasPanel extends HTMLElement {
     console.log("Analytics data:", data);
   }
 
+  groupVentasByFecha(ventas) {
+
+    const grupos = {};
+
+    ventas.forEach(v => {
+
+      const fecha =
+        new Date(v.createdAt)
+          .toLocaleDateString();
+
+      if (!grupos[fecha])
+        grupos[fecha] = [];
+
+      grupos[fecha].push(v);
+
+    });
+
+    return grupos;
+  }
+
   setupEventListeners() {
     const btnNuevaVenta = this.shadowRoot.getElementById("btnNuevaVenta");
 
@@ -439,6 +517,12 @@ class VentasPanel extends HTMLElement {
         btn.textContent = "🗑️";
       }
     });
+  }
+  formatPrice(value) {
+
+    return Math.round(value)
+      .toLocaleString("es-AR");
+
   }
 }
 

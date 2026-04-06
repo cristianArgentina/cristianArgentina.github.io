@@ -4,6 +4,7 @@
   gap: 1rem;
   margin-bottom: 1rem;
 }
+
 #resumenVentas .kpi {
   flex: 1;
   background: #1f1f1f;
@@ -11,7 +12,7 @@
   border-radius: 10px;
   text-align: center;
   font-weight: bold;
-  box-shadow: 0px 2px 6px rgba(0,0,0,0.3);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* Filtros */
@@ -25,6 +26,7 @@
 #vistaVentas {
   margin: 20px;
 }
+
 /*
 #tablaVentas {
   width: 100%;
@@ -58,4 +60,136 @@
   background: #2a2a2a;
   padding: 10px;
   border-radius: 10px;
+}
+
+/* FECHA */
+
+.fecha {
+  margin: 1.2rem 0 0.6rem;
+  font-size: 1rem;
+  color: #ddd;
+}
+
+/* GRID */
+
+.ventas-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(240px, 1fr));
+
+  gap: 10px;
+
+}
+
+/* CARD */
+
+.venta-card {
+
+  background: #2a2a2a;
+
+  border-radius: 12px;
+
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.25);
+
+}
+
+/* NOMBRE */
+
+.venta-nombre {
+
+  font-weight: 600;
+  font-size: 14px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+/* INFO */
+
+.venta-info {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 13px;
+
+  color: #ccc;
+
+  margin-top: 6px;
+
+}
+
+/* BOTONES */
+
+.venta-actions {
+
+  margin-top: 8px;
+
+  display: flex;
+
+  justify-content: flex-end;
+
+}
+
+.action {
+
+  padding: 6px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: #3a3a3a;
+
+}
+
+.action:hover {
+
+  background: #555;
+
+}
+
+.btn-fab {
+
+  position: fixed;
+
+  bottom: 20px;
+  right: 20px;
+
+  padding: 14px 18px;
+
+  border-radius: 999px;
+
+  background: #0078d4;
+
+  color: white;
+
+  border: none;
+
+  font-size: 14px;
+
+  box-shadow:
+    0 6px 14px rgba(0,0,0,0.4);
+
+  z-index: 999;
+
+}
+
+.btn-fab:hover {
+
+  background: #005fa3;
+
 }
