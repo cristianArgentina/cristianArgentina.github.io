@@ -52,23 +52,6 @@ class ProductosPanel extends HTMLElement {
         cursor: pointer;
       }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        font-family: sans-serif;
-        font-size: 0.9rem;
-      }
-
-      th, td {
-        border: 1px solid #ccc;
-        padding: 0.6rem;
-        text-align: left;
-      }
-
-      th {
-        background: #353535;
-      }
-
       .btn-primary {
         background: #0078d4;
         color: #fff;
@@ -83,39 +66,6 @@ class ProductosPanel extends HTMLElement {
       }
 
       @media (max-width: 768px) {
-
-  table, thead, tbody {
-    display: block;
-  }
-
-  thead {
-    display: none;
-  }
-
-  tr {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    height: 75px; /* 🔥 compacta */
-    padding: 8px 10px;
-    margin-bottom: 8px;
-
-    border-radius: 10px;
-    background: #2a2a2a;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  }
-
-  td {
-    border: none;
-    padding: 0;
-    display: flex;
-    align-items: center;
-  }
-
-  td::before {
-    display: none; /* ❌ eliminamos labels */
-  }
 
   /* 🧾 LINEA 1: NOMBRE */
   .nombre {
@@ -203,7 +153,7 @@ class ProductosPanel extends HTMLElement {
     try {
       this.productos = await getProducts();
       this.renderCategorias();
-      this.renderTabla();
+      this.renderProductos();
     } finally {
       hideLoader();
     }
@@ -220,7 +170,7 @@ class ProductosPanel extends HTMLElement {
       cats.map(c => `<option value="${c}">${c}</option>`).join("");
   }
 
-  renderTabla() {
+  renderProductos() {
 
     const container =
       this.shadowRoot.getElementById("grid-productos");
@@ -316,21 +266,6 @@ class ProductosPanel extends HTMLElement {
 
   setupEventListeners() {
 
-    this.shadowRoot.querySelectorAll("th[data-sort]").forEach(th => {
-      th.addEventListener("click", () => {
-        const key = th.dataset.sort;
-
-        if (this.sortKey === key) {
-          this.sortDir *= -1;
-        } else {
-          this.sortKey = key;
-          this.sortDir = 1;
-        }
-
-        this.renderTabla();
-      });
-    });
-
     const searchInput = this.shadowRoot.getElementById("searchInput");
     const filterCategoria = this.shadowRoot.getElementById("filterCategoria");
     const filterStock = this.shadowRoot.getElementById("filterStock");
@@ -339,18 +274,18 @@ class ProductosPanel extends HTMLElement {
       "input",
       this.debounce(e => {
         this.filters.search = e.target.value.toLowerCase();
-        this.renderTabla();
+        this.renderProductos();
       }, 300)
     );
 
     filterCategoria.addEventListener("change", e => {
       this.filters.category = e.target.value;
-      this.renderTabla();
+      this.renderProductos();
     });
 
     filterStock.addEventListener("input", e => {
       this.filters.stockMin = Number(e.target.value) || 0;
-      this.renderTabla();
+      this.renderProductos();
     });
 
     const btnNuevo = this.shadowRoot.getElementById("btnNuevo");
@@ -398,30 +333,61 @@ class ProductosPanel extends HTMLElement {
       comboItems.appendChild(row);
     });
 
+    this.shadowRoot
+      .getElementById("grid-productos")
+      .addEventListener("click", async (e) => {
 
+        const btnEditar =
+          e.target.closest(".btnEditar");
 
-    // Delegación de eventos en tabla
-    this.shadowRoot.getElementById("tabla-productos").addEventListener("click", async (e) => {
-      if (e.target.classList.contains("btnEditar")) {
-        const id = e.target.dataset.id;
-        const producto = await getProductById(id);
-        this.fillEditarProductoModal(producto);
-        document.getElementById("modalEditarProducto").style.display = "flex";
-      }
-      if (e.target.classList.contains("btnEliminar")) {
-        const id = e.target.dataset.id;
-        if (confirm("¿Seguro que deseas eliminar este producto?")) {
-          await deleteProduct(id);
-          this.loadProductos();
+        const btnEliminar =
+          e.target.closest(".btnEliminar");
+
+        const btnLote =
+          e.target.closest(".btnLote");
+
+        if (btnEditar) {
+
+          const id = btnEditar.dataset.id;
+
+          const producto =
+            await getProductById(id);
+
+          this.fillEditarProductoModal(producto);
+
+          document
+            .getElementById("modalEditarProducto")
+            .style.display = "flex";
         }
-      }
-      if (e.target.classList.contains("btnLote")) {
-        const id = e.target.dataset.id;
-        document.getElementById("loteProductoId").value = id;
-        document.getElementById("modalLote").style.display = "flex";
-      }
-    });
 
+        if (btnEliminar) {
+
+          const id =
+            btnEliminar.dataset.id;
+
+          if (confirm("¿Seguro que deseas eliminar este producto?")) {
+
+            await deleteProduct(id);
+
+            this.loadProductos();
+          }
+        }
+
+        if (btnLote) {
+
+          const id =
+            btnLote.dataset.id;
+
+          document
+            .getElementById("loteProductoId")
+            .value = id;
+
+          document
+            .getElementById("modalLote")
+            .style.display = "flex";
+        }
+
+      });
     // Modal cerrar genérico
     document.querySelectorAll(".modal .close").forEach(btn => {
       btn.addEventListener("click", () => {
@@ -450,7 +416,7 @@ class ProductosPanel extends HTMLElement {
 
       this.sortKey = e.target.value;
 
-      this.renderTabla();
+      this.renderProductos();
 
     });
 
@@ -458,9 +424,64 @@ class ProductosPanel extends HTMLElement {
 
       this.sortDir = Number(e.target.value);
 
-      this.renderTabla();
+      this.renderProductos();
 
     });
+
+    this.shadowRoot
+      .getElementById("grid-productos")
+      .addEventListener("click", async (e) => {
+
+        const btnEditar =
+          e.target.closest(".btnEditar");
+
+        const btnEliminar =
+          e.target.closest(".btnEliminar");
+
+        const btnLote =
+          e.target.closest(".btnLote");
+
+        if (btnEditar) {
+
+          const id = btnEditar.dataset.id;
+
+          const producto =
+            await getProductById(id);
+
+          this.fillEditarProductoModal(producto);
+
+          document
+            .getElementById("modalEditarProducto")
+            .style.display = "flex";
+        }
+
+        if (btnEliminar) {
+
+          const id =
+            btnEliminar.dataset.id;
+
+          if (confirm("¿Seguro que deseas eliminar este producto?")) {
+
+            await deleteProduct(id);
+
+            this.loadProductos();
+          }
+        }
+
+        if (btnLote) {
+
+          const id =
+            btnLote.dataset.id;
+
+          document
+            .getElementById("loteProductoId")
+            .value = id;
+
+          document
+            .getElementById("modalLote")
+            .style.display = "flex";
+        }
+      });
   }
 
   handleNuevoProducto = async (e) => {
