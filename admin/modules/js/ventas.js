@@ -154,9 +154,21 @@ class VentasPanel extends HTMLElement {
     const grupos =
       this.groupVentasByFecha(ventas);
 
-    Object.entries(grupos)
-      .sort((a, b) => new Date(b[0]) - new Date(a[0]))
-      .forEach(([fecha, ventasDelDia]) => {
+Object.entries(grupos)
+
+  .sort((a, b) => {
+
+    const fechaA =
+      new Date(a[0].split("/").reverse().join("-"));
+
+    const fechaB =
+      new Date(b[0].split("/").reverse().join("-"));
+
+    return fechaB - fechaA; // 👈 DESCENDENTE
+
+  })
+
+  .forEach(([fecha, ventasDelDia]) => {
 
         const totalDia =
   ventasDelDia.reduce(
@@ -184,6 +196,11 @@ class VentasPanel extends HTMLElement {
 
         ventasDelDia.forEach(v => {
 
+          const gananciaReal =
+          (v.ganancia != null)
+            ? v.ganancia
+            : (v.precioVenta * v.cantidad);
+            
           const card =
             document.createElement("div");
 
@@ -202,12 +219,17 @@ class VentasPanel extends HTMLElement {
               💲 ${this.formatPrice(v.precioVenta)}
             </span>
 
+            ${v.precioCosto > 0
+              ? `<span>📉 ${this.formatPrice(v.precioCosto)}</span>`
+              : ""
+            }
+
             <span>
               📦 x${v.cantidad}
             </span>
 
             <span>
-              💰 +${this.formatPrice(v.ganancia || 0)}
+              💰 +${this.formatPrice(gananciaReal)}
             </span>
           </div>
 
