@@ -108,11 +108,13 @@
 
 .product-card.stock-ok {
 
-    background:
-        linear-gradient(145deg,
-            rgba(0, 255, 120, 0.08),
-            transparent 40%),
-        #2a2a2a;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(0,255,120,0.18),
+      transparent 45%
+    ),
+    #2a2a2a;
 
 }
 
@@ -120,11 +122,13 @@
 
 .product-card.stock-low {
 
-    background:
-        linear-gradient(145deg,
-            rgba(255, 200, 0, 0.10),
-            transparent 40%),
-        #2a2a2a;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,200,0,0.22),
+      transparent 45%
+    ),
+    #2a2a2a;
 
 }
 
@@ -132,11 +136,13 @@
 
 .product-card.stock-empty {
 
-    background:
-        linear-gradient(145deg,
-            rgba(255, 80, 80, 0.12),
-            transparent 40%),
-        #2a2a2a;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,80,80,0.28),
+      transparent 45%
+    ),
+    #2a2a2a;
 
 }
 
@@ -150,15 +156,17 @@
 
   gap: 10px;
 
+  min-width: 0; /* 🔥 clave anti desborde */
+
 }
 
 /* IMAGEN */
 
 .product-image {
 
-  width: 42px;
+  width: 44px;
 
-  height: 42px;
+  height: 44px;
 
   border-radius: 50%;
 
@@ -170,25 +178,17 @@
 
 }
 
-.product-image img {
-
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: cover;
-
-}
-
-/* TEXTO */
+/* CONTENEDOR TEXTO */
 
 .product-text {
 
   flex: 1;
 
+  min-width: 0; /* 🔥 clave */
+
 }
 
-/* NOMBRE */
+/* NOMBRE (máx 2 líneas) */
 
 .product-name {
 
@@ -196,21 +196,26 @@
 
   font-size: 14px;
 
-  white-space: nowrap;
+  line-height: 1.2;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2; /* 🔥 máximo 2 líneas */
+
+  -webkit-box-orient: vertical;
 
   overflow: hidden;
 
-  text-overflow: ellipsis;
-
 }
-
 /* INFO */
 
 .product-info {
 
   display: flex;
 
-  gap: 10px;
+  flex-wrap: wrap;
+
+  gap: 8px;
 
   font-size: 12px;
 
@@ -258,3 +263,34 @@
     0 6px 16px rgba(0,0,0,0.35);
 
 }
+
+.product-card {
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  min-height: 110px;
+
+}
+
+.product-card.stock-empty {
+
+  border: 1px solid rgba(255,80,80,0.35);
+
+}
+
+.product-card.stock-low {
+
+  border: 1px solid rgba(255,200,0,0.25);
+
+}
+
+.product-card.stock-ok {
+
+  border: 1px solid rgba(0,255,120,0.18);
+
+}
+
