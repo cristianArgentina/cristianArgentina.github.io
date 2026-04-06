@@ -231,34 +231,63 @@ class ProductosPanel extends HTMLElement {
       const card =
         document.createElement("div");
 
-      card.className = "product-card";
+      let stockClass = "stock-ok";
 
-      card.innerHTML = `
-    
-      <div class="product-name">
-        ${p.name}
-      </div>
+      if (p.stock <= 0) {
+       stockClass = "stock-empty";
+      } else if (p.stock <= 5) {
+        stockClass = "stock-low";
+      }
 
-      <div class="product-info">
-        <span>💲${p.price.toFixed(2)}</span>
-        <span>📦${p.stock}</span>
-        <span>🏷️${p.category}</span>
-      </div>
+      card.className =
+      "product-card " + stockClass;
 
-      <div class="product-actions">
+card.innerHTML = `
 
-        <button class="action btnEditar"
-          data-id="${p.id}">✏️</button>
+<div class="product-header">
 
-        <button class="action btnEliminar"
-          data-id="${p.id}">🗑️</button>
+  <div class="product-image">
 
-        <button class="action btnLote"
-          data-id="${p.id}">➕</button>
+    <img
+      src="${p.image || '/img/no-image.png'}"
+      alt="${p.name}"
+    >
 
-      </div>
-    `;
+  </div>
 
+  <div class="product-text">
+
+    <div class="product-name">
+      ${p.name}
+    </div>
+
+    <div class="product-info">
+
+      <span>💲${p.price.toFixed(2)}</span>
+
+      <span>📦${p.stock}</span>
+
+      <span>🏷️${p.category}</span>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="product-actions">
+
+  <button class="action btnEditar"
+    data-id="${p.id}">✏️</button>
+
+  <button class="action btnEliminar"
+    data-id="${p.id}">🗑️</button>
+
+  <button class="action btnLote"
+    data-id="${p.id}">➕</button>
+
+</div>
+`;
       container.appendChild(card);
 
     });
