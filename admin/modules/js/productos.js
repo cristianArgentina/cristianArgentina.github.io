@@ -281,7 +281,7 @@ card.innerHTML = `
 
     <div class="product-info">
 
-      <span>💲${p.price.toFixed(2)}</span>
+      <span>💲${Math.round(p.price).toLocaleString("es-AR")}</span>
 
       <span>📦${p.stock}</span>
 
