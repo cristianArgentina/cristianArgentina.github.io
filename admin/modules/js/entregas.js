@@ -1,3 +1,15 @@
+import {
+  getEntregas,
+  createEntrega,
+  updateEntrega,
+  deleteEntrega
+} from "../../../api.js";
+
+import {
+  showLoader,
+  hideLoader
+} from "./loaderadmin.js";
+
 class EntregasPanel extends HTMLElement {
 
   constructor() {
@@ -34,25 +46,88 @@ class EntregasPanel extends HTMLElement {
      CARGA DE DATOS
   ========================= */
 
-  loadEntregas() {
+async loadEntregas() {
 
-    const data =
-      localStorage.getItem("entregas");
+  showLoader("Cargando entregas... 📅");
 
+  try {
     this.entregas =
-      data ? JSON.parse(data) : [];
+      await getEntregas();
 
     this.renderEntregas();
+
+  } catch (err) {
+    console.error(
+      "Error cargando entregas:",
+      err
+    );
+
+  } finally {
+    hideLoader();
   }
+}
 
-  saveEntregas() {
+async addEntrega(nuevaEntrega) {
 
-    localStorage.setItem(
-      "entregas",
-      JSON.stringify(this.entregas)
+  try {
+
+    await createEntrega(
+      nuevaEntrega
+    );
+
+    await this.loadEntregas();
+
+  } catch (err) {
+
+    console.error(
+      "Error creando entrega:",
+      err
     );
 
   }
+
+}
+
+async removeEntrega(id) {
+
+  try {
+
+    await deleteEntrega(id);
+
+    await this.loadEntregas();
+
+  } catch (err) {
+
+    console.error(
+      "Error eliminando entrega:",
+      err
+    );
+
+  }
+
+}
+
+async editEntrega(id, data) {
+
+  try {
+
+    await updateEntrega(
+      id,
+      data
+    );
+
+    await this.loadEntregas();
+
+  } catch (err) {
+
+    console.error(
+      "Error actualizando entrega:",
+      err
+    );
+
+  }
+
+}
 
   /* =========================
      LOGICA
@@ -151,12 +226,15 @@ class EntregasPanel extends HTMLElement {
 
           <div class="actions">
 
-            <button class="edit">
-              ✏️
+            <button
+            class="edit"
+            data-id="${e._id}">
+            ✏️
             </button>
 
-            <button class="delete">
-              🗑️
+            <button class="delete"
+            data-id="${e._id}">
+            🗑️
             </button>
 
           </div>
@@ -174,6 +252,41 @@ class EntregasPanel extends HTMLElement {
 
   setupEventListeners() {
 
+    const formEntrega =
+      document.getElementById("formEntrega");
+
+    formEntrega.addEventListener(
+        "submit",
+        this.handleNuevaEntrega
+    );
+
+    this.shadowRoot
+  .getElementById("entregas-container")
+  .addEventListener("click",
+    async (e) => {
+
+  const btnDelete =
+    e.target.closest(".delete");
+
+  if (btnDelete) {
+
+    const id =
+      btnDelete.dataset.id;
+
+    const confirmDelete =
+      confirm(
+        "¿Eliminar esta entrega?"
+      );
+
+    if (!confirmDelete)
+      return;
+
+    await this.removeEntrega(id);
+
+  }
+
+});
+
     this.shadowRoot
       .getElementById("btnNuevaEntrega")
       .addEventListener("click", () => {
@@ -186,6 +299,123 @@ class EntregasPanel extends HTMLElement {
 
   }
 
+  handleNuevaEntrega = async (e) => {
+
+  e.preventDefault();
+
+  const form = e.target;
+
+  const id =
+  form.entregaId.value;
+
+  const btn =
+    form.querySelector("button[type=submit]");
+
+  btn.disabled = true;
+
+  try {
+
+    const nuevaEntrega = {
+
+      contacto:
+        form.contacto.value,
+
+      lugares:
+        form.lugares.value,
+
+      fechaTexto:
+        form.fechaTexto.value,
+
+      horaTexto:
+        form.horaTexto.value,
+
+      fecha:
+        form.fecha.value || null,
+
+      hora:
+        form.hora.value || null,
+
+      productos:
+        form.productos.value,
+
+      canal:
+        form.canal.value
+
+    };
+
+if (id) {
+
+  await this.editEntrega(
+    id,
+    nuevaEntrega
+  );
+
+} else {
+
+  await this.addEntrega(
+    nuevaEntrega
+  );
+
+}
+
+    form.reset();
+
+    document
+      .getElementById("modalEntrega")
+      .style.display = "none";
+
+  } catch (err) {
+
+    console.error(
+      "Error creando entrega:",
+      err
+    );
+
+  } finally {
+
+    btn.disabled = false;
+
+  }
+
+};
+
+fillEditarEntregaModal(entrega) {
+
+  const form =
+    document.getElementById(
+      "formEntrega"
+    );
+
+  form.entregaId.value =
+    entrega._id;
+
+  form.contacto.value =
+    entrega.contacto || "";
+
+  form.lugares.value =
+    entrega.lugares || "";
+
+  form.fechaTexto.value =
+    entrega.fechaTexto || "";
+
+  form.horaTexto.value =
+    entrega.horaTexto || "";
+
+  form.fecha.value =
+    entrega.fecha
+      ? entrega.fecha.slice(0,10)
+      : "";
+
+  form.hora.value =
+    entrega.hora || "";
+
+  form.productos.value =
+    entrega.productos || "";
+
+  form.canal.value =
+    entrega.canal || "";
+
+}
 }
 
 customElements.define(
