@@ -46,88 +46,88 @@ class EntregasPanel extends HTMLElement {
      CARGA DE DATOS
   ========================= */
 
-async loadEntregas() {
+  async loadEntregas() {
 
-  showLoader("Cargando entregas... 📅");
+    showLoader("Cargando entregas... 📅");
 
-  try {
-    this.entregas =
-      await getEntregas();
+    try {
+      this.entregas =
+        await getEntregas();
 
-    this.renderEntregas();
+      this.renderEntregas();
 
-  } catch (err) {
-    console.error(
-      "Error cargando entregas:",
-      err
-    );
+    } catch (err) {
+      console.error(
+        "Error cargando entregas:",
+        err
+      );
 
-  } finally {
-    hideLoader();
-  }
-}
-
-async addEntrega(nuevaEntrega) {
-
-  try {
-
-    await createEntrega(
-      nuevaEntrega
-    );
-
-    await this.loadEntregas();
-
-  } catch (err) {
-
-    console.error(
-      "Error creando entrega:",
-      err
-    );
-
+    } finally {
+      hideLoader();
+    }
   }
 
-}
+  async addEntrega(nuevaEntrega) {
 
-async removeEntrega(id) {
+    try {
 
-  try {
+      await createEntrega(
+        nuevaEntrega
+      );
 
-    await deleteEntrega(id);
+      await this.loadEntregas();
 
-    await this.loadEntregas();
+    } catch (err) {
 
-  } catch (err) {
+      console.error(
+        "Error creando entrega:",
+        err
+      );
 
-    console.error(
-      "Error eliminando entrega:",
-      err
-    );
+    }
 
   }
 
-}
+  async removeEntrega(id) {
 
-async editEntrega(id, data) {
+    try {
 
-  try {
+      await deleteEntrega(id);
 
-    await updateEntrega(
-      id,
-      data
-    );
+      await this.loadEntregas();
 
-    await this.loadEntregas();
+    } catch (err) {
 
-  } catch (err) {
+      console.error(
+        "Error eliminando entrega:",
+        err
+      );
 
-    console.error(
-      "Error actualizando entrega:",
-      err
-    );
+    }
 
   }
 
-}
+  async editEntrega(id, data) {
+
+    try {
+
+      await updateEntrega(
+        id,
+        data
+      );
+
+      await this.loadEntregas();
+
+    } catch (err) {
+
+      console.error(
+        "Error actualizando entrega:",
+        err
+      );
+
+    }
+
+  }
 
   /* =========================
      LOGICA
@@ -256,44 +256,52 @@ async editEntrega(id, data) {
       document.getElementById("formEntrega");
 
     formEntrega.addEventListener(
-        "submit",
-        this.handleNuevaEntrega
+      "submit",
+      this.handleNuevaEntrega
     );
 
     this.shadowRoot
-  .getElementById("entregas-container")
-  .addEventListener("click",
-    async (e) => {
+      .getElementById("entregas-container")
+      .addEventListener("click",
+        async (e) => {
 
-  const btnDelete =
-    e.target.closest(".delete");
+          const btnDelete =
+            e.target.closest(".delete");
 
-  if (btnDelete) {
+          if (btnDelete) {
 
-    const id =
-      btnDelete.dataset.id;
+            const id =
+              btnDelete.dataset.id;
 
-    const confirmDelete =
-      confirm(
-        "¿Eliminar esta entrega?"
-      );
+            const confirmDelete =
+              confirm(
+                "¿Eliminar esta entrega?"
+              );
 
-    if (!confirmDelete)
-      return;
+            if (!confirmDelete)
+              return;
 
-    await this.removeEntrega(id);
+            await this.removeEntrega(id);
 
-  }
+          }
 
-});
+        });
 
     this.shadowRoot
       .getElementById("btnNuevaEntrega")
       .addEventListener("click", () => {
 
+        const form =
+          document.getElementById("formEntrega");
+
+        form.reset();
+
+        form.entregaId.value = "";
+
         document
           .getElementById("modalEntrega")
           .style.display = "flex";
+
 
       });
 
@@ -301,121 +309,121 @@ async editEntrega(id, data) {
 
   handleNuevaEntrega = async (e) => {
 
-  e.preventDefault();
+    e.preventDefault();
 
-  const form = e.target;
+    const form = e.target;
 
-  const id =
-  form.entregaId.value;
+    const id =
+      form.entregaId?.value || null;
 
-  const btn =
-    form.querySelector("button[type=submit]");
+    const btn =
+      form.querySelector("button[type=submit]");
 
-  btn.disabled = true;
+    btn.disabled = true;
 
-  try {
+    try {
 
-    const nuevaEntrega = {
+      const nuevaEntrega = {
 
-      contacto:
-        form.contacto.value,
+        contacto:
+          form.contacto.value,
 
-      lugares:
-        form.lugares.value,
+        lugares:
+          form.lugares.value,
 
-      fechaTexto:
-        form.fechaTexto.value,
+        fechaTexto:
+          form.fechaTexto.value,
 
-      horaTexto:
-        form.horaTexto.value,
+        horaTexto:
+          form.horaTexto.value,
 
-      fecha:
-        form.fecha.value || null,
+        fecha:
+          form.fecha.value || null,
 
-      hora:
-        form.hora.value || null,
+        hora:
+          form.hora.value || null,
 
-      productos:
-        form.productos.value,
+        productos:
+          form.productos.value,
 
-      canal:
-        form.canal.value
+        canal:
+          form.canal.value
 
-    };
+      };
 
-if (id) {
+      if (id) {
 
-  await this.editEntrega(
-    id,
-    nuevaEntrega
-  );
+        await this.editEntrega(
+          id,
+          nuevaEntrega
+        );
 
-} else {
+      } else {
 
-  await this.addEntrega(
-    nuevaEntrega
-  );
+        await this.addEntrega(
+          nuevaEntrega
+        );
 
-}
+      }
 
-    form.reset();
+      form.reset();
 
-    document
-      .getElementById("modalEntrega")
-      .style.display = "none";
+      document
+        .getElementById("modalEntrega")
+        .style.display = "none";
 
-  } catch (err) {
+    } catch (err) {
 
-    console.error(
-      "Error creando entrega:",
-      err
-    );
+      console.error(
+        "Error creando entrega:",
+        err
+      );
 
-  } finally {
+    } finally {
 
-    btn.disabled = false;
+      btn.disabled = false;
+
+    }
+
+  };
+
+  fillEditarEntregaModal(entrega) {
+
+    const form =
+      document.getElementById(
+        "formEntrega"
+      );
+
+    form.entregaId.value =
+      entrega._id;
+
+    form.contacto.value =
+      entrega.contacto || "";
+
+    form.lugares.value =
+      entrega.lugares || "";
+
+    form.fechaTexto.value =
+      entrega.fechaTexto || "";
+
+    form.horaTexto.value =
+      entrega.horaTexto || "";
+
+    form.fecha.value =
+      entrega.fecha
+        ? entrega.fecha.slice(0, 10)
+        : "";
+
+    form.hora.value =
+      entrega.hora || "";
+
+    form.productos.value =
+      entrega.productos || "";
+
+    form.canal.value =
+      entrega.canal || "";
 
   }
-
-};
-
-fillEditarEntregaModal(entrega) {
-
-  const form =
-    document.getElementById(
-      "formEntrega"
-    );
-
-  form.entregaId.value =
-    entrega._id;
-
-  form.contacto.value =
-    entrega.contacto || "";
-
-  form.lugares.value =
-    entrega.lugares || "";
-
-  form.fechaTexto.value =
-    entrega.fechaTexto || "";
-
-  form.horaTexto.value =
-    entrega.horaTexto || "";
-
-  form.fecha.value =
-    entrega.fecha
-      ? entrega.fecha.slice(0,10)
-      : "";
-
-  form.hora.value =
-    entrega.hora || "";
-
-  form.productos.value =
-    entrega.productos || "";
-
-  form.canal.value =
-    entrega.canal || "";
-
-}
 }
 
 customElements.define(
