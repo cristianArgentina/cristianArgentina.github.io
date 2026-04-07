@@ -100,8 +100,9 @@ class EntregasPanel extends HTMLElement {
       container.appendChild(card);
 
     });
+}
 
-    esCompleta(e) {
+   esCompleta(e) {
 
   return (
     e.contacto &&
@@ -124,6 +125,5 @@ setupEventListeners() {
         .style.display = "flex";
 
     });
-
 }
 }
