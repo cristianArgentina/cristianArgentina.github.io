@@ -292,3 +292,114 @@ select {
     padding: 5px 8px;
   }
 }
+
+/* HEADER RESPONSIVE */
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  /* 🔥 permite bajar línea */
+  gap: 8px;
+}
+
+.admin-nav {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  /* 🔥 clave */
+}
+
+.admin-nav button {
+  font-size: 0.9rem;
+  padding: 6px 10px;
+}
+
+/* 📱 MOBILE */
+
+@media (max-width: 768px) {
+
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .admin-nav button {
+    flex: 1;
+    font-size: 0.75rem;
+    /* 🔥 reduce tamaño */
+    padding: 6px 4px;
+  }
+
+}
+
+.stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  /* 🔥 clave */
+}
+
+/* cada tarjeta */
+
+.stat-card {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* 📱 MOBILE */
+
+@media (max-width: 768px) {
+
+  .stat-card {
+    flex: 100%;
+  }
+
+}
+
+.btn-nueva-venta {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  z-index: 999;
+
+  padding: 12px 18px;
+  border-radius: 30px;
+}
+
+/* 📱 MOBILE */
+
+@media (max-width: 768px) {
+
+  .btn-nueva-venta {
+
+    right: 12px;
+    left: 12px;
+    /* 🔥 ocupa ancho */
+
+    width: auto;
+
+    text-align: center;
+
+  }
+
+}
+
+.filtros {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filtros input,
+.filtros button {
+  flex: 1;
+  min-width: 120px;
+}
