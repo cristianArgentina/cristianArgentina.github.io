@@ -53,7 +53,7 @@
         <div id="comboItems"></div>
         <button type="button" id="btnAgregarProductoCombo">➕ Agregar producto</button>
       </div>
-      
+
       <label for="nuevoUrlImage">URL Imagen:</label>
       <input type="text" id="nuevoUrlImage" name="urlImage">
 
@@ -133,4 +133,32 @@
       <button type="submit" class="btn-primary">Guardar</button>
     </form>
   </div>
+</div>
+
+<div id="modalEntrega" class="modal">
+
+  <div class="modal-content">
+
+    <span class="close">&times;</span>
+
+    <form id="formEntrega">
+
+      <input placeholder="Contacto" name="contacto">
+      <input placeholder="Lugar" name="lugares">
+      <input placeholder="Fecha" name="fecha">
+      <input placeholder="Horario" name="hora">
+      <input placeholder="Productos" name="productos">
+
+      <select name="canal">
+        <option value="">Canal</option>
+        <option value="whatsapp">WhatsApp</option>
+        <option value="messenger">Messenger</option>
+      </select>
+
+      <button type="submit">Guardar</button>
+
+    </form>
+
+  </div>
+
 </div>

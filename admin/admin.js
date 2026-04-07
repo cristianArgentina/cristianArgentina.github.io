@@ -4,11 +4,12 @@ function renderAdminLayout() {
 
   content.innerHTML = `
   <header class="admin-header">
-    <h1 class="admin-title">⚙️ Panel de administración</h1>
+    <h1>⚙️ Panel de administración</h1>
 
-    <nav class="admin-nav">
-      <button id="btn-ventas" class="nav-btn active">📊 Ventas</button>
-      <button id="btn-productos" class="nav-btn">📦 Productos</button>
+    <nav>
+      <button id="btn-ventas">📊 Ventas</button>
+      <button id="btn-productos">📦 Productos</button>
+      <button id="btn-entregas">📅 Entregas</button>
     </nav>
   </header>
 
@@ -24,6 +25,11 @@ function renderAdminLayout() {
     setActiveButton("btn-productos");
     showModule("productos");
   });
+
+  document.getElementById("btn-entregas").addEventListener("click", () => {
+    setActiveButton("btn-productos");
+    showModule("entregas");
+  });  
 }
 
 function showModule(name) {
@@ -41,6 +47,11 @@ function showModule(name) {
         panel.appendChild(document.createElement("productos-panel"));
       });
       break;
+    case "entregas":
+      import("./modules/js/entregas.js").then(() => {
+        panel.appendChild(document.createElement("entregas-panel"));
+      });
+      break;  
   }
 }
 // Evento global de login exitoso
