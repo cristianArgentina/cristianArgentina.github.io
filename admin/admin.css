@@ -314,15 +314,6 @@ select {
 
 /* HEADER RESPONSIVE */
 
-.admin-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  /* 🔥 permite bajar línea */
-  gap: 8px;
-}
-
 .admin-nav {
   display: flex;
   gap: 6px;
@@ -420,4 +411,56 @@ select {
 .filtros button {
   flex: 1;
   min-width: 120px;
+}
+
+/* TÍTULO DEL PANEL */
+
+.admin-header h1 {
+
+  font-size: 1.4rem; /* desktop */
+
+  margin: 0; /* 🔥 elimina espacio extra */
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+}
+
+/* TÍTULO DEL PANEL */
+
+.admin-header h1 {
+
+  font-size: 1.4rem; /* desktop */
+
+  margin: 0; /* 🔥 elimina espacio extra */
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+}
+
+.admin-header h1 .icon {
+  font-size: 1.2em;
+}
+
+.resumen {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+
+  .resumen {
+    grid-template-columns: 1fr; /* uno debajo del otro */
+  }
+
+  .kpi {
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+
 }
