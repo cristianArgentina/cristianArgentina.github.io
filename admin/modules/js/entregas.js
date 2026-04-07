@@ -171,15 +171,21 @@ class EntregasPanel extends HTMLElement {
     });
 
     // 🟢 ordenar completas por fecha
-    completas.sort((a, b) => {
+completas.sort((a, b) => {
 
-      return new Date(
-        a.fecha + " " + a.hora
-      ) - new Date(
-        b.fecha + " " + b.hora
-      );
+  const fechaA =
+    new Date(
+      `${a.fecha || "9999-12-31"}T${a.hora || "23:59"}`
+    );
 
-    });
+  const fechaB =
+    new Date(
+      `${b.fecha || "9999-12-31"}T${b.hora || "23:59"}`
+    );
+
+  return fechaA - fechaB;
+
+});
 
     // pendientes primero
     [...pendientes, ...completas]
@@ -251,37 +257,7 @@ class EntregasPanel extends HTMLElement {
         `;
 
         container.appendChild(card);
-        // ✏️ EDITAR
-
-        card
-          .querySelector(".edit")
-          .addEventListener("click", () => {
-
-            this.fillEntregaModal(e);
-
-            document
-              .getElementById("modalEntrega")
-              .style.display = "flex";
-
-          });
-
-        // 🗑️ ELIMINAR
-
-        card
-          .querySelector(".delete")
-          .addEventListener("click", async () => {
-
-            if (!confirm("¿Eliminar entrega?"))
-              return;
-
-            await this.deleteEntrega(e._id);
-
-            this.loadEntregas();
-
-          });
-
       });
-
   }
 
   /* =========================
@@ -298,32 +274,64 @@ class EntregasPanel extends HTMLElement {
       this.handleNuevaEntrega
     );
 
-    this.shadowRoot
-      .getElementById("entregas-container")
-      .addEventListener("click",
-        async (e) => {
+this.shadowRoot
+  .getElementById("entregas-container")
+  .addEventListener("click",
+    async (e) => {
 
-          const btnDelete =
-            e.target.closest(".delete");
+      /* 🗑️ DELETE */
 
-          if (btnDelete) {
+      const btnDelete =
+        e.target.closest(".delete");
 
-            const id =
-              btnDelete.dataset.id;
+      if (btnDelete) {
 
-            const confirmDelete =
-              confirm(
-                "¿Eliminar esta entrega?"
-              );
+        const id =
+          btnDelete.dataset.id;
 
-            if (!confirmDelete)
-              return;
+        const confirmDelete =
+          confirm(
+            "¿Eliminar esta entrega?"
+          );
 
-            await this.removeEntrega(id);
+        if (!confirmDelete)
+          return;
 
-          }
+        await this.removeEntrega(id);
 
-        });
+        return;
+      }
+
+
+      /* ✏️ EDIT */
+
+      const btnEdit =
+        e.target.closest(".edit");
+
+      if (btnEdit) {
+
+        const id =
+          btnEdit.dataset.id;
+
+        const entrega =
+          this.entregas.find(
+            e => e._id === id
+          );
+
+        if (!entrega)
+          return;
+
+        this.fillEntregaModal(
+          entrega
+        );
+
+        document
+          .getElementById("modalEntrega")
+          .style.display = "flex";
+
+      }
+
+    });
 
     this.shadowRoot
       .getElementById("btnNuevaEntrega")
@@ -412,44 +420,6 @@ class EntregasPanel extends HTMLElement {
 
   };
 
-  fillEditarEntregaModal(entrega) {
-
-    const form =
-      document.getElementById(
-        "formEntrega"
-      );
-
-    form.entregaId.value =
-      entrega._id;
-
-    form.contacto.value =
-      entrega.contacto || "";
-
-    form.lugares.value =
-      entrega.lugares || "";
-
-    form.fechaTexto.value =
-      entrega.fechaTexto || "";
-
-    form.horaTexto.value =
-      entrega.horaTexto || "";
-
-    form.fecha.value =
-      entrega.fecha
-        ? entrega.fecha.slice(0, 10)
-        : "";
-
-    form.hora.value =
-      entrega.hora || "";
-
-    form.productos.value =
-      entrega.productos || "";
-
-    form.canal.value =
-      entrega.canal || "";
-
-  }
-
   fillEntregaModal(entrega) {
 
     const form =
@@ -466,7 +436,7 @@ class EntregasPanel extends HTMLElement {
 
     form.fecha.value =
       entrega.fecha
-        ? entrega.fecha.slice(0, 10)
+        ? entrega.fecha.substring(0, 10)
         : "";
 
     form.hora.value =
