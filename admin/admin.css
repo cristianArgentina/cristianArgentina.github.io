@@ -389,13 +389,10 @@ select {
 
   .btn-nueva-venta {
 
-    right: 12px;
     left: 12px;
-    /* 🔥 ocupa ancho */
+    right: 12px;
 
-    width: auto;
-
-    text-align: center;
+    width: calc(100% - 24px); /* 🔥 exacto */
 
   }
 
@@ -463,4 +460,20 @@ select {
     padding: 10px;
   }
 
+}
+
+/* 🔥 BASE GLOBAL */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  outline: 1px solid red;
 }
