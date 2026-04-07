@@ -267,7 +267,7 @@ card.innerHTML = `
   <div class="product-image">
 
     <img
-      src="${p.image || '/img/no-image.png'}"
+      src="${p.image || 'assets/img/no-image.png'}"
       alt="${p.name}"
     >
 
