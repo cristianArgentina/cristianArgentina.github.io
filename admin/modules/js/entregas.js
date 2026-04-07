@@ -207,11 +207,22 @@ class EntregasPanel extends HTMLElement {
             </div>
 
             <div>
-              📅 ${e.fecha || e.fechaTexto || "-"}
+              📅 ${e.fecha
+            ? new Date(e.fecha)
+              .toLocaleDateString("es-AR")
+            : (e.fechaTexto || "-")
+          }
             </div>
 
             <div>
-              ⏰ ${e.hora || e.horaTexto || "-"}
+              ⏰ ${e.hora
+            ? new Date("1970-01-01T" + e.hora)
+              .toLocaleTimeString("es-AR", {
+                hour: "2-digit",
+                minute: "2-digit"
+              })
+            : (e.horaTexto || "-")
+          }
             </div>
 
             <div>
@@ -241,6 +252,34 @@ class EntregasPanel extends HTMLElement {
         `;
 
         container.appendChild(card);
+        // ✏️ EDITAR
+
+        card
+          .querySelector(".edit")
+          .addEventListener("click", () => {
+
+            this.fillEntregaModal(e);
+
+            document
+              .getElementById("modalEntrega")
+              .style.display = "flex";
+
+          });
+
+        // 🗑️ ELIMINAR
+
+        card
+          .querySelector(".delete")
+          .addEventListener("click", async () => {
+
+            if (!confirm("¿Eliminar entrega?"))
+              return;
+
+            await this.deleteEntrega(e._id);
+
+            this.loadEntregas();
+
+          });
 
       });
 
@@ -306,73 +345,73 @@ class EntregasPanel extends HTMLElement {
       });
 
   }
-handleNuevaEntrega = async (e) => {
+  handleNuevaEntrega = async (e) => {
 
-  e.preventDefault();
+    e.preventDefault();
 
-  const form = e.target;
+    const form = e.target;
 
-  const id =
-    form.entregaId?.value || null;
+    const id =
+      form.entregaId?.value || null;
 
-  const nuevaEntrega = {
+    const nuevaEntrega = {
 
-    contacto:
-      form.contacto?.value || "",
+      contacto:
+        form.contacto?.value || "",
 
-    lugares:
-      form.lugares?.value || "",
+      lugares:
+        form.lugares?.value || "",
 
-    // ahora usamos los campos reales
-    fecha:
-      form.fecha?.value || null,
+      // ahora usamos los campos reales
+      fecha:
+        form.fecha?.value || null,
 
-    hora:
-      form.hora?.value || null,
+      hora:
+        form.hora?.value || null,
 
-    productos:
-      form.productos?.value || "",
+      productos:
+        form.productos?.value || "",
 
-    canal:
-      form.canal?.value || ""
+      canal:
+        form.canal?.value || ""
 
-  };
+    };
 
-  try {
+    try {
 
-    if (id) {
+      if (id) {
 
-      await this.editEntrega(
-        id,
-        nuevaEntrega
-      );
+        await this.editEntrega(
+          id,
+          nuevaEntrega
+        );
 
-    } else {
+      } else {
 
-      await this.addEntrega(
-        nuevaEntrega
+        await this.addEntrega(
+          nuevaEntrega
+        );
+
+      }
+
+      form.reset();
+
+      form.entregaId.value = "";
+
+      document
+        .getElementById("modalEntrega")
+        .style.display = "none";
+
+    } catch (err) {
+
+      console.error(
+        "Error creando entrega:",
+        err
       );
 
     }
 
-    form.reset();
-
-    form.entregaId.value = "";
-
-    document
-      .getElementById("modalEntrega")
-      .style.display = "none";
-
-  } catch (err) {
-
-    console.error(
-      "Error creando entrega:",
-      err
-    );
-
-  }
-
-};
+  };
 
   fillEditarEntregaModal(entrega) {
 
@@ -411,6 +450,36 @@ handleNuevaEntrega = async (e) => {
       entrega.canal || "";
 
   }
+
+  fillEntregaModal(entrega) {
+
+    const form =
+      document.getElementById("formEntrega");
+
+    form.entregaId.value =
+      entrega._id;
+
+    form.contacto.value =
+      entrega.contacto || "";
+
+    form.lugares.value =
+      entrega.lugares || "";
+
+    form.fecha.value =
+      entrega.fecha
+        ? entrega.fecha.slice(0, 10)
+        : "";
+
+    form.hora.value =
+      entrega.hora || "";
+
+    form.productos.value =
+      entrega.productos || "";
+
+    form.canal.value =
+      entrega.canal || "";
+
+  } 
 }
 
 customElements.define(
