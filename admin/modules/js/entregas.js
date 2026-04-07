@@ -208,8 +208,7 @@ class EntregasPanel extends HTMLElement {
 
             <div>
               📅 ${e.fecha
-            ? new Date(e.fecha)
-              .toLocaleDateString("es-AR")
+            ? this.formatearFecha(e.fecha)
             : (e.fechaTexto || "-")
           }
             </div>
@@ -479,7 +478,18 @@ class EntregasPanel extends HTMLElement {
     form.canal.value =
       entrega.canal || "";
 
-  } 
+  }
+
+  formatearFecha(fechaStr) {
+
+    if (!fechaStr)
+      return "-";
+
+    const [year, month, day] =
+      fechaStr.split("-");
+
+    return `${day}/${month}/${year}`;
+  }
 }
 
 customElements.define(
