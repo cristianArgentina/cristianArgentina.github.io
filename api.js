@@ -167,5 +167,3 @@ export async function deleteEntrega(id) {
   return await res.json();
 
 }
-
->>>>>>> 1e0eebc55c5dd8a8d0257e6abef699f89d2e4b73
