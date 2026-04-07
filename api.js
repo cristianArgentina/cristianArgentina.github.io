@@ -93,3 +93,77 @@ export async function deleteLote(productId, loteId) {
   if (!res.ok) throw new Error("Error al eliminar lote");
   return await res.json();
 }
+
+/* ---------------------- ENTREGAS ---------------------- */
+
+// Obtener todas las entregas
+export async function getEntregas() {
+
+  const res = await fetch(`${API_URL}/entregas`);
+
+  if (!res.ok)
+    throw new Error("Error al obtener entregas");
+
+  return await res.json();
+
+}
+
+// Crear nueva entrega
+export async function createEntrega(entregaData) {
+
+  const res = await fetch(`${API_URL}/entregas`, {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(entregaData)
+
+  });
+
+  if (!res.ok)
+    throw new Error("Error al crear entrega");
+
+  return await res.json();
+
+}
+
+// Actualizar entrega
+export async function updateEntrega(id, data) {
+
+  const res = await fetch(`${API_URL}/entregas/${id}`, {
+
+    method: "PUT",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify(data)
+
+  });
+
+  if (!res.ok)
+    throw new Error("Error al actualizar entrega");
+
+  return await res.json();
+
+}
+
+// Eliminar entrega
+export async function deleteEntrega(id) {
+
+  const res = await fetch(`${API_URL}/entregas/${id}`, {
+
+    method: "DELETE"
+
+  });
+
+  if (!res.ok)
+    throw new Error("Error al eliminar entrega");
+
+  return await res.json();
+
+}
