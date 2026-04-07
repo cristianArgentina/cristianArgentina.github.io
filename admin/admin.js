@@ -27,7 +27,7 @@ function renderAdminLayout() {
   });
 
   document.getElementById("btn-entregas").addEventListener("click", () => {
-    setActiveButton("btn-productos");
+    setActiveButton("btn-entregas");
     showModule("entregas");
   });  
 }
