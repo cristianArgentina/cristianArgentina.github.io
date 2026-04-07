@@ -171,21 +171,21 @@ class EntregasPanel extends HTMLElement {
     });
 
     // 🟢 ordenar completas por fecha
-completas.sort((a, b) => {
+    completas.sort((a, b) => {
 
-  const fechaA =
-    new Date(
-      `${a.fecha || "9999-12-31"}T${a.hora || "23:59"}`
-    );
+      const fechaA =
+        new Date(
+          `${a.fecha || "9999-12-31"}T${a.hora || "23:59"}`
+        );
 
-  const fechaB =
-    new Date(
-      `${b.fecha || "9999-12-31"}T${b.hora || "23:59"}`
-    );
+      const fechaB =
+        new Date(
+          `${b.fecha || "9999-12-31"}T${b.hora || "23:59"}`
+        );
 
-  return fechaA - fechaB;
+      return fechaA - fechaB;
 
-});
+    });
 
     // pendientes primero
     [...pendientes, ...completas]
@@ -274,64 +274,64 @@ completas.sort((a, b) => {
       this.handleNuevaEntrega
     );
 
-this.shadowRoot
-  .getElementById("entregas-container")
-  .addEventListener("click",
-    async (e) => {
+    this.shadowRoot
+      .getElementById("entregas-container")
+      .addEventListener("click",
+        async (e) => {
 
-      /* 🗑️ DELETE */
+          /* 🗑️ DELETE */
 
-      const btnDelete =
-        e.target.closest(".delete");
+          const btnDelete =
+            e.target.closest(".delete");
 
-      if (btnDelete) {
+          if (btnDelete) {
 
-        const id =
-          btnDelete.dataset.id;
+            const id =
+              btnDelete.dataset.id;
 
-        const confirmDelete =
-          confirm(
-            "¿Eliminar esta entrega?"
-          );
+            const confirmDelete =
+              confirm(
+                "¿Eliminar esta entrega?"
+              );
 
-        if (!confirmDelete)
-          return;
+            if (!confirmDelete)
+              return;
 
-        await this.removeEntrega(id);
+            await this.removeEntrega(id);
 
-        return;
-      }
+            return;
+          }
 
 
-      /* ✏️ EDIT */
+          /* ✏️ EDIT */
 
-      const btnEdit =
-        e.target.closest(".edit");
+          const btnEdit =
+            e.target.closest(".edit");
 
-      if (btnEdit) {
+          if (btnEdit) {
 
-        const id =
-          btnEdit.dataset.id;
+            const id =
+              btnEdit.dataset.id;
 
-        const entrega =
-          this.entregas.find(
-            e => e._id === id
-          );
+            const entrega =
+              this.entregas.find(
+                e => e._id === id
+              );
 
-        if (!entrega)
-          return;
+            if (!entrega)
+              return;
 
-        this.fillEntregaModal(
-          entrega
-        );
+            this.fillEntregaModal(
+              entrega
+            );
 
-        document
-          .getElementById("modalEntrega")
-          .style.display = "flex";
+            document
+              .getElementById("modalEntrega")
+              .style.display = "flex";
 
-      }
+          }
 
-    });
+        });
 
     this.shadowRoot
       .getElementById("btnNuevaEntrega")
@@ -351,6 +351,36 @@ this.shadowRoot
 
       });
 
+    /* ❌ CERRAR MODAL */
+
+    document
+      .querySelectorAll("#modalEntrega .close")
+      .forEach(btn => {
+
+        btn.addEventListener("click", () => {
+
+          document
+            .getElementById("modalEntrega")
+            .style.display = "none";
+
+        });
+
+      });
+
+    /* Cerrar haciendo click fuera */
+
+    window.addEventListener("click", (e) => {
+
+      const modal =
+        document.getElementById("modalEntrega");
+
+      if (e.target === modal) {
+
+        modal.style.display = "none";
+
+      }
+
+    });
   }
   handleNuevaEntrega = async (e) => {
 
