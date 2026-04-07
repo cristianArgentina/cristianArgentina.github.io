@@ -54,28 +54,6 @@ button:hover {
   opacity: 0.85;
 }
 
-/* ==== TABLA ==== */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-}
-
-th,
-td {
-  border: 1px solid #333;
-  padding: 10px;
-  text-align: left;
-}
-
-th {
-  background: #1f1f1f;
-}
-
-tr:nth-child(even) {
-  background: #1a1a1a;
-}
-
 /* ==== MODAL ==== */
 /* ==== MODALES ==== */
 
@@ -236,15 +214,18 @@ select {
   justify-content: space-between;
   align-items: center;
 
+  width: 100%;
+  /* 🔥 obligatorio */
   padding: 10px 16px;
   background: #1f1f1f;
   border-bottom: 1px solid #333;
+  flex-wrap: wrap;
 }
 
 /* 🧾 título */
 .admin-title {
-  font-size: 18px;
-  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
   color: #fff;
 }
 
@@ -252,8 +233,46 @@ select {
 .admin-nav {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
+@media (max-width: 768px) {
+
+  .admin-title {
+    font-size: 1.05rem; /* 🔥 más compacto */
+  }
+
+}
+.admin-nav button {
+
+  font-size: 0.85rem;
+
+  padding: 6px 10px;
+
+  border-radius: 8px;
+
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .admin-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .admin-nav button {
+
+    flex: 1;
+
+    font-size: 0.72rem;
+
+    padding: 6px 4px;
+
+  }
+
+}
 /* 🔘 botones */
 .nav-btn {
   background: transparent;
@@ -343,8 +362,7 @@ select {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  /* 🔥 clave */
-}
+  margin-top: 12px;}
 
 /* cada tarjeta */
 
