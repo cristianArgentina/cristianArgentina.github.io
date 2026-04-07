@@ -306,86 +306,73 @@ class EntregasPanel extends HTMLElement {
       });
 
   }
+handleNuevaEntrega = async (e) => {
 
-  handleNuevaEntrega = async (e) => {
+  e.preventDefault();
 
-    e.preventDefault();
+  const form = e.target;
 
-    const form = e.target;
+  const id =
+    form.entregaId?.value || null;
 
-    const id =
-      form.entregaId?.value || null;
+  const nuevaEntrega = {
 
-    const btn =
-      form.querySelector("button[type=submit]");
+    contacto:
+      form.contacto?.value || "",
 
-    btn.disabled = true;
+    lugares:
+      form.lugares?.value || "",
 
-    try {
+    // ahora usamos los campos reales
+    fecha:
+      form.fecha?.value || null,
 
-      const nuevaEntrega = {
+    hora:
+      form.hora?.value || null,
 
-        contacto:
-          form.contacto.value,
+    productos:
+      form.productos?.value || "",
 
-        lugares:
-          form.lugares.value,
+    canal:
+      form.canal?.value || ""
 
-        fechaTexto:
-          form.fechaTexto.value,
+  };
 
-        horaTexto:
-          form.horaTexto.value,
+  try {
 
-        fecha:
-          form.fecha.value || null,
+    if (id) {
 
-        hora:
-          form.hora.value || null,
-
-        productos:
-          form.productos.value,
-
-        canal:
-          form.canal.value
-
-      };
-
-      if (id) {
-
-        await this.editEntrega(
-          id,
-          nuevaEntrega
-        );
-
-      } else {
-
-        await this.addEntrega(
-          nuevaEntrega
-        );
-
-      }
-
-      form.reset();
-
-      document
-        .getElementById("modalEntrega")
-        .style.display = "none";
-
-    } catch (err) {
-
-      console.error(
-        "Error creando entrega:",
-        err
+      await this.editEntrega(
+        id,
+        nuevaEntrega
       );
 
-    } finally {
+    } else {
 
-      btn.disabled = false;
+      await this.addEntrega(
+        nuevaEntrega
+      );
 
     }
 
-  };
+    form.reset();
+
+    form.entregaId.value = "";
+
+    document
+      .getElementById("modalEntrega")
+      .style.display = "none";
+
+  } catch (err) {
+
+    console.error(
+      "Error creando entrega:",
+      err
+    );
+
+  }
+
+};
 
   fillEditarEntregaModal(entrega) {
 
