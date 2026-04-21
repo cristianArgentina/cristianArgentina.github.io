@@ -146,6 +146,25 @@ class EntregasPanel extends HTMLElement {
 
   }
 
+  getHoyLocal() {
+
+    const hoy = new Date();
+
+    const year =
+      hoy.getFullYear();
+
+    const month =
+      String(hoy.getMonth() + 1)
+        .padStart(2, "0");
+
+    const day =
+      String(hoy.getDate())
+        .padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+
+  }
+
   createSection(titulo, lista, tipo) {
 
     const section =
@@ -190,13 +209,8 @@ class EntregasPanel extends HTMLElement {
       card.className =
         `entrega-card ${estadoClase}`;
 
-      const hoyStr =
-        new Date()
-          .toISOString()
-          .substring(0, 10);
-
       const esHoy =
-        e.fecha === hoyStr;
+        e.fecha === getHoyLocal();
 
       const badgeHoy =
         esHoy
@@ -281,8 +295,8 @@ class EntregasPanel extends HTMLElement {
 
     container.innerHTML = "";
 
-    const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0);
+    const hoyStr =
+      this.getHoyLocal();
 
     const proximas = [];
     const inconclusas = [];
@@ -290,17 +304,20 @@ class EntregasPanel extends HTMLElement {
     this.entregas.forEach(e => {
 
       if (!e.fecha) {
+
         proximas.push(e);
         return;
+
       }
 
-      const fechaEntrega =
-        new Date(`${e.fecha}T${e.hora || "23:59"}`);
+      if (e.fecha >= hoyStr) {
 
-      if (fechaEntrega >= hoy) {
         proximas.push(e);
+
       } else {
+
         inconclusas.push(e);
+
       }
 
     });
