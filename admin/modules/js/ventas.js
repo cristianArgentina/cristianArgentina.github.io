@@ -481,8 +481,6 @@ class VentasPanel extends HTMLElement {
 
     try {
 
-      showLoader("Eliminando venta... 🗑️");
-
       await deleteSale(id);
 
       await this.loadVentas();
@@ -494,11 +492,10 @@ class VentasPanel extends HTMLElement {
         err
       );
 
-    } finally {
-
-      hideLoader();
+      hideLoader(); // seguridad extra
 
     }
+
   }
 
   setupEventListeners() {
