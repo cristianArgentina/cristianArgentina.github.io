@@ -394,7 +394,7 @@ class EntregasPanel extends HTMLElement {
 
     container.appendChild(
       this.createSection(
-        "📅 Próximas entregas",
+        "🚚 Próximas entregas",
         proximas,
         "proximas"
       )

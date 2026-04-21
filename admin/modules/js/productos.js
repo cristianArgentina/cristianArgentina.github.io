@@ -166,7 +166,7 @@ class ProductosPanel extends HTMLElement {
   }
 
   async loadProductos() {
-    showLoader("Cargando productos... 🐥");
+    showLoader("Cargando productos... 📦");
 
     try {
       this.productos = await getProducts();

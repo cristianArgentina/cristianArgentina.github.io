@@ -104,7 +104,7 @@ class VentasPanel extends HTMLElement {
   }
 
   async loadVentas() {
-    showLoader("Cargando ventas... 🐥");
+    showLoader("Cargando ventas... 🛒");
     try {
       const [ventas, productos] = await Promise.all([
         getSales(),
