@@ -8,6 +8,7 @@ class VentasPanel extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.isSubmitting = false; // 🔥 clave
+    this.formListenerSet = false;
 
     this.ventas = [];
     this.productos = [];
@@ -154,28 +155,28 @@ class VentasPanel extends HTMLElement {
     const grupos =
       this.groupVentasByFecha(ventas);
 
-Object.entries(grupos)
+    Object.entries(grupos)
 
-  .sort((a, b) => {
+      .sort((a, b) => {
 
-    const fechaA =
-      new Date(a[0].split("/").reverse().join("-"));
+        const fechaA =
+          new Date(a[0].split("/").reverse().join("-"));
 
-    const fechaB =
-      new Date(b[0].split("/").reverse().join("-"));
+        const fechaB =
+          new Date(b[0].split("/").reverse().join("-"));
 
-    return fechaB - fechaA; // 👈 DESCENDENTE
+        return fechaB - fechaA; // 👈 DESCENDENTE
 
-  })
+      })
 
-  .forEach(([fecha, ventasDelDia]) => {
+      .forEach(([fecha, ventasDelDia]) => {
 
         const totalDia =
-  ventasDelDia.reduce(
-    (sum,v)=> sum +
-      v.precioVenta * v.cantidad,
-    0
-  ); 
+          ventasDelDia.reduce(
+            (sum, v) => sum +
+              v.precioVenta * v.cantidad,
+            0
+          );
         const section =
           document.createElement("div");
 
@@ -197,10 +198,10 @@ Object.entries(grupos)
         ventasDelDia.forEach(v => {
 
           const gananciaReal =
-          (v.ganancia != null)
-            ? v.ganancia
-            : (v.precioVenta * v.cantidad);
-            
+            (v.ganancia != null)
+              ? v.ganancia
+              : (v.precioVenta * v.cantidad);
+
           const card =
             document.createElement("div");
 
@@ -415,10 +416,13 @@ Object.entries(grupos)
     } catch (err) {
       console.error(err);
     } finally {
-      // 🔓 desbloqueo
-      this.isSubmitting = false;
-      btn.disabled = false;
-      btn.textContent = textoOriginal;
+      setTimeout(() => {
+
+        // 🔓 desbloqueo
+        this.isSubmitting = false;
+        btn.disabled = false;
+        btn.textContent = textoOriginal;
+      }, 500); // 🔥 evita rebotes rápidos
     }
   };
 
@@ -494,8 +498,16 @@ Object.entries(grupos)
       this.actualizarAnalytics();
     });
 
-    // 👉 ESTA ES LA LÍNEA QUE FALTABA
-    formVenta.addEventListener("submit", this.handleNuevaVenta);
+    if (!this.formListenerSet) {
+
+      formVenta.addEventListener(
+        "submit",
+        this.handleNuevaVenta
+      );
+
+      this.formListenerSet = true;
+
+    }
 
     // abrir modal
     btnNuevaVenta.addEventListener("click", async () => {
@@ -515,7 +527,7 @@ Object.entries(grupos)
       modalVenta.style.display = "none";
     });
   }
-  
+
   formatPrice(value) {
 
     return Math.round(value)
