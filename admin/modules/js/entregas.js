@@ -212,8 +212,11 @@ class EntregasPanel extends HTMLElement {
       card.className =
         `entrega-card ${estadoClase}`;
 
+      const fechaNormalizada =
+        this.normalizarFecha(e.fecha);
+
       const esHoy =
-        e.fecha === hoyStr;
+        fechaNormalizada === hoyStr;
 
       const badgeHoy =
         esHoy
@@ -285,6 +288,40 @@ class EntregasPanel extends HTMLElement {
 
   }
 
+  normalizarFecha(fecha) {
+
+    if (!fecha)
+      return null;
+
+    // si viene como Date
+    if (fecha instanceof Date) {
+
+      const year =
+        fecha.getUTCFullYear();
+
+      const month =
+        String(fecha.getUTCMonth() + 1)
+          .padStart(2, "0");
+
+      const day =
+        String(fecha.getUTCDate())
+          .padStart(2, "0");
+
+      return `${year}-${month}-${day}`;
+
+    }
+
+    // si viene como string ISO
+    if (typeof fecha === "string") {
+
+      return fecha.substring(0, 10);
+
+    }
+
+    return null;
+
+  }
+
   /* =========================
      RENDER
   ========================= */
@@ -306,14 +343,14 @@ class EntregasPanel extends HTMLElement {
 
     this.entregas.forEach(e => {
 
-      if (!e.fecha) {
+      const fechaNormalizada =
+        this.normalizarFecha(e.fecha);
+
+      if (!fechaNormalizada) {
 
         proximas.push(e);
-        return;
 
-      }
-
-      if (e.fecha >= hoyStr) {
+      } else if (fechaNormalizada >= hoyStr) {
 
         proximas.push(e);
 
@@ -594,13 +631,17 @@ class EntregasPanel extends HTMLElement {
 
   formatearFecha(fechaStr) {
 
-    if (!fechaStr)
+    const fecha =
+      this.normalizarFecha(fechaStr);
+
+    if (!fecha)
       return "-";
 
     const [year, month, day] =
-      fechaStr.split("-");
+      fecha.split("-");
 
     return `${day}/${month}/${year}`;
+
   }
 }
 
