@@ -146,6 +146,128 @@ class EntregasPanel extends HTMLElement {
 
   }
 
+  createSection(titulo, lista, tipo) {
+
+    const section =
+      document.createElement("div");
+
+    section.className =
+      "entrega-section";
+
+    section.innerHTML = `
+    <h3>${titulo}</h3>
+    <div class="entregas-grid"></div>
+  `;
+
+    const grid =
+      section.querySelector(
+        ".entregas-grid"
+      );
+
+    lista.forEach(e => {
+
+      const card =
+        document.createElement("div");
+
+      const completa =
+        this.esCompleta(e);
+
+      let estadoClase = "";
+
+      if (tipo === "inconclusas") {
+
+        estadoClase = "inconclusa";
+
+      } else {
+
+        estadoClase =
+          completa
+            ? "ok"
+            : "pending";
+
+      }
+
+      card.className =
+        `entrega-card ${estadoClase}`;
+
+      const hoyStr =
+        new Date()
+          .toISOString()
+          .substring(0, 10);
+
+      const esHoy =
+        e.fecha === hoyStr;
+
+      const badgeHoy =
+        esHoy
+          ? `<span class="badge-hoy">HOY</span>`
+          : "";
+
+      card.innerHTML = `
+      <div class="header">
+        👤 ${e.contacto || "Sin contacto"}
+        ${badgeHoy}
+      </div>
+
+      <div class="body">
+
+        <div>
+          📍 ${e.lugares || "-"}
+        </div>
+
+        <div>
+          📅 ${e.fecha
+          ? this.formatearFecha(e.fecha)
+          : "-"
+        }
+        </div>
+
+        <div>
+          ⏰ ${e.hora
+          ? new Date("1970-01-01T" + e.hora)
+            .toLocaleTimeString("es-AR", {
+              hour: "2-digit",
+              minute: "2-digit"
+            })
+          : "-"
+        }
+        </div>
+
+        <div>
+          📦 ${e.productos || "-"}
+        </div>
+
+        <div>
+          💬 ${e.canal || "-"}
+        </div>
+
+      </div>
+
+      <div class="actions">
+
+        <button
+          class="edit"
+          data-id="${e._id}">
+          ✏️
+        </button>
+
+        <button
+          class="delete"
+          data-id="${e._id}">
+          🗑️
+        </button>
+
+      </div>
+    `;
+
+      grid.appendChild(card);
+
+    });
+
+    return section;
+
+  }
+
   /* =========================
      RENDER
   ========================= */
@@ -159,107 +281,77 @@ class EntregasPanel extends HTMLElement {
 
     container.innerHTML = "";
 
-    const completas = [];
-    const pendientes = [];
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+
+    const proximas = [];
+    const inconclusas = [];
 
     this.entregas.forEach(e => {
 
-      this.esCompleta(e)
-        ? completas.push(e)
-        : pendientes.push(e);
+      if (!e.fecha) {
+        proximas.push(e);
+        return;
+      }
+
+      const fechaEntrega =
+        new Date(`${e.fecha}T${e.hora || "23:59"}`);
+
+      if (fechaEntrega >= hoy) {
+        proximas.push(e);
+      } else {
+        inconclusas.push(e);
+      }
 
     });
 
-    // 🟢 ordenar completas por fecha
-    completas.sort((a, b) => {
+    /* ORDEN */
 
-      const fechaA =
-        new Date(
-          `${a.fecha || "9999-12-31"}T${a.hora || "23:59"}`
-        );
+    // próximas → fecha creciente
+    proximas.sort((a, b) => {
 
-      const fechaB =
-        new Date(
-          `${b.fecha || "9999-12-31"}T${b.hora || "23:59"}`
-        );
+      const fa =
+        new Date(`${a.fecha || "9999-12-31"}T${a.hora || "23:59"}`);
 
-      return fechaA - fechaB;
+      const fb =
+        new Date(`${b.fecha || "9999-12-31"}T${b.hora || "23:59"}`);
+
+      return fa - fb;
 
     });
 
-    // pendientes primero
-    [...pendientes, ...completas]
-      .forEach(e => {
+    // inconclusas → fecha decreciente
+    inconclusas.sort((a, b) => {
 
-        const card =
-          document.createElement("div");
+      const fa =
+        new Date(`${a.fecha || "1970-01-01"}T${a.hora || "00:00"}`);
 
-        const completa =
-          this.esCompleta(e);
+      const fb =
+        new Date(`${b.fecha || "1970-01-01"}T${b.hora || "00:00"}`);
 
-        card.className =
-          "entrega-card " +
-          (completa ? "ok" : "pending");
+      return fb - fa;
 
-        card.innerHTML = `
-          <div class="header">
-            👤 ${e.contacto || "Sin contacto"}
-          </div>
+    });
 
-          <div class="body">
+    /* SECCIONES */
 
-            <div>
-              📍 ${e.lugares || "-"}
-            </div>
+    container.appendChild(
+      this.createSection(
+        "📅 Próximas entregas",
+        proximas,
+        "proximas"
+      )
+    );
 
-            <div>
-              📅 ${e.fecha
-            ? this.formatearFecha(e.fecha)
-            : (e.fechaTexto || "-")
-          }
-            </div>
+    container.appendChild(
+      this.createSection(
+        "🗂️ Inconclusas",
+        inconclusas,
+        "inconclusas"
+      )
+    );
 
-            <div>
-              ⏰ ${e.hora
-            ? new Date("1970-01-01T" + e.hora)
-              .toLocaleTimeString("es-AR", {
-                hour: "2-digit",
-                minute: "2-digit"
-              })
-            : (e.horaTexto || "-")
-          }
-            </div>
-
-            <div>
-              📦 ${e.productos || "-"}
-            </div>
-
-            <div>
-              💬 ${e.canal || "-"}
-            </div>
-
-          </div>
-
-          <div class="actions">
-
-            <button
-            class="edit"
-            data-id="${e._id}">
-            ✏️
-            </button>
-
-            <button class="delete"
-            data-id="${e._id}">
-            🗑️
-            </button>
-
-          </div>
-        `;
-
-        container.appendChild(card);
-      });
   }
-
   /* =========================
      EVENTOS
   ========================= */
