@@ -1,17 +1,40 @@
 // loader.js
-export function showLoader(message = "Cargando...") {
+export function showLoader(texto = "Cargando...") {
+
   const loader = document.createElement("div");
-  loader.className = "loader-overlay";
+
+  loader.id = "global-loader";
+
   loader.innerHTML = `
-    <div class="loader">
-      <div class="chick">🐥</div>
-      <p>${message}</p>
+    <div class="loader-box">
+
+      <div class="loader-spinner"></div>
+
+      <div class="loader-text">
+        ${texto}
+      </div>
+
     </div>
   `;
+
   document.body.appendChild(loader);
+
 }
 
 export function hideLoader() {
-  const loader = document.querySelector(".loader-overlay");
-  if (loader) loader.remove();
+
+  const loader =
+    document.getElementById("global-loader");
+
+  if (!loader)
+    return;
+
+  loader.style.opacity = "0";
+
+  setTimeout(() => {
+
+    loader.remove();
+
+  }, 200);
+
 }
