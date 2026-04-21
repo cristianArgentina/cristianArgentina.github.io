@@ -477,8 +477,34 @@ class VentasPanel extends HTMLElement {
     return grupos;
   }
 
+  async removeVenta(id) {
+
+    try {
+
+      showLoader("Eliminando venta... 🗑️");
+
+      await deleteSale(id);
+
+      await this.loadVentas();
+
+    } catch (err) {
+
+      console.error(
+        "Error eliminando venta:",
+        err
+      );
+
+    } finally {
+
+      hideLoader();
+
+    }
+  }
+
   setupEventListeners() {
     const btnNuevaVenta = this.shadowRoot.getElementById("btnNuevaVenta");
+    const ventasContainer =
+      this.shadowRoot.getElementById("ventas-container");
 
     // Modal global (fuera del shadow DOM)
     const modalVenta = document.getElementById("modalVenta");
@@ -508,6 +534,32 @@ class VentasPanel extends HTMLElement {
       this.formListenerSet = true;
 
     }
+
+    ventasContainer.addEventListener(
+      "click",
+      async (e) => {
+
+        const btnDelete =
+          e.target.closest(".btn-delete");
+
+        if (!btnDelete)
+          return;
+
+        const id =
+          btnDelete.dataset.id;
+
+        const confirmar =
+          confirm(
+            "¿Eliminar esta venta?"
+          );
+
+        if (!confirmar)
+          return;
+
+        await this.removeVenta(id);
+
+      }
+    );
 
     // abrir modal
     btnNuevaVenta.addEventListener("click", async () => {
