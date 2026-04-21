@@ -183,6 +183,9 @@ class EntregasPanel extends HTMLElement {
         ".entregas-grid"
       );
 
+    const hoyStr =
+      this.getHoyLocal();
+
     lista.forEach(e => {
 
       const card =
@@ -210,7 +213,7 @@ class EntregasPanel extends HTMLElement {
         `entrega-card ${estadoClase}`;
 
       const esHoy =
-        e.fecha === getHoyLocal();
+        e.fecha === hoyStr;
 
       const badgeHoy =
         esHoy
