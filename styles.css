@@ -34,7 +34,8 @@ h1 {
     align-items: center;
     gap: 12px;
     margin-bottom: 20px;
-    padding: 20px;
+    padding: 10px 16px;
+    min-height: 60px;
     border-radius: 15px;
     background: linear-gradient(135deg, #8037ce 0%, #c0d5f8 100%);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -76,7 +77,8 @@ h1 {
 
 .buscador-con-icono input {
     width: 100%;
-    padding: 10px 12px 10px 36px;
+    padding: 7px 10px 7px 34px;
+    height: 36px;
     /* deja espacio para el ícono a la izquierda */
     font-size: 16px;
     border: 1px solid #ccc;
@@ -109,7 +111,7 @@ h1 {
 
     .barra-superior h1 {
         flex: 1 1 auto;
-        font-size: 1.8rem;
+        font-size: 1.4rem;
     }
 
     .buscador-con-icono {
@@ -687,8 +689,8 @@ h1 {
 
 .nav-categorias {
     display: flex;
-    gap: 10px;
-    padding: 12px 16px;
+    gap: 8px;
+    padding: 8px 16px;
     overflow-x: auto;
     scrollbar-width: none;
     background: linear-gradient(135deg, #8037ce 0%, #c0d5f8 100%);
@@ -704,8 +706,9 @@ h1 {
 
 .categoria-item {
     white-space: nowrap;
-    padding: 8px 14px;
-    border-radius: 25px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border-radius: 20px;
 
     background: rgba(255, 255, 255, 0.15);
     color: white;
@@ -715,7 +718,10 @@ h1 {
 
     cursor: pointer;
 
-    transition: all 0.2s ease;
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 /* HOVER */
@@ -731,6 +737,8 @@ h1 {
     background: white;
     color: #8037ce;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+
 }
 
 @media (max-width: 600px) {
@@ -743,6 +751,14 @@ h1 {
     .categoria-item {
         font-size: 0.9rem;
         padding: 6px 12px;
+    }
+
+}
+
+@media (min-width: 900px) {
+
+    .nav-categorias {
+        justify-content: center;
     }
 
 }
