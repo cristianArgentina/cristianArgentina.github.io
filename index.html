@@ -52,6 +52,8 @@
 
     <div class="nav-categorias">
 
+      <div class="nav-inner"></div>
+
       <div class="categoria-item" data-id="belleza y salud">
         🧴 Belleza y Salud
       </div>
@@ -75,6 +77,8 @@
       <div class="categoria-indicator"></div>
 
     </div>
+
+  </div>
 
   </div>
   <div id="instruccion">
@@ -150,7 +154,7 @@
     function moverIndicador(elemento) {
 
       const nav =
-        elemento.parentElement;
+        document.querySelector(".nav-inner");
 
       const navRect =
         nav.getBoundingClientRect();
@@ -159,7 +163,7 @@
         elemento.getBoundingClientRect();
 
       const left =
-        elRect.left - navRect.left + nav.scrollLeft;
+        elRect.left - navRect.left;
 
       indicator.style.width =
         elRect.width + "px";

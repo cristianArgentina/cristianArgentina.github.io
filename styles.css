@@ -801,3 +801,15 @@ h1 {
 
     }
 }
+
+.nav-inner {
+
+    display: flex;
+
+    gap: 8px;
+
+    margin: 0 auto;
+
+    position: relative;
+
+}
