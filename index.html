@@ -149,19 +149,14 @@
 
     function moverIndicador(elemento) {
 
-      const rect = elemento.getBoundingClientRect();
-
-      const parentRect =
-        elemento.parentElement.getBoundingClientRect();
-
       const scrollLeft =
         elemento.parentElement.scrollLeft;
 
       const left =
-        rect.left - parentRect.left + scrollLeft;
+        elemento.offsetLeft - scrollLeft;
 
       indicator.style.width =
-        rect.width + "px";
+        elemento.offsetWidth + "px";
 
       indicator.style.transform =
         `translateX(${left}px)`;
@@ -529,6 +524,16 @@ Total: $${total.toLocaleString()}`;
         }, 50);
 
       }
+
+    });
+
+    window.addEventListener("resize", () => {
+
+      const activa =
+        document.querySelector(".categoria-item.active");
+
+      if (activa)
+        moverIndicador(activa);
 
     });
 
