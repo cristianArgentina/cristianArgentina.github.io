@@ -766,10 +766,12 @@ h1 {
 
     .categoria-item {
         gap: 3px;
-        /* icono más pegado */
-        padding: 4px 8px;
-        /* botones más compactos */
-        font-size: 0.80rem;
+        padding: 5px 9px;
+        font-size: 0.85rem;
+    }
+
+    .cat-icon {
+        display: none;
     }
 
     .nav-categorias::before,
