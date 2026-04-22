@@ -708,7 +708,7 @@ h1 {
     white-space: nowrap;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     /* separación icono-texto */
     background: transparent;
     /* ❌ quitar fondo */
@@ -765,11 +765,11 @@ h1 {
     }
 
     .categoria-item {
-        gap: 4px;
+        gap: 3px;
         /* icono más pegado */
-        padding: 5px 9px;
+        padding: 4px 8px;
         /* botones más compactos */
-        font-size: 0.85rem;
+        font-size: 0.80rem;
     }
 
     .nav-categorias::before,
