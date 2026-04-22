@@ -129,7 +129,7 @@ h1 {
 
 .icono-carrito {
     display: inline-block;
-    font-size: 2rem;
+    font-size: 1.3rem;
     color: #fff;
     margin-right: 10px;
     animation: rebote 1.8s infinite ease-in-out;
