@@ -142,10 +142,15 @@
     function moverIndicador(elemento) {
 
       const rect = elemento.getBoundingClientRect();
+
       const parentRect =
         elemento.parentElement.getBoundingClientRect();
 
-      const left = rect.left - parentRect.left;
+      const scrollLeft =
+        elemento.parentElement.scrollLeft;
+
+      const left =
+        rect.left - parentRect.left + scrollLeft;
 
       indicator.style.width =
         rect.width + "px";
@@ -509,11 +514,16 @@ Total: $${total.toLocaleString()}`;
       const activa =
         document.querySelector(".categoria-item.active");
 
-      if (activa)
-        moverIndicador(activa);
+      if (activa) {
+
+        setTimeout(() => {
+          moverIndicador(activa);
+        }, 50);
+
+      }
 
     });
-    
+
     window.inicializarVideosYouTube = () => {
 
       const observer = new IntersectionObserver((entries) => {
