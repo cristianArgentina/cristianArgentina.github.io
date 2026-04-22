@@ -808,12 +808,12 @@ h1 {
 
     .nav-categorias::before {
         left: 0;
-        background: linear-gradient(to right, #8037ce, transparent);
+        /*background: linear-gradient(to right, #8037ce, transparent);*/
     }
 
     .nav-categorias::after {
         right: 0;
-        background: linear-gradient(to left, #c0d5f8, transparent);
+      /*  background: linear-gradient(to left, #c0d5f8, transparent);*/
 
     }
 
