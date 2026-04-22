@@ -761,4 +761,16 @@ h1 {
         justify-content: center;
     }
 
+    .barra-superior {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .nav-categorias {
+        position: sticky;
+        top: 60px;
+        z-index: 999;
+    }
+
 }
