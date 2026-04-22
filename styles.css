@@ -764,9 +764,8 @@ h1 {
     }
 
     .categoria-item {
-        padding: 10px 14px;
-        /* más área táctil */
-        font-size: 0.95rem;
+        padding: 8px 10px;
+        font-size: 0.85rem;
     }
 
     .nav-categorias::before,
@@ -793,6 +792,10 @@ h1 {
 
     .categoria-indicator {
         height: 2px;
+    }
+
+    .nav-inner {
+        gap: 4px;
     }
 }
 
