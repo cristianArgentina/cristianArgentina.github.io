@@ -757,19 +757,25 @@ h1 {
 
 @media (min-width: 900px) {
 
+    .header-container {
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 1000;
+
+    }
+
     .nav-categorias {
         justify-content: center;
     }
 
     .barra-superior {
-        position: sticky;
-        top: 0;
         z-index: 1000;
     }
 
     .nav-categorias {
-        position: sticky;
-        top: 52px;
         z-index: 999;
     }
 

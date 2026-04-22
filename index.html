@@ -34,41 +34,49 @@
 </head>
 
 <body>
-  <div class="barra-superior">
-    <h1 class="titulo-pagina">
-      <i class="fas fa-shopping-cart icono-carrito"></i> Catálogo de Productos
-    </h1>
-    <div class="buscador-con-icono">
-      <i class="fas fa-search"></i>
-      <input type="text" id="buscador" placeholder="Buscar productos...">
+  <div class="header-container">
+
+    <div class="barra-superior">
+
+      <h1 class="titulo-pagina">
+        <i class="fas fa-shopping-cart icono-carrito"></i>
+        Catálogo de Productos
+      </h1>
+
+      <div class="buscador-con-icono">
+        <i class="fas fa-search"></i>
+        <input type="text" id="buscador" placeholder="Buscar productos...">
+      </div>
+
     </div>
+
+    <div class="nav-categorias">
+
+      <div class="categoria-item" data-id="belleza y salud">
+        🧴 Belleza y Salud
+      </div>
+
+      <div class="categoria-item" data-id="hogar">
+        🏠 Hogar
+      </div>
+
+      <div class="categoria-item" data-id="tecnologia">
+        💻 Tecnología
+      </div>
+
+      <div class="categoria-item" data-id="iluminacion">
+        💡 Iluminación
+      </div>
+
+      <div class="categoria-item active" data-id="">
+        📦 Todas
+      </div>
+
+      <div class="categoria-indicator"></div>
+
+    </div>
+
   </div>
-  <div class="nav-categorias">
-
-    <div class="categoria-item" data-id="belleza y salud">
-      🧴 Belleza y Salud
-    </div>
-
-    <div class="categoria-item" data-id="hogar">
-      🏠 Hogar
-    </div>
-
-    <div class="categoria-item" data-id="tecnologia">
-      💻 Tecnología
-    </div>
-
-    <div class="categoria-item" data-id="iluminacion">
-      💡 Iluminación
-    </div>
-
-    <div class="categoria-item active" data-id="">
-      📦 Todas
-    </div>
-
-    <div class="categoria-indicator"></div>
-
-  </div>
-
   <div id="instruccion">
     👉 Selecciona una categoría para explorar productos
   </div>
