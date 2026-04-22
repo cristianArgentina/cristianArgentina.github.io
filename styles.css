@@ -746,8 +746,11 @@ h1 {
 @media (max-width: 600px) {
 
     .nav-categorias {
+        position: relative;
         gap: 8px;
         padding: 10px;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
     }
 
     .categoria-item {
@@ -755,68 +758,94 @@ h1 {
         padding: 6px 12px;
     }
 
-}
-
-@media (min-width: 600px) {
-
-    .header-container {
-
-        position: sticky;
-
-        top: 0;
-
-        z-index: 1000;
-
+    .categoria-item {
+        padding: 10px 14px;
+        /* más área táctil */
+        font-size: 0.95rem;
     }
 
-    .barra-superior {
-        z-index: 1000;
-    }
-
-    .nav-categorias {
-        z-index: 999;
-    }
-
-    /* indicador animado */
-
-    .nav-categorias {
-        position: relative;
-    }
-
-    .categoria-indicator {
-
+    .nav-categorias::before,
+    .nav-categorias::after {
+        content: "";
         position: absolute;
+        top: 0;
+        width: 30px;
+        height: 100%;
+        pointer-events: none;
+        z-index: 2;
+    }
 
-        bottom: 0;
+    .nav-categorias::before {
+        left: 0;
+        background: linear-gradient(to right, #8037ce, transparent);
+    }
 
-        height: 3px;
-
-        width: 60px;
-
-        background: white;
-
-        border-radius: 3px;
-
-        opacity: 0.9;
-
-        transition:
-            transform 0.35s ease,
-            width 0.35s ease;
+    .nav-categorias::after {
+        right: 0;
+        background: linear-gradient(to left, #c0d5f8, transparent);
 
     }
-}
 
-.nav-inner {
+    @media (min-width: 600px) {
 
-    display: flex;
+        .header-container {
 
-    gap: 8px;
+            position: sticky;
 
-    width: max-content;
-    /* 🔥 CLAVE */
+            top: 0;
 
-    margin: 0 auto;
+            z-index: 1000;
 
-    position: relative;
+        }
 
-}
+        .barra-superior {
+            z-index: 1000;
+        }
+
+        .nav-categorias {
+            z-index: 999;
+        }
+
+        /* indicador animado */
+
+        .nav-categorias {
+            position: relative;
+        }
+
+        .categoria-indicator {
+
+            position: absolute;
+
+            bottom: 0;
+
+            height: 3px;
+
+            width: 60px;
+
+            background: white;
+
+            border-radius: 3px;
+
+            opacity: 0.9;
+
+            transition:
+                transform 0.35s ease,
+                width 0.35s ease;
+
+        }
+    }
+
+    .nav-inner {
+
+        display: flex;
+
+        gap: 8px;
+
+        width: max-content;
+        /* 🔥 CLAVE */
+
+        margin: 0 auto;
+
+        position: relative;
+
+    }

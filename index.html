@@ -185,6 +185,13 @@
 
         moverIndicador(cat);
 
+        // 🔥 centrar en mobile
+        cat.scrollIntoView({
+          behavior: "smooth",
+          inline: "center",
+          block: "nearest"
+        });
+
         categorySelected = cat.dataset.id;
 
         document
