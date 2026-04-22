@@ -776,6 +776,7 @@ h1 {
         padding: 6px 6px;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
+        background: #8a54d8; /* un poco más oscuro */
     }
 
     .categoria-item {
