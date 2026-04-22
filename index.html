@@ -149,14 +149,20 @@
 
     function moverIndicador(elemento) {
 
-      const scrollLeft =
-        elemento.parentElement.scrollLeft;
+      const nav =
+        elemento.parentElement;
+
+      const navRect =
+        nav.getBoundingClientRect();
+
+      const elRect =
+        elemento.getBoundingClientRect();
 
       const left =
-        elemento.offsetLeft - scrollLeft;
+        elRect.left - navRect.left + nav.scrollLeft;
 
       indicator.style.width =
-        elemento.offsetWidth + "px";
+        elRect.width + "px";
 
       indicator.style.transform =
         `translateX(${left}px)`;
@@ -517,13 +523,8 @@ Total: $${total.toLocaleString()}`;
       const activa =
         document.querySelector(".categoria-item.active");
 
-      if (activa) {
-
-        setTimeout(() => {
-          moverIndicador(activa);
-        }, 50);
-
-      }
+      if (activa)
+        moverIndicador(activa);
 
     });
 
