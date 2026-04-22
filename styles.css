@@ -787,6 +787,8 @@ h1 {
         font-family: 'Inter', sans-serif;
         font-weight: 500;
         /* en lugar de 600 */
+        letter-spacing: -0.2px;
+        /* 🔥 reduce ancho real */
     }
 
     .cat-icon {
