@@ -746,18 +746,19 @@ h1 {
 @media (max-width: 600px) {
 
     body {
-        padding: 0;
+        padding: 0 !important;
+        margin: 0;
     }
 
     .barra-superior {
-        padding: 6px 6px;
+        padding: 8px 10px;
         border-radius: 0;
     }
 
     .nav-categorias {
         position: relative;
         gap: 8px;
-        padding: 6px 4px;
+        padding: 6px 6px;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
     }
