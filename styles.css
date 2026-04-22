@@ -773,4 +773,29 @@ h1 {
         z-index: 999;
     }
 
+    /* indicador animado */
+
+    .nav-categorias {
+        position: relative;
+    }
+
+    .categoria-indicator {
+
+        position: absolute;
+
+        bottom: 0;
+
+        height: 3px;
+
+        width: 60px;
+
+        background: white;
+
+        border-radius: 3px;
+
+        transition:
+            transform 0.35s ease,
+            width 0.35s ease;
+
+    }
 }
