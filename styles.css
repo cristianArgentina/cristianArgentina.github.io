@@ -745,6 +745,11 @@ h1 {
 
 @media (max-width: 600px) {
 
+    .barra-superior {
+        padding: 6px 6px;
+        border-radius: 0;
+    }
+
     .nav-categorias {
         position: relative;
         gap: 8px;
