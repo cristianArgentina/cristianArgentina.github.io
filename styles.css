@@ -706,11 +706,11 @@ h1 {
 
 .categoria-item {
     white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 0.9rem;
-    border-radius: 20px;
+    padding: 6px 10px;
+    font-size: 0.95rem;
 
-    background: rgba(255, 255, 255, 0.15);
+    background: transparent;
+    /* ❌ quitar fondo */
     color: white;
 
     font-weight: 600;
@@ -718,27 +718,29 @@ h1 {
 
     cursor: pointer;
 
+    border-radius: 0;
+    /* ❌ quitar forma botón */
+    box-shadow: none;
+    /* ❌ quitar sombra */
+
+    opacity: 0.7;
+    /* 🔥 look moderno */
     transition:
-        background 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+        opacity 0.25s ease,
+        transform 0.25s ease;
 }
 
 /* HOVER */
 
 .categoria-item:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.05);
+    opacity: 1;
+    transform: translateY(-1px);
 }
 
 /* ACTIVA */
 
 .categoria-item.active {
-    background: white;
-    color: #8037ce;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
-
+    opacity: 1;
 }
 
 @media (max-width: 600px) {
@@ -794,6 +796,8 @@ h1 {
         background: white;
 
         border-radius: 3px;
+
+        opacity: 0.9;
 
         transition:
             transform 0.35s ease,
