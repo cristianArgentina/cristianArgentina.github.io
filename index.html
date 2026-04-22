@@ -5,7 +5,6 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="./admin/modules/css/loader-wake-up-backend.css">
   <link rel="stylesheet" href="./admin/modules/css/loader-instructivo.css">
-  <link rel="stylesheet" href="./admin/modules/css/menu-categorias.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <!-- Google tag (gtag.js) -->
@@ -43,20 +42,29 @@
       <i class="fas fa-search"></i>
       <input type="text" id="buscador" placeholder="Buscar productos...">
     </div>
-  </div>
-  <div class="menu">
-    <button id="toggleBtn" class="menu-btn">
-      ELIGE CATEGORIA
-      <span class="arrow">▼</span>
-    </button>
+    <div class="nav-categorias">
 
-    <ul id="menuList" class="menu-list">
-      <li data-id="belleza y salud">🧴 - Belleza y Salud</li>
-      <li data-id="hogar">🏠 - Hogar</li>
-      <li data-id="tecnologia">💻 - Tecnología</li>
-      <li data-id="iluminacion">💡 - Iluminación</li>
-      <li data-id="">📦 - Todas</li>
-    </ul>
+      <div class="categoria-item active" data-id="belleza y salud">
+        🧴 Belleza y Salud
+      </div>
+
+      <div class="categoria-item" data-id="hogar">
+        🏠 Hogar
+      </div>
+
+      <div class="categoria-item" data-id="tecnologia">
+        💻 Tecnología
+      </div>
+
+      <div class="categoria-item" data-id="iluminacion">
+        💡 Iluminación
+      </div>
+
+      <div class="categoria-item" data-id="">
+        📦 Todas
+      </div>
+
+    </div>
   </div>
 
   <div id="instruccion">
@@ -127,12 +135,31 @@
       }
     });
 
-    const toggleBtn = document.getElementById("toggleBtn");
-    const menuList = document.getElementById("menuList");
+    const categorias = document.querySelectorAll(".categoria-item");
 
-    toggleBtn.addEventListener("click", () => {
-      menuList.classList.toggle("active");
-      toggleBtn.classList.toggle("active");
+    categorias.forEach(cat => {
+
+      cat.addEventListener("click", () => {
+
+        // quitar active anterior
+        categorias.forEach(c =>
+          c.classList.remove("active")
+        );
+
+        // activar actual
+        cat.classList.add("active");
+
+        // guardar categoria
+        categorySelected = cat.dataset.id;
+
+        // ocultar mensaje inicial
+        document.getElementById("instruccion").style.display = "none";
+
+        // filtrar productos
+        filtrarYOrdenar(productosDatos);
+
+      });
+
     });
 
     buscador.addEventListener('input', () => filtrarYOrdenar(/*productosOriginales*/productosDatos));
@@ -350,24 +377,6 @@ Total: $${total.toLocaleString()}`;
       const url = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensaje)}`;
 
       window.open(url, "_blank");
-    });
-
-    menuList.addEventListener("click", (e) => {
-      const item = e.target.closest("li");
-      if (!item) return;
-
-      // 1️⃣ Guardar categoría seleccionada
-      categorySelected = item.dataset.id;
-
-      // 2️⃣ Ocultar mensaje inicial
-      document.getElementById("instruccion").style.display = "none";
-
-      // 3️⃣ Filtrar productos
-      filtrarYOrdenar(/*productosOriginales*/productosDatos);
-
-      // 4️⃣ Cerrar menú
-      menuList.classList.remove("active");
-      toggleBtn.classList.remove("active");
     });
 
     // Carga de YouTube
