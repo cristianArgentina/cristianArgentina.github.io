@@ -753,7 +753,7 @@ h1 {
     .nav-categorias {
         position: relative;
         gap: 8px;
-        padding: 10px;
+        padding: 6px 4px;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
     }
