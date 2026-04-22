@@ -745,9 +745,13 @@ h1 {
 
 @media (max-width: 600px) {
 
+    .body {
+        padding: 0;
+    }
+
     .barra-superior {
         padding: 6px 6px;
-        border-radius: 0;
+        I border-radius: 0;
     }
 
     .nav-categorias {
