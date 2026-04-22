@@ -767,8 +767,8 @@ h1 {
 
     .categoria-item {
         gap: 3px;
-        padding: 5px 9px;
-        font-size: 0.85rem;
+        padding: 5px 4px;
+        font-size: 0.80rem;
     }
 
     .cat-icon {
@@ -802,7 +802,7 @@ h1 {
     }
 
     .nav-inner {
-        gap: 4px;
+        gap: 0px !important;
     }
 }
 
