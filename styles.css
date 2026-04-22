@@ -706,28 +706,31 @@ h1 {
 
 .categoria-item {
     white-space: nowrap;
-    padding: 6px 10px;
-    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    /* separación icono-texto */
+}
 
-    background: transparent;
-    /* ❌ quitar fondo */
-    color: white;
+background: transparent;
+/* ❌ quitar fondo */
+color: white;
 
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif;
+font-weight: 600;
+font-family: 'Poppins',
+sans-serif;
 
-    cursor: pointer;
+cursor: pointer;
 
-    border-radius: 0;
-    /* ❌ quitar forma botón */
-    box-shadow: none;
-    /* ❌ quitar sombra */
+border-radius: 0;
+/* ❌ quitar forma botón */
+box-shadow: none;
+/* ❌ quitar sombra */
 
-    opacity: 0.7;
-    /* 🔥 look moderno */
-    transition:
-        opacity 0.25s ease,
-        transform 0.25s ease;
+opacity: 0.7;
+/* 🔥 look moderno */
+transition: opacity 0.25s ease,
+transform 0.25s ease;
 }
 
 /* HOVER */
@@ -764,12 +767,10 @@ h1 {
     }
 
     .categoria-item {
-        font-size: 0.85rem;
-        padding: 5px 10px;
-    }
-
-    .categoria-item {
-        padding: 8px 10px;
+        gap: 4px;
+        /* icono más pegado */
+        padding: 5px 9px;
+        /* botones más compactos */
         font-size: 0.85rem;
     }
 
