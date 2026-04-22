@@ -132,20 +132,32 @@ h1 {
     font-size: 2rem;
     color: #fff;
     margin-right: 10px;
-    animation: rebote 1.5s infinite ease-in-out;
+    animation: rebote 1.8s infinite ease-in-out;
 }
 
 /* Animación de rebote suave */
 @keyframes rebote {
 
-    0%,
-    100% {
-        transform: translateY(0);
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(4px);
     }
 
     50% {
-        transform: translateY(-6px);
+        transform: translateX(0);
     }
+
+    75% {
+        transform: translateX(-4px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
 }
 
 .productos {
