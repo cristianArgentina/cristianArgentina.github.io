@@ -690,7 +690,7 @@ h1 {
 .nav-categorias {
     display: flex;
     gap: 8px;
-    padding: 8px 16px;
+    padding: 8px 10px;
     overflow-x: auto;
     scrollbar-width: none;
     background: linear-gradient(135deg, #8037ce 0%, #c0d5f8 100%);
@@ -708,6 +708,7 @@ h1 {
     white-space: nowrap;
     display: flex;
     align-items: center;
+    padding: 6px 14px;
     gap: 8px;
     /* separación icono-texto */
     background: transparent;
@@ -858,7 +859,7 @@ h1 {
 
     display: flex;
 
-    gap: 8px;
+    gap: 10px;
 
     width: max-content;
     /* 🔥 CLAVE */
