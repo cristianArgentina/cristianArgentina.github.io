@@ -209,6 +209,24 @@
 
         filtrarYOrdenar(productosDatos);
 
+        // actualizar URL
+        const url =
+          new URL(window.location);
+
+        if (cat.dataset.id) {
+          url.searchParams.set(
+            "cat",
+            cat.dataset.id
+          );
+        } else {
+          url.searchParams.delete("cat");
+        }
+
+        window.history.replaceState(
+          {},
+          "",
+          url
+        );
       });
 
     });
@@ -540,11 +558,51 @@ Total: $${total.toLocaleString()}`;
 
     window.addEventListener("load", () => {
 
-      const activa =
-        document.querySelector(".categoria-item.active");
+      const params = new URLSearchParams(window.location.search);
+      const catUrl = params.get("cat");
 
-      if (activa)
-        moverIndicador(activa);
+      if (catUrl) {
+
+        const categorias =
+          document.querySelectorAll(".categoria-item");
+
+        categorias.forEach(cat => {
+
+          if (
+            cat.dataset.id.toLowerCase()
+            === catUrl.toLowerCase()
+          ) {
+
+            categorias.forEach(c =>
+              c.classList.remove("active")
+            );
+
+            cat.classList.add("active");
+
+            moverIndicador(cat);
+
+            categorySelected =
+              cat.dataset.id;
+
+            document
+              .getElementById("instruccion")
+              .style.display = "none";
+
+            filtrarYOrdenar(productosDatos);
+
+          }
+
+        });
+
+      } else {
+
+        const activa =
+          document.querySelector(".categoria-item.active");
+
+        if (activa)
+          moverIndicador(activa);
+
+      }
 
     });
 
