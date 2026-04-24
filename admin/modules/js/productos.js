@@ -252,15 +252,15 @@ class ProductosPanel extends HTMLElement {
       let stockClass = "stock-ok";
 
       if (p.stock <= 0) {
-       stockClass = "stock-empty";
+        stockClass = "stock-empty";
       } else if (p.stock <= 5) {
         stockClass = "stock-low";
       }
 
       card.className =
-      "product-card " + stockClass;
+        "product-card " + stockClass;
 
-card.innerHTML = `
+      card.innerHTML = `
 
 <div class="product-header">
 
@@ -641,7 +641,14 @@ card.innerHTML = `
         stock: Number(p.stock),
         image: p.image ?? null,
         videos: Array.isArray(p.videos) ? p.videos : [],
-        lotes: Array.isArray(p.lotes) ? p.lotes : []
+        lotes: Array.isArray(p.lotes) ? p.lotes : [],
+        /* 🧩 NUEVO */
+        isCombo:
+          Boolean(p.isCombo),
+        combo:
+          Array.isArray(p.combo)
+            ? p.combo
+            : []
       }));
 
       const jsonContent = JSON.stringify(data, null, 2);
