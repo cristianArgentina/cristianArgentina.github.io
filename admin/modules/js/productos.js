@@ -276,6 +276,7 @@ card.innerHTML = `
   <div class="product-text">
 
     <div class="product-name">
+      ${p.isCombo ? "🧩 " : ""}
       ${p.name}
     </div>
 
@@ -548,7 +549,8 @@ card.innerHTML = `
         price: parseFloat(form.precio.value),
         stock: parseInt(form.stock.value),
         category: form.categoria.value,
-        image: form.urlImage.value
+        image: form.urlImage.value,
+        isCombo: esCombo // 👈 IMPORTANTE
       };
 
       if (esCombo) {
