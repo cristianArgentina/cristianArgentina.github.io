@@ -8,6 +8,9 @@ class VentasPanel extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.isSubmitting = false; // 🔥 clave
+    this.isSubmittingCombo = false;
+    this.comboActual = null; // 🔥 combo en uso
+
     this.formListenerSet = false;
 
     this.ventas = [];
@@ -635,40 +638,77 @@ class VentasPanel extends HTMLElement {
       "click",
       async () => {
 
+        /* 🚫 evitar doble click */
+
+        if (this.isSubmittingCombo)
+          return;
+
         if (!this.comboPendiente)
           return;
 
-        const precioFinal =
-          parseFloat(
-            comboPrecioFinal.value
-          );
+        this.isSubmittingCombo = true;
 
-        const {
-          comboId,
-          cantidad
-        } = this.comboPendiente;
+        btnConfirmarCombo.disabled = true;
 
-        await this.addVenta({
+        const textoOriginal =
+          btnConfirmarCombo.textContent;
 
-          productId: comboId,
+        btnConfirmarCombo.textContent =
+          "Procesando...";
 
-          cantidad,
 
-          precioVenta: precioFinal
+        try {
+          const precioFinal =
+            parseFloat(
+              comboPrecioFinal.value
+            );
 
-        });
+          const {
+            comboId,
+            cantidad
+          } = this.comboPendiente;
 
-        modalCombo.style.display =
-          "none";
+          await this.addVenta({
 
-        document
-          .getElementById("modalVenta")
-          .style.display =
-          "none";
+            productId: comboId,
 
-        this.comboPendiente =
-          null;
+            cantidad,
 
+            precioVenta: precioFinal
+
+          });
+
+          modalCombo.style.display =
+            "none";
+
+          document
+            .getElementById("modalVenta")
+            .style.display =
+            "none";
+
+          this.comboPendiente =
+            null;
+
+        } catch (err) {
+
+          console.error(err);
+
+        } finally {
+
+          setTimeout(() => {
+
+            this.isSubmittingCombo =
+              false;
+
+            btnConfirmarCombo.disabled =
+              false;
+
+            btnConfirmarCombo.textContent =
+              textoOriginal;
+
+          }, 500);
+
+        }
       }
     );
   }
@@ -733,8 +773,9 @@ class VentasPanel extends HTMLElement {
 
     /* PRECIO */
 
-    precioInput.value =
-      combo.price;
+    precioInput.value = combo.price || 0;
+    precioInput.focus();
+    precioInput.select();
 
     /* GUARDAR */
 
