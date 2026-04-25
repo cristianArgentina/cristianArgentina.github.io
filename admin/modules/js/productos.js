@@ -530,6 +530,67 @@ class ProductosPanel extends HTMLElement {
             .style.display = "flex";
         }
       });
+
+    const editarEsCombo =
+      document.getElementById("editarEsCombo");
+
+    const editarComboBuilder =
+      document.getElementById("editarComboBuilder");
+
+    editarEsCombo.addEventListener("change", () => {
+
+      editarComboBuilder.style.display =
+        editarEsCombo.checked
+          ? "block"
+          : "none";
+
+    });
+
+    document
+      .getElementById("btnEditarAgregarProductoCombo")
+      .addEventListener("click", () => {
+
+        const comboItems =
+          document.getElementById("editarComboItems");
+
+        const row =
+          document.createElement("div");
+
+        row.innerHTML = `
+      <select class="combo-product">
+
+        ${this.productos.map(p =>
+          `<option value="${p.id}">
+            ${p.name}
+          </option>`
+        ).join("")}
+
+      </select>
+
+      <input
+        type="number"
+        class="combo-qty"
+        value="1"
+        min="1"
+        style="width:60px">
+
+      <button
+        type="button"
+        class="removeCombo">
+
+        ❌
+
+      </button>
+    `;
+
+        row.querySelector(".removeCombo")
+          .addEventListener("click", () => {
+            row.remove();
+          });
+
+        comboItems.appendChild(row);
+
+      });
   }
 
   handleNuevoProducto = async (e) => {
@@ -584,14 +645,48 @@ class ProductosPanel extends HTMLElement {
     try {
       const id = form.productoId.value;
 
+      const esCombo =
+        document.getElementById(
+          "editarEsCombo"
+        ).checked;
+
       const actualizado = {
         name: form.nombre.value,
         description: form.descripcion.value,
         price: parseFloat(form.precio.value),
         stock: parseInt(form.stock.value),
         category: form.categoria.value,
-        image: form.urlImage.value
+        image: form.urlImage.value,
+        isCombo: esCombo
       };
+
+      if (esCombo) {
+
+        const items =
+          [...document.querySelectorAll(
+            "#editarComboItems div"
+          )];
+
+        actualizado.combo =
+          items.map(row => ({
+
+            productId:
+              Number(
+                row.querySelector(".combo-product").value
+              ),
+
+            qty:
+              parseInt(
+                row.querySelector(".combo-qty").value
+              )
+
+          }));
+
+      } else {
+
+        actualizado.combo = [];
+
+      }
 
       await updateProduct(id, actualizado);
 
@@ -709,6 +804,74 @@ class ProductosPanel extends HTMLElement {
 
       lotesTbody.appendChild(row);
     });
+
+    const chkCombo =
+      document.getElementById("editarEsCombo");
+
+    const comboBuilder =
+      document.getElementById("editarComboBuilder");
+
+    const comboItems =
+      document.getElementById("editarComboItems");
+
+    /* limpiar */
+
+    comboItems.innerHTML = "";
+
+    /* estado checkbox */
+
+    chkCombo.checked = producto.isCombo || false;
+
+    comboBuilder.style.display =
+      chkCombo.checked ? "block" : "none";
+
+    /* cargar items */
+
+    if (producto.isCombo && producto.combo) {
+
+      producto.combo.forEach(item => {
+
+        const row =
+          document.createElement("div");
+
+        row.innerHTML = `
+      <select class="combo-product">
+
+        ${this.productos.map(p =>
+          `<option value="${p.id}"
+            ${p.id == item.productId ? "selected" : ""}>
+            ${p.name}
+          </option>`
+        ).join("")}
+
+      </select>
+
+      <input
+        type="number"
+        class="combo-qty"
+        value="${item.qty}"
+        min="1"
+        style="width:60px">
+
+      <button
+        type="button"
+        class="removeCombo">
+
+        ❌
+
+      </button>
+    `;
+
+        row.querySelector(".removeCombo")
+          .addEventListener("click", () => {
+            row.remove();
+          });
+
+        comboItems.appendChild(row);
+
+      });
+
+    }
   }
 }
 
