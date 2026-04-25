@@ -385,44 +385,87 @@ class VentasPanel extends HTMLElement {
   }
 
   handleNuevaVenta = async (e) => {
+
     e.preventDefault();
 
-    // 🚫 bloqueo lógico (anti doble click REAL)
     if (this.isSubmitting) return;
+
+    const form = e.target;
+
+    const productId =
+      parseInt(form.ventaProducto.value);
+
+    const cantidad =
+      parseInt(form.ventaCantidad.value);
+
+    const precioVenta =
+      parseFloat(form.ventaPrecio.value);
+
+    /* 🔍 BUSCAR PRODUCTO */
+
+    const producto =
+      this.productos.find(
+        p => p.id === productId
+      );
+
+    /* 🧠 SI ES COMBO */
+
+    if (producto?.isCombo) {
+
+      this.prepararVentaCombo(
+        producto,
+        cantidad
+      );
+
+      return;
+
+    }
+
+    /* NORMAL */
 
     this.isSubmitting = true;
 
-    const form = e.target;
-    const btn = form.querySelector("button[type=submit]");
+    const btn =
+      form.querySelector("button[type=submit]");
 
-    // 🔒 bloqueo visual
     btn.disabled = true;
-    const textoOriginal = btn.textContent;
-    btn.textContent = "Procesando...";
+
+    const textoOriginal =
+      btn.textContent;
+
+    btn.textContent =
+      "Procesando...";
 
     try {
-      const productId = form.ventaProducto.value;
-      const cantidad = parseInt(form.ventaCantidad.value);
-      const precioVenta = parseFloat(form.ventaPrecio.value);
 
-      await this.addVenta({ productId, cantidad, precioVenta });
+      await this.addVenta({
+        productId,
+        cantidad,
+        precioVenta
+      });
 
-      // cerrar modal
-      document.getElementById("modalVenta").style.display = "none";
+      document
+        .getElementById("modalVenta")
+        .style.display = "none";
 
-      // limpiar form
       form.reset();
 
     } catch (err) {
+
       console.error(err);
+
     } finally {
+
       setTimeout(() => {
 
-        // 🔓 desbloqueo
         this.isSubmitting = false;
+
         btn.disabled = false;
-        btn.textContent = textoOriginal;
-      }, 500); // 🔥 evita rebotes rápidos
+
+        btn.textContent =
+          textoOriginal;
+
+      }, 500);
     }
   };
 
@@ -575,12 +618,137 @@ class VentasPanel extends HTMLElement {
     closeModalVenta.addEventListener("click", () => {
       modalVenta.style.display = "none";
     });
+
+    const modalCombo =
+      document.getElementById("modalConfirmarCombo");
+
+    const comboDetalle =
+      document.getElementById("comboDetalle");
+
+    const comboPrecioFinal =
+      document.getElementById("comboPrecioFinal");
+
+    const btnConfirmarCombo =
+      document.getElementById("btnConfirmarCombo");
+
+    btnConfirmarCombo.addEventListener(
+      "click",
+      async () => {
+
+        if (!this.comboPendiente)
+          return;
+
+        const precioFinal =
+          parseFloat(
+            comboPrecioFinal.value
+          );
+
+        const {
+          comboId,
+          cantidad
+        } = this.comboPendiente;
+
+        await this.addVenta({
+
+          productId: comboId,
+
+          cantidad,
+
+          precioVenta: precioFinal
+
+        });
+
+        modalCombo.style.display =
+          "none";
+
+        document
+          .getElementById("modalVenta")
+          .style.display =
+          "none";
+
+        this.comboPendiente =
+          null;
+
+      }
+    );
   }
 
   formatPrice(value) {
 
     return Math.round(value)
       .toLocaleString("es-AR");
+
+  }
+
+  prepararVentaCombo(combo, cantidad) {
+
+    const modal =
+      document.getElementById(
+        "modalConfirmarCombo"
+      );
+
+    const container =
+      document.getElementById(
+        "comboDetalle"
+      );
+
+    const precioInput =
+      document.getElementById(
+        "comboPrecioFinal"
+      );
+
+    container.innerHTML = "";
+
+    let totalItems = [];
+
+    combo.combo.forEach(item => {
+
+      const productoInterno =
+        this.productos.find(
+          p => p.id == item.productId
+        );
+
+      if (!productoInterno)
+        return;
+
+      const qtyTotal =
+        item.qty * cantidad;
+
+      totalItems.push({
+        productId: item.productId,
+        qty: qtyTotal
+      });
+
+      const row =
+        document.createElement("div");
+
+      row.innerHTML = `
+      ${productoInterno.name}
+      × ${qtyTotal}
+    `;
+
+      container.appendChild(row);
+
+    });
+
+    /* PRECIO */
+
+    precioInput.value =
+      combo.price;
+
+    /* GUARDAR */
+
+    this.comboPendiente = {
+
+      comboId: combo.id,
+
+      cantidad,
+
+      items: totalItems
+
+    };
+
+    modal.style.display = "flex";
 
   }
 }
