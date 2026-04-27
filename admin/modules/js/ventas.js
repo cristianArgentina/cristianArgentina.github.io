@@ -747,6 +747,8 @@ class VentasPanel extends HTMLElement {
     let totalCosto = 0;
     let totalItems = [];
 
+    let stockInsuficiente = false;
+
     combo.combo.forEach(item => {
 
       const productoInterno =
@@ -757,10 +759,23 @@ class VentasPanel extends HTMLElement {
       if (!productoInterno)
         return;
 
-      /* cantidad real */
-
       const qtyTotal =
         item.qty * cantidad;
+
+      /* 🚨 VALIDAR STOCK */
+
+      if (productoInterno.stock < qtyTotal) {
+
+        alert(
+          `Stock insuficiente para ${productoInterno.name}\n` +
+          `Stock disponible: ${productoInterno.stock}\n` +
+          `Necesario: ${qtyTotal}`
+        );
+
+        stockInsuficiente = true;
+
+        return;
+      }
 
       /* costo promedio */
 
@@ -850,6 +865,12 @@ class VentasPanel extends HTMLElement {
       tbody.appendChild(row);
 
     });
+
+    if (stockInsuficiente) {
+
+      return; // ❌ no abrir modal
+
+    }
 
     /* mostrar costo total */
 
