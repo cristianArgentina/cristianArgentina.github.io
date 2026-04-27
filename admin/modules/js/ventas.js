@@ -879,7 +879,7 @@ class VentasPanel extends HTMLElement {
       items:
         totalItems,
 
-      costoTotal
+      totalCosto
 
     };
 
