@@ -191,7 +191,37 @@
 
     <h2>Confirmar venta de combo</h2>
 
-    <div id="comboDetalle"></div>
+    <div id="comboDetalle">
+
+      <table class="tabla-combo">
+
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cant.</th>
+            <th>Costo</th>
+            <th>Precio</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+
+        <tbody id="comboDetalleBody">
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              Costo total
+            </td>
+            <td id="comboCostoTotal">
+              $0
+            </td>
+          </tr>
+        </tfoot>
+
+      </table>
+
+    </div>
 
     <label>
       Precio final del combo:

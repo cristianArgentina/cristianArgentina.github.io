@@ -727,9 +727,14 @@ class VentasPanel extends HTMLElement {
         "modalConfirmarCombo"
       );
 
-    const container =
+    const tbody =
       document.getElementById(
-        "comboDetalle"
+        "comboDetalleBody"
+      );
+
+    const costoTotalLabel =
+      document.getElementById(
+        "comboCostoTotal"
       );
 
     const precioInput =
@@ -737,8 +742,9 @@ class VentasPanel extends HTMLElement {
         "comboPrecioFinal"
       );
 
-    container.innerHTML = "";
+    tbody.innerHTML = "";
 
+    let totalCosto = 0;
     let totalItems = [];
 
     combo.combo.forEach(item => {
@@ -751,45 +757,134 @@ class VentasPanel extends HTMLElement {
       if (!productoInterno)
         return;
 
+      /* cantidad real */
+
       const qtyTotal =
         item.qty * cantidad;
 
+      /* costo promedio */
+
+      let costoUnitario = 0;
+
+      if (
+        productoInterno.lotes &&
+        productoInterno.lotes.length
+      ) {
+
+        const sumaCostos =
+          productoInterno.lotes.reduce(
+            (acc, l) =>
+              acc +
+              (l.costoUnitario || 0) *
+              (l.cantidad || 0),
+            0
+          );
+
+        const sumaUnidades =
+          productoInterno.lotes.reduce(
+            (acc, l) =>
+              acc + (l.cantidad || 0),
+            0
+          );
+
+        if (sumaUnidades > 0) {
+
+          costoUnitario =
+            sumaCostos /
+            sumaUnidades;
+
+        }
+
+      }
+
+      /* subtotal */
+
+      const subtotalCosto =
+        costoUnitario *
+        qtyTotal;
+
+      totalCosto +=
+        subtotalCosto;
+
       totalItems.push({
-        productId: item.productId,
-        qty: qtyTotal
+        productId:
+          item.productId,
+        qty:
+          qtyTotal
       });
 
+      /* fila */
+
       const row =
-        document.createElement("div");
+        document.createElement("tr");
 
       row.innerHTML = `
-      ${productoInterno.name}
-      × ${qtyTotal}
+      <td>
+        ${productoInterno.name}
+      </td>
+
+      <td>
+        ${qtyTotal}
+      </td>
+
+      <td>
+        $${this.formatPrice(
+        costoUnitario
+      )}
+      </td>
+
+      <td>
+        $${this.formatPrice(
+        productoInterno.price
+      )}
+      </td>
+
+      <td>
+        $${this.formatPrice(
+        productoInterno.price *
+        qtyTotal
+      )}
+      </td>
     `;
 
-      container.appendChild(row);
+      tbody.appendChild(row);
 
     });
 
-    /* PRECIO */
+    /* mostrar costo total */
 
-    precioInput.value = combo.price || 0;
+    costoTotalLabel.textContent =
+      "$" +
+      this.formatPrice(
+        totalCosto
+      );
+
+    /* precio sugerido */
+
+    precioInput.value =
+      combo.price || 0;
+
     precioInput.focus();
     precioInput.select();
 
-    /* GUARDAR */
+    /* guardar datos */
 
     this.comboPendiente = {
 
-      comboId: combo.id,
+      comboId:
+        combo.id,
 
       cantidad,
 
-      items: totalItems
+      items:
+        totalItems,
+
+      costoTotal
 
     };
 
-    modal.style.display = "flex";
+    modal.style.display =
+      "flex";
 
   }
 }
