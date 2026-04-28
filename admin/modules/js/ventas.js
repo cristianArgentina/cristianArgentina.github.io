@@ -732,11 +732,6 @@ class VentasPanel extends HTMLElement {
         "comboDetalleBody"
       );
 
-    const costoTotalLabel =
-      document.getElementById(
-        "comboCostoTotal"
-      );
-
     const precioInput =
       document.getElementById(
         "comboPrecioFinal"
@@ -744,7 +739,6 @@ class VentasPanel extends HTMLElement {
 
     tbody.innerHTML = "";
 
-    let totalCosto = 0;
     let totalItems = [];
 
     let stockInsuficiente = false;
@@ -777,50 +771,6 @@ class VentasPanel extends HTMLElement {
         return;
       }
 
-      /* costo promedio */
-
-      let costoUnitario = 0;
-
-      if (
-        productoInterno.lotes &&
-        productoInterno.lotes.length
-      ) {
-
-        const sumaCostos =
-          productoInterno.lotes.reduce(
-            (acc, l) =>
-              acc +
-              (l.costoUnitario || 0) *
-              (l.cantidad || 0),
-            0
-          );
-
-        const sumaUnidades =
-          productoInterno.lotes.reduce(
-            (acc, l) =>
-              acc + (l.cantidad || 0),
-            0
-          );
-
-        if (sumaUnidades > 0) {
-
-          costoUnitario =
-            sumaCostos /
-            sumaUnidades;
-
-        }
-
-      }
-
-      /* subtotal */
-
-      const subtotalCosto =
-        costoUnitario *
-        qtyTotal;
-
-      totalCosto +=
-        subtotalCosto;
-
       totalItems.push({
         productId:
           item.productId,
@@ -841,25 +791,6 @@ class VentasPanel extends HTMLElement {
       <td>
         ${qtyTotal}
       </td>
-
-      <td>
-        $${this.formatPrice(
-        costoUnitario
-      )}
-      </td>
-
-      <td>
-        $${this.formatPrice(
-        productoInterno.price
-      )}
-      </td>
-
-      <td>
-        $${this.formatPrice(
-        productoInterno.price *
-        qtyTotal
-      )}
-      </td>
     `;
 
       tbody.appendChild(row);
@@ -871,14 +802,6 @@ class VentasPanel extends HTMLElement {
       return; // ❌ no abrir modal
 
     }
-
-    /* mostrar costo total */
-
-    costoTotalLabel.textContent =
-      "$" +
-      this.formatPrice(
-        totalCosto
-      );
 
     /* precio sugerido */
 
