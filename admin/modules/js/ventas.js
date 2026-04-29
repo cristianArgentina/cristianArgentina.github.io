@@ -524,24 +524,25 @@ class VentasPanel extends HTMLElement {
   }
 
   async removeVenta(id) {
-
     try {
+      showLoader("Eliminando venta...");
 
       await deleteSale(id);
 
       await this.loadVentas();
 
     } catch (err) {
+      console.error("Error eliminando venta:", err);
 
-      console.error(
-        "Error eliminando venta:",
-        err
+      alert(
+        err?.response?.data?.error ||
+        err.message ||
+        "Error al eliminar venta"
       );
 
-      hideLoader(); // seguridad extra
-
+    } finally {
+      hideLoader();
     }
-
   }
 
   setupEventListeners() {
