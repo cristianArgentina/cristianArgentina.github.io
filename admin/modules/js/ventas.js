@@ -674,7 +674,9 @@ class VentasPanel extends HTMLElement {
 
             cantidad,
 
-            precioVenta: precioFinal
+            precioVenta: precioFinal,
+
+            items: this.comboPendiente.items
 
           });
 
@@ -723,19 +725,13 @@ class VentasPanel extends HTMLElement {
   prepararVentaCombo(combo, cantidad) {
 
     const modal =
-      document.getElementById(
-        "modalConfirmarCombo"
-      );
+      document.getElementById("modalConfirmarCombo");
 
     const tbody =
-      document.getElementById(
-        "comboDetalleBody"
-      );
+      document.getElementById("comboDetalleBody");
 
     const precioInput =
-      document.getElementById(
-        "comboPrecioFinal"
-      );
+      document.getElementById("comboPrecioFinal");
 
     tbody.innerHTML = "";
 
@@ -821,10 +817,7 @@ class VentasPanel extends HTMLElement {
       cantidad,
 
       items:
-        totalItems,
-
-      totalCosto
-
+        totalItems
     };
 
     modal.style.display =
