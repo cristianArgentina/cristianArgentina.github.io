@@ -416,6 +416,14 @@ Total: $${total.toLocaleString()}`;
         img.loading = "lazy";
 
         imgWrapper.appendChild(img);
+
+        if (p.stock <= 0) {
+          const marca = document.createElement('div');
+          marca.className = 'marca-agua';
+          marca.textContent = 'AGOTADO';
+          imgWrapper.appendChild(marca);
+        }
+
         div.appendChild(imgWrapper);
       }
 
@@ -483,7 +491,9 @@ Total: $${total.toLocaleString()}`;
       el.querySelector("p").textContent = next.description;
       el.querySelector(".precio").textContent =
         "$" + next.price.toLocaleString();
+
       el.classList.toggle("agotado", next.stock <= 0);
+
       const btn = el.querySelector(".btn-agregar");
       if (btn) {
         const sinStock = next.stock <= 0;
@@ -506,6 +516,18 @@ Total: $${total.toLocaleString()}`;
         }
       }
 
+      let marca = el.querySelector(".marca-agua");
+
+      if (next.stock <= 0) {
+        if (!marca) {
+          marca = document.createElement("div");
+          marca.className = "marca-agua";
+          marca.textContent = "AGOTADO";
+          el.querySelector(".img-wrapper")?.appendChild(marca);
+        }
+      } else {
+        if (marca) marca.remove();
+      }
       el.dataset.categoria = next.category || "";
     }
 
