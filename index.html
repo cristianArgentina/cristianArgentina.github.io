@@ -442,16 +442,19 @@ Total: $${total.toLocaleString()}`;
       const info = document.createElement('div');
       info.className = 'info';
 
+      const btnDisabled = p.stock <= 0 ? 'disabled' : '';
+
       info.innerHTML = `
     <h2>${p.name}</h2>
     <p>${p.description}</p>
     <div class="precio-carrito">
       <span class="precio">$${p.price.toLocaleString()}</span>
       <button class="btn-agregar"
+        ${btnDisabled}
         data-id="${key}"
         data-nombre="${p.name}"
         data-precio="${p.price}">
-        Agregar
+        ${p.stock <= 0 ? 'Sin stock' : 'Agregar'}
       </button>
     </div>
   `;
@@ -483,7 +486,10 @@ Total: $${total.toLocaleString()}`;
       el.classList.toggle("agotado", next.stock <= 0);
       const btn = el.querySelector(".btn-agregar");
       if (btn) {
-        btn.disabled = next.stock <= 0;
+        const sinStock = next.stock <= 0;
+
+        btn.disabled = sinStock;
+        btn.textContent = sinStock ? "Sin stock" : "Agregar";
       }
 
       if (prev.image !== next.image) {
