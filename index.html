@@ -3,7 +3,6 @@
 
 <head>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="./admin/modules/css/loader-wake-up-backend.css">
   <link rel="stylesheet" href="./admin/modules/css/loader-instructivo.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
@@ -130,18 +129,46 @@
     let categorySelected = ''
     let carrito = [];
 
-    // Lista de productos original para filtrado
-    /*let productosOriginales = [];*/
-    let productosDatos = [];
-    let productosElems = [];
-    /*
-    function mostrarLoader() {
-      loader.style.display = "flex";
+    /* 🧠 NUEVO ESTADO CENTRAL */
+    const state = {
+      productos: []
+    };
+
+    const domCache = new Map();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const iframe = entry.target;
+
+        if (entry.isIntersecting) {
+          iframe.src = iframe.dataset.src;
+          iniciarPlaylist(iframe);
+        } else {
+          iframe.src = "";
+          detenerPlaylist(iframe);
+        }
+      });
+    }, { threshold: 0.6 });
+
+    function iniciarPlaylist(iframe) {
+      if (iframe._interval) return;
+
+      const ids = iframe.dataset.ids.split(',');
+      let index = 0;
+
+      iframe._interval = setInterval(() => {
+        index = (index + 1) % ids.length;
+
+        iframe.src = `https://www.youtube-nocookie.com/embed/${ids[index]}?autoplay=1&mute=1&controls=0`;
+      }, 6000);
     }
-    function ocultarLoader() {
-      loader.style.display = "none";
+
+    function detenerPlaylist(iframe) {
+      if (iframe._interval) {
+        clearInterval(iframe._interval);
+        iframe._interval = null;
+      }
     }
-*/
 
     const modal = document.getElementById("cart-modal");
     const closeBtn = document.getElementById("cart-close");
@@ -207,7 +234,7 @@
           .getElementById("instruccion")
           .style.display = "none";
 
-        filtrarYOrdenar(productosDatos);
+        aplicarFiltro()
 
         // actualizar URL
         const url =
@@ -231,7 +258,7 @@
 
     });
 
-    buscador.addEventListener('input', () => filtrarYOrdenar(/*productosOriginales*/productosDatos));
+    buscador.addEventListener('input', aplicarFiltro);
 
     async function cargarProductosDesdeJSON() {
       const res = await fetch('/assets/csv/productosactuales.json');
@@ -249,39 +276,6 @@
       };
     }
 
-    async function precargarProductos() {
-      try {
-        const productos = await cargarProductosDesdeJSON();
-        /*productosOriginales = productos.map(p => crearProductoElem(normalizarProducto(p)));*/
-        productosDatos = productos.map(normalizarProducto)
-      } catch (e) {
-        console.error(e);
-        noResults.textContent = 'Error al cargar productos locales.';
-        noResults.style.display = 'block';
-      }
-    }
-
-    /*
-        async function precargarProductos() {
-          try {
-            const res = await fetch(`${API_URL}/products`);
-            if (!res.ok) throw new Error('Error en la respuesta de la API');
-            const productos = await res.json();
-            //  setTimeout(() => {
-            hideLoader();
-            //  }, 9900); // un mini delay para que se note
-    
-            const productosElems = productos.map(p => crearProductoElem(p));
-            productosOriginales = [...productosElems];
-    
-          } catch (err) {
-            console.error("Error al despertar backend", err);
-            noResults.textContent = 'Error al cargar los productos.';
-            noResults.style.display = 'block';
-            hideLoader();
-          }
-        }
-    */
     async function actualizarDesdeBackend() {
       try {
         const res = await fetch(`${API_URL}/products`);
@@ -289,56 +283,13 @@
 
         const productos = await res.json();
 
-        renderProductosDesdeDatos(productos);
+        setProductos(productos.map(normalizarProducto));
 
-        // 🔴 RE-RENDER SIEMPRE
-        filtrarYOrdenar(/*productosOriginales*/productosDatos);
-
-        console.info('Productos actualizados desde backend');
-
-      } catch (err) {
-        console.warn('Backend aún dormido');
+        console.info("Backend aplicado sin re-render");
+      } catch {
+        console.warn("Backend dormido");
       }
     }
-
-    function renderProductosDesdeDatos(productos) {
-      /* productosOriginales = productos.map(p =>
-         crearProductoElem(normalizarProducto(p))
-       );*/
-      productosDatos = productos.map(normalizarProducto)
-      productosElems = productosDatos.map(crearProductoElem)
-    }
-
-    (async () => {
-      // 2️⃣ Cargar json inmediatamente
-      await precargarProductos();
-
-      // 3️⃣ Ocultar loader (no depende del backend)
-      hideLoader();
-
-      filtrarYOrdenar(/*productosOriginales*/productosDatos);
-
-      // 4️⃣ Backend en segundo plano
-      actualizarDesdeBackend();
-    })();
-    /*
-        const wspBtn = document.getElementById("whatsapp-float");
-    
-        wspBtn.addEventListener("click", () => {
-          const seleccionados = [...document.querySelectorAll(".producto-check:checked")]
-            .map(chk => chk.dataset.nombre);
-    
-          if (seleccionados.length === 0) {
-            alert("Selecciona al menos un producto para consultar");
-            return;
-          }
-    
-          const mensaje = `Hola, me interesan los siguientes productos:\n- ${seleccionados.join("\n- ")}`;
-          const url = `https://wa.me/5491138863899?text=${encodeURIComponent(mensaje)}`;
-    
-          window.open(url, "_blank");
-        });
-    */
 
     const cartBtn = document.getElementById("cart-float");
     const cartCount = document.getElementById("cart-count");
@@ -346,8 +297,6 @@
     function actualizarContador() {
       cartCount.textContent = carrito.length;
     }
-
-
 
     document.addEventListener("change", (e) => {
       if (e.target.classList.contains("producto-check")) {
@@ -448,65 +397,183 @@ Total: $${total.toLocaleString()}`;
       window.open(url, "_blank");
     });
 
-    // Carga de YouTube
-    const tag = document.createElement('script');
-    document.body.appendChild(tag);
-
     function crearProductoElem(p) {
-      const div = document.createElement('div');
-      div.className = 'producto' + (p.videos.length > 0 ? ' producto-video' : '') + (p.stock <= 0 ? ' agotado' : '');
-      div.dataset.categoria = p.category;
-      div.dataset.precio = p.price;
-      div.dataset.stock = p.stock;
-      if (p.videos.length > 0) div.dataset.videos = p.videos.join(',');
+      const key = p.id || p.name;
 
-      if (p.videos.length > 0) {
-        const vidCont = document.createElement('div');
-        vidCont.className = 'video-container';
-        div.appendChild(vidCont);
-      } else if (p.image) {
+      if (domCache.has(key)) return domCache.get(key);
+
+      const div = document.createElement('div');
+      div.className = 'producto' +
+        (p.stock <= 0 ? ' agotado' : '');
+      div.dataset.key = key;
+
+      if (p.image) {
         const imgWrapper = document.createElement('div');
         imgWrapper.className = 'img-wrapper';
-        imgWrapper.innerHTML = `
-          <img src="${p.image}" alt="${p.name}">
-          ${p.stock <= 0 ? '<div class="marca-agua">AGOTADO</div>' : ''}
-          `;
+
+        const img = document.createElement('img');
+        img.src = p.image;
+        img.loading = "lazy";
+
+        imgWrapper.appendChild(img);
         div.appendChild(imgWrapper);
+      }
+
+      if (p.videos && p.videos.length > 0) {
+        const container = document.createElement('div');
+        container.className = 'video-container';
+
+        const iframe = document.createElement('iframe');
+        iframe.dataset.ids = p.videos.join(',');
+
+        iframe.dataset.src = `https://www.youtube-nocookie.com/embed/${p.videos[0]}?autoplay=1&mute=1&controls=0`;
+
+        iframe.allow = "autoplay; encrypted-media";
+        iframe.frameBorder = "0";
+
+        container.appendChild(iframe);
+        div.appendChild(container);
+
+        div.classList.add("producto-video");
+
+        observer.observe(iframe);
       }
 
       const info = document.createElement('div');
       info.className = 'info';
+
       info.innerHTML = `
-          <h2>${p.name}</h2>
-          <p>${p.description}</p>
-          <div class="precio-carrito">
-            <span class="precio">$${p.price.toLocaleString()}</span>
-            <button class="btn-agregar"
-              data-id="${p.id || p.name}"
-              data-nombre="${p.name}"
-              data-precio="${p.price}">
-              Agregar
-            </button>
-          </div>
-        `;
+    <h2>${p.name}</h2>
+    <p>${p.description}</p>
+    <div class="precio-carrito">
+      <span class="precio">$${p.price.toLocaleString()}</span>
+      <button class="btn-agregar"
+        data-id="${key}"
+        data-nombre="${p.name}"
+        data-precio="${p.price}">
+        Agregar
+      </button>
+    </div>
+  `;
+
       div.appendChild(info);
-      // Alerta visual de stock bajo
-      if (p.stock > 0) {
-        const stockAlert = document.createElement('div');
-        stockAlert.className = 'stock-alert';
 
-        if (p.stock <= 2) {
-          stockAlert.textContent = '¡Últimas unidades!';
-          stockAlert.classList.add('stock-bajo');
-        } else {
-          stockAlert.textContent = 'Disponible';
-          stockAlert.classList.add('stock-alto');
-        }
-
-        div.appendChild(stockAlert);
-      }
+      domCache.set(key, div);
       return div;
     }
+
+    function cambioProducto(a, b) {
+      return (
+        a.name !== b.name ||
+        a.description !== b.description ||
+        a.price !== b.price ||
+        a.stock !== b.stock ||
+        a.image !== b.image
+      );
+    }
+
+    function actualizarProductoDOM(key, prev, next) {
+      const el = domCache.get(key);
+      if (!el) return;
+
+      el.querySelector("h2").textContent = next.name;
+      el.querySelector("p").textContent = next.description;
+      el.querySelector(".precio").textContent =
+        "$" + next.price.toLocaleString();
+      el.classList.toggle("agotado", next.stock <= 0);
+      const btn = el.querySelector(".btn-agregar");
+      if (btn) {
+        btn.disabled = next.stock <= 0;
+      }
+
+      if (prev.image !== next.image) {
+        const img = el.querySelector("img");
+        if (img) img.src = next.image;
+      }
+
+      if (prev.videos.join() !== next.videos.join()) {
+        const iframe = el.querySelector("iframe");
+
+        if (iframe) {
+          iframe.dataset.ids = next.videos.join(',');
+          iframe.dataset.src = `https://www.youtube-nocookie.com/embed/${next.videos[0]}?autoplay=1&mute=1&controls=0`;
+        }
+      }
+
+      el.dataset.categoria = next.category || "";
+    }
+
+    function setProductos(nuevos) {
+      const prevMap = new Map(state.productos.map(p => [p.id || p.name, p]));
+      const nuevosKeys = new Set(nuevos.map(p => p.id || p.name));
+
+      state.productos = nuevos;
+
+      nuevos.forEach(p => {
+        const key = p.id || p.name;
+        const prev = prevMap.get(key);
+
+        if (!prev) {
+          const el = crearProductoElem(p);
+          contenedor.appendChild(el);
+          return;
+        }
+
+        if (cambioProducto(prev, p)) {
+          actualizarProductoDOM(key, prev, p);
+        }
+      });
+
+      prevMap.forEach((_, key) => {
+        if (!nuevosKeys.has(key)) {
+          const el = domCache.get(key);
+          if (el) el.remove();
+          domCache.delete(key);
+        }
+      });
+      ordenarDOM();
+      aplicarFiltro();
+    }
+
+    function aplicarFiltro() {
+      const texto = buscador.value.toLowerCase();
+
+      let visibles = 0;
+
+      state.productos.forEach(p => {
+        const key = p.id || p.name;
+        const el = domCache.get(key);
+
+        const matchTexto =
+          `${p.name} ${p.description}`.toLowerCase().includes(texto);
+
+        const matchCategoria =
+          !categorySelected ||
+          (p.category || '').toLowerCase() === categorySelected.toLowerCase();
+
+        const visible = matchTexto && matchCategoria;
+
+        el.style.display = visible ? "" : "none";
+        if (visible) visibles++;
+      });
+
+      noResults.style.display = visibles === 0 ? 'block' : 'none';
+    }
+
+    function ordenarDOM() {
+      const ordenados = [...state.productos].sort((a, b) => {
+        if (a.stock === 0 && b.stock !== 0) return 1;
+        if (b.stock === 0 && a.stock !== 0) return -1;
+        return a.price - b.price;
+      });
+
+      ordenados.forEach(p => {
+        const key = p.id || p.name;
+        const el = domCache.get(key);
+        contenedor.appendChild(el); // 🔥 mueve sin recrear
+      });
+    }
+
 
     /*
                 <a class="whatsapp-btn"
@@ -516,45 +583,6 @@ Total: $${total.toLocaleString()}`;
                   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="height: 36px;">
                 </a>
     */
-
-    function filtrarYOrdenar(productosDatos) {
-      const texto = buscador.value.toLowerCase();
-
-      let lista = productosDatos;
-
-      if (categorySelected) {
-        lista = lista.filter(p =>
-          (p.category || '').toLowerCase() === categorySelected.toLowerCase()
-        );
-      }
-
-      lista = lista.filter(p =>
-        `${p.name} ${p.description}`.toLowerCase().includes(texto)
-      );
-
-      const ordenados = [...lista].sort((a, b) => {
-
-        const stockA = Number(a.stock);
-        const stockB = Number(b.stock);
-
-        // agotados al final
-        if (stockA === 0 && stockB !== 0) return 1;
-        if (stockB === 0 && stockA !== 0) return -1;
-
-        return Number(a.price) - Number(b.price);
-      });
-
-      contenedor.innerHTML = "";
-
-      ordenados
-        .map(crearProductoElem)
-        .forEach(e => contenedor.appendChild(e));
-
-      if (window.inicializarVideosYouTube)
-        inicializarVideosYouTube();
-
-      noResults.style.display = ordenados.length === 0 ? 'block' : 'none';
-    }
 
     window.addEventListener("load", () => {
 
@@ -588,7 +616,7 @@ Total: $${total.toLocaleString()}`;
               .getElementById("instruccion")
               .style.display = "none";
 
-            filtrarYOrdenar(productosDatos);
+            aplicarFiltro();
 
           }
 
@@ -616,81 +644,15 @@ Total: $${total.toLocaleString()}`;
 
     });
 
-    window.inicializarVideosYouTube = () => {
+    (async () => {
+      const productos = await cargarProductosDesdeJSON();
+      setProductos(productos.map(normalizarProducto));
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+      hideLoader();
 
-          const iframe = entry.target;
+      actualizarDesdeBackend();
+    })();
 
-          if (entry.isIntersecting) {
-            // ▶️ reproducir
-            iframe.src = iframe.dataset.src;
-
-            // ▶️ iniciar loop manual
-            iniciarPlaylist(iframe);
-
-          } else {
-            // ⏸ pausar y limpiar
-            iframe.src = "";
-            detenerPlaylist(iframe);
-          }
-
-        });
-      }, {
-        threshold: 0.6
-      });
-
-      function iniciarPlaylist(iframe) {
-
-        if (iframe._interval) return;
-
-        const ids = iframe.dataset.ids.split(',');
-        let index = 0;
-
-        iframe._interval = setInterval(() => {
-          index = (index + 1) % ids.length;
-
-          iframe.src = `https://www.youtube-nocookie.com/embed/${ids[index]}?autoplay=1&mute=1&controls=0`;
-
-        }, 6000); // ⏱ duración aproximada (ajustable)
-      }
-
-      function detenerPlaylist(iframe) {
-        if (iframe._interval) {
-          clearInterval(iframe._interval);
-          iframe._interval = null;
-        }
-      }
-
-      document.querySelectorAll('.producto-video').forEach((prod) => {
-
-        if (prod.dataset.videoReady) return;
-
-        const raw = prod.dataset.videos;
-        if (!raw) return;
-
-        const ids = raw.split(',');
-
-        const container = prod.querySelector('.video-container');
-
-        const iframe = document.createElement('iframe');
-
-        iframe.dataset.ids = ids.join(',');
-
-        iframe.dataset.src = `https://www.youtube-nocookie.com/embed/${ids[0]}?autoplay=1&mute=1&controls=0`;
-
-        iframe.allow = "autoplay; encrypted-media";
-        iframe.frameBorder = "0";
-
-        container.appendChild(iframe);
-
-        observer.observe(iframe);
-
-        prod.dataset.videoReady = true;
-
-      });
-    };
   </script>
 </body>
 
