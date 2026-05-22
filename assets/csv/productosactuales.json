@@ -4,7 +4,7 @@
     "name": "Cicatricure - Gel Cicatrices",
     "description": "Gel Cicatrices Y Estrías X 60g",
     "category": "belleza y salud",
-    "price": 12000,
+    "price": 14000,
     "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/cicatricurecicatrices.jpg",
     "videos": [],
@@ -51,16 +51,10 @@
     "description": "Oleo Extraordinario Elvive x 100 ml",
     "category": "belleza y salud",
     "price": 11000,
-    "stock": 3,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/elviveoleoextraordinario.jpg",
     "videos": [],
     "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 7123.2,
-        "_id": "69e6a29b0433919a5776baa0",
-        "fechaIngreso": "2026-04-20T22:03:07.675Z"
-      },
       {
         "cantidad": 1,
         "costoUnitario": 6678,
@@ -443,7 +437,7 @@
     "description": "Serum Elvive Dream Liso 100ml",
     "category": "belleza y salud",
     "price": 14000,
-    "stock": 1,
+    "stock": 3,
     "image": "https://cristianargentina.github.io/assets/img/elviveserumdreamliso.jpg",
     "videos": [],
     "lotes": [
@@ -452,6 +446,12 @@
         "costoUnitario": 7406.2,
         "_id": "69fa2e621ef058f44b22d569",
         "fechaIngreso": "2026-05-05T17:52:34.686Z"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 4797.25,
+        "_id": "6a066172d26c4a08bc2ca6c2",
+        "fechaIngreso": "2026-05-14T23:57:38.543Z"
       }
     ],
     "isCombo": false,
@@ -522,7 +522,7 @@
     "description": "Crema Corporal Hidratación Intensiva, Reparación 400 Ml",
     "category": "belleza y salud",
     "price": 10000,
-    "stock": 1,
+    "stock": 2,
     "image": "https://www.maxidescuento.com.ar/19734-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-reparacion-7798140254409.jpg",
     "videos": [],
     "lotes": [
@@ -531,6 +531,12 @@
         "costoUnitario": 4993.8,
         "_id": "69c41eecd4a1a79481122b35",
         "fechaIngreso": "2026-03-25T17:44:12.428Z"
+      },
+      {
+        "cantidad": 1,
+        "costoUnitario": 4571.64,
+        "_id": "6a04fc45cbe0756bc5952ded",
+        "fechaIngreso": "2026-05-13T22:33:41.970Z"
       }
     ],
     "isCombo": false,
@@ -674,7 +680,7 @@
     "description": "Coat spray sellado antifrizz",
     "category": "belleza y salud",
     "price": 10000,
-    "stock": 1,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/tresemmespraycoat.jpg",
     "videos": [],
     "lotes": [
@@ -683,6 +689,12 @@
         "costoUnitario": 6736.51,
         "_id": "69b480aa125710d75a925e4b",
         "fechaIngreso": "2026-03-13T21:24:58.164Z"
+      },
+      {
+        "cantidad": 1,
+        "costoUnitario": 5036.82,
+        "_id": "6a04f8dacbe0756bc5952b95",
+        "fechaIngreso": "2026-05-13T22:19:06.864Z"
       }
     ],
     "isCombo": false,
@@ -760,17 +772,10 @@
     "description": "Crema Facial Antiedad Con Ácido Hialurónico 60g",
     "category": "belleza y salud",
     "price": 16000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/cicatricurefacialantiedad.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b14"
-      }
-    ],
+    "lotes": [],
     "isCombo": false,
     "combo": []
   },
@@ -979,17 +984,10 @@
     "description": "Purificador de agua con filtro cerámico",
     "category": "hogar",
     "price": 11000,
-    "stock": 2,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/sws01.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 2,
-        "costoUnitario": 5341.66,
-        "_id": "699f3626afa7497fba9230bb",
-        "fechaIngreso": "2026-02-25T17:49:26.696Z"
-      }
-    ],
+    "lotes": [],
     "isCombo": false,
     "combo": []
   },
@@ -1038,7 +1036,7 @@
     "name": "Dove - Oleo + Serum Capilar Bond Intense Repair",
     "description": "Óleo + Serum Bifásico Dove Bond Intense Repair de 110 ml ",
     "category": "belleza y salud",
-    "price": 9000,
+    "price": 10000,
     "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/doveserumoleo.jpg",
     "videos": [],
@@ -1366,7 +1364,7 @@
   },
   {
     "id": 1761854974636,
-    "name": "Dove - Shampoo Bond Intense Repair",
+    "name": "Dove - Shampoo Bond Intense Repair x 200ml",
     "description": "Shampoo Dove Bond Intense Repair x 200ml",
     "category": "belleza y salud",
     "price": 4000,
@@ -1382,8 +1380,8 @@
     "name": "Dove - Acondicionador Bond Intense Repair",
     "description": "Acondicionador Dove Bond Intense Repair x 250ml",
     "category": "belleza y salud",
-    "price": 5000,
-    "stock": 1,
+    "price": 6000,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/doveacondicionador.jpg",
     "videos": [],
     "lotes": [
@@ -1392,6 +1390,12 @@
         "costoUnitario": 2360,
         "_id": "6903c71d999be216890251e0",
         "fechaIngreso": "2025-10-30T20:14:21.107Z"
+      },
+      {
+        "cantidad": 1,
+        "costoUnitario": 3050.49,
+        "_id": "6a04f777cbe0756bc59521fd",
+        "fechaIngreso": "2026-05-13T22:13:11.631Z"
       }
     ],
     "isCombo": false,
@@ -1402,7 +1406,7 @@
     "name": "Dove -  UV Repair and Glow",
     "description": "Oleo Dove Uv Repair x 110ml ",
     "category": "belleza y salud",
-    "price": 11000,
+    "price": 10000,
     "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/repairdoveuv.jpg",
     "videos": [],
@@ -1423,10 +1427,17 @@
     "description": "Tratamiento Capilar Dove Bond Intense Repair 250g ",
     "category": "belleza y salud",
     "price": 9000,
-    "stock": 0,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/mascaaradoverepair.jpg",
     "videos": [],
-    "lotes": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 5131.92,
+        "_id": "6a04f7cbcbe0756bc59524e2",
+        "fechaIngreso": "2026-05-13T22:14:35.113Z"
+      }
+    ],
     "isCombo": false,
     "combo": []
   },
@@ -1469,10 +1480,17 @@
     "description": "Acondicionador Dove UV Repair & Glow x 250ml",
     "category": "belleza y salud",
     "price": 6000,
-    "stock": 0,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/acondicionadoruvrepair.jpg",
     "videos": [],
-    "lotes": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 3050.49,
+        "_id": "6a04f77fcbe0756bc5952275",
+        "fechaIngreso": "2026-05-13T22:13:19.412Z"
+      }
+    ],
     "isCombo": false,
     "combo": []
   },
@@ -1482,10 +1500,17 @@
     "description": "Mascara de Rescate Capilar Dove UV Repair & Glow x 250g",
     "category": "belleza y salud",
     "price": 9000,
-    "stock": 0,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/mascarauvrepair.jpg",
     "videos": [],
-    "lotes": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 5131.92,
+        "_id": "6a04f7d1cbe0756bc595255a",
+        "fechaIngreso": "2026-05-13T22:14:41.842Z"
+      }
+    ],
     "isCombo": false,
     "combo": []
   },
@@ -1494,11 +1519,18 @@
     "name": "Dove - Shampoo UV Repair & Glow",
     "description": "\nShampoo Dove UV Repair & Glow x 400ml\n",
     "category": "belleza y salud",
-    "price": 5000,
-    "stock": 0,
+    "price": 7000,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/shampoouvrepair.jpg",
     "videos": [],
-    "lotes": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 3643.21,
+        "_id": "6a04f83fcbe0756bc595283f",
+        "fechaIngreso": "2026-05-13T22:16:31.438Z"
+      }
+    ],
     "isCombo": false,
     "combo": []
   },
@@ -1781,17 +1813,10 @@
     "description": "Tratamiento Amino-Silk 300ml",
     "category": "belleza y salud",
     "price": 4000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/sedaltoquemasca.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 2065.14,
-        "_id": "69c429b72828530fc78a982a",
-        "fechaIngreso": "2026-03-25T18:30:15.864Z"
-      }
-    ],
+    "lotes": [],
     "isCombo": false,
     "combo": []
   },
@@ -1902,6 +1927,114 @@
         "costoUnitario": 3193.16,
         "_id": "6a025b17a894cc4149656135",
         "fechaIngreso": "2026-05-11T22:41:27.210Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1778707749737,
+    "name": "Dove - Shampoo Bond Intense Repair",
+    "description": "Shampoo Dove Bond Intense Repair x 400ml",
+    "category": "belleza y salud",
+    "price": 7000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/dovebondrepairshampoo400.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 3643.21,
+        "_id": "6a04f83acbe0756bc59527c7",
+        "fechaIngreso": "2026-05-13T22:16:26.217Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1778709264446,
+    "name": "Combo Dove Bond Intense Repair",
+    "description": "Shampoo, Acondicionador, Máscara, Óleo+Sérum",
+    "category": "belleza y salud",
+    "price": 27000,
+    "stock": 999,
+    "image": "https://cristianargentina.github.io/assets/img/dovebondrepaircombo400.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": true,
+    "combo": [
+      {
+        "productId": 1757018373939,
+        "qty": 1,
+        "_id": "6a04f366cbe0756bc595201d"
+      },
+      {
+        "productId": 1761855038822,
+        "qty": 1,
+        "_id": "6a04f366cbe0756bc595201e"
+      },
+      {
+        "productId": 1763687310132,
+        "qty": 1,
+        "_id": "6a04f366cbe0756bc595201f"
+      },
+      {
+        "productId": 1778707749737,
+        "qty": 1,
+        "_id": "6a04f366cbe0756bc5952020"
+      }
+    ]
+  },
+  {
+    "id": 1778709682557,
+    "name": "Combo Dove UV Repair & Glow",
+    "description": "Oleo bifásico, Shampoo, Acondicionador, Máscara",
+    "category": "belleza y salud",
+    "price": 27000,
+    "stock": 999,
+    "image": "https://cristianargentina.github.io/assets/img/doveuvrepaircombo400.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": true,
+    "combo": [
+      {
+        "productId": 1762898001551,
+        "qty": 1,
+        "_id": "6a04f4b2cbe0756bc5952105"
+      },
+      {
+        "productId": 1763687535132,
+        "qty": 1,
+        "_id": "6a04f4b2cbe0756bc5952106"
+      },
+      {
+        "productId": 1763687120921,
+        "qty": 1,
+        "_id": "6a04f4b2cbe0756bc5952107"
+      },
+      {
+        "productId": 1763687310132,
+        "qty": 1,
+        "_id": "6a04f4b2cbe0756bc5952108"
+      }
+    ]
+  },
+  {
+    "id": 1778711219186,
+    "name": "Tresemme -  Máscara Keratina Antifrizz",
+    "description": "Máscara De Tratamiento Tresemme Keratina Antifrizz 300g ",
+    "category": "belleza y salud",
+    "price": 5000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/tresemmemascarakeratina.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 3384.15,
+        "_id": "6a04fae7cbe0756bc5952cff",
+        "fechaIngreso": "2026-05-13T22:27:51.180Z"
       }
     ],
     "isCombo": false,
