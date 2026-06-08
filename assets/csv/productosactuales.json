@@ -1,5 +1,136 @@
 [
   {
+    "id": 1,
+    "name": "Cicatricure - Firmeza",
+    "description": "Crema Corporal Hidratación Intensiva, Firmeza 400 Ml",
+    "category": "belleza y salud",
+    "price": 10000,
+    "stock": 0,
+    "image": "https://cristianargentina.github.io/assets/img/cicatricurecorporalfirmeza.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 2,
+    "name": "DiabeTX - Hidratante",
+    "description": "Crema Corporal Hidratante x 400 ml",
+    "category": "belleza y salud",
+    "price": 10000,
+    "stock": 0,
+    "image": "https://cristianargentina.github.io/assets/img/diabettxhidratante400.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 3,
+    "name": "DiabeTX - Urea + Calendula",
+    "description": "Crema Corporal Plus Urea 5% + Calendula 1% 200 ml",
+    "category": "belleza y salud",
+    "price": 9000,
+    "stock": 0,
+    "image": "https://media02.farmaciaslider.com.ar/27983-home_default/goicoechea-diabet-tx-plus-envase-x-200-ml.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 4,
+    "name": "Cicatricure - Neuro‑Zen",
+    "description": "Crema Facial Neuro‑Zen 50g",
+    "category": "belleza y salud",
+    "price": 16000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/cicatricureneurozen.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 9621.15,
+        "fechaIngreso": "2025-05-13T00:00:00.000Z",
+        "_id": "68a39a8802d19be1278bcd5b"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 5,
+    "name": "Cicatricure - Protector Solar",
+    "description": "Protector Solar Facial Fps 50 Antiage 50g",
+    "category": "belleza y salud",
+    "price": 12000,
+    "stock": 0,
+    "image": "https://cristianargentina.github.io/assets/img/cicatricuresolar.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 6,
+    "name": "Cicatricure - Ácido Hialurónico",
+    "description": "Crema Facial Antiedad Con Ácido Hialurónico 60g",
+    "category": "belleza y salud",
+    "price": 16000,
+    "stock": 0,
+    "image": "https://cristianargentina.github.io/assets/img/cicatricurefacialantiedad.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 7,
+    "name": "Cicatricure - Colágeno",
+    "description": "Crema Facial Antiedad Con Colágeno 50g",
+    "category": "belleza y salud",
+    "price": 16000,
+    "stock": 3,
+    "image": "https://cristianargentina.github.io/assets/img/cicatricurefacialcolageno.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 4883.2,
+        "fechaIngreso": "2025-04-30T00:00:00.000Z",
+        "_id": "68a39b2702d19be1278bcd9f"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 4883.2,
+        "fechaIngreso": "2025-02-25T00:00:00.000Z",
+        "_id": "68a39ba802d19be1278bcde3"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 8,
+    "name": "Cicatricure - Antiestrías",
+    "description": "Crema Corporal Hidratación Intensiva, Antiestrías 400 Ml",
+    "category": "belleza y salud",
+    "price": 11000,
+    "stock": 1,
+    "image": "https://www.maxidescuento.com.ar/22725-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-anti-estrias-7798140254423.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 5813.34,
+        "_id": "69fa2e881ef058f44b22d5d9",
+        "fechaIngreso": "2026-05-05T17:53:12.516Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
     "id": 9,
     "name": "Cicatricure - Gel Cicatrices",
     "description": "Gel Cicatrices Y Estrías X 60g",
@@ -20,6 +151,32 @@
     "combo": []
   },
   {
+    "id": 10,
+    "name": "Cicatricure - Reparación",
+    "description": "Crema Corporal Hidratación Intensiva, Reparación 400 Ml",
+    "category": "belleza y salud",
+    "price": 10000,
+    "stock": 2,
+    "image": "https://www.maxidescuento.com.ar/19734-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-reparacion-7798140254409.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 4993.8,
+        "_id": "69c41eecd4a1a79481122b35",
+        "fechaIngreso": "2026-03-25T17:44:12.428Z"
+      },
+      {
+        "cantidad": 1,
+        "costoUnitario": 4571.64,
+        "_id": "6a04fc45cbe0756bc5952ded",
+        "fechaIngreso": "2026-05-13T22:33:41.970Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
     "id": 11,
     "name": "Cicatricure - Reparación intensiva",
     "description": "Crema corporal con 10% urea 250g",
@@ -27,217 +184,6 @@
     "price": 10000,
     "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/cicatricureureapote.jpg",
-    "videos": [],
-    "lotes": [],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 15,
-    "name": "Cicatricure - gold lift contorno duo",
-    "description": "Crema Cicatricure Gold Lift Contorno Duo 15g",
-    "category": "belleza y salud",
-    "price": 15000,
-    "stock": 0,
-    "image": "https://media02.farmaciaslider.com.ar/27935-home_default/cicatricure-contorno-de-ojos-y-boca-gold-lift-15g.jpg",
-    "videos": [],
-    "lotes": [],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 16,
-    "name": "Elvive - Oleo Extraordinario",
-    "description": "Oleo Extraordinario Elvive x 100 ml",
-    "category": "belleza y salud",
-    "price": 11000,
-    "stock": 2,
-    "image": "https://cristianargentina.github.io/assets/img/elviveoleoextraordinario.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 6678,
-        "_id": "69e6a4690433919a5776bc49",
-        "fechaIngreso": "2026-04-20T22:10:49.077Z"
-      },
-      {
-        "cantidad": 1,
-        "costoUnitario": 7123.2,
-        "_id": "69f23289fca44c8a3920481d",
-        "fechaIngreso": "2026-04-29T16:32:09.372Z"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 17,
-    "name": "Dove - Nutrición + Geranio",
-    "description": "Máscara de Tratamiento Nutrición + Geranio 190 ml",
-    "category": "belleza y salud",
-    "price": 4000,
-    "stock": 1,
-    "image": "https://cristianargentina.github.io/assets/img/doveplantasgeranio.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 996,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b2a"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 18,
-    "name": "Dove - Fuerza + Bambú",
-    "description": "Máscara de Tratamiento Fuerza + Bambú 190 ml",
-    "category": "belleza y salud",
-    "price": 4000,
-    "stock": 0,
-    "image": "https://cristianargentina.github.io/assets/img/doveplantasbamboo.jpg",
-    "videos": [],
-    "lotes": [],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 21,
-    "name": "Diabet Tx - Urea 250g",
-    "description": "Goicoechea Diabet Tx Plus con Urea 250g",
-    "category": "belleza y salud",
-    "price": 13000,
-    "stock": 1,
-    "image": "https://cristianargentina.github.io/assets/img/diabettxplusureapote.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 4992.3,
-        "_id": "691b588ba5b6642f423939c0",
-        "fechaIngreso": "2025-11-17T17:16:59.438Z"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 29,
-    "name": "Panel luz‑led con trípode",
-    "description": "Panel fotográfico luz led de estudio con trípode",
-    "category": "iluminacion",
-    "price": 20000,
-    "stock": 1,
-    "image": "https://cristianargentina.github.io/assets/img/panelledcontripodesinrotula.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 12499.5,
-        "_id": "69e6e7f88219f402592fa0bb",
-        "fechaIngreso": "2026-04-21T02:59:04.021Z"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 32,
-    "name": "Proyector De Estrella",
-    "description": "Proyector De Estrella USB Luz Nocturna Ajustable ROJO o AZUL",
-    "category": "iluminacion",
-    "price": 15000,
-    "stock": 7,
-    "image": "https://cristianargentina.github.io/assets/img/proyectorestrellasauto.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 7,
-        "costoUnitario": 4290,
-        "_id": "68aef50adc81e80048adb2de",
-        "fechaIngreso": "2025-08-27T12:07:38.271Z"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 41,
-    "name": "Cortadora de pelo Dragon",
-    "description": "Cortadora de pelo, definidora carga USB",
-    "category": "belleza y salud",
-    "price": 15000,
-    "stock": 3,
-    "image": "https://cristianargentina.github.io/assets/img/trimmerDragon.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 3,
-        "costoUnitario": 6299.29,
-        "fechaIngreso": "2025-02-08T00:00:00.000Z",
-        "_id": "68a3273e8309095ba5a3d429"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 43,
-    "name": "Anafe portátil",
-    "description": "Mini anafe portátil plegable a gas butano",
-    "category": "hogar",
-    "price": 20000,
-    "stock": 4,
-    "image": "https://cristianargentina.github.io/assets/img/anafeagasbutano.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 4,
-        "costoUnitario": 8249,
-        "fechaIngreso": "2025-07-09T00:00:00.000Z",
-        "_id": "68a3a20702d19be1278bd018"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 4,
-    "name": "Cicatricure - Neuro‑Zen",
-    "description": "Crema Facial Neuro‑Zen 50g",
-    "category": "belleza y salud",
-    "price": 16000,
-    "stock": 2,
-    "image": "https://cristianargentina.github.io/assets/img/cicatricureneurozen.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 112455,
-        "fechaIngreso": "2025-05-19T00:00:00.000Z",
-        "_id": "68a390af02d19be1278bc9ca"
-      },
-      {
-        "cantidad": 1,
-        "costoUnitario": 9621.15,
-        "fechaIngreso": "2025-05-13T00:00:00.000Z",
-        "_id": "68a39a8802d19be1278bcd5b"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 5,
-    "name": "Cicatricure - Protector Solar",
-    "description": "Protector Solar Facial Fps 50 Antiage 50g",
-    "category": "belleza y salud",
-    "price": 12000,
-    "stock": 0,
-    "image": "https://cristianargentina.github.io/assets/img/cicatricuresolar.jpg",
     "videos": [],
     "lotes": [],
     "isCombo": false,
@@ -309,6 +255,144 @@
     "combo": []
   },
   {
+    "id": 15,
+    "name": "Cicatricure - gold lift contorno duo",
+    "description": "Crema Cicatricure Gold Lift Contorno Duo 15g",
+    "category": "belleza y salud",
+    "price": 15000,
+    "stock": 0,
+    "image": "https://media02.farmaciaslider.com.ar/27935-home_default/cicatricure-contorno-de-ojos-y-boca-gold-lift-15g.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 16,
+    "name": "Elvive - Oleo Extraordinario",
+    "description": "Oleo Extraordinario Elvive x 100 ml",
+    "category": "belleza y salud",
+    "price": 11000,
+    "stock": 2,
+    "image": "https://cristianargentina.github.io/assets/img/elviveoleoextraordinario.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 7123.2,
+        "_id": "69f23289fca44c8a3920481d",
+        "fechaIngreso": "2026-04-29T16:32:09.372Z"
+      },
+      {
+        "cantidad": 1,
+        "costoUnitario": 6296.85,
+        "_id": "6a21e0c2df8cd371b3dd2082",
+        "fechaIngreso": "2026-06-04T20:32:02.647Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 17,
+    "name": "Dove - Nutrición + Geranio",
+    "description": "Máscara de Tratamiento Nutrición + Geranio 190 ml",
+    "category": "belleza y salud",
+    "price": 4000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/doveplantasgeranio.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 996,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b2a"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 18,
+    "name": "Dove - Fuerza + Bambú",
+    "description": "Máscara de Tratamiento Fuerza + Bambú 190 ml",
+    "category": "belleza y salud",
+    "price": 4000,
+    "stock": 0,
+    "image": "https://cristianargentina.github.io/assets/img/doveplantasbamboo.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 19,
+    "name": "Goicoechea - Crema Corporal 200ml",
+    "description": "Crema Corporal ANTICELULITIS, REAFIRMANTE CON TONIFYER, ULTRA NUTRITIVA 200 Ml",
+    "category": "belleza y salud",
+    "price": 5000,
+    "stock": 0,
+    "image": "https://cristianargentina.github.io/assets/img/goicoechea200varices.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 20,
+    "name": "Goicoechea - Crema Corporal 400ml",
+    "description": "Crema Corporal ANTICELULITIS 400 Ml",
+    "category": "belleza y salud",
+    "price": 10000,
+    "stock": 0,
+    "image": "https://cristianargentina.github.io/assets/img/goicoechea400anticelulitis.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 21,
+    "name": "Diabet Tx - Urea 250g",
+    "description": "Goicoechea Diabet Tx Plus con Urea 250g",
+    "category": "belleza y salud",
+    "price": 13000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/diabettxplusureapote.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 4992.3,
+        "_id": "691b588ba5b6642f423939c0",
+        "fechaIngreso": "2025-11-17T17:16:59.438Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 22,
+    "name": "Filtro para jarra de agua",
+    "description": "Filtro repuesto para jarras purificadoras de agua HUMMA BRITA AQUATAL",
+    "category": "hogar",
+    "price": 20000,
+    "stock": 3,
+    "image": "https://cristianargentina.github.io/assets/img/hummafiltrojarraagua.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 3,
+        "costoUnitario": 12629.755,
+        "fechaIngreso": "2025-08-12T00:00:00.000Z",
+        "_id": "68a3251b8309095ba5a3d288"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
     "id": 23,
     "name": "Tope Retén Magnético",
     "description": "Tope Reten Magnetico (para Puerta de Alacena/Placard/Mueble)",
@@ -353,223 +437,20 @@
     "combo": []
   },
   {
-    "id": 30,
-    "name": "Lámpara Giratoria RGB",
-    "description": "Lámpara Led Giratoria colores RGB",
-    "category": "iluminacion",
-    "price": 10000,
-    "stock": 0,
-    "image": "https://cristianargentina.github.io/assets/img/lamparagiratorialucesdecolor.jpg",
-    "videos": [],
-    "lotes": [],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 33,
-    "name": "Tapa de válvula luminosa",
-    "description": "Tapa de válvula luminosa VERDE ROJO AMARILLO AZUL LILA para auto, moto o bici (2 cantidad)",
-    "category": "iluminacion",
-    "price": 10000,
-    "stock": 999,
-    "image": null,
-    "videos": [
-      "ANi7AntZ3yk",
-      "JcOQ06g5xuQ",
-      "f9D91A4Mnas",
-      "TK2L3oZ7bJQ",
-      "PXDrcUiD2JI"
-    ],
-    "lotes": [
-      {
-        "cantidad": 999,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b4a"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 39,
-    "name": "Aire Acondicionado Split Surrey",
-    "description": "Aire Acondicionado Split Frío Calor 4500w Surrey, en sus cajas (sin usar)",
-    "category": "hogar",
-    "price": 850000,
+    "id": 24,
+    "name": "Soporte para tablet",
+    "description": "Soporte ergonómico para tablet regulable",
+    "category": "tecnologia",
+    "price": 6000,
     "stock": 1,
-    "image": "https://cristianargentina.github.io/assets/img/surreyaire.jpg",
+    "image": "https://cristianargentina.github.io/assets/img/soportetabletplastico.jpg",
     "videos": [],
     "lotes": [
       {
         "cantidad": 1,
         "costoUnitario": null,
         "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b56"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 42,
-    "name": "Piedra mágica",
-    "description": "Piedra depiladora mágica",
-    "category": "belleza y salud",
-    "price": 10000,
-    "stock": 1,
-    "image": "https://cristianargentina.github.io/assets/img/piedradepilatoria.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b5c"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 1753049727149,
-    "name": "Elvive - Serum Dream Liso",
-    "description": "Serum Elvive Dream Liso 100ml",
-    "category": "belleza y salud",
-    "price": 14000,
-    "stock": 3,
-    "image": "https://cristianargentina.github.io/assets/img/elviveserumdreamliso.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 7406.2,
-        "_id": "69fa2e621ef058f44b22d569",
-        "fechaIngreso": "2026-05-05T17:52:34.686Z"
-      },
-      {
-        "cantidad": 2,
-        "costoUnitario": 4797.25,
-        "_id": "6a066172d26c4a08bc2ca6c2",
-        "fechaIngreso": "2026-05-14T23:57:38.543Z"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 2,
-    "name": "DiabeTX - Hidratante",
-    "description": "Crema Corporal Hidratante x 400 ml",
-    "category": "belleza y salud",
-    "price": 10000,
-    "stock": 0,
-    "image": "https://cristianargentina.github.io/assets/img/diabettxhidratante400.jpg",
-    "videos": [],
-    "lotes": [],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 7,
-    "name": "Cicatricure - Colágeno",
-    "description": "Crema Facial Antiedad Con Colágeno 50g",
-    "category": "belleza y salud",
-    "price": 16000,
-    "stock": 4,
-    "image": "https://cristianargentina.github.io/assets/img/cicatricurefacialcolageno.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 2,
-        "costoUnitario": 4883.2,
-        "fechaIngreso": "2025-04-30T00:00:00.000Z",
-        "_id": "68a39b2702d19be1278bcd9f"
-      },
-      {
-        "cantidad": 2,
-        "costoUnitario": 4883.2,
-        "fechaIngreso": "2025-02-25T00:00:00.000Z",
-        "_id": "68a39ba802d19be1278bcde3"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 8,
-    "name": "Cicatricure - Antiestrías",
-    "description": "Crema Corporal Hidratación Intensiva, Antiestrías 400 Ml",
-    "category": "belleza y salud",
-    "price": 11000,
-    "stock": 1,
-    "image": "https://www.maxidescuento.com.ar/22725-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-anti-estrias-7798140254423.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 5813.34,
-        "_id": "69fa2e881ef058f44b22d5d9",
-        "fechaIngreso": "2026-05-05T17:53:12.516Z"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 10,
-    "name": "Cicatricure - Reparación",
-    "description": "Crema Corporal Hidratación Intensiva, Reparación 400 Ml",
-    "category": "belleza y salud",
-    "price": 10000,
-    "stock": 2,
-    "image": "https://www.maxidescuento.com.ar/19734-home_default/cicatricure-crema-corporal-hidratintensiva-x400m-reparacion-7798140254409.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 4993.8,
-        "_id": "69c41eecd4a1a79481122b35",
-        "fechaIngreso": "2026-03-25T17:44:12.428Z"
-      },
-      {
-        "cantidad": 1,
-        "costoUnitario": 4571.64,
-        "_id": "6a04fc45cbe0756bc5952ded",
-        "fechaIngreso": "2026-05-13T22:33:41.970Z"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 19,
-    "name": "Goicoechea - Crema Corporal 200ml",
-    "description": "Crema Corporal ANTICELULITIS, REAFIRMANTE CON TONIFYER, ULTRA NUTRITIVA 200 Ml",
-    "category": "belleza y salud",
-    "price": 5000,
-    "stock": 0,
-    "image": "https://cristianargentina.github.io/assets/img/goicoechea200varices.jpg",
-    "videos": [],
-    "lotes": [],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 22,
-    "name": "Filtro para jarra de agua",
-    "description": "Filtro repuesto para jarras purificadoras de agua HUMMA BRITA AQUATAL",
-    "category": "hogar",
-    "price": 20000,
-    "stock": 3,
-    "image": "https://cristianargentina.github.io/assets/img/hummafiltrojarraagua.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 3,
-        "costoUnitario": 12629.755,
-        "fechaIngreso": "2025-08-12T00:00:00.000Z",
-        "_id": "68a3251b8309095ba5a3d288"
+        "_id": "689bd1e0d9326923139c8b38"
       }
     ],
     "isCombo": false,
@@ -616,6 +497,39 @@
     "combo": []
   },
   {
+    "id": 29,
+    "name": "Panel luz‑led con trípode",
+    "description": "Panel fotográfico luz led de estudio con trípode",
+    "category": "iluminacion",
+    "price": 20000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/panelledcontripodesinrotula.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 12499.5,
+        "_id": "69e6e7f88219f402592fa0bb",
+        "fechaIngreso": "2026-04-21T02:59:04.021Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 30,
+    "name": "Lámpara Giratoria RGB",
+    "description": "Lámpara Led Giratoria colores RGB",
+    "category": "iluminacion",
+    "price": 10000,
+    "stock": 0,
+    "image": "https://cristianargentina.github.io/assets/img/lamparagiratorialucesdecolor.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
     "id": 31,
     "name": "Reloj - Proyector De Estrellas",
     "description": "Reloj Despertador Con Proyector De Estrellas",
@@ -625,6 +539,52 @@
     "image": "https://cristianargentina.github.io/assets/img/relojdesperadorproyectorestrellas.jpg",
     "videos": [],
     "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 32,
+    "name": "Proyector De Estrella",
+    "description": "Proyector De Estrella USB Luz Nocturna Ajustable ROJO o AZUL",
+    "category": "iluminacion",
+    "price": 15000,
+    "stock": 7,
+    "image": "https://cristianargentina.github.io/assets/img/proyectorestrellasauto.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 7,
+        "costoUnitario": 4290,
+        "_id": "68aef50adc81e80048adb2de",
+        "fechaIngreso": "2025-08-27T12:07:38.271Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 33,
+    "name": "Tapa de válvula luminosa",
+    "description": "Tapa de válvula luminosa VERDE ROJO AMARILLO AZUL LILA para auto, moto o bici (2 cantidad)",
+    "category": "iluminacion",
+    "price": 10000,
+    "stock": 999,
+    "image": null,
+    "videos": [
+      "ANi7AntZ3yk",
+      "JcOQ06g5xuQ",
+      "f9D91A4Mnas",
+      "TK2L3oZ7bJQ",
+      "PXDrcUiD2JI"
+    ],
+    "lotes": [
+      {
+        "cantidad": 999,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b4a"
+      }
+    ],
     "isCombo": false,
     "combo": []
   },
@@ -649,171 +609,6 @@
         "costoUnitario": 0,
         "_id": "69c722f9439355b79b690f32",
         "fechaIngreso": "2026-03-28T00:38:17.456Z"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 38,
-    "name": "Cerradura de Exterior Kallay",
-    "description": "Cerradura de Exterior 4006 Kallay",
-    "category": "hogar",
-    "price": 25000,
-    "stock": 1,
-    "image": "https://cristianargentina.github.io/assets/img/kallaycerradura.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b54"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 44,
-    "name": "TRESemmé - Spray sellado",
-    "description": "Coat spray sellado antifrizz",
-    "category": "belleza y salud",
-    "price": 10000,
-    "stock": 2,
-    "image": "https://cristianargentina.github.io/assets/img/tresemmespraycoat.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 6736.51,
-        "_id": "69b480aa125710d75a925e4b",
-        "fechaIngreso": "2026-03-13T21:24:58.164Z"
-      },
-      {
-        "cantidad": 1,
-        "costoUnitario": 5036.82,
-        "_id": "6a04f8dacbe0756bc5952b95",
-        "fechaIngreso": "2026-05-13T22:19:06.864Z"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 1753378215630,
-    "name": "Elvive - Serum Glycolic Gloss",
-    "description": "Serum Elvive Glycolic Gloss 100ml",
-    "category": "belleza y salud",
-    "price": 11000,
-    "stock": 2,
-    "image": "https://cristianargentina.github.io/assets/img/elviveserumglicolyc.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 2,
-        "costoUnitario": 6500.65,
-        "fechaIngreso": "2025-08-05T00:00:00.000Z",
-        "_id": "68a38e8202d19be1278bc801"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 1754014227211,
-    "name": "MESSI - Jabón Líquido",
-    "description": "Jabón Líquido y Shower Gel 300ml",
-    "category": "belleza y salud",
-    "price": 7000,
-    "stock": 2,
-    "image": "https://cristianargentina.github.io/assets/img/algabomessi.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 2,
-        "costoUnitario": 3449.25,
-        "fechaIngreso": "2025-07-31T00:00:00.000Z",
-        "_id": "68a388a002d19be1278bc5c6"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 1,
-    "name": "Cicatricure - Firmeza",
-    "description": "Crema Corporal Hidratación Intensiva, Firmeza 400 Ml",
-    "category": "belleza y salud",
-    "price": 10000,
-    "stock": 0,
-    "image": "https://cristianargentina.github.io/assets/img/cicatricurecorporalfirmeza.jpg",
-    "videos": [],
-    "lotes": [],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 3,
-    "name": "DiabeTX - Urea + Calendula",
-    "description": "Crema Corporal Plus Urea 5% + Calendula 1% 200 ml",
-    "category": "belleza y salud",
-    "price": 9000,
-    "stock": 0,
-    "image": "https://media02.farmaciaslider.com.ar/27983-home_default/goicoechea-diabet-tx-plus-envase-x-200-ml.jpg",
-    "videos": [],
-    "lotes": [],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 6,
-    "name": "Cicatricure - Ácido Hialurónico",
-    "description": "Crema Facial Antiedad Con Ácido Hialurónico 60g",
-    "category": "belleza y salud",
-    "price": 16000,
-    "stock": 0,
-    "image": "https://cristianargentina.github.io/assets/img/cicatricurefacialantiedad.jpg",
-    "videos": [],
-    "lotes": [],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 20,
-    "name": "Goicoechea - Crema Corporal 400ml",
-    "description": "Crema Corporal ANTICELULITIS 400 Ml",
-    "category": "belleza y salud",
-    "price": 9999.98,
-    "stock": 1,
-    "image": "https://cristianargentina.github.io/assets/img/goicoechea400anticelulitis.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 6086.85,
-        "_id": "6a0255b1a894cc4149655d32",
-        "fechaIngreso": "2026-05-11T22:18:25.894Z"
-      }
-    ],
-    "isCombo": false,
-    "combo": []
-  },
-  {
-    "id": 24,
-    "name": "Soporte para tablet",
-    "description": "Soporte ergonómico para tablet regulable",
-    "category": "tecnologia",
-    "price": 6000,
-    "stock": 1,
-    "image": "https://cristianargentina.github.io/assets/img/soportetabletplastico.jpg",
-    "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2025-01-01T00:00:00.000Z",
-        "_id": "689bd1e0d9326923139c8b38"
       }
     ],
     "isCombo": false,
@@ -880,6 +675,46 @@
     "combo": []
   },
   {
+    "id": 38,
+    "name": "Cerradura de Exterior Kallay",
+    "description": "Cerradura de Exterior 4006 Kallay",
+    "category": "hogar",
+    "price": 25000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/kallaycerradura.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b54"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 39,
+    "name": "Aire Acondicionado Split Surrey",
+    "description": "Aire Acondicionado Split Frío Calor 4500w Surrey, en sus cajas (sin usar)",
+    "category": "hogar",
+    "price": 850000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/surreyaire.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b56"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
     "id": 40,
     "name": "Heladera No Frost Patrick",
     "description": "Heladera No Frost Patrick HPK350",
@@ -894,6 +729,124 @@
         "costoUnitario": null,
         "fechaIngreso": "2025-01-01T00:00:00.000Z",
         "_id": "689bd1e0d9326923139c8b58"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 41,
+    "name": "Cortadora de pelo Dragon",
+    "description": "Cortadora de pelo, definidora carga USB",
+    "category": "belleza y salud",
+    "price": 15000,
+    "stock": 3,
+    "image": "https://cristianargentina.github.io/assets/img/trimmerDragon.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 3,
+        "costoUnitario": 6299.29,
+        "fechaIngreso": "2025-02-08T00:00:00.000Z",
+        "_id": "68a3273e8309095ba5a3d429"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 42,
+    "name": "Piedra mágica",
+    "description": "Piedra depiladora mágica",
+    "category": "belleza y salud",
+    "price": 10000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/piedradepilatoria.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": null,
+        "fechaIngreso": "2025-01-01T00:00:00.000Z",
+        "_id": "689bd1e0d9326923139c8b5c"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 43,
+    "name": "Anafe portátil",
+    "description": "Mini anafe portátil plegable a gas butano",
+    "category": "hogar",
+    "price": 20000,
+    "stock": 4,
+    "image": "https://cristianargentina.github.io/assets/img/anafeagasbutano.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 4,
+        "costoUnitario": 8249,
+        "fechaIngreso": "2025-07-09T00:00:00.000Z",
+        "_id": "68a3a20702d19be1278bd018"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 44,
+    "name": "TRESemmé - Spray sellado",
+    "description": "Coat spray sellado antifrizz",
+    "category": "belleza y salud",
+    "price": 10000,
+    "stock": 2,
+    "image": "https://cristianargentina.github.io/assets/img/tresemmespraycoat.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 6736.51,
+        "_id": "69b480aa125710d75a925e4b",
+        "fechaIngreso": "2026-03-13T21:24:58.164Z"
+      },
+      {
+        "cantidad": 1,
+        "costoUnitario": 5036.82,
+        "_id": "6a04f8dacbe0756bc5952b95",
+        "fechaIngreso": "2026-05-13T22:19:06.864Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1753049727149,
+    "name": "Elvive - Serum Dream Liso",
+    "description": "Serum Elvive Dream Liso 100ml",
+    "category": "belleza y salud",
+    "price": 13000,
+    "stock": 4,
+    "image": "https://cristianargentina.github.io/assets/img/elviveserumdreamliso.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 7406.2,
+        "_id": "69fa2e621ef058f44b22d569",
+        "fechaIngreso": "2026-05-05T17:52:34.686Z"
+      },
+      {
+        "cantidad": 2,
+        "costoUnitario": 4797.25,
+        "_id": "6a066172d26c4a08bc2ca6c2",
+        "fechaIngreso": "2026-05-14T23:57:38.543Z"
+      },
+      {
+        "cantidad": 1,
+        "costoUnitario": 6296.85,
+        "_id": "6a21e0dedf8cd371b3dd20ff",
+        "fechaIngreso": "2026-06-04T20:32:30.587Z"
       }
     ],
     "isCombo": false,
@@ -920,6 +873,46 @@
         "costoUnitario": 4504.15,
         "_id": "68d9b22abafec5eb5eb85438",
         "fechaIngreso": "2025-09-28T22:09:46.877Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1753378215630,
+    "name": "Elvive - Serum Glycolic Gloss",
+    "description": "Serum Elvive Glycolic Gloss 100ml",
+    "category": "belleza y salud",
+    "price": 11000,
+    "stock": 2,
+    "image": "https://cristianargentina.github.io/assets/img/elviveserumglicolyc.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 6500.65,
+        "fechaIngreso": "2025-08-05T00:00:00.000Z",
+        "_id": "68a38e8202d19be1278bc801"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1754014227211,
+    "name": "MESSI - Jabón Líquido",
+    "description": "Jabón Líquido y Shower Gel 300ml",
+    "category": "belleza y salud",
+    "price": 7000,
+    "stock": 2,
+    "image": "https://cristianargentina.github.io/assets/img/algabomessi.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 3449.25,
+        "fechaIngreso": "2025-07-31T00:00:00.000Z",
+        "_id": "68a388a002d19be1278bc5c6"
       }
     ],
     "isCombo": false,
@@ -984,10 +977,17 @@
     "description": "Purificador de agua con filtro cerámico",
     "category": "hogar",
     "price": 11000,
-    "stock": 0,
+    "stock": 3,
     "image": "https://cristianargentina.github.io/assets/img/sws01.jpg",
     "videos": [],
-    "lotes": [],
+    "lotes": [
+      {
+        "cantidad": 3,
+        "costoUnitario": 4500,
+        "_id": "6a2332449a2d234f80fc1550",
+        "fechaIngreso": "2026-06-05T20:32:04.614Z"
+      }
+    ],
     "isCombo": false,
     "combo": []
   },
@@ -1179,7 +1179,7 @@
     "description": "Shampoo Elvive óleo nutrición cabello seco 400ml",
     "category": "belleza y salud",
     "price": 6000,
-    "stock": 2,
+    "stock": 3,
     "image": "https://cristianargentina.github.io/assets/img/oleonutricionshampoo.jpg",
     "videos": [],
     "lotes": [
@@ -1194,6 +1194,12 @@
         "costoUnitario": 4944,
         "_id": "69f232ecfca44c8a39204894",
         "fechaIngreso": "2026-04-29T16:33:48.143Z"
+      },
+      {
+        "cantidad": 1,
+        "costoUnitario": 3636.75,
+        "_id": "6a15fa3773e90ad807bbeb37",
+        "fechaIngreso": "2026-05-26T19:53:27.734Z"
       }
     ],
     "isCombo": false,
@@ -1245,7 +1251,7 @@
     "description": "Shampoo Dream Liso Efecto Keratina 400Ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 5,
+    "stock": 6,
     "image": "https://cristianargentina.github.io/assets/img/dreamshampoo.jpg",
     "videos": [],
     "lotes": [
@@ -1266,6 +1272,12 @@
         "costoUnitario": 2828.57,
         "_id": "69bc5d48f384d16c1d81bc4f",
         "fechaIngreso": "2026-03-19T20:32:08.168Z"
+      },
+      {
+        "cantidad": 1,
+        "costoUnitario": 4059.25,
+        "_id": "6a15fa1673e90ad807bbeabe",
+        "fechaIngreso": "2026-05-26T19:52:54.354Z"
       }
     ],
     "isCombo": false,
@@ -1573,12 +1585,12 @@
     "description": "Mini Linterna recargable con encendedor USB",
     "category": "iluminacion",
     "price": 6000,
-    "stock": 3,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/encendedorlinterna4.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 3,
+        "cantidad": 2,
         "costoUnitario": 2500,
         "_id": "697d37708f5c070c838b4ecc",
         "fechaIngreso": "2026-01-30T22:57:52.373Z"
@@ -1646,17 +1658,10 @@
     "description": "copiador de control para dispositivos",
     "category": "tecnologia",
     "price": 10000,
-    "stock": 2,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/controlporton0.webp",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 2,
-        "costoUnitario": 3500,
-        "_id": "697d4fc007016d3c9ad560f5",
-        "fechaIngreso": "2026-01-31T00:41:36.977Z"
-      }
-    ],
+    "lotes": [],
     "isCombo": false,
     "combo": []
   },
@@ -2037,6 +2042,45 @@
         "fechaIngreso": "2026-05-13T22:27:51.180Z"
       }
     ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1780702985893,
+    "name": "Audifono Amplificador",
+    "description": "Audifono hasta 40 db, adaptadores, pilas.",
+    "category": "belleza y salud",
+    "price": 12000,
+    "stock": 2,
+    "image": "https://cristianargentina.github.io/assets/img/audifonoamplificador.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1780704354812,
+    "name": "Mini Molinillo para hierbas",
+    "description": "Molinillo carga Usb, 4 cuchillas.",
+    "category": "hogar",
+    "price": 10000,
+    "stock": 4,
+    "image": "https://cristianargentina.github.io/assets/img/minimolinillo.jpg",
+    "videos": [],
+    "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1780935907247,
+    "name": "Mini Compresor Portatil",
+    "description": "Compresor, 150 PSI, 2000 mAh.",
+    "category": "hogar",
+    "price": 40000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/compresorportatil.jpg",
+    "videos": [],
+    "lotes": [],
     "isCombo": false,
     "combo": []
   }
