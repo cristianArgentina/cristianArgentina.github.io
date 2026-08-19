@@ -2042,5 +2042,25 @@
     ],
     "isCombo": false,
     "combo": []
+  },
+  {
+    "id": 1787172071621,
+    "name": "Nivea - Creme 150ml",
+    "description": "crema en lata Nivea creme 150ml",
+    "category": "belleza y salud",
+    "price": 7000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/niveacreme150ml.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 4267.5,
+        "_id": "6a861500eb905dd4c16b7819",
+        "fechaIngreso": "2026-08-19T20:41:36.467Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
   }
 ]
