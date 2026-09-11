@@ -12,6 +12,8 @@ const SHEET_ID =
 const SHEET_GID =
     "1393518485";
 
+const IMAGENES_SHEET_GID = "1823752636";
+
 const SHEET_CSV_URL =
     `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${SHEET_GID}`;
 
@@ -70,25 +72,41 @@ async function iniciar() {
 
     try {
 
-        actualizarEstado("Cargando datos...");
+        actualizarEstado(
+            "Cargando datos..."
+        );
 
-        const filas = await cargarDatos();
 
-        procesarFilas(filas);
+        const [filas, imagenes] =
+            await Promise.all([
+                cargarDatos(),
+                cargarImagenesProductos()
+            ]);
+
+
+        procesarFilas(
+            filas,
+            imagenes
+        );
+
 
         renderizarCatalogo();
+
 
         actualizarEstado(
             `${productos.size} productos encontrados`
         );
 
+
     } catch (error) {
 
         console.error(error);
 
+
         actualizarEstado(
             "No se pudieron cargar los precios."
         );
+
 
         mostrarErrorCarga();
     }
@@ -181,6 +199,101 @@ async function cargarDatos() {
     return filas;
 }
 
+async function cargarImagenesProductos() {
+
+    const url =
+        `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${IMAGENES_SHEET_GID}`;
+
+    const respuesta = await fetch(
+        url,
+        {
+            cache: "no-store"
+        }
+    );
+
+    if (!respuesta.ok) {
+
+        throw new Error(
+            `Error HTTP imágenes ${respuesta.status}`
+        );
+    }
+
+    const texto =
+        await respuesta.text();
+
+    const filas =
+        parsearCSV(texto);
+
+    const imagenes =
+        new Map();
+
+    if (!filas.length) {
+        return imagenes;
+    }
+
+    const encabezados =
+        filas[0].map(
+            valor =>
+                valor.trim().toLowerCase()
+        );
+
+    const indiceEAN =
+        encabezados.indexOf("ean");
+
+    const indiceImagen =
+        encabezados.indexOf("imageurl");
+
+
+    if (
+        indiceEAN === -1 ||
+        indiceImagen === -1
+    ) {
+
+        console.warn(
+            "Imagenes_Productos no contiene las columnas ean e imageurl."
+        );
+
+        return imagenes;
+    }
+
+
+    for (
+        let i = 1;
+        i < filas.length;
+        i++
+    ) {
+
+        const ean =
+            limpiar(
+                filas[i][indiceEAN]
+            );
+
+        const imageurl =
+            limpiar(
+                filas[i][indiceImagen]
+            );
+
+
+        if (
+            ean &&
+            imageurl
+        ) {
+
+            imagenes.set(
+                ean,
+                imageurl
+            );
+        }
+    }
+
+
+    console.log(
+        `Imágenes cargadas: ${imagenes.size}`
+    );
+
+
+    return imagenes;
+}
 
 /*
  * ============================================================
@@ -359,7 +472,10 @@ function parsearCSV(texto) {
  * ============================================================
  */
 
-function procesarFilas(filas) {
+function procesarFilas(
+    filas,
+    imagenes = new Map()
+) {
 
     productos.clear();
 
@@ -494,7 +610,8 @@ function procesarFilas(filas) {
 
                     linea,
 
-                    imagen: null,
+                    imagen:
+                        imagenes.get(ean) || null,
 
                     sitios: {}
                 }
