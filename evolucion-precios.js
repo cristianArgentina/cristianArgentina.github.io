@@ -14,6 +14,8 @@ const SHEET_GID =
 
 const IMAGENES_SHEET_GID = "1823752636";
 
+const DESCUENTOS_SHEET_GID = "1075623142";
+
 const SHEET_CSV_URL =
     `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${SHEET_GID}`;
 
@@ -33,6 +35,7 @@ let productoActual = null;
 
 let vistaActual = "grid";
 
+let descuentosPorComercio = {};
 
 /*
  * ============================================================
@@ -80,7 +83,8 @@ async function iniciar() {
         const [filas, imagenes] =
             await Promise.all([
                 cargarDatos(),
-                cargarImagenesProductos()
+                cargarImagenesProductos(),
+                cargarDescuentos()
             ]);
 
 
@@ -293,6 +297,119 @@ async function cargarImagenesProductos() {
 
 
     return imagenes;
+}
+
+async function cargarDescuentos() {
+
+    const url =
+        `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${DESCUENTOS_SHEET_GID}`;
+
+    const respuesta = await fetch(
+        url,
+        {
+            cache: "no-store"
+        }
+    );
+
+    if (!respuesta.ok) {
+        throw new Error(
+            `Error HTTP descuentos ${respuesta.status}`
+        );
+    }
+
+    const texto =
+        await respuesta.text();
+
+    const filas =
+        parsearCSV(texto);
+
+    descuentosPorComercio = {};
+
+    if (!filas.length) {
+        return;
+    }
+
+    const encabezados =
+        filas[0].map(
+            valor =>
+                valor
+                    .trim()
+                    .toLowerCase()
+        );
+
+    const indiceComercio =
+        encabezados.indexOf(
+            "comercio"
+        );
+
+    const indiceDescuento =
+        encabezados.indexOf(
+            "descuento"
+        );
+
+    if (
+        indiceComercio === -1 ||
+        indiceDescuento === -1
+    ) {
+        console.warn(
+            "No se encontraron las columnas Comercio y Descuento."
+        );
+        return;
+    }
+
+    for (
+        let i = 1;
+        i < filas.length;
+        i++
+    ) {
+
+        const comercio =
+            String(
+                filas[i][indiceComercio] || ""
+            )
+                .trim()
+                .toLowerCase();
+
+        let descuento =
+            String(
+                filas[i][indiceDescuento] || ""
+            )
+                .trim();
+
+        if (!comercio) {
+            continue;
+        }
+
+        /*
+         * Ejemplos:
+         * 20,00%
+         * 30,00%
+         * 42,50%
+         */
+
+        descuento =
+            descuento
+                .replace("%", "")
+                .replace(",", ".");
+
+        const numero =
+            Number(descuento);
+
+        if (
+            Number.isFinite(numero) &&
+            numero >= 0 &&
+            numero <= 100
+        ) {
+            descuentosPorComercio[
+                comercio
+            ] = numero;
+        }
+    }
+
+    console.log(
+        "Descuentos cargados:",
+        descuentosPorComercio
+    );
 }
 
 /*
@@ -701,6 +818,13 @@ function procesarFilas(
                 sitio.lecturas[
                     sitio.lecturas.length - 1
                 ];
+
+            sitio.penultima =
+                sitio.lecturas.length >= 2
+                    ? sitio.lecturas[
+                        sitio.lecturas.length - 2
+                    ]
+                    : null;
         }
     }
 }
@@ -1257,6 +1381,65 @@ function renderizarComercios() {
  * ============================================================
  */
 
+function calcularVariacionPrecio(
+    actual,
+    anterior
+) {
+
+    if (
+        typeof actual !== "number" ||
+        typeof anterior !== "number" ||
+        anterior <= 0
+    ) {
+        return null;
+    }
+
+    return (
+        (actual - anterior) /
+        anterior
+    ) * 100;
+}
+
+function obtenerTextoTendencia(
+    actual,
+    anterior
+) {
+
+    const variacion =
+        calcularVariacionPrecio(
+            actual,
+            anterior
+        );
+
+    if (variacion === null) {
+        return "";
+    }
+
+    if (variacion < 0) {
+
+        return `
+            <div class="tendencia-precio tendencia-baja">
+                ↓ Bajó ${Math.abs(variacion).toFixed(2)}%
+            </div>
+        `;
+    }
+
+    if (variacion > 0) {
+
+        return `
+            <div class="tendencia-precio tendencia-sube">
+                ↑ Subió ${variacion.toFixed(2)}%
+            </div>
+        `;
+    }
+
+    return `
+        <div class="tendencia-precio tendencia-igual">
+            = Sin cambios
+        </div>
+    `;
+}
+
 function crearTarjetaComercio(
     item,
     esMejor
@@ -1286,6 +1469,15 @@ function crearTarjetaComercio(
 
     const ultima =
         sitio.ultima;
+
+    const penultima =
+    sitio.penultima;
+
+    const tendencia =
+        obtenerTextoTendencia(
+            ultima?.precio,
+            penultima?.precio
+        );
 
 
     tarjeta.innerHTML = `
@@ -1324,7 +1516,7 @@ function crearTarjetaComercio(
             </strong>
 
         </div>
-
+        ${tendencia}
 
         <label class="descuento-label">
 
@@ -1495,7 +1687,14 @@ function obtenerDescuento(
 
 
     if (valor === null) {
-        return 0;
+
+        return (
+            descuentosPorComercio[
+                String(sitio)
+                    .trim()
+                    .toLowerCase()
+            ] ?? 0
+        );
     }
 
 
