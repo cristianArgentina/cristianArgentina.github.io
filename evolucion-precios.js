@@ -985,10 +985,15 @@ function crearTarjetaProducto(producto) {
             producto
         );
 
-
     const precio =
         obtenerPrecioMinimo(
             producto
+        );
+
+    const tendencia =
+        obtenerTendenciaPrecioMinimo(
+            producto,
+            precio
         );
 
 
@@ -1063,6 +1068,7 @@ function crearTarjetaProducto(producto) {
                         }
                     </div>
 
+                    ${tendencia}
                 </div>
 
 
@@ -1123,7 +1129,138 @@ function obtenerPrecioMinimo(producto) {
     return Math.min(...precios);
 }
 
+/*
+ * ============================================================
+ * TENDENCIA DEL PRECIO MÍNIMO
+ * ============================================================
+ */
 
+function obtenerMinimoDeLecturaAnterior(producto) {
+
+    const lecturasPorFecha = new Map();
+
+    for (const sitio of Object.values(producto.sitios)) {
+
+        for (const lectura of sitio.lecturas) {
+
+            if (
+                typeof lectura.precio !== "number" ||
+                lectura.precio <= 0
+            ) {
+                continue;
+            }
+
+            const fecha =
+                convertirFecha(lectura.fecha);
+
+            if (!fecha) {
+                continue;
+            }
+
+            if (!lecturasPorFecha.has(fecha)) {
+                lecturasPorFecha.set(
+                    fecha,
+                    []
+                );
+            }
+
+            lecturasPorFecha
+                .get(fecha)
+                .push(lectura.precio);
+        }
+    }
+
+    const fechas =
+        [...lecturasPorFecha.keys()]
+            .sort((a, b) => b - a);
+
+    /*
+     * La primera fecha es la lectura actual.
+     * La segunda fecha es la lectura anterior.
+     */
+    if (fechas.length < 2) {
+        return null;
+    }
+
+    const fechaAnterior =
+        fechas[1];
+
+    const preciosAnteriores =
+        lecturasPorFecha.get(
+            fechaAnterior
+        );
+
+    if (
+        !preciosAnteriores ||
+        !preciosAnteriores.length
+    ) {
+        return null;
+    }
+
+    return Math.min(
+        ...preciosAnteriores
+    );
+}
+
+
+function obtenerTendenciaPrecioMinimo(
+    producto,
+    precioActual
+) {
+
+    if (
+        typeof precioActual !== "number" ||
+        precioActual <= 0
+    ) {
+        return "";
+    }
+
+    const precioAnterior =
+        obtenerMinimoDeLecturaAnterior(
+            producto
+        );
+
+    if (
+        typeof precioAnterior !== "number" ||
+        precioAnterior <= 0
+    ) {
+        return "";
+    }
+
+    const variacion =
+        calcularVariacionPrecio(
+            precioActual,
+            precioAnterior
+        );
+
+    if (variacion === null) {
+        return "";
+    }
+
+    if (variacion < 0) {
+
+        return `
+            <div class="tendencia-precio tendencia-baja">
+                ↓ Bajó ${Math.abs(variacion).toFixed(2)}%
+            </div>
+        `;
+    }
+
+    if (variacion > 0) {
+
+        return `
+            <div class="tendencia-precio tendencia-sube">
+                ↑ Subió ${variacion.toFixed(2)}%
+            </div>
+        `;
+    }
+
+    return `
+        <div class="tendencia-precio tendencia-igual">
+            = Sin cambios
+        </div>
+    `;
+}
 /*
  * ============================================================
  * DETALLE

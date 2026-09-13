@@ -8,7 +8,7 @@
     --ep-success: #16803c;
     --ep-success-bg: #eaf7ee;
     --ep-danger: #c62828;
-    --ep-shadow: 0 4px 18px rgba(0,0,0,.07);
+    --ep-shadow: 0 4px 18px rgba(0, 0, 0, .07);
 }
 
 * {
@@ -175,7 +175,7 @@ input {
 
 .producto-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,0,0,.11);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .11);
 }
 
 .producto-imagen {
@@ -499,7 +499,7 @@ input {
     position: absolute;
     inset: 0;
 
-    background: rgba(0,0,0,.55);
+    background: rgba(0, 0, 0, .55);
 }
 
 .modal-contenido {
@@ -517,7 +517,7 @@ input {
 
     padding: 25px;
 
-    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
 }
 
 .modal-cerrar {
@@ -646,4 +646,22 @@ input {
     .comercios {
         grid-template-columns: 1fr;
     }
+}
+
+.tendencia-precio {
+    margin-top: 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.tendencia-baja {
+    color: #16803c;
+}
+
+.tendencia-sube {
+    color: #c62828;
+}
+
+.tendencia-igual {
+    color: #666;
 }
