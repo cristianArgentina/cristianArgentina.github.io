@@ -1480,13 +1480,6 @@ function renderizarComercios() {
     const datos = comercios.map(
         ([id, sitio]) => {
 
-            const descuento =
-                obtenerDescuento(
-                    productoActual.ean,
-                    id
-                );
-
-
             const actualizado =
                 sitioEstaActualizado(sitio);
 
