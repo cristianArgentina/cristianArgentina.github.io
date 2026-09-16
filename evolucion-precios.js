@@ -22,7 +22,7 @@ const SHEET_CSV_URL =
 const CACHE_KEY = "evolucionPreciosCache";
 const CACHE_MAX_AGE = 10 * 60 * 1000;
 
-
+const MAX_EDAD_LECTURA_MS = 48 * 60 * 60 * 1000;
 /*
  * ============================================================
  * ESTADO
@@ -890,7 +890,31 @@ function convertirFecha(valor) {
     ).getTime();
 }
 
+function lecturaEstaActualizada(lectura) {
 
+    if (!lectura || !lectura.fecha) {
+        return false;
+    }
+
+    const timestamp =
+        convertirFecha(lectura.fecha);
+
+    if (!timestamp) {
+        return false;
+    }
+
+    return (
+        Date.now() - timestamp
+        <= MAX_EDAD_LECTURA_MS
+    );
+}
+
+function sitioEstaActualizado(sitio) {
+
+    return lecturaEstaActualizada(
+        sitio?.ultima
+    );
+}
 /*
  * ============================================================
  * CATALOGO
@@ -1101,16 +1125,14 @@ function obtenerPrecioMinimo(producto) {
 
     const precios = [];
 
-
     for (
         const sitio of
         Object.values(producto.sitios)
     ) {
 
         if (
-            sitio.ultima &&
-            typeof sitio.ultima.precio ===
-                "number" &&
+            sitioEstaActualizado(sitio) &&
+            typeof sitio.ultima.precio === "number" &&
             sitio.ultima.precio > 0
         ) {
 
@@ -1120,11 +1142,9 @@ function obtenerPrecioMinimo(producto) {
         }
     }
 
-
     if (!precios.length) {
         return null;
     }
-
 
     return Math.min(...precios);
 }
@@ -1426,6 +1446,18 @@ function renderizarComercios() {
     comercios.sort(
         ([, a], [, b]) => {
 
+            const actualizadoA =
+                sitioEstaActualizado(a);
+
+            const actualizadoB =
+                sitioEstaActualizado(b);
+
+            if (actualizadoA !== actualizadoB) {
+                return actualizadoA
+                    ? -1
+                    : 1;
+            }
+
             const precioA =
                 a.ultima?.precio ?? Infinity;
 
@@ -1455,15 +1487,27 @@ function renderizarComercios() {
                 );
 
 
-            const precio =
-                sitio.ultima?.precio;
+            const actualizado =
+                sitioEstaActualizado(sitio);
 
+            const descuento =
+                obtenerDescuento(
+                    productoActual.ean,
+                    id
+                );
+
+            const precio =
+                actualizado
+                    ? sitio.ultima?.precio
+                    : null;
 
             const efectivo =
-                calcularPrecioEfectivo(
-                    precio,
-                    descuento
-                );
+                actualizado
+                    ? calcularPrecioEfectivo(
+                        precio,
+                        descuento
+                    )
+                    : null;
 
 
             return {
@@ -1471,7 +1515,8 @@ function renderizarComercios() {
                 sitio,
                 descuento,
                 precio,
-                efectivo
+                efectivo,
+                actualizado
             };
         }
     );
@@ -1595,12 +1640,20 @@ function crearTarjetaComercio(
         document.createElement("article");
 
 
+    const actualizado =
+        sitioEstaActualizado(sitio);
+
     tarjeta.className =
         "comercio-card" +
         (
             esMejor
                 ? " mejor"
                 : ""
+        ) +
+        (
+            actualizado
+                ? ""
+                : " lectura-desactualizada"
         );
 
 
@@ -1635,6 +1688,16 @@ function crearTarjetaComercio(
                 sitio.nombre
             )}
         </div>
+
+        ${
+            actualizado
+                ? ""
+                : `
+                    <div class="alerta-lectura">
+                        ⚠️ Lectura desactualizada
+                    </div>
+                `
+        }
 
 
         <div class="comercio-precio-publicado">
@@ -2389,17 +2452,14 @@ function convertirPrecio(valor) {
 }
 
 
-function contarSitiosDisponibles(
-    producto
-) {
+function contarSitiosDisponibles(producto) {
 
     return Object.values(
         producto.sitios
     ).filter(
         sitio =>
-            sitio.ultima &&
-            typeof sitio.ultima.precio ===
-                "number" &&
+            sitioEstaActualizado(sitio) &&
+            typeof sitio.ultima.precio === "number" &&
             sitio.ultima.precio > 0
     ).length;
 }

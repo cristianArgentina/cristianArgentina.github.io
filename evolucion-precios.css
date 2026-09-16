@@ -665,3 +665,31 @@ input {
 .tendencia-igual {
     color: #666;
 }
+
+.comercio-card.lectura-desactualizada {
+    background:
+        rgba(220, 53, 69, 0.10);
+    border-color:
+        rgba(220, 53, 69, 0.35);
+}
+
+.comercio-card.lectura-desactualizada
+.comercio-nombre {
+    opacity: 0.85;
+}
+
+.alerta-lectura {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 8px;
+    border-radius: 6px;
+
+    background:
+        rgba(220, 53, 69, 0.15);
+
+    color:
+        #b42332;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+}
