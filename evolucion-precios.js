@@ -1206,7 +1206,7 @@ function crearTarjetaProducto(producto) {
 
                     ${
                         comercioMinimo
-                            ? `.
+                            ? `
                                 <div class="producto-mejor-comercio">
 
                                     ${
