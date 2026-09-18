@@ -417,7 +417,8 @@ input {
 .comercio-precio-publicado strong {
     color: var(--ep-text);
     font-size: 19px;
-    
+}
+
 .descuento-label {
     display: flex;
     align-items: center;
