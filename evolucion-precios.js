@@ -83,29 +83,20 @@ async function iniciar() {
             "Cargando datos..."
         );
 
-
         const [filas, imagenes] =
             await Promise.all([
                 cargarDatos(),
                 cargarImagenesProductos(),
                 cargarDescuentos(),
                 cargarLogosComercios()
-            ]);
-
-        const filas =
-            resultados[0];
-
-        const imagenes =
-            resultados[1];    
+            ]);    
 
         procesarFilas(
             filas,
             imagenes
         );
 
-
         renderizarCatalogo();
-
 
         actualizarEstado(
             `${productos.size} productos encontrados`
@@ -116,11 +107,9 @@ async function iniciar() {
 
         console.error(error);
 
-
         actualizarEstado(
             "No se pudieron cargar los precios."
         );
-
 
         mostrarErrorCarga();
     }
