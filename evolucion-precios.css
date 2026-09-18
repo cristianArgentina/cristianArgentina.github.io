@@ -233,7 +233,8 @@ input {
 
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: flex-end;
+    gap: 8px;
 }
 
 .producto-desde {
@@ -249,6 +250,21 @@ input {
 .producto-sitios {
     font-size: 11px;
     color: var(--ep-muted);
+}
+
+.producto-mejor-comercio {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 0;
+    min-height: 30px;
+    flex: 0 0 75px;
+}
+
+.producto-mejor-comercio img {
+    width: 75px;
+    height: 30px;
+    object-fit: contain;
 }
 
 
@@ -401,10 +417,12 @@ input {
 .comercio-precio-publicado strong {
     color: var(--ep-text);
     font-size: 19px;
-}
-
+    
 .descuento-label {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 
     font-size: 12px;
     color: var(--ep-muted);
@@ -726,34 +744,29 @@ input {
     text-align: center;
 }
 
-.producto-mejor-comercio {
+.descuento-fila {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 7px;
-    margin-top: 5px;
-    min-height: 24px;
+    justify-content: space-between;
+    gap: 12px;
 
-    font-size: 0.82rem;
-    font-weight: 600;
+    margin-top: 15px;
 }
 
-.producto-mejor-comercio img {
-    width: 65px;
-    height: 24px;
-    object-fit: contain;
+.descuento-label {
+    font-size: 12px;
+    color: var(--ep-muted);
+    margin: 0;
 }
 
-.producto-mejor-comercio {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 6px;
-    min-height: 30px;
-}
+.descuento-input {
+    width: 80px;
+    flex-shrink: 0;
 
-.producto-mejor-comercio img {
-    width: 75px;
-    height: 30px;
-    object-fit: contain;
+    border: 1px solid var(--ep-border);
+    border-radius: 7px;
+
+    padding: 7px 9px;
+
+    text-align: right;
 }
