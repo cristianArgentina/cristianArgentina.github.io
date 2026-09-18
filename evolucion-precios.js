@@ -16,6 +16,8 @@ const IMAGENES_SHEET_GID = "1823752636";
 
 const DESCUENTOS_SHEET_GID = "1075623142";
 
+const LOGOS_COMERCIOS_SHEET_GID = "247832143";
+
 const SHEET_CSV_URL =
     `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${SHEET_GID}`;
 
@@ -36,6 +38,8 @@ let productoActual = null;
 let vistaActual = "grid";
 
 let descuentosPorComercio = {};
+
+let logosPorComercio = {};
 
 /*
  * ============================================================
@@ -84,9 +88,15 @@ async function iniciar() {
             await Promise.all([
                 cargarDatos(),
                 cargarImagenesProductos(),
-                cargarDescuentos()
+                cargarDescuentos(),
+                cargarLogosComercios()
             ]);
 
+        const filas =
+            resultados[0];
+
+        const imagenes =
+            resultados[1];    
 
         procesarFilas(
             filas,
@@ -297,6 +307,115 @@ async function cargarImagenesProductos() {
 
 
     return imagenes;
+}
+
+async function cargarLogosComercios() {
+
+    const url =
+        `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${LOGOS_COMERCIOS_SHEET_GID}`;
+
+    const respuesta = await fetch(
+        url,
+        {
+            cache: "no-store"
+        }
+    );
+
+    if (!respuesta.ok) {
+
+        throw new Error(
+            `Error HTTP logos comercios ${respuesta.status}`
+        );
+    }
+
+    const texto =
+        await respuesta.text();
+
+    const filas =
+        parsearCSV(texto);
+
+    logosPorComercio = {};
+
+    if (!filas.length) {
+        return;
+    }
+
+    const encabezados =
+        filas[0].map(
+            valor =>
+                valor
+                    .trim()
+                    .toLowerCase()
+        );
+
+    const indiceComercio =
+        encabezados.indexOf("comercio");
+
+    const indiceNombre =
+        encabezados.indexOf("nombre");
+
+    const indiceLogo =
+        encabezados.indexOf("logo_url");
+
+    if (
+        indiceComercio === -1 ||
+        indiceLogo === -1
+    ) {
+
+        console.warn(
+            "Logos_Comercios no contiene las columnas comercio y logo_url."
+        );
+
+        return;
+    }
+
+    for (
+        let i = 1;
+        i < filas.length;
+        i++
+    ) {
+
+        const comercio =
+            limpiar(
+                filas[i][indiceComercio]
+            )
+                .toLowerCase();
+
+        const nombre =
+            indiceNombre !== -1
+                ? limpiar(
+                    filas[i][indiceNombre]
+                )
+                : "";
+
+        const logo =
+            limpiar(
+                filas[i][indiceLogo]
+            );
+
+        if (
+            comercio &&
+            logo
+        ) {
+
+            logosPorComercio[
+                comercio
+            ] = {
+
+                logo,
+
+                nombre:
+                    nombre ||
+                    NOMBRES_SITIOS[comercio] ||
+                    comercio
+            };
+        }
+    }
+
+    console.log(
+        "Logos de comercios cargados:",
+        Object.keys(logosPorComercio).length
+    );
 }
 
 async function cargarDescuentos() {
@@ -1014,12 +1133,16 @@ function crearTarjetaProducto(producto) {
             producto
         );
 
+    const comercioMinimo =
+        obtenerComercioPrecioMinimo(
+            producto
+        );
+
     const tendencia =
         obtenerTendenciaPrecioMinimo(
             producto,
             precio
         );
-
 
     const sitios =
         contarSitiosDisponibles(
@@ -1092,6 +1215,45 @@ function crearTarjetaProducto(producto) {
                         }
                     </div>
 
+                    ${
+                        comercioMinimo
+                            ? `
+                                <div class="producto-mejor-comercio">
+
+                                    ${
+                                        obtenerLogoComercio(
+                                            comercioMinimo.id
+                                        )
+                                            ? `
+                                                <img
+                                                    src="${escaparHTML(
+                                                        obtenerLogoComercio(
+                                                            comercioMinimo.id
+                                                        )
+                                                    )}"
+                                                    alt="${escaparHTML(
+                                                        comercioMinimo.nombre
+                                                    )}"
+                                                    loading="lazy"
+                                                    onerror="
+                                                        this.style.display='none';
+                                                    "
+                                                >
+                                            `
+                                            : ""
+                                    }
+
+                                    <span>
+                                        ${escaparHTML(
+                                            comercioMinimo.nombre
+                                        )}
+                                    </span>
+
+                                </div>
+                            `
+                            : ""
+                    }
+
                     ${tendencia}
                 </div>
 
@@ -1147,6 +1309,35 @@ function obtenerPrecioMinimo(producto) {
     }
 
     return Math.min(...precios);
+}
+
+function obtenerComercioPrecioMinimo(producto) {
+
+    let mejor = null;
+
+    for (const [id, sitio] of Object.entries(producto.sitios)) {
+
+        if (
+            !sitioEstaActualizado(sitio) ||
+            typeof sitio.ultima?.precio !== "number" ||
+            sitio.ultima.precio <= 0
+        ) {
+            continue;
+        }
+
+        if (
+            !mejor ||
+            sitio.ultima.precio < mejor.precio
+        ) {
+            mejor = {
+                id,
+                nombre: sitio.nombre,
+                precio: sitio.ultima.precio
+            };
+        }
+    }
+
+    return mejor;
 }
 
 /*
@@ -1676,10 +1867,37 @@ function crearTarjetaComercio(
         }
 
 
-        <div class="comercio-nombre">
-            ${escaparHTML(
-                sitio.nombre
-            )}
+        <div class="comercio-identidad">
+
+            ${
+                obtenerLogoComercio(id)
+                    ? `
+                        <div class="comercio-logo">
+
+                            <img
+                                src="${escaparHTML(
+                                    obtenerLogoComercio(id)
+                                )}"
+                                alt="${escaparHTML(
+                                    sitio.nombre
+                                )}"
+                                loading="lazy"
+                                onerror="
+                                    this.parentElement.style.display='none';
+                                "
+                            >
+
+                        </div>
+                    `
+                    : ""
+            }
+
+            <div class="comercio-nombre">
+                ${escaparHTML(
+                    sitio.nombre
+                )}
+            </div>
+
         </div>
 
         ${
@@ -2366,6 +2584,18 @@ function obtenerImagenProducto(producto) {
     return producto.imagen || null;
 }
 
+function obtenerLogoComercio(id) {
+
+    const comercio =
+        String(id || "")
+            .trim()
+            .toLowerCase();
+
+    return (
+        logosPorComercio[comercio]?.logo ||
+        null
+    );
+}
 
 /*
  * ============================================================
