@@ -743,3 +743,17 @@ input {
     height: 24px;
     object-fit: contain;
 }
+
+.producto-mejor-comercio {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 6px;
+    min-height: 30px;
+}
+
+.producto-mejor-comercio img {
+    width: 75px;
+    height: 30px;
+    object-fit: contain;
+}
