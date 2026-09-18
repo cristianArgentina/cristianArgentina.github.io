@@ -1915,23 +1915,23 @@ function crearTarjetaComercio(
         </div>
         ${tendencia}
 
-        <label class="descuento-label">
+        <div class="descuento-fila">
 
-            Tu descuento (%)
-
-        </label>
-
-
-        <input
-            class="descuento-input"
-            type="number"
-            min="0"
-            max="100"
-            step="0.1"
-            value="${descuento}"
-            data-sitio="${escaparHTML(id)}"
-        >
-
+            <label class="descuento-label">
+                Tu descuento (%)
+            </label>
+        
+            <input
+                class="descuento-input"
+                type="number"
+                min="0"
+                max="100"
+                step="0.1"
+                value="${descuento}"
+                data-sitio="${escaparHTML(id)}"
+            >
+        
+        </div>
 
         <div class="precio-efectivo">
 
