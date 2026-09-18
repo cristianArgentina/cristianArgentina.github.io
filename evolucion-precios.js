@@ -1206,7 +1206,7 @@ function crearTarjetaProducto(producto) {
 
                     ${
                         comercioMinimo
-                            ? `
+                            ? `.
                                 <div class="producto-mejor-comercio">
 
                                     ${
@@ -1223,6 +1223,9 @@ function crearTarjetaProducto(producto) {
                                                     alt="${escaparHTML(
                                                         comercioMinimo.nombre
                                                     )}"
+                                                    title="${escaparHTML(
+                                                        comercioMinimo.nombre
+                                                    )}"
                                                     loading="lazy"
                                                     onerror="
                                                         this.style.display='none';
@@ -1231,12 +1234,6 @@ function crearTarjetaProducto(producto) {
                                             `
                                             : ""
                                     }
-
-                                    <span>
-                                        ${escaparHTML(
-                                            comercioMinimo.nombre
-                                        )}
-                                    </span>
 
                                 </div>
                             `
