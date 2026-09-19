@@ -230,50 +230,48 @@ input {
     border-top: 1px solid var(--ep-border);
     margin-top: 12px;
     padding-top: 10px;
-
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-        "desde   comercio"
-        "precio  comercio"
-        "sitios  sitios";
-    column-gap: 8px;
-    row-gap: 2px;
-    align-items: center;
 }
 
-.producto-desde {
-    grid-area: desde;
-    font-size: 11px;
-    color: var(--ep-muted);
+.producto-precio-bloque {
+    min-width: 0;
+}
+
+.producto-precio-fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
 }
 
 .producto-precio {
-    grid-area: precio;
     font-size: 18px;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .producto-mejor-comercio {
-    grid-area: comercio;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    min-height: 30px;
-    flex: 0 0 75px;
-    align-self: center; /* queda centrado verticalmente frente a desde+precio */
+    flex: 0 0 auto;
 }
 
 .producto-mejor-comercio img {
-    width: 75px;
+    width: 65px;
     height: 30px;
     object-fit: contain;
 }
 
 .producto-sitios {
-    grid-area: sitios;
     font-size: 11px;
     color: var(--ep-muted);
+    margin-top: 3px;
+}
+
+.tendencia-precio {
+    margin-top: 3px;
+    font-size: 11px;
+    font-weight: 600;
 }
 
 /* LISTA */

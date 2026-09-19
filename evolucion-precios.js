@@ -1162,7 +1162,6 @@ function crearTarjetaProducto(producto) {
 
         </div>
 
-
         <div class="producto-info">
 
             <div class="producto-linea">
@@ -1178,71 +1177,48 @@ function crearTarjetaProducto(producto) {
                 )}
             </div>
 
-
             <div class="producto-ean">
                 EAN ${escaparHTML(
                     producto.ean
                 )}
             </div>
 
-
             <div class="producto-resumen">
 
-                <div>
+                <div class="producto-precio-bloque">
 
                     <div class="producto-desde">
                         Desde
                     </div>
 
-                    <div class="producto-precio">
+                    <div class="producto-precio-fila">
+
+                        <div class="producto-precio">
+                            ${
+                                precio !== null
+                                    ? formatearPrecio(precio)
+                                    : "Sin precio"
+                            }
+                        </div>
+
                         ${
-                            precio !== null
-                                ? formatearPrecio(
-                                    precio
-                                )
-                                : "Sin precio"
+                            producto.mejorComercioLogo
+                                ? `
+                                    <div class="producto-mejor-comercio">
+                                        <img
+                                            src="${escaparHTML(producto.mejorComercioLogo)}"
+                                            alt=""
+                                        >
+                                    </div>
+                                `
+                                : ""
                         }
+
                     </div>
 
-                    ${
-                        comercioMinimo
-                            ? `
-                                <div class="producto-mejor-comercio">
-
-                                    ${
-                                        obtenerLogoComercio(
-                                            comercioMinimo.id
-                                        )
-                                            ? `
-                                                <img
-                                                    src="${escaparHTML(
-                                                        obtenerLogoComercio(
-                                                            comercioMinimo.id
-                                                        )
-                                                    )}"
-                                                    alt="${escaparHTML(
-                                                        comercioMinimo.nombre
-                                                    )}"
-                                                    title="${escaparHTML(
-                                                        comercioMinimo.nombre
-                                                    )}"
-                                                    loading="lazy"
-                                                    onerror="
-                                                        this.style.display='none';
-                                                    "
-                                                >
-                                            `
-                                            : ""
-                                    }
-
-                                </div>
-                            `
-                            : ""
-                    }
-
                     ${tendencia}
-                </div>
 
+                </div>
 
                 <div class="producto-sitios">
                     ${sitios}
@@ -1257,7 +1233,6 @@ function crearTarjetaProducto(producto) {
 
         </div>
     `;
-
 
     return tarjeta;
 }
