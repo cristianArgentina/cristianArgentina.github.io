@@ -1127,6 +1127,13 @@ function crearTarjetaProducto(producto) {
             producto
         );
 
+    const logoComercioMinimo =
+        comercioMinimo
+            ? obtenerLogoComercio(
+                comercioMinimo.id
+            )
+            : null;    
+
     const tendencia =
         obtenerTendenciaPrecioMinimo(
             producto,
@@ -1202,12 +1209,14 @@ function crearTarjetaProducto(producto) {
                         </div>
 
                         ${
-                            producto.mejorComercioLogo
+                            logoComercioMinimo
                                 ? `
                                     <div class="producto-mejor-comercio">
                                         <img
-                                            src="${escaparHTML(producto.mejorComercioLogo)}"
-                                            alt=""
+                                            src="${escaparHTML(logoComercioMinimo)}"
+                                            alt="${escaparHTML(comercioMinimo.nombre)}"
+                                            loading="lazy"
+                                            onerror="this.parentElement.style.display='none';"
                                         >
                                     </div>
                                 `
