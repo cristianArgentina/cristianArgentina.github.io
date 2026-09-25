@@ -18,8 +18,15 @@ const DESCUENTOS_SHEET_GID = "1075623142";
 
 const LOGOS_COMERCIOS_SHEET_GID = "247832143";
 
+// Match_Productos se referencia por NOMBRE de pestaña (no por gid),
+// para no depender de su posición dentro del spreadsheet.
+const MATCH_PRODUCTOS_SHEET_NOMBRE = "Match_Productos";
+
 const SHEET_CSV_URL =
     `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${SHEET_GID}`;
+
+const MATCH_PRODUCTOS_CSV_URL =
+    `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(MATCH_PRODUCTOS_SHEET_NOMBRE)}`;
 
 const CACHE_KEY = "evolucionPreciosCache";
 const CACHE_MAX_AGE = 10 * 60 * 1000;
@@ -83,17 +90,19 @@ async function iniciar() {
             "Cargando datos..."
         );
 
-        const [filas, imagenes] =
+        const [filas, imagenes, , , mapaGrupos] =
             await Promise.all([
                 cargarDatos(),
                 cargarImagenesProductos(),
                 cargarDescuentos(),
-                cargarLogosComercios()
-            ]);    
+                cargarLogosComercios(),
+                cargarMatchProductos()
+            ]);
 
         procesarFilas(
             filas,
-            imagenes
+            imagenes,
+            mapaGrupos
         );
 
         renderizarCatalogo();
@@ -296,6 +305,128 @@ async function cargarImagenesProductos() {
 
 
     return imagenes;
+}
+
+/*
+ * ------------------------------------------------------------
+ * MATCH DE PRODUCTOS (agrupación unificada)
+ * ------------------------------------------------------------
+ * Lee la pestaña "Match_Productos" (identificador | nombre_detectado |
+ * linea | sitios | grupo_id) y arma un mapa:
+ *
+ *     identificador ("ean:123..." o "sku:sitio:456") -> grupo_id
+ *
+ * Solo se cargan las filas que YA tienen grupo_id asignado (las que
+ * unificar_grupos.py todavía no resolvió quedan afuera del mapa, y el
+ * producto se sigue mostrando por su propio identificador, sin agrupar
+ * con nada más).
+ *
+ * Es tolerante a fallos: si la pestaña todavía no existe o falla la
+ * carga, devuelve un mapa vacío en vez de romper todo el catálogo — la
+ * agrupación unificada es una mejora, no algo de lo que dependa poder
+ * mostrar los precios.
+ * ------------------------------------------------------------
+ */
+async function cargarMatchProductos() {
+
+    try {
+
+        const respuesta = await fetch(
+            MATCH_PRODUCTOS_CSV_URL,
+            {
+                cache: "no-store"
+            }
+        );
+
+        if (!respuesta.ok) {
+
+            console.warn(
+                `No se pudo cargar Match_Productos (HTTP ${respuesta.status}). Se sigue sin agrupación unificada.`
+            );
+
+            return new Map();
+        }
+
+        const texto =
+            await respuesta.text();
+
+        const filas =
+            parsearCSV(texto);
+
+        const mapa =
+            new Map();
+
+        if (!filas.length) {
+            return mapa;
+        }
+
+        const encabezados =
+            filas[0].map(
+                valor =>
+                    valor.trim().toLowerCase()
+            );
+
+        const indiceId =
+            encabezados.indexOf("identificador");
+
+        const indiceGrupo =
+            encabezados.indexOf("grupo_id");
+
+        if (
+            indiceId === -1 ||
+            indiceGrupo === -1
+        ) {
+
+            console.warn(
+                "Match_Productos no tiene las columnas 'identificador'/'grupo_id' esperadas."
+            );
+
+            return mapa;
+        }
+
+        for (
+            let i = 1;
+            i < filas.length;
+            i++
+        ) {
+
+            const identificador =
+                limpiar(
+                    filas[i][indiceId]
+                ).toLowerCase();
+
+            const grupoId =
+                limpiar(
+                    filas[i][indiceGrupo]
+                );
+
+            if (
+                identificador &&
+                grupoId
+            ) {
+
+                mapa.set(
+                    identificador,
+                    grupoId
+                );
+            }
+        }
+
+        console.log(
+            `Grupos unificados cargados: ${mapa.size}`
+        );
+
+        return mapa;
+
+    } catch (error) {
+
+        console.warn(
+            "No se pudo cargar Match_Productos:",
+            error
+        );
+
+        return new Map();
+    }
 }
 
 async function cargarLogosComercios() {
@@ -693,13 +824,95 @@ function parsearCSV(texto) {
 
 /*
  * ============================================================
+ * IDENTIFICADOR / AGRUPACIÓN
+ * ============================================================
+ * Misma convención que usan generar_match_productos.py y
+ * unificar_grupos.py del lado del backend:
+ *
+ *     "ean:<valor>"          si la fila tiene EAN
+ *     "sku:<sitio>:<valor>"  si no tiene EAN pero sí SKU
+ *     null                   si no tiene ninguno de los dos
+ *
+ * obtenerClaveProducto() traduce ese identificador a la clave real que
+ * se usa para agrupar en el catálogo: si Match_Productos ya tiene un
+ * grupo_id para ese identificador, se usa el grupo_id (así se agrupan
+ * variantes con distinto EAN/SKU entre comercios); si todavía no fue
+ * unificado, se usa el identificador tal cual (se agrupa solo consigo
+ * mismo, como venía funcionando antes con el EAN).
+ * ============================================================
+ */
+
+function construirIdentificador(ean, sku, sitio) {
+
+    ean = limpiar(ean);
+    sku = limpiar(sku);
+    sitio = limpiar(sitio).toLowerCase();
+
+    if (ean) {
+        return `ean:${ean}`.toLowerCase();
+    }
+
+    if (sku && sitio) {
+        return `sku:${sitio}:${sku}`.toLowerCase();
+    }
+
+    return null;
+}
+
+
+function obtenerClaveProducto(identificador, mapaGrupos) {
+
+    if (!identificador) {
+        return null;
+    }
+
+    const grupoId =
+        mapaGrupos?.get(identificador);
+
+    if (grupoId) {
+        return `grupo:${grupoId.toLowerCase()}`;
+    }
+
+    return identificador;
+}
+
+
+function formatearIdentificador(identificador) {
+
+    if (!identificador) {
+        return "";
+    }
+
+    if (identificador.startsWith("ean:")) {
+        return `EAN ${identificador.slice(4)}`;
+    }
+
+    const match =
+        identificador.match(/^sku:([^:]+):(.+)$/);
+
+    if (match) {
+
+        const sitioNombre =
+            NOMBRES_SITIOS[match[1]] ||
+            match[1];
+
+        return `SKU ${match[2]} (${sitioNombre})`;
+    }
+
+    return identificador;
+}
+
+
+/*
+ * ============================================================
  * PROCESAMIENTO
  * ============================================================
  */
 
 function procesarFilas(
     filas,
-    imagenes = new Map()
+    imagenes = new Map(),
+    mapaGrupos = new Map()
 ) {
 
     productos.clear();
@@ -741,7 +954,10 @@ function procesarFilas(
             encabezados.indexOf("url"),
 
         ean:
-            encabezados.indexOf("ean")
+            encabezados.indexOf("ean"),
+
+        sku:
+            encabezados.indexOf("sku")
     };
 
 
@@ -754,20 +970,6 @@ function procesarFilas(
         const fila = filas[i];
 
 
-        const ean =
-            limpiar(fila[indice.ean]);
-
-
-        /*
-         * Sin EAN no podemos garantizar
-         * que sea el mismo producto.
-         */
-
-        if (!ean) {
-            continue;
-        }
-
-
         const sitio =
             limpiar(fila[indice.sitio]);
 
@@ -775,6 +977,40 @@ function procesarFilas(
         if (!sitio) {
             continue;
         }
+
+
+        const ean =
+            limpiar(fila[indice.ean]);
+
+
+        const sku =
+            indice.sku !== -1
+                ? limpiar(fila[indice.sku])
+                : "";
+
+
+        /*
+         * Sin EAN ni SKU no podemos garantizar
+         * que sea el mismo producto entre lecturas.
+         */
+
+        const identificador =
+            construirIdentificador(
+                ean,
+                sku,
+                sitio
+            );
+
+        if (!identificador) {
+            continue;
+        }
+
+
+        const clave =
+            obtenerClaveProducto(
+                identificador,
+                mapaGrupos
+            );
 
 
         const fecha =
@@ -821,13 +1057,17 @@ function procesarFilas(
          * Crear producto.
          */
 
-        if (!productos.has(ean)) {
+        if (!productos.has(clave)) {
 
             productos.set(
-                ean,
+                clave,
 
                 {
-                    ean,
+                    clave,
+
+                    identificador,
+
+                    ean: ean || null,
 
                     nombre:
                         productoNombre ||
@@ -836,7 +1076,8 @@ function procesarFilas(
                     linea,
 
                     imagen:
-                        imagenes.get(ean) || null,
+                        (ean && imagenes.get(ean)) ||
+                        null,
 
                     sitios: {}
                 }
@@ -845,7 +1086,31 @@ function procesarFilas(
 
 
         const producto =
-            productos.get(ean);
+            productos.get(clave);
+
+
+        /*
+         * Conservamos el primer EAN "real" que
+         * encontremos, por si el producto se
+         * armó primero a partir de una fila sin
+         * EAN (agrupado por grupo_id/SKU) y
+         * después aparece una fila con EAN.
+         */
+
+        if (
+            !producto.ean &&
+            ean
+        ) {
+
+            producto.ean = ean;
+
+            if (!producto.imagen) {
+
+                producto.imagen =
+                    imagenes.get(ean) ||
+                    null;
+            }
+        }
 
 
         /*
@@ -887,6 +1152,14 @@ function procesarFilas(
 
         /*
          * Agregamos TODAS las lecturas.
+         *
+         * Nota: como la clave del producto ya puede
+         * venir de un grupo_id unificado, dos
+         * identificadores distintos (ej. dos EANs de
+         * un mismo producto unificados a mano) que
+         * vendan en el MISMO sitio van a acumular sus
+         * lecturas en el mismo arreglo "lecturas" de
+         * ese sitio, conservando el histórico completo.
          */
 
         producto.sitios[sitio]
@@ -1107,7 +1380,7 @@ function crearTarjetaProducto(producto) {
         "click",
         () =>
             mostrarDetalle(
-                producto.ean
+                producto.clave
             )
     );
 
@@ -1144,6 +1417,14 @@ function crearTarjetaProducto(producto) {
         contarSitiosDisponibles(
             producto
         );
+
+
+    const etiquetaIdentificador =
+        producto.ean
+            ? `EAN ${producto.ean}`
+            : formatearIdentificador(
+                producto.identificador
+            );
 
 
     tarjeta.innerHTML = `
@@ -1184,11 +1465,15 @@ function crearTarjetaProducto(producto) {
                 )}
             </div>
 
-            <div class="producto-ean">
-                EAN ${escaparHTML(
-                    producto.ean
-                )}
-            </div>
+            ${
+                etiquetaIdentificador
+                    ? `
+                        <div class="producto-ean">
+                            ${escaparHTML(etiquetaIdentificador)}
+                        </div>
+                    `
+                    : ""
+            }
 
             <div class="producto-resumen">
 
@@ -1448,10 +1733,10 @@ function obtenerTendenciaPrecioMinimo(
  * ============================================================
  */
 
-function mostrarDetalle(ean) {
+function mostrarDetalle(clave) {
 
     const producto =
-        productos.get(ean);
+        productos.get(clave);
 
 
     if (!producto) {
@@ -1514,6 +1799,14 @@ function renderizarDetalle() {
         );
 
 
+    const etiquetaIdentificador =
+        producto.ean
+            ? `EAN: ${producto.ean}`
+            : formatearIdentificador(
+                producto.identificador
+            );
+
+
     detalle.innerHTML = `
 
         <div class="detalle-cabecera">
@@ -1552,12 +1845,15 @@ function renderizarDetalle() {
                     )}
                 </h2>
 
-                <div class="detalle-ean">
-                    EAN:
-                    ${escaparHTML(
-                        producto.ean
-                    )}
-                </div>
+                ${
+                    etiquetaIdentificador
+                        ? `
+                            <div class="detalle-ean">
+                                ${escaparHTML(etiquetaIdentificador)}
+                            </div>
+                        `
+                        : ""
+                }
 
             </div>
 
@@ -1646,7 +1942,8 @@ function renderizarComercios() {
 
             const descuento =
                 obtenerDescuento(
-                    productoActual.ean,
+                    productoActual.ean ||
+                        productoActual.clave,
                     id
                 );
 
@@ -1994,7 +2291,8 @@ function crearTarjetaComercio(
         () => {
 
             guardarDescuento(
-                productoActual.ean,
+                productoActual.ean ||
+                    productoActual.clave,
                 id,
                 input.value
             );
@@ -2437,6 +2735,8 @@ function aplicarBusqueda(event) {
                     producto.linea,
 
                     producto.ean,
+
+                    producto.identificador,
 
                     ...Object.values(
                         producto.sitios
