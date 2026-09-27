@@ -880,6 +880,18 @@ function construirIdentificador(ean, sku, sitio) {
     sku = limpiar(sku);
     sitio = limpiar(sitio).toLowerCase();
 
+    /*
+     * Algunos sitios (confirmado en Farmacity, para varios
+     * combos/kits) devuelven literalmente "0" como EAN en vez de
+     * dejarlo vacío. Si se lo trata como EAN real, productos
+     * distintos con ean="0" terminan agrupados como si fueran el
+     * mismo producto. Mismo criterio que limpiar_ean() en
+     * buscador_precios.py.
+     */
+    if (ean && /^0+$/.test(ean)) {
+        ean = "";
+    }
+
     if (ean) {
         return `ean:${ean}`.toLowerCase();
     }
