@@ -255,6 +255,12 @@ async function cargarImagenesProductos() {
     const indiceImagen =
         encabezados.indexOf("imageurl");
 
+    const indiceSku =
+        encabezados.indexOf("sku");
+
+    const indiceSitio =
+        encabezados.indexOf("sitio");
+
 
     if (
         indiceEAN === -1 ||
@@ -285,14 +291,40 @@ async function cargarImagenesProductos() {
                 filas[i][indiceImagen]
             );
 
+        const sku =
+            indiceSku !== -1
+                ? limpiar(filas[i][indiceSku])
+                : "";
 
-        if (
-            ean &&
-            imageurl
-        ) {
+        const sitio =
+            indiceSitio !== -1
+                ? limpiar(filas[i][indiceSitio])
+                : "";
+
+        if (!imageurl) {
+            continue;
+        }
+
+        /*
+         * Misma convención de clave que construirIdentificador():
+         * "ean:<valor>" si hay EAN, o "sku:<sitio>:<valor>" si no
+         * (combos/kits de Maxiconsumo, Farmacity, Farmaonline, etc.
+         * que no exponen EAN real). Así una imagen guardada por
+         * sku+sitio se puede encontrar con el mismo identificador
+         * que arma procesarFilas() para esa fila.
+         */
+
+        const clave =
+            construirIdentificador(
+                ean,
+                sku,
+                sitio
+            );
+
+        if (clave) {
 
             imagenes.set(
-                ean,
+                clave,
                 imageurl
             );
         }
@@ -1076,7 +1108,7 @@ function procesarFilas(
                     linea,
 
                     imagen:
-                        (ean && imagenes.get(ean)) ||
+                        imagenes.get(identificador) ||
                         null,
 
                     sitios: {}
@@ -1103,13 +1135,22 @@ function procesarFilas(
         ) {
 
             producto.ean = ean;
+        }
 
-            if (!producto.imagen) {
 
-                producto.imagen =
-                    imagenes.get(ean) ||
-                    null;
-            }
+        /*
+         * Si todavía no tenemos imagen, probamos con
+         * el identificador de ESTA fila (puede ser una
+         * fila con EAN o una fila sku+sitio distinta a
+         * la que creó el producto, si vino agrupado por
+         * Match_Productos).
+         */
+
+        if (!producto.imagen) {
+
+            producto.imagen =
+                imagenes.get(identificador) ||
+                null;
         }
 
 
