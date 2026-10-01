@@ -1653,72 +1653,48 @@ function obtenerComercioPrecioMinimo(producto) {
  * TENDENCIA DEL PRECIO MÍNIMO
  * ============================================================
  */
+function obtenerLecturaPreviaValida(sitio) {
 
-function obtenerMinimoDeLecturaAnterior(producto) {
+    for (let i = sitio.lecturas.length - 2; i >= 0; i--) {
 
-    const lecturasPorFecha = new Map();
+        const precio = sitio.lecturas[i].precio;
 
-    for (const sitio of Object.values(producto.sitios)) {
-
-        for (const lectura of sitio.lecturas) {
-
-            if (
-                typeof lectura.precio !== "number" ||
-                lectura.precio <= 0
-            ) {
-                continue;
-            }
-
-            const fecha =
-                convertirFecha(lectura.fecha);
-
-            if (!fecha) {
-                continue;
-            }
-
-            if (!lecturasPorFecha.has(fecha)) {
-                lecturasPorFecha.set(
-                    fecha,
-                    []
-                );
-            }
-
-            lecturasPorFecha
-                .get(fecha)
-                .push(lectura.precio);
+        if (typeof precio === "number" && precio > 0) {
+            return sitio.lecturas[i];
         }
     }
 
-    const fechas =
-        [...lecturasPorFecha.keys()]
-            .sort((a, b) => b - a);
+    return null;
+}
 
-    /*
-     * La primera fecha es la lectura actual.
-     * La segunda fecha es la lectura anterior.
-     */
-    if (fechas.length < 2) {
-        return null;
-    }
 
-    const fechaAnterior =
-        fechas[1];
+function obtenerMinimoDeLecturaAnterior(producto) {
 
-    const preciosAnteriores =
-        lecturasPorFecha.get(
-            fechaAnterior
+    const anteriores = [];
+
+    for (const sitio of Object.values(producto.sitios)) {
+
+        // Solo comercios con precio vigente (mismo criterio que el precio actual)
+        if (
+            !sitioEstaActualizado(sitio) ||
+            typeof sitio.ultima?.precio !== "number" ||
+            sitio.ultima.precio <= 0
+        ) {
+            continue;
+        }
+
+        const previa = obtenerLecturaPreviaValida(sitio);
+
+        // Si el comercio no tiene lectura previa, se toma su precio actual
+        // (no aporta ni suba ni baja).
+        anteriores.push(
+            previa ? previa.precio : sitio.ultima.precio
         );
-
-    if (
-        !preciosAnteriores ||
-        !preciosAnteriores.length
-    ) {
-        return null;
     }
 
-    return Math.min(
-        ...preciosAnteriores
-    );
+    return anteriores.length
+        ? Math.min(...anteriores)
+        : null;
 }
 
 
@@ -2164,14 +2140,17 @@ function crearTarjetaComercio(
     const ultima =
         sitio.ultima;
 
-    const penultima =
-    sitio.penultima;
+    const previa =
+        obtenerLecturaPreviaValida(sitio);
 
+    // Un precio desactualizado no tiene tendencia que mostrar
     const tendencia =
-        obtenerTextoTendencia(
-            ultima?.precio,
-            penultima?.precio
-        );
+        actualizado
+            ? obtenerTextoTendencia(
+                ultima?.precio,
+                previa?.precio
+            )
+            : "";
 
 
     tarjeta.innerHTML = `
