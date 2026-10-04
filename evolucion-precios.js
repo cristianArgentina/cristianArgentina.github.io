@@ -1563,17 +1563,13 @@ function crearTarjetaProducto(producto) {
 
                     </div>
 
-                    ${tendencia}
-
                 </div>
 
-                <div class="producto-sitios">
-                    ${sitios}
-                    ${
-                        sitios === 1
-                            ? " comercio"
-                            : " comercios"
-                    }
+                <div class="producto-meta-fila">
+                    ${tendencia}
+                    <div class="producto-sitios">
+                        ${sitios} ${sitios === 1 ? "comercio" : "comercios"}
+                    </div>
                 </div>
 
             </div>
