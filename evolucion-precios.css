@@ -262,10 +262,17 @@ input {
     object-fit: contain;
 }
 
+.producto-meta-fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+}
+
 .producto-sitios {
-    font-size: 11px;
-    color: var(--ep-muted);
-    margin-top: 3px;
+    margin-left: auto;
+    white-space: nowrap;
 }
 
 .tendencia-precio {
