@@ -2190,13 +2190,6 @@ function crearTarjetaComercio(
                     `
                     : ""
             }
-
-            <div class="comercio-nombre">
-                ${escaparHTML(
-                    sitio.nombre
-                )}
-            </div>
-
         </div>
 
         ${
