@@ -46,8 +46,6 @@ let vistaActual = "grid";
 
 let descuentosPorComercio = {};
 
-let logosPorComercio = {};
-
 /*
  * ============================================================
  * COMERCIOS
@@ -56,20 +54,14 @@ let logosPorComercio = {};
  * Estos nombres son los que actualmente utiliza tu recolector.
  */
 
-const NOMBRES_SITIOS = {
-    farmaonline: "Farmaonline",
-    farmalife: "Farmalife",
-    farmacity: "Farmacity",
-    masonline: "MasOnline",
-    perfumeriaspigmento: "Perfumerías Pigmento",
-    farmaplus: "Farmaplus",
-    josimar: "Josimar",
-    carrefour: "Carrefour",
-    diaonline: "Día",
-    coto: "Coto",
-    paradineiro: "Paradineiro"
-};
+let comerciosPorId = {};
 
+function obtenerNombreComercio(id) {
+    return (
+        comerciosPorId[id]?.nombre ||
+        id
+    );
+}
 
 /*
  * ============================================================
@@ -486,8 +478,6 @@ async function cargarLogosComercios() {
     const filas =
         parsearCSV(texto);
 
-    logosPorComercio = {};
-
     if (!filas.length) {
         return;
     }
@@ -509,13 +499,15 @@ async function cargarLogosComercios() {
     const indiceLogo =
         encabezados.indexOf("logo_url");
 
+    const indiceSitio =
+        encabezados.indexOf("sitio_web");
+
     if (
-        indiceComercio === -1 ||
-        indiceLogo === -1
+        indiceComercio === -1
     ) {
 
         console.warn(
-            "Logos_Comercios no contiene las columnas comercio y logo_url."
+            "Logos_Comercios no contiene la columna comercio"
         );
 
         return;
@@ -544,29 +536,24 @@ async function cargarLogosComercios() {
             limpiar(
                 filas[i][indiceLogo]
             );
+        
+        const sitioWeb =
+            limpiar(
+                filas[i][indiceSitio]
+            )
 
-        if (
-            comercio &&
-            logo
-        ) {
-
-            logosPorComercio[
-                comercio
-            ] = {
-
-                logo,
-
-                nombre:
-                    nombre ||
-                    NOMBRES_SITIOS[comercio] ||
-                    comercio
+        if (comercio) {
+            comerciosPorId[comercio] = {
+                nombre: nombre || comercio,
+                logo: logo || null,
+                sitioWeb: sitioWeb || null
             };
         }
     }
 
     console.log(
         "Logos de comercios cargados:",
-        Object.keys(logosPorComercio).length
+        Object.keys(comerciosPorId).length
     );
 }
 
@@ -937,7 +924,7 @@ function formatearIdentificador(identificador) {
     if (match) {
 
         const sitioNombre =
-            NOMBRES_SITIOS[match[1]] ||
+            obtenerNombreComercio(match[1]) ||
             match[1];
 
         return `SKU ${match[2]} (${sitioNombre})`;
@@ -1195,7 +1182,7 @@ function procesarFilas(
             producto.sitios[sitio] = {
 
                 nombre:
-                    NOMBRES_SITIOS[sitio]
+                    obtenerNombreComercio(sitio)
                     || sitio,
 
                 lecturas: []
@@ -2876,16 +2863,7 @@ function obtenerImagenProducto(producto) {
 }
 
 function obtenerLogoComercio(id) {
-
-    const comercio =
-        String(id || "")
-            .trim()
-            .toLowerCase();
-
-    return (
-        logosPorComercio[comercio]?.logo ||
-        null
-    );
+    return comerciosPorId[id]?.logo || null;
 }
 
 /*
