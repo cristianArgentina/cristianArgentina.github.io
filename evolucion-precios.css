@@ -793,3 +793,25 @@ input {
     margin-bottom: 12px;
     text-align: right;
 }
+
+.catalogo-grupo { grid-column: 1 / -1; margin-bottom: 24px; }
+.catalogo-grupo-cabecera { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.catalogo-grupo-titulo { margin: 0; }
+.catalogo-grupo-cantidad { opacity: .6; font-size: .85em; }
+.catalogo-grupo-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* copiá el de tu grilla */
+    gap: 16px;
+    min-height: 40px;
+}
+.lista .catalogo-grupo-items { grid-template-columns: 1fr; }
+
+.org-barra { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+.org-ayuda { flex: 1 1 100%; opacity: .7; font-size: .9em; }
+.org-btn { cursor: pointer; padding: 4px 10px; border: 1px solid #ccc; border-radius: 6px; background: #fff; }
+.org-btn-principal { background: #2563eb; color: #fff; border-color: #2563eb; }
+.org-editando { cursor: grab; outline: 2px dashed #bbb; border-radius: 8px; }
+.org-arrastrando { opacity: .4; }
+.org-controles { display: flex; gap: 4px; justify-content: center; padding: 6px 0; }
+.org-select { max-width: 120px; }
+.org-vacio { grid-column: 1 / -1; padding: 16px; text-align: center; border: 2px dashed #ccc; border-radius: 8px; opacity: .6; }

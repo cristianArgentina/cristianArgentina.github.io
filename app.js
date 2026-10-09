@@ -1,4 +1,5 @@
 "use strict";
+import { iniciarAgrupacion, renderizarAgrupado } from "./agrupacion.js";
 
 /*
  * ============================================================
@@ -100,6 +101,15 @@ document.addEventListener("DOMContentLoaded", iniciar);
 async function iniciar() {
 
     configurarEventos();
+
+    iniciarAgrupacion({
+        obtenerProductos: () => [...productos.values()],
+        crearTarjeta: crearTarjetaProducto,
+        volverARenderizar: () =>
+            aplicarBusqueda({
+                target: document.getElementById("busqueda")
+            })
+    });
 
     restaurarSesionAdmin();
 
@@ -1746,6 +1756,9 @@ function renderizarCatalogo(lista = null) {
         )
         .classList.add("oculto");
 
+    if (renderizarAgrupado(catalogo, productosMostrar)) {
+        return;
+    }
 
     for (
         const producto of productosMostrar
