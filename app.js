@@ -15,7 +15,7 @@ const SHEET_ID =
  * backup. Tiene que ser EXACTAMENTE el mismo nombre que usa el scraper
  * (NOMBRE_HOJA_LOG).
  */
-const SHEET_NOMBRE = "precios";
+const SHEET_NOMBRE = "Precios_Log_Lineas";
 
 const IMAGENES_SHEET_GID = "1823752636";
 
