@@ -9,13 +9,8 @@
 const SHEET_ID =
     "1l_2L8rGgCy97uscp-m4mk-0jLLrOA3C9a4ueVGoWB84";
 
-/*
- * La pestaña de precios se referencia por NOMBRE (no por gid): al reemplazar
- * la hoja por la versión compactada, el gid cambió y el gid viejo apunta al
- * backup. Tiene que ser EXACTAMENTE el mismo nombre que usa el scraper
- * (NOMBRE_HOJA_LOG).
- */
-const SHEET_NOMBRE = "Precios_Log_Lineas";
+const SHEET_GID =
+    "1393518485";
 
 const IMAGENES_SHEET_GID = "1823752636";
 
@@ -28,23 +23,15 @@ const LOGOS_COMERCIOS_SHEET_GID = "247832143";
 const MATCH_PRODUCTOS_SHEET_NOMBRE = "Match_Productos";
 
 const SHEET_CSV_URL =
-    `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NOMBRE)}`;
+    `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${SHEET_GID}`;
 
 const MATCH_PRODUCTOS_CSV_URL =
     `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(MATCH_PRODUCTOS_SHEET_NOMBRE)}`;
 
-const CACHE_KEY = "evolucionPreciosCache_v2";
+const CACHE_KEY = "evolucionPreciosCache";
 const CACHE_MAX_AGE = 10 * 60 * 1000;
 
 const MAX_EDAD_LECTURA_MS = 48 * 60 * 60 * 1000;
-
-/*
- * Un cambio de precio se informa como "Subió/Bajó" mientras no tenga más
- * de esta antigüedad; pasado ese tiempo se muestra "Sin cambios".
- * Con el histórico compactado, un cambio viejo ya no es una novedad.
- * Poné Infinity para comparar siempre contra el último precio distinto.
- */
-const VENTANA_TENDENCIA_MS = 7 * 24 * 60 * 60 * 1000;
 /*
  * ============================================================
  * ESTADO
@@ -210,42 +197,11 @@ async function cargarDatos() {
     const filas = parsearCSV(texto);
 
 
-    validarEncabezadosPrecios(filas);
-
     guardarCache(filas);
 
 
     return filas;
 }
-
-function validarEncabezadosPrecios(filas) {
-
-    const encabezados =
-        (filas[0] || []).map(
-            valor =>
-                valor.trim().toLowerCase()
-        );
-
-    if (
-        !encabezados.includes("sitio") ||
-        !encabezados.includes("precio")
-    ) {
-
-        throw new Error(
-            `La pestaña "${SHEET_NOMBRE}" no tiene el formato esperado (sitio/precio).`
-        );
-    }
-
-    if (!encabezados.includes("fecha_ultima_escritura")) {
-
-        console.warn(
-            `La pestaña "${SHEET_NOMBRE}" no tiene la columna fecha_ultima_escritura: ` +
-            "se usará la columna fecha como fecha de última lectura " +
-            "(¿se está leyendo la hoja vieja?)."
-        );
-    }
-}
-
 
 async function cargarImagenesProductos() {
 
@@ -1032,12 +988,7 @@ function procesarFilas(
             encabezados.indexOf("ean"),
 
         sku:
-            encabezados.indexOf("sku"),
-
-        ultimaEscritura:
-            encabezados.indexOf(
-                "fecha_ultima_escritura"
-            )
+            encabezados.indexOf("sku")
     };
 
 
@@ -1095,21 +1046,6 @@ function procesarFilas(
 
         const fecha =
             limpiar(fila[indice.fecha]);
-
-
-        /*
-         * Con el histórico compactado cada fila es un "tramo": el precio
-         * rige desde `fecha` hasta `fecha_ultima_escritura` (la última
-         * vez que el scraper lo confirmó). Si la columna no existe o la
-         * celda está vacía, se usa `fecha`.
-         */
-
-        const ultimaEscritura =
-            (
-                indice.ultimaEscritura !== -1
-                    ? limpiar(fila[indice.ultimaEscritura])
-                    : ""
-            ) || fecha;
 
 
         const productoNombre =
@@ -1271,8 +1207,6 @@ function procesarFilas(
 
                 fecha,
 
-                ultimaEscritura,
-
                 precio,
 
                 disponibilidad,
@@ -1297,7 +1231,7 @@ function procesarFilas(
         ) {
 
             sitio.lecturas.sort(
-                compararLecturas
+                compararFechas
             );
 
 
@@ -1312,19 +1246,6 @@ function procesarFilas(
                         sitio.lecturas.length - 2
                     ]
                     : null;
-
-
-            /*
-             * previa      -> última lectura con un precio DISTINTO al vigente
-             * precioDesde -> primera lectura del precio vigente
-             */
-
-            const cambio =
-                obtenerCambioReciente(sitio);
-
-            sitio.previa = cambio.previa;
-
-            sitio.precioDesde = cambio.desde;
         }
     }
 }
@@ -1335,27 +1256,6 @@ function procesarFilas(
  * ORDENAR FECHAS
  * ============================================================
  */
-
-function compararLecturas(a, b) {
-
-    /*
-     * Orden por última confirmación y, a igualdad, por inicio del tramo.
-     * Para un mismo producto coincide con el orden por fecha; cuando varios
-     * identificadores se agrupan en un mismo comercio, deja como "última" a
-     * la lectura confirmada más recientemente (y no a la que empezó último).
-     */
-
-    const porConfirmacion =
-        convertirFecha(a.ultimaEscritura || a.fecha)
-        - convertirFecha(b.ultimaEscritura || b.fecha);
-
-    if (porConfirmacion !== 0) {
-        return porConfirmacion;
-    }
-
-    return compararFechas(a, b);
-}
-
 
 function compararFechas(a, b) {
 
@@ -1418,10 +1318,7 @@ function lecturaEstaActualizada(lectura) {
     }
 
     const timestamp =
-        convertirFecha(
-            lectura.ultimaEscritura ||
-            lectura.fecha
-        );
+        convertirFecha(lectura.fecha);
 
     if (!timestamp) {
         return false;
@@ -1739,77 +1636,18 @@ function obtenerComercioPrecioMinimo(producto) {
  * TENDENCIA DEL PRECIO MÍNIMO
  * ============================================================
  */
-function obtenerCambioReciente(sitio) {
-
-    /*
-     * El histórico está compactado: cada lectura es un tramo con el mismo
-     * precio y disponibilidad. Para saber cuándo cambió el precio hay que
-     * retroceder desde la última lectura hasta encontrar un precio DISTINTO
-     * (un tramo anterior con el mismo precio pero otra promo no cuenta).
-     *
-     *   previa -> primera lectura (hacia atrás) con precio distinto al vigente
-     *   desde  -> primera lectura del precio vigente
-     */
-
-    const ultima = sitio.ultima;
-
-    if (
-        !ultima ||
-        typeof ultima.precio !== "number" ||
-        ultima.precio <= 0
-    ) {
-        return { previa: null, desde: null };
-    }
-
-    let desde = ultima;
+function obtenerLecturaPreviaValida(sitio) {
 
     for (let i = sitio.lecturas.length - 2; i >= 0; i--) {
 
-        const lectura = sitio.lecturas[i];
+        const precio = sitio.lecturas[i].precio;
 
-        // Lecturas con error o sin precio no cuentan
-        if (
-            typeof lectura.precio !== "number" ||
-            lectura.precio <= 0
-        ) {
-            continue;
+        if (typeof precio === "number" && precio > 0) {
+            return sitio.lecturas[i];
         }
-
-        if (lectura.precio === ultima.precio) {
-            desde = lectura;
-            continue;
-        }
-
-        return { previa: lectura, desde };
     }
 
-    return { previa: null, desde };
-}
-
-
-function obtenerLecturaPreviaValida(sitio) {
-
-    /*
-     * Lectura con un precio distinto al vigente, pero solo si el cambio
-     * ocurrió dentro de VENTANA_TENDENCIA_MS. Si no, devuelve null
-     * (se interpreta como "sin cambios").
-     */
-
-    if (!sitio.previa || !sitio.precioDesde) {
-        return null;
-    }
-
-    const desde =
-        convertirFecha(sitio.precioDesde.fecha);
-
-    if (
-        !desde ||
-        Date.now() - desde > VENTANA_TENDENCIA_MS
-    ) {
-        return null;
-    }
-
-    return sitio.previa;
+    return null;
 }
 
 
@@ -2293,8 +2131,7 @@ function crearTarjetaComercio(
         actualizado
             ? obtenerTextoTendencia(
                 ultima?.precio,
-                previa?.precio ??
-                    ultima?.precio
+                previa?.precio
             )
             : "";
 
@@ -2404,29 +2241,13 @@ function crearTarjetaComercio(
         </div>
 
 
-        ${
-            sitio.precioDesde?.fecha
-                ? `
-                    <div class="comercio-fecha">
-                        Mismo precio desde:
-                        ${escaparHTML(
-                            formatearFecha(
-                                sitio.precioDesde.fecha
-                            )
-                        )}
-                    </div>
-                `
-                : ""
-        }
-
         <div class="comercio-fecha">
 
             Última lectura:
             ${
                 ultima?.fecha
                     ? formatearFecha(
-                        ultima.ultimaEscritura ||
-                            ultima.fecha
+                        ultima.fecha
                     )
                     : "sin fecha"
             }
@@ -2659,7 +2480,7 @@ function mostrarHistorico(sitioId) {
 
     const lecturas =
         [...sitio.lecturas]
-            .sort(compararLecturas);
+            .sort(compararFechas);
 
 
     const precios =
@@ -2815,8 +2636,7 @@ function mostrarHistorico(sitioId) {
             <thead>
 
                 <tr>
-                    <th>Desde</th>
-                    <th>Última lectura</th>
+                    <th>Fecha</th>
                     <th>Precio</th>
                     <th>Disponibilidad</th>
                 </tr>
@@ -2838,15 +2658,6 @@ function mostrarHistorico(sitioId) {
                                 <td>
                                     ${escaparHTML(
                                         formatearFecha(
-                                            lectura.fecha
-                                        )
-                                    )}
-                                </td>
-
-                                <td>
-                                    ${escaparHTML(
-                                        formatearFecha(
-                                            lectura.ultimaEscritura ||
                                             lectura.fecha
                                         )
                                     )}
