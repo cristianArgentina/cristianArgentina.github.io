@@ -1,4 +1,5 @@
 "use strict";
+import { iniciarAgrupacion, renderizarAgrupado } from "./agrupacion.js";
 
 /*
  * ============================================================
@@ -45,6 +46,23 @@ const MAX_EDAD_LECTURA_MS = 48 * 60 * 60 * 1000;
  * Poné Infinity para comparar siempre contra el último precio distinto.
  */
 const VENTANA_TENDENCIA_MS = 7 * 24 * 60 * 60 * 1000;
+
+/*
+ * ------------------------------------------------------------
+ * ADMINISTRACIÓN (borrado de filas)
+ * ------------------------------------------------------------
+ * ADMIN_URL: URL "/exec" de la implementación del Apps Script.
+ * GOOGLE_CLIENT_ID: ID de cliente OAuth (es público, no es secreto).
+ */
+
+const ADMIN_URL =
+    "https://script.google.com/macros/s/AKfycbxRieZY2vmMVrUlvcLgnWQClvKghforlaOQsYXhf-7_c-NNNyALnY_x_iU9fSqryC4yIA/exec";
+
+const GOOGLE_CLIENT_ID =
+    "428358795676-oeos6ckjp96ilqssrculre6kgb5lvh0k.apps.googleusercontent.com";
+
+const ADMIN_TOKEN_STORAGE = "adminToken";
+
 /*
  * ============================================================
  * ESTADO
@@ -58,6 +76,12 @@ let productoActual = null;
 let vistaActual = "grid";
 
 let descuentosPorComercio = {};
+
+let adminActivo = false;
+
+let adminToken = null;
+
+let googleListo = false;
 
 /*
  * ============================================================
@@ -88,6 +112,19 @@ document.addEventListener("DOMContentLoaded", iniciar);
 async function iniciar() {
 
     configurarEventos();
+
+    iniciarAgrupacion({
+        obtenerProductos: () => [...productos.values()],
+        crearTarjeta: crearTarjetaProducto,
+        volverARenderizar: () =>
+            aplicarBusqueda({
+                target: document.getElementById("busqueda")
+            })
+    });
+
+    restaurarSesionAdmin();
+
+    esperarGoogleYConfigurar();
 
     try {
 
@@ -166,6 +203,326 @@ function configurarEventos() {
     document
         .getElementById("cerrar-modal-overlay")
         .addEventListener("click", cerrarModal);
+}
+
+
+/*
+ * ============================================================
+ * ADMINISTRACIÓN: LOGIN CON GOOGLE Y BORRADO
+ * ============================================================
+ * Flujo:
+ *  1. Iniciás sesión con Google (Google Identity Services).
+ *  2. Google devuelve un ID token firmado (dura ~1 hora).
+ *  3. El front lo manda al Apps Script en cada pedido de borrado.
+ *  4. El Apps Script valida el token con Google y verifica que el
+ *     email sea el de la cuenta autorizada. Si no, rechaza.
+ *
+ * La validación real ocurre en el servidor (Apps Script); lo que
+ * se haga en este archivo es solo comodidad de interfaz.
+ * ============================================================
+ */
+
+function tokenVigente(token) {
+
+    try {
+
+        const base64 =
+            token
+                .split(".")[1]
+                .replace(/-/g, "+")
+                .replace(/_/g, "/");
+
+        const payload =
+            JSON.parse(atob(base64));
+
+        return (
+            payload.exp * 1000 >
+            Date.now() + 30000
+        );
+
+    } catch {
+
+        return false;
+    }
+}
+
+
+function restaurarSesionAdmin() {
+
+    try {
+
+        const guardado =
+            sessionStorage.getItem(
+                ADMIN_TOKEN_STORAGE
+            );
+
+        if (
+            guardado &&
+            tokenVigente(guardado)
+        ) {
+
+            adminToken = guardado;
+            adminActivo = true;
+
+        } else {
+
+            sessionStorage.removeItem(
+                ADMIN_TOKEN_STORAGE
+            );
+        }
+
+    } catch {
+
+        adminToken = null;
+        adminActivo = false;
+    }
+}
+
+
+/*
+ * El script de Google se carga con async/defer, así que puede no
+ * estar listo cuando arranca iniciar(). Esperamos hasta que aparezca.
+ */
+
+function esperarGoogleYConfigurar(intentos = 0) {
+
+    if (window.google?.accounts?.id) {
+
+        google.accounts.id.initialize({
+
+            client_id: GOOGLE_CLIENT_ID,
+
+            callback: respuesta => {
+
+                adminToken =
+                    respuesta.credential;
+
+                adminActivo = true;
+
+                try {
+
+                    sessionStorage.setItem(
+                        ADMIN_TOKEN_STORAGE,
+                        adminToken
+                    );
+
+                } catch {
+                    /* sin storage: la sesión dura hasta recargar */
+                }
+
+                if (productoActual) {
+                    renderizarDetalle();
+                }
+            }
+        });
+
+        googleListo = true;
+
+        // Si ya estábamos mostrando un detalle sin sesión,
+        // lo redibujamos para que aparezca el botón de login.
+        if (
+            productoActual &&
+            !adminActivo
+        ) {
+            renderizarDetalle();
+        }
+
+        return;
+    }
+
+    if (intentos < 50) {
+
+        setTimeout(
+            () =>
+                esperarGoogleYConfigurar(
+                    intentos + 1
+                ),
+            200
+        );
+
+    } else {
+
+        console.warn(
+            "No se pudo cargar Google Identity Services."
+        );
+    }
+}
+
+
+function cerrarSesionAdmin() {
+
+    adminToken = null;
+    adminActivo = false;
+
+    try {
+
+        sessionStorage.removeItem(
+            ADMIN_TOKEN_STORAGE
+        );
+
+    } catch {
+        /* nada */
+    }
+
+    if (window.google?.accounts?.id) {
+        google.accounts.id.disableAutoSelect();
+    }
+
+    if (productoActual) {
+        renderizarDetalle();
+    }
+}
+
+
+async function llamarAdmin(payload) {
+
+    const respuesta = await fetch(
+        ADMIN_URL,
+        {
+            method: "POST",
+
+            // text/plain evita el preflight CORS,
+            // que Apps Script no soporta.
+            headers: {
+                "Content-Type":
+                    "text/plain;charset=utf-8"
+            },
+
+            body: JSON.stringify({
+                ...payload,
+                token: adminToken
+            })
+        }
+    );
+
+    return respuesta.json();
+}
+
+
+async function eliminarDatos(sitioId = null) {
+
+    if (!productoActual) {
+        return;
+    }
+
+    if (
+        !adminToken ||
+        !tokenVigente(adminToken)
+    ) {
+
+        alert(
+            "La sesión venció. Iniciá sesión de nuevo."
+        );
+
+        cerrarSesionAdmin();
+
+        return;
+    }
+
+
+    const que =
+        sitioId
+            ? `todas las lecturas de "${productoActual.sitios[sitioId].nombre}" para este producto`
+            : `TODAS las lecturas de "${productoActual.nombre}" en todos los comercios`;
+
+
+    if (
+        !confirm(
+            `Vas a eliminar ${que}.\n\n¿Continuar?`
+        )
+    ) {
+        return;
+    }
+
+
+    try {
+
+        const r =
+            await llamarAdmin({
+
+                accion: "eliminar",
+
+                identificadores:
+                    [...productoActual.identificadores],
+
+                sitio: sitioId
+            });
+
+
+        if (!r.ok) {
+
+            alert(
+                r.error ||
+                "No se pudo eliminar"
+            );
+
+            if (r.error === "No autorizado") {
+                cerrarSesionAdmin();
+            }
+
+            return;
+        }
+
+
+        /*
+         * Actualizamos el estado local sin recargar:
+         * el CSV de gviz puede tardar unos segundos
+         * en reflejar el cambio.
+         */
+
+        try {
+            sessionStorage.removeItem(CACHE_KEY);
+        } catch {
+            /* nada */
+        }
+
+        const clave =
+            productoActual.clave;
+
+        if (sitioId) {
+
+            delete productoActual.sitios[sitioId];
+
+            if (
+                !Object.keys(
+                    productoActual.sitios
+                ).length
+            ) {
+                productos.delete(clave);
+            }
+
+        } else {
+
+            productos.delete(clave);
+        }
+
+
+        alert(
+            `Se eliminaron ${r.eliminadas} filas.`
+        );
+
+
+        if (productos.has(clave)) {
+
+            renderizarDetalle();
+
+        } else {
+
+            mostrarCatalogo();
+
+            actualizarEstado(
+                `${productos.size} productos encontrados`
+            );
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Error de conexión al eliminar."
+        );
+    }
 }
 
 
@@ -1162,6 +1519,12 @@ function procesarFilas(
 
                     identificador,
 
+                    // Todos los identificadores (EAN / SKU+sitio) que
+                    // pertenecen a este producto. Se usan para el
+                    // borrado, porque un grupo unificado puede tener
+                    // varios.
+                    identificadores: new Set(),
+
                     ean: ean || null,
 
                     nombre:
@@ -1182,6 +1545,11 @@ function procesarFilas(
 
         const producto =
             productos.get(clave);
+
+
+        producto.identificadores.add(
+            identificador
+        );
 
 
         /*
@@ -1489,6 +1857,9 @@ function renderizarCatalogo(lista = null) {
         )
         .classList.add("oculto");
 
+    if (renderizarAgrupado(catalogo, productosMostrar)) {
+        return;
+    }
 
     for (
         const producto of productosMostrar
@@ -2046,7 +2417,89 @@ function renderizarDetalle() {
     `;
 
 
+    renderizarBarraAdmin(detalle);
+
+
     renderizarComercios();
+}
+
+
+/*
+ * Barra de administración: botón de login con Google si no hay
+ * sesión; botones de eliminar / salir si la hay.
+ */
+
+function renderizarBarraAdmin(detalle) {
+
+    const barra =
+        document.createElement("div");
+
+    barra.className =
+        "admin-barra";
+
+
+    if (adminActivo) {
+
+        barra.innerHTML = `
+            <button
+                type="button"
+                class="btn-comercio btn-peligro"
+                id="btn-eliminar-producto"
+            >
+                🗑️ Eliminar producto
+            </button>
+
+            <button
+                type="button"
+                class="btn-comercio"
+                id="btn-salir-admin"
+            >
+                Salir
+            </button>
+        `;
+
+    } else {
+
+        barra.innerHTML = `
+            <div id="login-google"></div>
+        `;
+    }
+
+
+    detalle.prepend(barra);
+
+
+    if (
+        !adminActivo &&
+        googleListo &&
+        window.google?.accounts?.id
+    ) {
+
+        google.accounts.id.renderButton(
+            barra.querySelector("#login-google"),
+            {
+                theme: "outline",
+                size: "medium",
+                text: "signin_with"
+            }
+        );
+    }
+
+
+    barra
+        .querySelector("#btn-eliminar-producto")
+        ?.addEventListener(
+            "click",
+            () => eliminarDatos()
+        );
+
+
+    barra
+        .querySelector("#btn-salir-admin")
+        ?.addEventListener(
+            "click",
+            cerrarSesionAdmin
+        );
 }
 
 
@@ -2517,6 +2970,37 @@ function crearTarjetaComercio(
         event =>
             event.stopPropagation()
     );
+
+
+    /*
+     * Admin: eliminar solo este comercio.
+     */
+
+    if (adminActivo) {
+
+        const botonEliminar =
+            document.createElement("button");
+
+        botonEliminar.type =
+            "button";
+
+        botonEliminar.className =
+            "btn-comercio btn-peligro";
+
+        botonEliminar.textContent =
+            "🗑️ Eliminar comercio";
+
+        botonEliminar.addEventListener(
+            "click",
+            () => eliminarDatos(id)
+        );
+
+        tarjeta
+            .querySelector(
+                ".comercio-acciones"
+            )
+            .appendChild(botonEliminar);
+    }
 
 
     return tarjeta;
