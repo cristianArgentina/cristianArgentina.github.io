@@ -1,5 +1,5 @@
 "use strict";
-//import { iniciarAgrupacion, renderizarAgrupado } from "./agrupacion.js";
+import { iniciarAgrupacion, renderizarAgrupado } from "./agrupacion.js";
 import {
     iniciarUnificacion,
     actualizarControlesUnificar,
