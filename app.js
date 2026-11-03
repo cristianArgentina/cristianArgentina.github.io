@@ -1,5 +1,11 @@
 "use strict";
-import { iniciarAgrupacion, renderizarAgrupado } from "./agrupacion.js";
+//import { iniciarAgrupacion, renderizarAgrupado } from "./agrupacion.js";
+import {
+    iniciarUnificacion,
+    actualizarControlesUnificar,
+    clickEnModoUnificar,
+    decorarTarjetaUnificar
+} from "./unificacion.js";
 
 /*
  * ============================================================
@@ -83,6 +89,12 @@ let adminToken = null;
 
 let googleListo = false;
 
+let mapaGruposActual = new Map();
+
+let filasActuales = [];
+
+let imagenesActuales = new Map();
+
 /*
  * ============================================================
  * COMERCIOS
@@ -124,6 +136,27 @@ async function iniciar() {
 
     restaurarSesionAdmin();
 
+    iniciarUnificacion({
+        obtenerAdmin: () => ({ activo: adminActivo, googleListo }),
+    
+        renderLogin: contenedor =>
+            google.accounts.id.renderButton(contenedor, {
+                theme: "outline",
+                size: "medium",
+                text: "signin_with"
+            }),
+    
+        formatearIdentificador,
+    
+        volverARenderizar: () =>
+            aplicarBusqueda({
+                target: document.getElementById("busqueda")
+            }),
+    
+        onUnificar: unificarProductos,
+        onSeparar: separarProductos
+    });
+    
     esperarGoogleYConfigurar();
 
     try {
@@ -140,6 +173,10 @@ async function iniciar() {
                 cargarLogosComercios(),
                 cargarMatchProductos()
             ]);
+
+        filasActuales = filas;
+        imagenesActuales = imagenes;
+        mapaGruposActual = mapaGrupos;
 
         procesarFilas(
             filas,
@@ -299,6 +336,8 @@ function esperarGoogleYConfigurar(intentos = 0) {
 
                 adminActivo = true;
 
+                actualizarControlesUnificar();
+                
                 try {
 
                     sessionStorage.setItem(
@@ -318,6 +357,8 @@ function esperarGoogleYConfigurar(intentos = 0) {
 
         googleListo = true;
 
+        actualizarControlesUnificar();
+        
         // Si ya estábamos mostrando un detalle sin sesión,
         // lo redibujamos para que aparezca el botón de login.
         if (
@@ -353,6 +394,7 @@ function cerrarSesionAdmin() {
 
     adminToken = null;
     adminActivo = false;
+    actualizarControlesUnificar();
 
     try {
 
@@ -525,7 +567,114 @@ async function eliminarDatos(sitioId = null) {
     }
 }
 
+function reprocesarYRenderizar() {
 
+    procesarFilas(filasActuales, imagenesActuales, mapaGruposActual);
+
+    actualizarEstado(`${productos.size} productos encontrados`);
+
+    aplicarBusqueda({
+        target: document.getElementById("busqueda")
+    });
+}
+
+
+function sesionAdminValida() {
+
+    if (adminToken && tokenVigente(adminToken)) {
+        return true;
+    }
+
+    cerrarSesionAdmin();
+
+    return false;
+}
+
+
+async function unificarProductos({ identificadores, grupoId }) {
+
+    if (!sesionAdminValida()) {
+        return {
+            ok: false,
+            error: "La sesión venció. Iniciá sesión de nuevo."
+        };
+    }
+
+    try {
+
+        const r = await llamarAdmin({
+            accion: "unificar",
+            identificadores,
+            grupo_id: grupoId
+        });
+
+        if (!r.ok) {
+
+            if (r.error === "No autorizado") {
+                cerrarSesionAdmin();
+            }
+
+            return { ok: false, error: r.error || "No se pudo unificar." };
+        }
+
+        // Estado local inmediato (el CSV de gviz puede tardar en reflejarlo).
+        for (const id of identificadores) {
+            mapaGruposActual.set(id, grupoId);
+        }
+
+        reprocesarYRenderizar();
+
+        return { ok: true };
+
+    } catch (error) {
+
+        console.error(error);
+
+        return { ok: false, error: "Error de conexión al unificar." };
+    }
+}
+
+
+async function separarProductos({ identificadores }) {
+
+    if (!sesionAdminValida()) {
+        return {
+            ok: false,
+            error: "La sesión venció. Iniciá sesión de nuevo."
+        };
+    }
+
+    try {
+
+        const r = await llamarAdmin({
+            accion: "desagrupar",
+            identificadores
+        });
+
+        if (!r.ok) {
+
+            if (r.error === "No autorizado") {
+                cerrarSesionAdmin();
+            }
+
+            return { ok: false, error: r.error || "No se pudo separar." };
+        }
+
+        for (const id of identificadores) {
+            mapaGruposActual.delete(id);
+        }
+
+        reprocesarYRenderizar();
+
+        return { ok: true };
+
+    } catch (error) {
+
+        console.error(error);
+
+        return { ok: false, error: "Error de conexión al separar." };
+    }
+}
 /*
  * ============================================================
  * CARGA DE SHEETS
@@ -1525,6 +1674,10 @@ function procesarFilas(
                     // varios.
                     identificadores: new Set(),
 
+                    nombres: new Set(),
+
+                    grupoNombre: mapaGrupos.get(identificador) || null,   // <-- NUEVO (junto a `nombres`)
+                    
                     ean: ean || null,
 
                     nombre:
@@ -1551,7 +1704,10 @@ function procesarFilas(
             identificador
         );
 
-
+        if (productoNombre) {
+            producto.nombres.add(productoNombre);
+        }
+        
         /*
          * Conservamos el primer EAN "real" que
          * encontremos, por si el producto se
@@ -1889,14 +2045,16 @@ function crearTarjetaProducto(producto) {
     tarjeta.className =
         "producto-card";
 
-
-    tarjeta.addEventListener(
-        "click",
-        () =>
-            mostrarDetalle(
-                producto.clave
-            )
-    );
+    
+    tarjeta.addEventListener("click", () => {
+    
+        // En modo unificar el click marca/desmarca en vez de abrir el detalle.
+        if (clickEnModoUnificar(producto)) {
+            return;
+        }
+    
+        mostrarDetalle(producto.clave);
+    });
 
 
     const imagen =
@@ -2038,6 +2196,8 @@ function crearTarjetaProducto(producto) {
         </div>
     `;
 
+    decorarTarjetaUnificar(tarjeta, producto);
+    
     return tarjeta;
 }
 
