@@ -245,7 +245,7 @@ async function cargarImagenesProductos() {
         encabezados.indexOf("ean");
 
     const indiceImagen =
-        encabezados.indexOf("imageurl");
+        encabezados.indexOf("imageurlopt");
 
     const indiceSku =
         encabezados.indexOf("sku");
@@ -260,7 +260,7 @@ async function cargarImagenesProductos() {
     ) {
 
         console.warn(
-            "Imagenes_Productos no contiene las columnas ean e imageurl."
+            "Imagenes_Productos no contiene las columnas ean e imageurlopt."
         );
 
         return imagenes;
@@ -278,7 +278,7 @@ async function cargarImagenesProductos() {
                 filas[i][indiceEAN]
             );
 
-        const imageurl =
+        const imageurlopt =
             limpiar(
                 filas[i][indiceImagen]
             );
@@ -293,7 +293,7 @@ async function cargarImagenesProductos() {
                 ? limpiar(filas[i][indiceSitio])
                 : "";
 
-        if (!imageurl) {
+        if (!imageurlopt) {
             continue;
         }
 
@@ -317,7 +317,7 @@ async function cargarImagenesProductos() {
 
             imagenes.set(
                 clave,
-                imageurl
+                imageurlopt
             );
         }
     }
