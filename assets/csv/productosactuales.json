@@ -5,17 +5,10 @@
     "description": "Crema Corporal Hidratación Intensiva, Firmeza 400 Ml",
     "category": "belleza y salud",
     "price": 11000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/cicatricurecorporalfirmeza.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 6214.68,
-        "_id": "6a763b81421884e0b417d556",
-        "fechaIngreso": "2026-08-07T20:09:37.831Z"
-      }
-    ],
+    "lotes": [],
     "isCombo": false,
     "combo": []
   },
@@ -25,7 +18,7 @@
     "description": "Crema Corporal Hidratante x 400 ml",
     "category": "belleza y salud",
     "price": 12000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/diabettxhidratante400.jpg",
     "videos": [],
     "lotes": [],
@@ -180,7 +173,7 @@
     "name": "Cicatricure - Age Care Humectante",
     "description": "Crema facial Age Care Humectante 50g",
     "category": "belleza y salud",
-    "price": 11000,
+    "price": 12000,
     "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/cicatricurefacialhumectante.jpg",
     "videos": [],
@@ -200,24 +193,11 @@
     "name": "Cicatricure - Age Care Reafirmante",
     "description": "Crema facial Age Care Reafirmante 50g",
     "category": "belleza y salud",
-    "price": 11000,
-    "stock": 2,
+    "price": 12000,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/cicatricurefacialreafirmante.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 4504.15,
-        "fechaIngreso": "2025-07-21T00:00:00.000Z",
-        "_id": "68a399a602d19be1278bccd2"
-      },
-      {
-        "cantidad": 1,
-        "costoUnitario": null,
-        "fechaIngreso": "2024-01-01T00:00:00.000Z",
-        "_id": "68a3a27602d19be1278bd132"
-      }
-    ],
+    "lotes": [],
     "isCombo": false,
     "combo": []
   },
@@ -259,9 +239,9 @@
     "lotes": [
       {
         "cantidad": 1,
-        "costoUnitario": 8905.87,
-        "_id": "6abe7b582704b2f0167cf596",
-        "fechaIngreso": "2026-10-01T15:25:12.302Z"
+        "costoUnitario": 6926.85,
+        "_id": "6aef641725695602a8805a99",
+        "fechaIngreso": "2026-11-07T17:47:03.101Z"
       }
     ],
     "isCombo": false,
@@ -312,12 +292,12 @@
     "description": "Crema Corporal ANTICELULITIS 400 Ml",
     "category": "belleza y salud",
     "price": 11000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/goicoechea400anticelulitis.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 5919.85,
         "_id": "6a89abde782f318e906d7926",
         "fechaIngreso": "2026-08-22T14:02:06.737Z"
@@ -332,17 +312,10 @@
     "description": "Goicoechea Diabet Tx Plus con Urea 250g",
     "category": "belleza y salud",
     "price": 13000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/diabettxplusureapote.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 4992.3,
-        "_id": "691b588ba5b6642f423939c0",
-        "fechaIngreso": "2025-11-17T17:16:59.438Z"
-      }
-    ],
+    "lotes": [],
     "isCombo": false,
     "combo": []
   },
@@ -760,17 +733,10 @@
     "description": "Coat spray sellado antifrizz",
     "category": "belleza y salud",
     "price": 10000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/tresemmespraycoat.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 4701.7,
-        "_id": "6a763be4421884e0b417d638",
-        "fechaIngreso": "2026-08-07T20:11:16.884Z"
-      }
-    ],
+    "lotes": [],
     "isCombo": false,
     "combo": []
   },
@@ -780,15 +746,15 @@
     "description": "Serum Elvive Dream Liso 100ml",
     "category": "belleza y salud",
     "price": 15000,
-    "stock": 1,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/elviveserumdreamliso.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 1,
-        "costoUnitario": 7432.75,
-        "_id": "6ab129027b5a1c719a247ab6",
-        "fechaIngreso": "2026-09-21T12:54:26.624Z"
+        "cantidad": 2,
+        "costoUnitario": 7972.3,
+        "_id": "6ae3aef2a0a16fe364b6222d",
+        "fechaIngreso": "2026-10-29T20:39:14.363Z"
       }
     ],
     "isCombo": false,
@@ -799,7 +765,7 @@
     "name": "Cicatricure - Age Care Aclarante",
     "description": "Crema facial Age Care Aclarante 50g",
     "category": "belleza y salud",
-    "price": 11000,
+    "price": 12000,
     "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/cicatricurefacialaclarante.jpg",
     "videos": [],
@@ -873,12 +839,12 @@
     "description": "Panel fotográfico luz led de estudio con trípode y rótula",
     "category": "iluminacion",
     "price": 22000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/panelledcontripodeconrotula.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 9800,
         "_id": "68accd5fd108e3633c96b327",
         "fechaIngreso": "2025-08-25T20:53:51.567Z"
@@ -906,12 +872,12 @@
     "description": "Purificador de agua con filtro cerámico",
     "category": "hogar",
     "price": 11000,
-    "stock": 5,
+    "stock": 4,
     "image": "https://cristianargentina.github.io/assets/img/sws01.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 5,
+        "cantidad": 4,
         "costoUnitario": 5765.66,
         "_id": "6aa40042a5b02b89b3f8e2f3",
         "fechaIngreso": "2026-09-11T13:21:06.828Z"
@@ -966,16 +932,10 @@
     "description": "Óleo + Serum Bifásico Dove Bond Intense Repair de 110 ml ",
     "category": "belleza y salud",
     "price": 10000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/doveserumoleo.jpg",
     "videos": [],
     "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 5045.66,
-        "_id": "6a710f9e048d9350500b89e7",
-        "fechaIngreso": "2026-08-03T22:01:02.792Z"
-      },
       {
         "cantidad": 1,
         "costoUnitario": 5999.46,
@@ -991,16 +951,16 @@
     "name": "Elvive - Mascarilla Nutritiva",
     "description": "Mascarilla Oleo Extraordinario Nutrición Universal 300g",
     "category": "belleza y salud",
-    "price": 7000,
-    "stock": 2,
+    "price": 8000,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/mascarillaoleoex.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
-        "costoUnitario": 3776.85,
-        "_id": "6abd7843357024dda9ff09ad",
-        "fechaIngreso": "2026-09-30T20:59:47.979Z"
+        "cantidad": 1,
+        "costoUnitario": 3788.36,
+        "_id": "6ae23c0ed313cec25ef247dd",
+        "fechaIngreso": "2026-10-28T18:16:46.790Z"
       }
     ],
     "isCombo": false,
@@ -1012,16 +972,10 @@
     "description": "Mascarilla Elvive Dream Liso 300ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 4,
+    "stock": 3,
     "image": "https://cristianargentina.github.io/assets/img/mascarillaelvivedream.jpg",
     "videos": [],
     "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 2501.62,
-        "_id": "6994c37d4848c72a28865d61",
-        "fechaIngreso": "2026-02-17T19:37:33.641Z"
-      },
       {
         "cantidad": 2,
         "costoUnitario": 1903.82,
@@ -1044,18 +998,12 @@
     "description": "Crema para peinar Elvive dream liso 250ml ",
     "category": "belleza y salud",
     "price": 6000,
-    "stock": 4,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/dreamlisopeinar.jpg",
     "videos": [],
     "lotes": [
       {
         "cantidad": 1,
-        "costoUnitario": 2024.52,
-        "_id": "69bc5afbf384d16c1d81ba24",
-        "fechaIngreso": "2026-03-19T20:22:19.514Z"
-      },
-      {
-        "cantidad": 2,
         "costoUnitario": 3000,
         "_id": "6a0348c76d0b0d510d0421df",
         "fechaIngreso": "2026-05-12T15:35:35.350Z"
@@ -1075,22 +1023,16 @@
     "name": "Elvive - Acondiconador óleo nutrición ",
     "description": "Acondiconador Elvive óleo nutrición cabello seco 400ml",
     "category": "belleza y salud",
-    "price": 6000,
-    "stock": 2,
+    "price": 7000,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/oleonutricionacondicionador.jpg",
     "videos": [],
     "lotes": [
       {
         "cantidad": 1,
-        "costoUnitario": 4052.69,
-        "_id": "6ab128a67b5a1c719a2479bf",
-        "fechaIngreso": "2026-09-21T12:52:54.349Z"
-      },
-      {
-        "cantidad": 1,
-        "costoUnitario": 3500,
-        "_id": "6ab12a2e7b5a1c719a247b33",
-        "fechaIngreso": "2026-09-21T12:59:26.740Z"
+        "costoUnitario": 4346.7,
+        "_id": "6ae3af0ca0a16fe364b62320",
+        "fechaIngreso": "2026-10-29T20:39:40.151Z"
       }
     ],
     "isCombo": false,
@@ -1101,16 +1043,16 @@
     "name": "Elvive - Shampoo óleo nutrición ",
     "description": "Shampoo Elvive óleo nutrición cabello seco 400ml",
     "category": "belleza y salud",
-    "price": 6000,
+    "price": 7000,
     "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/oleonutricionshampoo.jpg",
     "videos": [],
     "lotes": [
       {
         "cantidad": 1,
-        "costoUnitario": 3500,
-        "_id": "6ab12a347b5a1c719a247bb1",
-        "fechaIngreso": "2026-09-21T12:59:32.979Z"
+        "costoUnitario": 4346.7,
+        "_id": "6ae3af04a0a16fe364b622a6",
+        "fechaIngreso": "2026-10-29T20:39:32.369Z"
       }
     ],
     "isCombo": false,
@@ -1122,12 +1064,12 @@
     "description": "Luz trasera de bicicleta con 5 LEDs y 2 haces láser",
     "category": "iluminacion",
     "price": 10000,
-    "stock": 9,
+    "stock": 8,
     "image": "https://cristianargentina.github.io/assets/img/luztraseralaser.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 9,
+        "cantidad": 8,
         "costoUnitario": 2673.1,
         "_id": "69cc5a8a9105a9cc363b14f5",
         "fechaIngreso": "2026-03-31T23:36:42.672Z"
@@ -1162,23 +1104,10 @@
     "description": "Shampoo Dream Liso Efecto Keratina 400Ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 2,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/dreamshampoo.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 4059.25,
-        "_id": "6a15fa1673e90ad807bbeabe",
-        "fechaIngreso": "2026-05-26T19:52:54.354Z"
-      },
-      {
-        "cantidad": 1,
-        "costoUnitario": 2828.57,
-        "fechaIngreso": "2026-08-15T22:07:17.841Z",
-        "_id": "6a80e315c33361b6ccb47df1"
-      }
-    ],
+    "lotes": [],
     "isCombo": false,
     "combo": []
   },
@@ -1188,21 +1117,15 @@
     "description": "Acondicionador Dream Liso Efecto Keratina 400ml",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/acondicionadorDreamLiso.jpg",
     "videos": [],
     "lotes": [
       {
         "cantidad": 1,
-        "costoUnitario": 2828.57,
-        "fechaIngreso": "2026-08-15T22:07:18.197Z",
-        "_id": "6a80e316c33361b6ccb47df5"
-      },
-      {
-        "cantidad": 1,
-        "costoUnitario": 4559.7,
-        "_id": "6ab127d07b5a1c719a2476d0",
-        "fechaIngreso": "2026-09-21T12:49:20.494Z"
+        "costoUnitario": 4451.7,
+        "_id": "6aee5977846a3507df35aede",
+        "fechaIngreso": "2026-11-06T22:49:27.062Z"
       }
     ],
     "isCombo": false,
@@ -1247,21 +1170,15 @@
     "description": "Protector Solar Dermaglós Fps 50 Emulsión 50ml",
     "category": "belleza y salud",
     "price": 8000,
-    "stock": 4,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/dermaglos50.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 1,
-        "costoUnitario": 3405.87,
-        "_id": "68f68b9baba148995a729c67",
-        "fechaIngreso": "2025-10-20T19:20:59.462Z"
-      },
-      {
-        "cantidad": 3,
-        "costoUnitario": 3760,
-        "_id": "68f68c05aba148995a729cf3",
-        "fechaIngreso": "2025-10-20T19:22:45.135Z"
+        "cantidad": 2,
+        "costoUnitario": 4217.5,
+        "_id": "6aee56d3846a3507df35ad84",
+        "fechaIngreso": "2026-11-06T22:38:11.938Z"
       }
     ],
     "isCombo": false,
@@ -1318,15 +1235,15 @@
     "lotes": [
       {
         "cantidad": 1,
-        "costoUnitario": 5045.66,
-        "_id": "6a710f8e048d9350500b897c",
-        "fechaIngreso": "2026-08-03T22:00:46.938Z"
-      },
-      {
-        "cantidad": 1,
         "costoUnitario": 6999.66,
         "_id": "6abd7823357024dda9ff092c",
         "fechaIngreso": "2026-09-30T20:59:15.318Z"
+      },
+      {
+        "cantidad": 1,
+        "costoUnitario": 5893.5,
+        "_id": "6aee5927846a3507df35adf7",
+        "fechaIngreso": "2026-11-06T22:48:07.673Z"
       }
     ],
     "isCombo": false,
@@ -1397,17 +1314,10 @@
     "description": "Acondicionador Dove UV Repair & Glow x 250ml",
     "category": "belleza y salud",
     "price": 6000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/acondicionadoruvrepair.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 3636,
-        "_id": "6a96f29cfc294b468f48a2e3",
-        "fechaIngreso": "2026-09-01T15:43:24.677Z"
-      }
-    ],
+    "lotes": [],
     "isCombo": false,
     "combo": []
   },
@@ -1417,15 +1327,15 @@
     "description": "Mascara de Rescate Capilar Dove UV Repair & Glow x 250g",
     "category": "belleza y salud",
     "price": 9000,
-    "stock": 1,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/mascarauvrepair.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 1,
-        "costoUnitario": 4319.52,
-        "_id": "6a71108f048d9350500b8ac4",
-        "fechaIngreso": "2026-08-03T22:05:03.125Z"
+        "cantidad": 2,
+        "costoUnitario": 5706,
+        "_id": "6aee59ac846a3507df35af53",
+        "fechaIngreso": "2026-11-06T22:50:20.167Z"
       }
     ],
     "isCombo": false,
@@ -1437,16 +1347,10 @@
     "description": "\nShampoo Dove UV Repair & Glow x 400ml\n",
     "category": "belleza y salud",
     "price": 7000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/shampoouvrepair.jpg",
     "videos": [],
     "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 3473.69,
-        "_id": "6a763b0b421884e0b417d479",
-        "fechaIngreso": "2026-08-07T20:07:39.999Z"
-      },
       {
         "cantidad": 1,
         "costoUnitario": 4305,
@@ -1516,12 +1420,12 @@
     "description": "Adaptador Universal Enchufe Internacional",
     "category": "tecnologia",
     "price": 6000,
-    "stock": 2,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/adaptadorviaje0.webp",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 2,
+        "cantidad": 1,
         "costoUnitario": 2500,
         "_id": "697d42e907016d3c9ad55a62",
         "fechaIngreso": "2026-01-30T23:46:49.167Z"
@@ -1556,17 +1460,10 @@
     "description": "herramientas de reparación para dispositivos.",
     "category": "tecnologia",
     "price": 15000,
-    "stock": 1,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/kitcelulares115h0.jpg",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 1,
-        "costoUnitario": 6500,
-        "_id": "6ab1be4aa0b9a220f93cd341",
-        "fechaIngreso": "2026-09-21T23:31:22.365Z"
-      }
-    ],
+    "lotes": [],
     "isCombo": false,
     "combo": []
   },
@@ -1576,17 +1473,10 @@
     "description": "copiador de control para dispositivos",
     "category": "tecnologia",
     "price": 10000,
-    "stock": 6,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/controlporton0.webp",
     "videos": [],
-    "lotes": [
-      {
-        "cantidad": 6,
-        "costoUnitario": 3600,
-        "_id": "6ab1be89a0b9a220f93cd3c1",
-        "fechaIngreso": "2026-09-21T23:32:25.104Z"
-      }
-    ],
+    "lotes": [],
     "isCombo": false,
     "combo": []
   },
@@ -1675,8 +1565,8 @@
     "name": "Combo Oleo Extraordinario",
     "description": "4 productos Elvive",
     "category": "belleza y salud",
-    "price": 30000,
-    "stock": 1,
+    "price": 33000,
+    "stock": 0,
     "image": "https://cristianargentina.github.io/assets/img/comboextraordinario4.jpg",
     "videos": [],
     "lotes": [],
@@ -1685,22 +1575,22 @@
       {
         "productId": 16,
         "qty": 1,
-        "_id": "6aca72f162fb38dfcab2a03d"
+        "_id": "6afc4cdee45cca5c39150145"
       },
       {
         "productId": 1757107407247,
         "qty": 1,
-        "_id": "6aca72f162fb38dfcab2a03e"
+        "_id": "6afc4cdee45cca5c39150146"
       },
       {
         "productId": 1757536761467,
         "qty": 1,
-        "_id": "6aca72f162fb38dfcab2a03f"
+        "_id": "6afc4cdee45cca5c39150147"
       },
       {
         "productId": 1757537094876,
         "qty": 1,
-        "_id": "6aca72f162fb38dfcab2a040"
+        "_id": "6afc4cdee45cca5c39150148"
       }
     ]
   },
@@ -1749,10 +1639,17 @@
     "description": "Tratamiento Amino-Silk 300ml",
     "category": "belleza y salud",
     "price": 4000,
-    "stock": 0,
+    "stock": 1,
     "image": "https://cristianargentina.github.io/assets/img/sedaltoquemasca.jpg",
     "videos": [],
-    "lotes": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 2718.3,
+        "_id": "6aee594f846a3507df35ae6a",
+        "fechaIngreso": "2026-11-06T22:48:47.626Z"
+      }
+    ],
     "isCombo": false,
     "combo": []
   },
@@ -1919,9 +1816,9 @@
     "lotes": [
       {
         "cantidad": 1,
-        "costoUnitario": 3193.16,
-        "_id": "6a025b17a894cc4149656135",
-        "fechaIngreso": "2026-05-11T22:41:27.210Z"
+        "costoUnitario": 5228.99,
+        "_id": "6ad3d9cc90a4af178079da9a",
+        "fechaIngreso": "2026-10-17T20:25:48.574Z"
       }
     ],
     "isCombo": false,
@@ -2093,11 +1990,18 @@
     "name": "Mini Teclado Retroiluminado inalámbrico",
     "description": "teclado inalámbrico con bateria recargable",
     "category": "tecnologia",
-    "price": 12000,
-    "stock": 0,
+    "price": 13000,
+    "stock": 10,
     "image": "https://cristianargentina.github.io/assets/img/miniteclado.jpg",
     "videos": [],
-    "lotes": [],
+    "lotes": [
+      {
+        "cantidad": 10,
+        "costoUnitario": 3800,
+        "_id": "6afd012bbede2d77929a645a",
+        "fechaIngreso": "2026-11-18T01:36:43.641Z"
+      }
+    ],
     "isCombo": false,
     "combo": []
   },
@@ -2120,12 +2024,12 @@
     "description": "Sérum Elvive Collagen Lifter x 100 ml",
     "category": "belleza y salud",
     "price": 16000,
-    "stock": 6,
+    "stock": 5,
     "image": "https://cristianargentina.github.io/assets/img/elviveserumcollagenlifter.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 6,
+        "cantidad": 5,
         "costoUnitario": 11994,
         "_id": "6a3c28c16ed573554ea16457",
         "fechaIngreso": "2026-06-24T18:58:09.605Z"
@@ -2157,19 +2061,13 @@
   {
     "id": 1788883837720,
     "name": "Cortina magnética anti-insectos.",
-    "description": "cotina mosquitero blanca",
+    "description": "cotina mosquitero blanca 0.80 x 2.10",
     "category": "hogar",
     "price": 15000,
-    "stock": 8,
+    "stock": 6,
     "image": "https://cristianargentina.github.io/assets/img/cortinablancafuncional.jpg",
     "videos": [],
     "lotes": [
-      {
-        "cantidad": 2,
-        "costoUnitario": 5332.33,
-        "_id": "6aa033eb6134c219bc499f74",
-        "fechaIngreso": "2026-09-08T16:12:27.586Z"
-      },
       {
         "cantidad": 6,
         "costoUnitario": 5332.33,
@@ -2186,15 +2084,15 @@
     "description": "Fotos y Video Retro Full HD",
     "category": "tecnologia",
     "price": 22000,
-    "stock": 1,
+    "stock": 2,
     "image": "https://cristianargentina.github.io/assets/img/minicamarallavero.jpg",
     "videos": [],
     "lotes": [
       {
-        "cantidad": 1,
+        "cantidad": 2,
         "costoUnitario": 12600,
-        "_id": "6ab296d6f9f3d9b2f7e199df",
-        "fechaIngreso": "2026-09-22T14:55:18.642Z"
+        "_id": "6afc9dbc6aaeefe506ecc25c",
+        "fechaIngreso": "2026-11-17T18:32:28.399Z"
       }
     ],
     "isCombo": false,
@@ -2206,8 +2104,121 @@
     "description": "Shampoo, Acondicionador y Serum",
     "category": "belleza y salud",
     "price": 18000,
+    "stock": 1,
+    "image": "https://cristianargentina.github.io/assets/img/sedalmegacrecimientocombo.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 1,
+        "costoUnitario": 15214.28,
+        "_id": "6ace482d938df768b6c74106",
+        "fechaIngreso": "2026-10-13T15:03:09.083Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1794966637983,
+    "name": "Sedal - Mega Crecimiento Shampoo",
+    "description": "Shampoo Sedal Mega Crecimiento 340ml",
+    "category": "belleza y salud",
+    "price": 5000,
+    "stock": 4,
+    "image": "https://cristianargentina.github.io/assets/imgopt/productos/7791293052236.webp",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 4,
+        "costoUnitario": 2593.5,
+        "_id": "6afd09b2bede2d77929a6c37",
+        "fechaIngreso": "2026-11-18T02:13:06.638Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1794966908444,
+    "name": "Sedal - Mega Crecimiento Acondicionador",
+    "description": "Acondicionador Sedal Mega Crecimiento 340ml",
+    "category": "belleza y salud",
+    "price": 5000,
+    "stock": 4,
+    "image": "https://cristianargentina.github.io/assets/imgopt/productos/7791293052250.webp",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 4,
+        "costoUnitario": 2593.5,
+        "_id": "6afd09a8bede2d77929a6bc4",
+        "fechaIngreso": "2026-11-18T02:12:56.226Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1794967674377,
+    "name": "Sedal - Shampoo Crema Balance",
+    "description": "Shampoo Sedal Crema Balance 340ml",
+    "category": "belleza y salud",
+    "price": 5000,
+    "stock": 2,
+    "image": "https://cristianargentina.github.io/assets/img/sedalacondicionadorbalance340.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 2593.5,
+        "_id": "6afd098ebede2d77929a6ae1",
+        "fechaIngreso": "2026-11-18T02:12:30.329Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1794967750360,
+    "name": "Sedal - Acondicionador Crema Balance",
+    "description": "Acondicionador Sedal Crema Balance 340ml",
+    "category": "belleza y salud",
+    "price": 5000,
+    "stock": 2,
+    "image": "https://cristianargentina.github.io/assets/img/sedalacondicionadorbalance340.jpg",
+    "videos": [],
+    "lotes": [
+      {
+        "cantidad": 2,
+        "costoUnitario": 2593.5,
+        "_id": "6afd0995bede2d77929a6b52",
+        "fechaIngreso": "2026-11-18T02:12:37.673Z"
+      }
+    ],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1794968408692,
+    "name": "Sedal -  Serum Toque de Seda",
+    "description": "Serum Sedal Toque de Seda 100ml",
+    "category": "belleza y salud",
+    "price": 8000,
     "stock": 0,
-    "image": "https://cristianargentina.github.io/assets/img/sedalmegacrecimientocombo.jpg‎",
+    "image": "https://cristianargentina.github.io/assets/imgopt/productos/7891150101784.webp",
+    "videos": [],
+    "lotes": [],
+    "isCombo": false,
+    "combo": []
+  },
+  {
+    "id": 1794968778546,
+    "name": "Sedal - Serum Luminous UV",
+    "description": "Serum Sedal Luminous UV 110ml",
+    "category": "belleza y salud",
+    "price": 9000,
+    "stock": 0,
+    "image": "https://cristianargentina.github.io/assets/img/sedalserumuv110.jpg",
     "videos": [],
     "lotes": [],
     "isCombo": false,
