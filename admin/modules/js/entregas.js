@@ -5,6 +5,9 @@ import {
   deleteEntrega
 } from "../../../api.js";
 
+// import de namespace: si la API no exporta la función de productos, no rompe el módulo
+import * as api from "../../../api.js";
+
 import {
   showLoader,
   hideLoader
@@ -29,7 +32,7 @@ const TRONCAL_QUILMES = [
 ];
 
 const RAMALES = {
-  "La Plata (vía Quilmes)": [
+  "LP": [
     ...TRONCAL_QUILMES,
     "Plátanos",
     "Hudson",
@@ -41,7 +44,7 @@ const RAMALES = {
     "Tolosa",
     "La Plata"
   ],
-  "Bosques (vía Quilmes)": [
+  "VQ": [
     ...TRONCAL_QUILMES,
     "Villa España",
     "Ranelagh",
@@ -49,10 +52,7 @@ const RAMALES = {
     "Bosques",
     "Gutiérrez"
   ],
-  "Bosques (vía Temperley)": [
-    "Plaza Constitución",
-    "Hipólito Yrigoyen",
-    "Darío Santillán y Maximiliano Kosteki",
+  "VT": [
     "Gerli",
     "Lanús",
     "Remedios de Escalada",
@@ -64,8 +64,6 @@ const RAMALES = {
     "Claypole",
     "Ardigó",
     "Florencio Varela",
-    "Bosques",
-    "Gutiérrez"
   ]
 };
 
@@ -118,6 +116,8 @@ class EntregasPanel extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.entregas = [];
     this.lugaresSel = [];
+    this.productosSel = [];
+    this.catalogo = [];
     this.filtro = "";
   }
 
@@ -125,6 +125,45 @@ class EntregasPanel extends HTMLElement {
     this.render();
     this.setupEventListeners();
     this.loadEntregas();
+    this.loadProductos();
+  }
+
+  /* =========================
+     CATÁLOGO DE PRODUCTOS
+  ========================= */
+
+  async loadProductos() {
+
+    // ajustá acá el nombre si tu api.js exporta otra función
+    const fn = api.getProductos || api.getProducts;
+
+    if (typeof fn !== "function") {
+      console.warn("api.js no exporta getProductos: el campo queda como texto libre.");
+      return;
+    }
+
+    try {
+
+      const lista = await fn();
+
+      this.catalogo = [...new Set(
+        (lista || [])
+          .map(p => typeof p === "string" ? p : (p.nombre || p.name || p.titulo))
+          .filter(Boolean)
+          .map(n => String(n).trim())
+      )].sort((a, b) => a.localeCompare(b, "es"));
+
+      const dl = this.shadowRoot.getElementById("listaProductos");
+
+      if (dl) {
+        dl.innerHTML = this.catalogo
+          .map(n => `<option value="${esc(n)}"></option>`)
+          .join("");
+      }
+
+    } catch (err) {
+      console.error("Error cargando productos:", err);
+    }
   }
 
   /* =========================
@@ -262,7 +301,17 @@ class EntregasPanel extends HTMLElement {
 
           <label>
             Productos
-            <textarea name="productos" rows="2" placeholder="Qué se entrega"></textarea>
+            <div class="chips" id="chipsProductos"></div>
+            <input
+              id="inputProducto"
+              list="listaProductos"
+              placeholder="Escribí el nombre de un producto..."
+              autocomplete="off"
+            >
+            <datalist id="listaProductos"></datalist>
+            <span class="hint">
+              Enter para agregar. Podés sumar varios y aclarar cantidad, ej: "2 x Alfajor".
+            </span>
           </label>
 
           <label>
@@ -546,6 +595,35 @@ class EntregasPanel extends HTMLElement {
   }
 
   /* =========================
+     PRODUCTOS (chips)
+  ========================= */
+
+  renderChipsProductos() {
+
+    this.shadowRoot.getElementById("chipsProductos").innerHTML =
+      this.productosSel
+        .map((p, i) => `
+          <span class="chip">
+            ${esc(p)}
+            <button type="button" data-p="${i}" aria-label="Quitar ${esc(p)}">✕</button>
+          </span>
+        `)
+        .join("");
+  }
+
+  agregarProducto(valor) {
+
+    const v = String(valor || "").trim().replace(/,/g, " ");
+
+    if (!v) return;
+
+    if (!this.productosSel.some(p => p.toLowerCase() === v.toLowerCase())) {
+      this.productosSel.push(v);
+      this.renderChipsProductos();
+    }
+  }
+
+  /* =========================
      MODAL
   ========================= */
 
@@ -565,7 +643,7 @@ class EntregasPanel extends HTMLElement {
       form.contacto.value = entrega.contacto || "";
       form.fecha.value = this.normalizarFecha(entrega.fecha) || "";
       form.hora.value = entrega.hora ? String(entrega.hora).slice(0, 5) : "";
-      form.productos.value = entrega.productos || "";
+      this.productosSel = this.parseLugares(entrega.productos);
 
       // si el canal guardado no está en la lista, se agrega para no perderlo
       if (entrega.canal && !CANALES.includes(entrega.canal)) {
@@ -582,10 +660,13 @@ class EntregasPanel extends HTMLElement {
       root.getElementById("modalTitulo").textContent = "Nueva entrega";
       form.entregaId.value = "";
       this.lugaresSel = [];
+      this.productosSel = [];
     }
 
     root.getElementById("inputLugar").value = "";
+    root.getElementById("inputProducto").value = "";
     this.renderChips();
+    this.renderChipsProductos();
 
     root.getElementById("modalEntrega").showModal();
   }
@@ -673,6 +754,29 @@ class EntregasPanel extends HTMLElement {
       this.renderChips();
     });
 
+    // productos: agregar con Enter o al elegir de la lista
+    const inputProducto = root.getElementById("inputProducto");
+
+    inputProducto.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter") {
+        ev.preventDefault();
+        this.agregarProducto(inputProducto.value);
+        inputProducto.value = "";
+      }
+    });
+
+    inputProducto.addEventListener("change", () => {
+      this.agregarProducto(inputProducto.value);
+      inputProducto.value = "";
+    });
+
+    root.getElementById("chipsProductos").addEventListener("click", (ev) => {
+      const btn = ev.target.closest("button[data-p]");
+      if (!btn) return;
+      this.productosSel.splice(Number(btn.dataset.p), 1);
+      this.renderChipsProductos();
+    });
+
     form.addEventListener("submit", this.handleNuevaEntrega);
   }
 
@@ -689,6 +793,10 @@ class EntregasPanel extends HTMLElement {
     this.agregarLugar(inputLugar.value);
     inputLugar.value = "";
 
+    const inputProducto = root.getElementById("inputProducto");
+    this.agregarProducto(inputProducto.value);
+    inputProducto.value = "";
+
     if (!form.contacto.value.trim() || !form.fecha.value) {
       errorMsg.textContent = "Completá al menos contacto y fecha.";
       return;
@@ -701,7 +809,7 @@ class EntregasPanel extends HTMLElement {
       lugares: this.lugaresSel.join(", "),
       fecha: form.fecha.value || null,
       hora: form.hora.value || null,
-      productos: form.productos.value.trim(),
+      productos: this.productosSel.join(", "),
       canal: form.canal.value || ""
     };
 
