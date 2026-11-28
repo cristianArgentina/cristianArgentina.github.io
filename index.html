@@ -152,7 +152,7 @@
     /* ==========================================================
        Helpers
     ========================================================== */
-    const getKey = (p) => p.id || p.name;
+    const getKey = (p) => String(p.id || p.name);
     const formatPrecio = (n) => '$' + n.toLocaleString();
     const youtubeEmbed = (id) =>
       `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&controls=0`;
